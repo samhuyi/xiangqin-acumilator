@@ -1,0 +1,66 @@
+/* 自动生成，请勿手改。来源：tools/gen-seed.js */
+module.exports = [
+  {
+    "id": "simple",
+    "name": "简单见面",
+    "sub": "咖啡 / 散步",
+    "cost": 400,
+    "mood": 3,
+    "affMult": 1,
+    "days": 3,
+    "spendLabel": {
+      "f": {
+        "simple": "买化妆品 / 护肤 · 约",
+        "standard": "买漂亮衣服 / 配饰 · 约",
+        "activity": "置办行头 / 做造型 · 约"
+      },
+      "m": {
+        "simple": "请客喝咖啡 / 散步 · 约",
+        "standard": "请客吃饭 / 看电影 · 约",
+        "activity": "请客 + 送礼 / 短途 · 约"
+      }
+    }
+  },
+  {
+    "id": "standard",
+    "name": "正式约会",
+    "sub": "吃饭 / 看电影",
+    "cost": 1200,
+    "mood": 5,
+    "affMult": 1.25,
+    "days": 4,
+    "spendLabel": {
+      "f": {
+        "simple": "买化妆品 / 护肤 · 约",
+        "standard": "买漂亮衣服 / 配饰 · 约",
+        "activity": "置办行头 / 做造型 · 约"
+      },
+      "m": {
+        "simple": "请客喝咖啡 / 散步 · 约",
+        "standard": "请客吃饭 / 看电影 · 约",
+        "activity": "请客 + 送礼 / 短途 · 约"
+      }
+    }
+  },
+  {
+    "id": "activity",
+    "name": "一起参加活动",
+    "sub": "展览 / 演出 / 短途",
+    "cost": 3600,
+    "mood": 9,
+    "affMult": 1.6,
+    "days": 7,
+    "spendLabel": {
+      "f": {
+        "simple": "买化妆品 / 护肤 · 约",
+        "standard": "买漂亮衣服 / 配饰 · 约",
+        "activity": "置办行头 / 做造型 · 约"
+      },
+      "m": {
+        "simple": "请客喝咖啡 / 散步 · 约",
+        "standard": "请客吃饭 / 看电影 · 约",
+        "activity": "请客 + 送礼 / 短途 · 约"
+      }
+    }
+  }
+];

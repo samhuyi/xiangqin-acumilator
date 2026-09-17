@@ -1,0 +1,20 @@
+# Windows
+[Dd]esktop.ini
+Thumbs.db
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+
+# Node.js
+node_modules/
+
+# WeChat 私有配置（机器相关，可能携带上传私钥，勿提交）
+project.private.config.json
+
+# 项目本地的 WorkBuddy 工作目录
+.workbuddy/

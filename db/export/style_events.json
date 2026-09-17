@@ -1,0 +1,78 @@
+[
+  {
+    "id": "show",
+    "styleId": "show",
+    "eventIds": [
+      "dt_dinner",
+      "dt_hotpot",
+      "dt_karaoke",
+      "dt_exhibition",
+      "dt_concert",
+      "dt_escape"
+    ]
+  },
+  {
+    "id": "modest",
+    "styleId": "modest",
+    "eventIds": [
+      "dt_coffee",
+      "dt_walk",
+      "dt_hotpot",
+      "dt_cooking",
+      "dt_pet",
+      "dt_picnic"
+    ]
+  },
+  {
+    "id": "careful",
+    "styleId": "careful",
+    "eventIds": [
+      "dt_coffee",
+      "dt_walk",
+      "dt_night",
+      "dt_market",
+      "dt_exhibition",
+      "dt_question_live"
+    ]
+  },
+  {
+    "id": "gift",
+    "styleId": "gift",
+    "eventIds": [
+      "dt_market",
+      "dt_dinner",
+      "dt_movie",
+      "dt_mall",
+      "dt_pet",
+      "dt_concert"
+    ]
+  },
+  {
+    "id": "romantic",
+    "styleId": "romantic",
+    "eventIds": [
+      "dt_walk",
+      "dt_night",
+      "dt_midnight",
+      "dt_movie",
+      "dt_concert",
+      "dt_trip",
+      "dt_picnic",
+      "dt_camping",
+      "dt_escape"
+    ]
+  },
+  {
+    "id": "direct",
+    "styleId": "direct",
+    "eventIds": [
+      "dt_coffee",
+      "dt_midnight",
+      "dt_cooking",
+      "dt_question_kid",
+      "dt_question_money",
+      "dt_question_live",
+      "dt_question_ex"
+    ]
+  }
+]

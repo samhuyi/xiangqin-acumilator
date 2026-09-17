@@ -1,0 +1,6 @@
+{"id":"show","name":"夸夸其谈","desc":"充分展示自己，甚至适当包装","affMod":1.3,"risk":0.18,"failAff":-16,"failText":"你越说越兴奋，对方却渐渐安静下来——用力过猛了。","mood":4,"cost":0,"seeMore":false,"suits":"擅长：大场面请客、KTV、看展演出","_id":"show"}
+{"id":"modest","name":"谦逊有礼","desc":"稳重真诚，让对方慢慢了解你","affMod":1,"risk":0.06,"failAff":-8,"failText":"你太拘谨了，气氛一时有点冷。","mood":2,"cost":0,"seeMore":false,"suits":"擅长：咖啡馆、散步、下厨、养宠","_id":"modest"}
+{"id":"careful","name":"谨慎挑选","desc":"多听少说，暗中观察对方是否合适","affMod":0.7,"risk":0.03,"failAff":-4,"failText":"你的试探被对方察觉到了，略显生分。","mood":0,"cost":0,"seeMore":true,"suits":"擅长：散步观察、逛展、聊底线","_id":"careful"}
+{"id":"gift","name":"礼物攻势","desc":"用礼物和惊喜表达心意，但要花不少钱","affMod":1.1,"risk":0.1,"failAff":-10,"failText":"礼物挑得不对路，对方礼貌地收下，却没怎么心动。","mood":2,"cost":0.5,"seeMore":false,"suits":"擅长：逛街送礼、电影、撸猫","_id":"gift"}
+{"id":"romantic","name":"制造浪漫","desc":"制造仪式感与惊喜，浪漫但容易翻车","affMod":1.2,"risk":0.12,"failAff":-12,"failText":"你精心准备的惊喜翻车了，两人对着尴尬的场面笑了半天。","mood":3,"cost":0,"seeMore":false,"suits":"擅长：电影、旅行、露营、演唱会","_id":"romantic"}
+{"id":"direct","name":"真诚直球","desc":"老实本分、有话直说，胜在稳定不翻车","affMod":0.95,"risk":0.04,"failAff":-5,"failText":"你太实诚了，少了点浪漫，但对方觉得你靠谱。","mood":1,"cost":0,"seeMore":false,"suits":"擅长：坦诚深聊、直球问未来","_id":"direct"}

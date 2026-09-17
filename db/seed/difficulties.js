@@ -1,0 +1,51 @@
+/* 自动生成，请勿手改。来源：tools/gen-seed.js */
+module.exports = [
+  {
+    "id": "easy",
+    "name": "简单",
+    "desc": "成功率更高、时间更充裕，适合看剧情",
+    "initMod": 1.1,
+    "chanceMod": 1.2,
+    "costMod": 0.8,
+    "decayMod": 0.8,
+    "maxDays": 135,
+    "timeMod": 0.75,
+    "gainMod": 1.08,
+    "affMod": 1.1,
+    "riskMod": 0.8,
+    "salaryMod": 1.15,
+    "partnerDeadline": 60
+  },
+  {
+    "id": "normal",
+    "name": "普通",
+    "desc": "标准难度，通关率约 30%",
+    "initMod": 1,
+    "chanceMod": 0.8,
+    "costMod": 1,
+    "decayMod": 1.15,
+    "maxDays": 150,
+    "timeMod": 1.1,
+    "gainMod": 0.9,
+    "affMod": 0.95,
+    "riskMod": 1,
+    "salaryMod": 1,
+    "partnerDeadline": 45
+  },
+  {
+    "id": "hard",
+    "name": "困难",
+    "desc": "一步走错满盘皆输，时间紧迫",
+    "initMod": 0.85,
+    "chanceMod": 0.78,
+    "costMod": 1.3,
+    "decayMod": 1.25,
+    "maxDays": 140,
+    "timeMod": 1.15,
+    "gainMod": 0.6,
+    "affMod": 0.78,
+    "riskMod": 1.6,
+    "salaryMod": 0.8,
+    "partnerDeadline": 30
+  }
+];
