@@ -456,7 +456,11 @@ function main() {
       { id: 'jobless', mk: function () { var s = engine.createGame('m', bg0, 'career_peak', 13, 'normal'); s.career = 0; return s; } },
       { id: 'depressed', mk: function () { var s = engine.createGame('m', bg0, 'free', 13, 'normal'); s.mood = 0; return s; } },
       { id: 'forced', mk: function () { var s = engine.createGame('m', bg0, 'marry', 13, 'normal'); s.relationship = 'single'; s.singleStreak = 999; s.singleLimit = 10; return s; } },
-      { id: 'timeout', mk: function () { var s = engine.createGame('m', bg0, 'free', 13, 'normal'); s.day = 999; s.relationship = 'dating'; return s; } }
+      /* 时间上限兜底现在是「按关系状态分流」的三条（见 engine.timeoutEndingId）：
+       * 单身 → timeout；有对象未婚 → stalled；已婚 → married_stall。 */
+      { id: 'timeout', mk: function () { var s = engine.createGame('m', bg0, 'free', 13, 'normal'); s.day = 999; s.relationship = 'single'; return s; } },
+      { id: 'stalled', mk: function () { var s = engine.createGame('m', bg0, 'free', 13, 'normal'); s.day = 999; s.relationship = 'dating'; return s; } },
+      { id: 'married_stall', mk: function () { var s = engine.createGame('m', bg0, 'free', 13, 'normal'); s.day = 999; s.relationship = 'married'; return s; } }
     ];
     artCases.forEach(function (c) {
       var rec = recById[c.id];

@@ -3,7 +3,7 @@ module.exports = [
   {
     "id": "app",
     "value": {
-      "title": "相亲模拟器",
+      "title": "我妈又催婚",
       "sub": "一场关于婚姻、存款与自我的文字肉鸽",
       "tag": "每个选择，都是一天",
       "start": "开始游戏",
@@ -441,7 +441,7 @@ module.exports = [
       "send": "发送",
       "finish": "结束闲聊 · 进入下一天",
       "me": "我",
-      "hint": "选一句回过去（只影响好感度与情绪）",
+      "hint": "选一句回过去（好感度为主，也可能牵动情绪与其他状态）",
       "waitReply": "对方正在输入…",
       "empty": "现在还没有可以闲聊的人。",
       "deltaTitle": "这次闲聊",
@@ -614,6 +614,10 @@ module.exports = [
       "breakup_mood_change": "情绪值 {from} → {to}。",
       "breakup_default_reason": "你们都知道，这次是真的结束了。",
       "confess_break_reason": "告白被拒之后，那点暧昧也散了。",
+      "partner_leave_warn": "{reason}这句话她没说出口，但你能感觉到——在她开口之前，还来得及。",
+      "partner_leave_warn_log": "关系预警：{reason}（把这一项补回去，否则拖下去只会更糟）",
+      "partner_leave_warn_card": "关系预警 · {reason}",
+      "partner_leave_warn_fix": "把这一项补回来，还有机会",
       "breakup_cooldown": "分手总要缓一缓：你们相处了 {together} 天，冷却期 {cool} 天——这段时间你根本没心思见人。",
       "child_fail": {
         "title": "还需要一点时间",

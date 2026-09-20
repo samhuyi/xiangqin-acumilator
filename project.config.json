@@ -50,28 +50,48 @@
   "packOptions": {
     "ignore": [
       {
-        "type": "folder",
-        "value": "_template_demo"
+        "value": "_template_demo",
+        "type": "folder"
       },
       {
-        "type": "folder",
-        "value": "tools"
+        "value": "tools",
+        "type": "folder"
       },
       {
-        "type": "folder",
-        "value": "db/export"
+        "value": "db/export",
+        "type": "folder"
       },
       {
-        "type": "folder",
-        "value": "node_modules"
+        "value": "node_modules",
+        "type": "folder"
       },
       {
-        "type": "folder",
-        "value": "docs"
+        "value": "docs",
+        "type": "folder"
       },
       {
-        "type": "folder",
-        "value": ".git"
+        "value": ".git",
+        "type": "folder"
+      },
+      {
+        "value": ".workbuddy",
+        "type": "folder"
+      },
+      {
+        "value": "db/seed",
+        "type": "folder"
+      },
+      {
+        "value": "db/import.js",
+        "type": "file"
+      },
+      {
+        "value": "assets/images/logo_cartoon.png",
+        "type": "file"
+      },
+      {
+        "value": "assets/images/logo_emblem.png",
+        "type": "file"
       }
     ],
     "include": []

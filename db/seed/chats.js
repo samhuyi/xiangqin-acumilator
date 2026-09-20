@@ -1,4 +1,4 @@
-/* 自动生成，请勿手改。来源：tools/gen-seed.js */
+/* 自动生成，请勿手改。来源：tools/gen-seed.js；数值经 tools/rebalance-fx.js 复算 */
 module.exports = [
   {
     "id": "c_home",
@@ -22,11 +22,8 @@ module.exports = [
         "label": "刚到，你也早点回去",
         "reply": "嗯，我到家给你发消息",
         "fx": {
-          "mood": 6,
           "affection": 12,
-          "money": -3,
-          "health": -2,
-          "career": -2
+          "mood": 6
         },
         "affection": 12,
         "mood": 6,
@@ -35,26 +32,16 @@ module.exports = [
       {
         "label": "还在加班……",
         "reply": "那你也太拼了，记得吃饭",
-        "fx": {
-          "mood": -2,
-          "affection": 4,
-          "money": -3,
-          "health": 3,
-          "career": 3
-        },
-        "affection": 4,
-        "mood": -2,
+        "fx": {},
+        "affection": 0,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "嗯。（没再看手机）",
         "reply": "……那你先忙",
         "fx": {
-          "affection": -10,
-          "money": -4,
-          "health": 1,
-          "career": 3,
-          "looks": -2
+          "affection": -10
         },
         "affection": -10,
         "mood": 0,
@@ -84,11 +71,8 @@ module.exports = [
         "label": "我煮了面，下次给你带一份",
         "reply": "真的假的，我要尝尝",
         "fx": {
-          "mood": 6,
           "affection": 14,
-          "money": -4,
-          "health": -2,
-          "career": 4
+          "mood": 6
         },
         "affection": 14,
         "mood": 6,
@@ -97,14 +81,8 @@ module.exports = [
       {
         "label": "随便对付了一口",
         "reply": "那你可别老这样",
-        "fx": {
-          "affection": 4,
-          "money": 4,
-          "health": -3,
-          "career": 3,
-          "looks": -2
-        },
-        "affection": 4,
+        "fx": {},
+        "affection": 0,
         "mood": 0,
         "correct": false
       },
@@ -112,14 +90,10 @@ module.exports = [
         "label": "还没吃，不饿",
         "reply": "不吃饭会胃疼的……",
         "fx": {
-          "mood": -4,
-          "affection": -6,
-          "money": 3,
-          "health": 4,
-          "career": 1
+          "affection": -6
         },
         "affection": -6,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -146,11 +120,8 @@ module.exports = [
         "label": "有空，你想去哪儿我陪你",
         "reply": "那说好了，你别临时加班",
         "fx": {
-          "mood": 8,
           "affection": 16,
-          "money": -3,
-          "health": -1,
-          "career": 2
+          "mood": 8
         },
         "affection": 16,
         "mood": 8,
@@ -160,28 +131,18 @@ module.exports = [
         "label": "看情况，可能要加班",
         "reply": "行吧，你忙",
         "fx": {
-          "mood": 2,
-          "affection": -8,
-          "money": 3,
-          "health": -2,
-          "career": -3
+          "affection": -8
         },
         "affection": -8,
-        "mood": 2,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "我这周末想在家躺平",
         "reply": "好吧，那你好好休息",
-        "fx": {
-          "mood": 4,
-          "affection": -4,
-          "money": -2,
-          "health": 2,
-          "career": 1
-        },
-        "affection": -4,
-        "mood": 4,
+        "fx": {},
+        "affection": 0,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -208,11 +169,8 @@ module.exports = [
         "label": "别这么说，你已经很厉害了",
         "reply": "……谢谢你",
         "fx": {
-          "mood": 8,
           "affection": 18,
-          "money": -4,
-          "health": 4,
-          "career": -2
+          "mood": 8
         },
         "affection": 18,
         "mood": 8,
@@ -222,25 +180,18 @@ module.exports = [
         "label": "那就早点睡，别想了",
         "reply": "嗯，睡了",
         "fx": {
-          "mood": -2,
-          "affection": 6,
-          "money": -2,
-          "health": 4,
-          "career": 2
+          "affection": 6
         },
         "affection": 6,
-        "mood": -2,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "谁不累啊",
         "reply": "你说得对，是我矫情了",
         "fx": {
-          "mood": -6,
           "affection": -14,
-          "money": 2,
-          "health": -4,
-          "career": 2
+          "mood": -6
         },
         "affection": -14,
         "mood": -6,
@@ -268,39 +219,28 @@ module.exports = [
         "label": "那就找个时间见见阿姨",
         "reply": "……你认真的？我先跟她说一声",
         "fx": {
-          "mood": 4,
-          "affection": 20,
-          "money": 2,
-          "health": -1,
-          "career": -1
+          "affection": 20
         },
         "affection": 20,
-        "mood": 4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "再等等，我还没准备好",
         "reply": "知道了，我不催你",
         "fx": {
-          "mood": -2,
-          "affection": -6,
-          "money": 3,
-          "health": 1,
-          "career": -1
+          "affection": -6
         },
         "affection": -6,
-        "mood": -2,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "你怎么什么都跟你妈说",
         "reply": "那以后我不说了",
         "fx": {
-          "mood": -6,
           "affection": -18,
-          "money": 3,
-          "health": 3,
-          "career": 1
+          "mood": -6
         },
         "affection": -18,
         "mood": -6,
@@ -329,11 +269,8 @@ module.exports = [
         "label": "在想你，睡不着",
         "reply": "肉麻……不过我也还没睡",
         "fx": {
-          "mood": 10,
           "affection": 16,
-          "money": -4,
-          "health": 4,
-          "career": -3
+          "mood": 10
         },
         "affection": 16,
         "mood": 10,
@@ -343,28 +280,20 @@ module.exports = [
         "label": "刚忙完，这就睡",
         "reply": "那快去吧，晚安",
         "fx": {
-          "mood": 2,
-          "affection": 6,
-          "money": -1,
-          "health": 2,
-          "career": -2
+          "affection": 6
         },
         "affection": 6,
-        "mood": 2,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "你管我几点睡",
         "reply": "哦",
         "fx": {
-          "mood": -4,
-          "affection": -16,
-          "money": 1,
-          "health": -2,
-          "career": 1
+          "affection": -16
         },
         "affection": -16,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -390,11 +319,8 @@ module.exports = [
         "label": "你怎么这么好，我请你吃饭",
         "reply": "那我可记住了，别赖账",
         "fx": {
-          "mood": 10,
           "affection": 18,
-          "money": -2,
-          "health": 4,
-          "career": -1
+          "mood": 10
         },
         "affection": 18,
         "mood": 10,
@@ -404,28 +330,20 @@ module.exports = [
         "label": "又乱花钱",
         "reply": "……那我退了",
         "fx": {
-          "mood": -4,
-          "affection": -10,
-          "money": 3,
-          "health": 3,
-          "career": -3
+          "affection": -10
         },
         "affection": -10,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "谢谢，多少钱我转你",
         "reply": "不用，你这话就见外了",
         "fx": {
-          "mood": 2,
-          "affection": -12,
-          "money": -3,
-          "health": -4,
-          "career": 3
+          "affection": -12
         },
         "affection": -12,
-        "mood": 2,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -450,11 +368,8 @@ module.exports = [
         "label": "那我们也准备一个？",
         "reply": "……你认真想想再说这句话",
         "fx": {
-          "mood": 8,
           "affection": 16,
-          "money": -4,
-          "health": 4,
-          "career": -2
+          "mood": 8
         },
         "affection": 16,
         "mood": 8,
@@ -464,28 +379,20 @@ module.exports = [
         "label": "先过两年二人世界吧",
         "reply": "嗯，我也不急",
         "fx": {
-          "mood": 4,
-          "affection": 6,
-          "money": 4,
-          "health": -4,
-          "career": -3
+          "affection": 6
         },
         "affection": 6,
-        "mood": 4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "养孩子多贵啊",
         "reply": "你算得倒是清楚",
         "fx": {
-          "mood": -4,
-          "affection": -8,
-          "money": 4,
-          "health": -3,
-          "career": 2
+          "affection": -8
         },
         "affection": -8,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -512,11 +419,8 @@ module.exports = [
         "label": "首付我来想办法，不用你操心",
         "reply": "……这话我爱听。",
         "fx": {
-          "mood": 6,
           "affection": 22,
-          "money": -2,
-          "health": 4,
-          "career": -1
+          "mood": 6
         },
         "affection": 22,
         "mood": 6,
@@ -526,11 +430,8 @@ module.exports = [
         "label": "这个能不能以后再说",
         "reply": "那什么时候说？等你没钱的时候吗。",
         "fx": {
-          "mood": -12,
           "affection": -48,
-          "money": 1,
-          "health": -3,
-          "career": 2
+          "mood": -12
         },
         "affection": -48,
         "mood": -12,
@@ -540,11 +441,8 @@ module.exports = [
         "label": "你家不也有吗",
         "reply": "哦。我知道了。",
         "fx": {
-          "mood": -16,
           "affection": -54,
-          "money": 1,
-          "health": 4,
-          "career": -1
+          "mood": -16
         },
         "affection": -54,
         "mood": -16,
@@ -574,11 +472,8 @@ module.exports = [
         "label": "我在，你说，我听着",
         "reply": "……就这一句。",
         "fx": {
-          "mood": 8,
           "affection": 24,
-          "money": -1,
-          "health": -3,
-          "career": -2
+          "mood": 8
         },
         "affection": 24,
         "mood": 8,
@@ -588,11 +483,8 @@ module.exports = [
         "label": "别想太多，睡一觉就好了",
         "reply": "你每次都这么说。",
         "fx": {
-          "mood": -10,
           "affection": -44,
-          "money": 1,
-          "health": 4,
-          "career": 1
+          "mood": -10
         },
         "affection": -44,
         "mood": -10,
@@ -602,11 +494,8 @@ module.exports = [
         "label": "我又不知道你怎么了",
         "reply": "对，你不知道。",
         "fx": {
-          "mood": -12,
           "affection": -50,
-          "money": 4,
-          "health": 3,
-          "career": -4
+          "mood": -12
         },
         "affection": -50,
         "mood": -12,
@@ -636,11 +525,8 @@ module.exports = [
         "label": "上个月帮同事顶了个夜班",
         "reply": "嗯，你这个人我大概看明白了。",
         "fx": {
-          "mood": 6,
           "affection": 22,
-          "money": -4,
-          "health": -2,
-          "career": 4
+          "mood": 6
         },
         "affection": 22,
         "mood": 6,
@@ -650,11 +536,8 @@ module.exports = [
         "label": "记不清了，一直挺忙",
         "reply": "忙。都对。",
         "fx": {
-          "mood": -10,
           "affection": -44,
-          "money": 1,
-          "health": 1,
-          "career": -2
+          "mood": -10
         },
         "affection": -44,
         "mood": -10,
@@ -664,11 +547,8 @@ module.exports = [
         "label": "这问题有意义吗",
         "reply": "没有。当我没问。",
         "fx": {
-          "mood": -14,
           "affection": -52,
-          "money": 1,
-          "health": 2,
-          "career": 2
+          "mood": -14
         },
         "affection": -52,
         "mood": -14,
@@ -698,11 +578,8 @@ module.exports = [
         "label": "我在认真喜欢你，但不催你",
         "reply": "……你还挺有意思。",
         "fx": {
-          "mood": 6,
           "affection": 20,
-          "money": 3,
-          "health": -3,
-          "career": -4
+          "mood": 6
         },
         "affection": 20,
         "mood": 6,
@@ -712,11 +589,8 @@ module.exports = [
         "label": "你说算什么就算什么",
         "reply": "那你可真省事。",
         "fx": {
-          "mood": -10,
           "affection": -46,
-          "money": 2,
-          "health": 2,
-          "career": 3
+          "mood": -10
         },
         "affection": -46,
         "mood": -10,
@@ -726,11 +600,8 @@ module.exports = [
         "label": "都聊这么久了还问这个",
         "reply": "哦，那算了。",
         "fx": {
-          "mood": -12,
           "affection": -50,
-          "money": 2,
-          "health": 1,
-          "career": -4
+          "mood": -12
         },
         "affection": -50,
         "mood": -12,
@@ -760,11 +631,8 @@ module.exports = [
         "label": "那就一起照顾，这是应该的",
         "reply": "……你这句我记住了。",
         "fx": {
-          "mood": 8,
           "affection": 24,
-          "money": -3,
-          "health": -1,
-          "career": -4
+          "mood": 8
         },
         "affection": 24,
         "mood": 8,
@@ -774,11 +642,8 @@ module.exports = [
         "label": "请个护工不行吗",
         "reply": "钱能解决的话，我也不会问你。",
         "fx": {
-          "mood": -12,
           "affection": -50,
-          "money": -3,
-          "health": 4,
-          "career": 4
+          "mood": -12
         },
         "affection": -50,
         "mood": -12,
@@ -788,11 +653,8 @@ module.exports = [
         "label": "那是你家的事吧",
         "reply": "嗯。是。",
         "fx": {
-          "mood": -18,
           "affection": -60,
-          "money": 2,
-          "health": -3,
-          "career": 1
+          "mood": -18
         },
         "affection": -60,
         "mood": -18,
@@ -822,11 +684,8 @@ module.exports = [
         "label": "不会，我在准备下一步",
         "reply": "说说看。",
         "fx": {
-          "mood": 6,
           "affection": 22,
-          "money": -3,
-          "health": -1,
-          "career": 3
+          "mood": 6
         },
         "affection": 22,
         "mood": 6,
@@ -836,11 +695,8 @@ module.exports = [
         "label": "稳定点不好吗",
         "reply": "好，挺好的。",
         "fx": {
-          "mood": -10,
           "affection": -44,
-          "money": -1,
-          "health": 3,
-          "career": 3
+          "mood": -10
         },
         "affection": -44,
         "mood": -10,
@@ -850,11 +706,8 @@ module.exports = [
         "label": "你管得有点宽",
         "reply": "行。",
         "fx": {
-          "mood": -12,
           "affection": -50,
-          "money": 1,
-          "health": -1,
-          "career": 1
+          "mood": -12
         },
         "affection": -50,
         "mood": -12,
@@ -884,11 +737,8 @@ module.exports = [
         "label": "因为想给你花的，都不算贵",
         "reply": "……你这张嘴。",
         "fx": {
-          "mood": 12,
           "affection": 40,
-          "money": 4,
-          "health": -3,
-          "career": -1
+          "mood": 12
         },
         "affection": 40,
         "mood": 12,
@@ -898,11 +748,7 @@ module.exports = [
         "label": "其实我卡里就剩两千了",
         "reply": "那你还挺诚实。",
         "fx": {
-          "affection": 6,
-          "money": 4,
-          "health": 2,
-          "career": -1,
-          "looks": -3
+          "affection": 6
         },
         "affection": 6,
         "mood": 0,
@@ -912,11 +758,8 @@ module.exports = [
         "label": "那你看上的是我的钱？",
         "reply": "你想多了。",
         "fx": {
-          "mood": -6,
           "affection": -10,
-          "money": 3,
-          "health": -1,
-          "career": 3
+          "mood": -6
         },
         "affection": -10,
         "mood": -6,
@@ -946,11 +789,8 @@ module.exports = [
         "label": "那我以后天天说给你听",
         "reply": "……你别骗我。",
         "fx": {
-          "mood": 14,
           "affection": 44,
-          "money": 3,
-          "health": -2,
-          "career": -2
+          "mood": 14
         },
         "affection": 44,
         "mood": 14,
@@ -959,26 +799,17 @@ module.exports = [
       {
         "label": "随口说的，别当真",
         "reply": "哦。",
-        "fx": {
-          "mood": -2,
-          "affection": 4,
-          "money": 4,
-          "health": -3,
-          "career": -2
-        },
-        "affection": 4,
-        "mood": -2,
+        "fx": {},
+        "affection": 0,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "你听这么多遍干嘛",
         "reply": "没事。",
         "fx": {
-          "mood": -6,
           "affection": -8,
-          "money": 1,
-          "health": 2,
-          "career": -4
+          "mood": -6
         },
         "affection": -8,
         "mood": -6,
@@ -1008,11 +839,8 @@ module.exports = [
         "label": "对别人一般，对你会再靠得住一点",
         "reply": "……嗯。",
         "fx": {
-          "mood": 12,
           "affection": 40,
-          "money": -3,
-          "health": 2,
-          "career": -3
+          "mood": 12
         },
         "affection": 40,
         "mood": 12,
@@ -1022,11 +850,7 @@ module.exports = [
         "label": "我本来就这样",
         "reply": "是。",
         "fx": {
-          "affection": 6,
-          "money": -4,
-          "health": -1,
-          "career": 4,
-          "looks": 4
+          "affection": 6
         },
         "affection": 6,
         "mood": 0,
@@ -1036,14 +860,10 @@ module.exports = [
         "label": "谁啊，这么闲",
         "reply": "我。",
         "fx": {
-          "mood": 4,
-          "affection": -8,
-          "money": -4,
-          "health": -4,
-          "career": 1
+          "affection": -8
         },
         "affection": -8,
-        "mood": 4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -1070,11 +890,8 @@ module.exports = [
         "label": "陪你到你说困为止",
         "reply": "那你今晚别想睡了。",
         "fx": {
-          "mood": 14,
           "affection": 42,
-          "money": -4,
-          "health": 2,
-          "career": -1
+          "mood": 14
         },
         "affection": 42,
         "mood": 14,
@@ -1083,14 +900,8 @@ module.exports = [
       {
         "label": "行，那聊十分钟",
         "reply": "……哦。",
-        "fx": {
-          "affection": 4,
-          "money": -1,
-          "health": 2,
-          "career": -2,
-          "looks": 2
-        },
-        "affection": 4,
+        "fx": {},
+        "affection": 0,
         "mood": 0,
         "correct": false
       },
@@ -1098,11 +909,8 @@ module.exports = [
         "label": "我打游戏呢",
         "reply": "那你打。",
         "fx": {
-          "mood": -6,
           "affection": -12,
-          "money": 1,
-          "health": 2,
-          "career": -1
+          "mood": -6
         },
         "affection": -12,
         "mood": -6,
@@ -1132,11 +940,8 @@ module.exports = [
         "label": "那以后咱们也这样，袋子归我拎",
         "reply": "……说好了。",
         "fx": {
-          "mood": 14,
           "affection": 42,
-          "money": -1,
-          "health": -2,
-          "career": 1
+          "mood": 14
         },
         "affection": 42,
         "mood": 14,
@@ -1145,14 +950,8 @@ module.exports = [
       {
         "label": "挺正常的啊",
         "reply": "是啊。",
-        "fx": {
-          "affection": 4,
-          "money": -1,
-          "health": -2,
-          "career": 4,
-          "looks": -4
-        },
-        "affection": 4,
+        "fx": {},
+        "affection": 0,
         "mood": 0,
         "correct": false
       },
@@ -1160,14 +959,10 @@ module.exports = [
         "label": "那多累啊",
         "reply": "不累的。",
         "fx": {
-          "mood": -4,
-          "affection": -10,
-          "money": 3,
-          "health": 2,
-          "career": -4
+          "affection": -10
         },
         "affection": -10,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -1194,11 +989,8 @@ module.exports = [
         "label": "那下次开会带上我，让他看看更像的",
         "reply": "你倒是敢说。",
         "fx": {
-          "mood": 12,
           "affection": 38,
-          "money": -3,
-          "health": -2,
-          "career": 4
+          "mood": 12
         },
         "affection": 38,
         "mood": 12,
@@ -1208,11 +1000,7 @@ module.exports = [
         "label": "哪儿像",
         "reply": "说不上来。",
         "fx": {
-          "affection": 6,
-          "money": -2,
-          "health": 4,
-          "career": -4,
-          "looks": 2
+          "affection": 6
         },
         "affection": 6,
         "mood": 0,
@@ -1222,14 +1010,10 @@ module.exports = [
         "label": "开会有什么好说的",
         "reply": "也是。",
         "fx": {
-          "mood": -4,
-          "affection": -8,
-          "money": 2,
-          "health": -2,
-          "career": 3
+          "affection": -8
         },
         "affection": -8,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -1254,11 +1038,8 @@ module.exports = [
         "label": "没事，我也一样。先认识一下？",
         "reply": "那就好，我还怕你觉得我奇怪。",
         "fx": {
-          "mood": 6,
           "affection": 14,
-          "money": -1,
-          "health": -1,
-          "career": 3
+          "mood": 6
         },
         "affection": 14,
         "mood": 6,
@@ -1268,11 +1049,7 @@ module.exports = [
         "label": "发了个自我介绍的长文过去",
         "reply": "哇，好正式。我这边简单说一下我的情况吧。",
         "fx": {
-          "affection": 8,
-          "money": -1,
-          "health": 4,
-          "career": 2,
-          "looks": -1
+          "affection": 8
         },
         "affection": 8,
         "mood": 0,
@@ -1282,14 +1059,10 @@ module.exports = [
         "label": "嗯。",
         "reply": "……那我先不打扰你了。",
         "fx": {
-          "mood": -2,
-          "affection": -8,
-          "money": 2,
-          "health": -4,
-          "career": 1
+          "affection": -8
         },
         "affection": -8,
-        "mood": -2,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -1313,11 +1086,8 @@ module.exports = [
         "label": "那就周六下午，我找个离你近的地方",
         "reply": "好，你定吧，我都可以。",
         "fx": {
-          "mood": 6,
           "affection": 18,
-          "money": -4,
-          "health": 4,
-          "career": -3
+          "mood": 6
         },
         "affection": 18,
         "mood": 6,
@@ -1327,28 +1097,20 @@ module.exports = [
         "label": "你方便就行，我随便",
         "reply": "……那我想想。",
         "fx": {
-          "mood": 2,
-          "affection": 6,
-          "money": -3,
-          "health": -2,
-          "career": 1
+          "affection": 6
         },
         "affection": 6,
-        "mood": 2,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "周六上午你有什么事啊",
         "reply": "我妈身体一直不太好，我每周都去。",
         "fx": {
-          "mood": 2,
-          "affection": -6,
-          "money": 3,
-          "health": -2,
-          "career": -3
+          "affection": -6
         },
         "affection": -6,
-        "mood": 2,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -1373,11 +1135,8 @@ module.exports = [
         "label": "没关系，慢慢来，我不着急",
         "reply": "……你这样说我就放心了。",
         "fx": {
-          "mood": 8,
           "affection": 20,
-          "money": -4,
-          "health": -1,
-          "career": -3
+          "mood": 8
         },
         "affection": 20,
         "mood": 8,
@@ -1387,28 +1146,20 @@ module.exports = [
         "label": "那你怎么之前相亲的？",
         "reply": "所以都没成。",
         "fx": {
-          "mood": -4,
-          "affection": -12,
-          "money": -4,
-          "health": 4,
-          "career": 2
+          "affection": -12
         },
         "affection": -12,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "多聊聊就熟了，很正常",
         "reply": "嗯，可能吧。",
         "fx": {
-          "mood": 4,
-          "affection": 12,
-          "money": -3,
-          "health": -4,
-          "career": 1
+          "affection": 12
         },
         "affection": 12,
-        "mood": 4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -1433,11 +1184,8 @@ module.exports = [
         "label": "那我把见面地点都定在中间，我来跑",
         "reply": "你倒是想得挺明白。",
         "fx": {
-          "mood": 6,
           "affection": 20,
-          "money": -4,
-          "health": 2,
-          "career": -3
+          "mood": 6
         },
         "affection": 20,
         "mood": 6,
@@ -1447,28 +1195,20 @@ module.exports = [
         "label": "确实挺远的，这得考虑考虑",
         "reply": "嗯，是得考虑。",
         "fx": {
-          "mood": -2,
-          "affection": -12,
-          "money": 4,
-          "health": -3,
-          "career": 1
+          "affection": -12
         },
         "affection": -12,
-        "mood": -2,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "地铁也就四十分钟，还行吧",
         "reply": "你倒是挺乐观。",
         "fx": {
-          "mood": -2,
-          "affection": 8,
-          "money": 3,
-          "health": -3,
-          "career": 4
+          "affection": 8
         },
         "affection": 8,
-        "mood": -2,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -1496,11 +1236,8 @@ module.exports = [
         "label": "那……你就跟她说还行？",
         "reply": "我真这么说了。你别笑。",
         "fx": {
-          "mood": 6,
           "affection": 16,
-          "money": -2,
-          "health": -3,
-          "career": 3
+          "mood": 6
         },
         "affection": 16,
         "mood": 6,
@@ -1510,11 +1247,8 @@ module.exports = [
         "label": "我妈也一样，天天问",
         "reply": "哈哈哈原来天下父母都一样。",
         "fx": {
-          "mood": 8,
           "affection": 14,
-          "money": -1,
-          "health": 1,
-          "career": -4
+          "mood": 8
         },
         "affection": 14,
         "mood": 8,
@@ -1524,14 +1258,10 @@ module.exports = [
         "label": "你别把我供出去啊",
         "reply": "……行，那我以后不说你了。",
         "fx": {
-          "mood": -4,
-          "affection": -14,
-          "money": 1,
-          "health": -3,
-          "career": 2
+          "affection": -14
         },
         "affection": -14,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -1559,25 +1289,18 @@ module.exports = [
         "label": "那你去看看吧，多一个选择",
         "reply": "……你真是这么想的？",
         "fx": {
-          "mood": -2,
-          "affection": -18,
-          "money": 1,
-          "health": 3,
-          "career": -4
+          "affection": -18
         },
         "affection": -18,
-        "mood": -2,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "别去了。我们在处的。",
         "reply": "我就等你这句话。",
         "fx": {
-          "mood": 10,
           "affection": 24,
-          "money": -2,
-          "health": -4,
-          "career": 1
+          "mood": 10
         },
         "affection": 24,
         "mood": 10,
@@ -1587,14 +1310,10 @@ module.exports = [
         "label": "你怎么跟你妈说的？",
         "reply": "我说我这边有在接触的人了。",
         "fx": {
-          "mood": 2,
-          "affection": 10,
-          "money": -2,
-          "health": -1,
-          "career": 2
+          "affection": 10
         },
         "affection": 10,
-        "mood": 2,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -1620,11 +1339,8 @@ module.exports = [
         "label": "好啊，什么时候？我准备点东西带过去",
         "reply": "你真答应了？那我现在就去跟她说。",
         "fx": {
-          "mood": 8,
           "affection": 24,
-          "money": -3,
-          "health": -3,
-          "career": 4
+          "mood": 8
         },
         "affection": 24,
         "mood": 8,
@@ -1634,28 +1350,20 @@ module.exports = [
         "label": "再等等吧，我有点怕",
         "reply": "……行，我不勉强你。",
         "fx": {
-          "mood": 2,
-          "affection": -10,
-          "money": -3,
-          "health": 2,
-          "career": -4
+          "affection": -10
         },
         "affection": -10,
-        "mood": 2,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "见家长是不是太快了",
         "reply": "我们在一起也有一阵了吧。",
         "fx": {
-          "mood": -4,
-          "affection": -16,
-          "money": 4,
-          "health": 2,
-          "career": 3
+          "affection": -16
         },
         "affection": -16,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -1682,11 +1390,8 @@ module.exports = [
         "label": "我家能出一部分，剩下的我们一起扛",
         "reply": "那我把这话跟我爸妈说。",
         "fx": {
-          "mood": 6,
           "affection": 22,
-          "money": 4,
-          "health": -3,
-          "career": -3
+          "mood": 6
         },
         "affection": 22,
         "mood": 6,
@@ -1696,25 +1401,18 @@ module.exports = [
         "label": "房子的事以后再说，现在先处着",
         "reply": "……也行。",
         "fx": {
-          "mood": -2,
-          "affection": -12,
-          "money": 3,
-          "health": -3,
-          "career": 3
+          "affection": -12
         },
         "affection": -12,
-        "mood": -2,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "首付不是该男方准备吗",
         "reply": "原来你是这么想的。",
         "fx": {
-          "mood": -6,
           "affection": -20,
-          "money": 3,
-          "health": 2,
-          "career": 2
+          "mood": -6
         },
         "affection": -20,
         "mood": -6,
@@ -1745,11 +1443,8 @@ module.exports = [
         "label": "那我就等你，什么时候都行",
         "reply": "……你这样我更不好意思催自己了。",
         "fx": {
-          "mood": 8,
           "affection": 24,
-          "money": -1,
-          "health": -3,
-          "career": 4
+          "mood": 8
         },
         "affection": 24,
         "mood": 8,
@@ -1759,11 +1454,8 @@ module.exports = [
         "label": "那你到底喜不喜欢我？",
         "reply": "我现在说不上来。",
         "fx": {
-          "mood": -6,
           "affection": -16,
-          "money": 1,
-          "health": 2,
-          "career": -3
+          "mood": -6
         },
         "affection": -16,
         "mood": -6,
@@ -1773,14 +1465,10 @@ module.exports = [
         "label": "没关系，我也不急",
         "reply": "那就好。",
         "fx": {
-          "mood": 4,
-          "affection": 16,
-          "money": 4,
-          "health": -2,
-          "career": -1
+          "affection": 16
         },
         "affection": 16,
-        "mood": 4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -1808,11 +1496,8 @@ module.exports = [
         "label": "明白。你不用勉强，什么时候想说了再说",
         "reply": "……谢谢。",
         "fx": {
-          "mood": 8,
           "affection": 24,
-          "money": -1,
-          "health": -4,
-          "career": -2
+          "mood": 8
         },
         "affection": 24,
         "mood": 8,
@@ -1822,25 +1507,18 @@ module.exports = [
         "label": "那你现在还在留一手吗",
         "reply": "……在。",
         "fx": {
-          "mood": -4,
-          "affection": -12,
-          "money": 4,
-          "health": 2,
-          "career": -3
+          "affection": -12
         },
         "affection": -12,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "过去的事就过去了，看我表现",
         "reply": "你倒是挺自信。",
         "fx": {
-          "mood": 6,
           "affection": 18,
-          "money": -4,
-          "health": -3,
-          "career": -1
+          "mood": 6
         },
         "affection": 18,
         "mood": 6,
@@ -1871,11 +1549,8 @@ module.exports = [
         "label": "好，我不打扰你。等你想聊了找我",
         "reply": "嗯。谢谢你没有追问。",
         "fx": {
-          "mood": 6,
           "affection": 20,
-          "money": 4,
-          "health": -4,
-          "career": -1
+          "mood": 6
         },
         "affection": 20,
         "mood": 6,
@@ -1884,26 +1559,17 @@ module.exports = [
       {
         "label": "是不是我哪里做错了？",
         "reply": "没有，真的。",
-        "fx": {
-          "mood": -4,
-          "affection": -4,
-          "money": 1,
-          "health": 4,
-          "career": 3
-        },
-        "affection": -4,
-        "mood": -4,
+        "fx": {},
+        "affection": 0,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "你是不是想分手",
         "reply": "……我就是想安静两天。",
         "fx": {
-          "mood": -8,
           "affection": -18,
-          "money": 2,
-          "health": -2,
-          "career": 3
+          "mood": -8
         },
         "affection": -18,
         "mood": -8,
@@ -1934,11 +1600,8 @@ module.exports = [
         "label": "不用回，忙完记得吃饭就行",
         "reply": "你怎么这么好说话。",
         "fx": {
-          "mood": 8,
           "affection": 22,
-          "money": 4,
-          "health": -3,
-          "career": -3
+          "mood": 8
         },
         "affection": 22,
         "mood": 8,
@@ -1948,28 +1611,18 @@ module.exports = [
         "label": "再忙也要回个消息吧",
         "reply": "……对不起。",
         "fx": {
-          "mood": -4,
-          "affection": -14,
-          "money": -4,
-          "health": 1,
-          "career": 3
+          "affection": -14
         },
         "affection": -14,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "那你这周约的会还去吗",
         "reply": "去吧，挤一挤总有时间。",
-        "fx": {
-          "mood": -2,
-          "affection": 4,
-          "money": -3,
-          "health": -3,
-          "career": 1
-        },
-        "affection": 4,
-        "mood": -2,
+        "fx": {},
+        "affection": 0,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -1997,11 +1650,8 @@ module.exports = [
         "label": "别放心上，下次你请就行",
         "reply": "嗯，记我账上。",
         "fx": {
-          "mood": 6,
           "affection": 18,
-          "money": -1,
-          "health": -2,
-          "career": 3
+          "mood": 6
         },
         "affection": 18,
         "mood": 6,
@@ -2011,25 +1661,18 @@ module.exports = [
         "label": "没事，我这边还挺宽裕的",
         "reply": "那也不太好意思。",
         "fx": {
-          "mood": 2,
-          "affection": 12,
-          "money": -1,
-          "health": -2,
-          "career": 2
+          "affection": 12
         },
         "affection": 12,
-        "mood": 2,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "你工资不是挺高的吗",
         "reply": "……我也有要用钱的地方。",
         "fx": {
-          "mood": -6,
           "affection": -16,
-          "money": -2,
-          "health": 2,
-          "career": 2
+          "mood": -6
         },
         "affection": -16,
         "mood": -6,
@@ -2060,11 +1703,8 @@ module.exports = [
         "label": "家里的事最要紧，需要我一起去吗",
         "reply": "……有你这句话我就踏实了。",
         "fx": {
-          "mood": 8,
           "affection": 24,
-          "money": -4,
-          "health": -2,
-          "career": 4
+          "mood": 8
         },
         "affection": 24,
         "mood": 8,
@@ -2073,26 +1713,17 @@ module.exports = [
       {
         "label": "那你工作怎么办？",
         "reply": "先请假吧，没办法。",
-        "fx": {
-          "mood": -2,
-          "affection": 4,
-          "money": -4,
-          "health": 4,
-          "career": 2
-        },
-        "affection": 4,
-        "mood": -2,
+        "fx": {},
+        "affection": 0,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "长期这样可不行啊",
         "reply": "我知道。所以我才提前跟你说。",
         "fx": {
-          "mood": -8,
           "affection": -20,
-          "money": 3,
-          "health": 2,
-          "career": -3
+          "mood": -8
         },
         "affection": -20,
         "mood": -8,
@@ -2123,11 +1754,8 @@ module.exports = [
         "label": "那周末别跑了，我去找你",
         "reply": "好啊，那我做饭。",
         "fx": {
-          "mood": 8,
           "affection": 20,
-          "money": -1,
-          "health": 3,
-          "career": -1
+          "mood": 8
         },
         "affection": 20,
         "mood": 8,
@@ -2136,29 +1764,19 @@ module.exports = [
       {
         "label": "要不你考虑换个工作？",
         "reply": "说得容易。",
-        "fx": {
-          "mood": -2,
-          "affection": 2,
-          "money": -1,
-          "health": 2,
-          "career": -4
-        },
-        "affection": 2,
-        "mood": -2,
+        "fx": {},
+        "affection": 0,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "都这样，忍忍吧",
         "reply": "嗯，忍忍。",
         "fx": {
-          "mood": -4,
-          "affection": -12,
-          "money": 2,
-          "health": -4,
-          "career": 2
+          "affection": -12
         },
         "affection": -12,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -2187,11 +1805,8 @@ module.exports = [
         "label": "好，我带你去个地方",
         "reply": "那就这么说定了，别再推。",
         "fx": {
-          "mood": 8,
           "affection": 16,
-          "money": 2,
-          "health": -2,
-          "career": -1
+          "mood": 8
         },
         "affection": 16,
         "mood": 8,
@@ -2201,25 +1816,18 @@ module.exports = [
         "label": "最近有点忙……",
         "reply": "你每次都这么说。",
         "fx": {
-          "mood": -4,
-          "affection": -12,
-          "money": 2,
-          "health": 4,
-          "career": -2
+          "affection": -12
         },
         "affection": -12,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "见面干嘛，微信不是挺好",
         "reply": "……行，那当我没说。",
         "fx": {
-          "mood": -8,
           "affection": -20,
-          "money": 2,
-          "health": 3,
-          "career": -3
+          "mood": -8
         },
         "affection": -20,
         "mood": -8,
@@ -2249,11 +1857,8 @@ module.exports = [
         "label": "带了，你要不要我送你",
         "reply": "你好烦……那我在地铁口等你",
         "fx": {
-          "health": -2,
-          "career": -4,
-          "mood": 8,
           "affection": 16,
-          "money": 4
+          "mood": 8
         },
         "affection": 16,
         "mood": 8,
@@ -2263,11 +1868,9 @@ module.exports = [
         "label": "没带，反正也淋不死",
         "reply": "你这个人真是",
         "fx": {
-          "health": -6,
-          "looks": -2,
-          "mood": 6,
           "affection": -6,
-          "money": 1
+          "health": -6,
+          "mood": 6
         },
         "affection": -6,
         "mood": 6,
@@ -2276,15 +1879,9 @@ module.exports = [
       {
         "label": "我在车里，雨刷坏了",
         "reply": "那你慢慢开，别急",
-        "fx": {
-          "money": -4,
-          "career": 2,
-          "mood": -4,
-          "affection": 4,
-          "health": 1
-        },
-        "affection": 4,
-        "mood": -4,
+        "fx": {},
+        "affection": 0,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -2311,11 +1908,8 @@ module.exports = [
         "label": "发来看看",
         "reply": "不行，太丑了……你想看我给你拍张新的",
         "fx": {
-          "career": -2,
-          "family": 2,
-          "mood": 8,
           "affection": 14,
-          "money": -1
+          "mood": 8
         },
         "affection": 14,
         "mood": 8,
@@ -2325,11 +1919,8 @@ module.exports = [
         "label": "我也有，比你的土",
         "reply": "那你发，不许反悔",
         "fx": {
-          "looks": -2,
-          "family": 4,
-          "mood": 10,
           "affection": 18,
-          "money": -1
+          "mood": 10
         },
         "affection": 18,
         "mood": 10,
@@ -2339,14 +1930,10 @@ module.exports = [
         "label": "（已读不回）",
         "reply": "……",
         "fx": {
-          "career": 4,
-          "mood": -4,
-          "affection": -16,
-          "money": 4,
-          "health": -4
+          "affection": -16
         },
         "affection": -16,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -2373,11 +1960,8 @@ module.exports = [
         "label": "「我陪你去楼下走一圈」",
         "reply": "……你现在过来吗",
         "fx": {
-          "health": 4,
-          "career": -4,
-          "mood": 10,
           "affection": 20,
-          "money": -2
+          "mood": 10
         },
         "affection": 20,
         "mood": 10,
@@ -2387,11 +1971,8 @@ module.exports = [
         "label": "「辞吧，我养你」",
         "reply": "你说得轻巧，你养得起吗",
         "fx": {
-          "money": -8,
-          "career": -4,
-          "mood": -6,
           "affection": 12,
-          "health": 2
+          "mood": -6
         },
         "affection": 12,
         "mood": -6,
@@ -2401,11 +1982,9 @@ module.exports = [
         "label": "「你是不是哪里没做好」",
         "reply": "……我去洗澡了",
         "fx": {
-          "career": 8,
-          "family": 2,
-          "mood": -10,
           "affection": -22,
-          "money": -2
+          "mood": -10,
+          "career": 8
         },
         "affection": -22,
         "mood": -10,
@@ -2436,10 +2015,8 @@ module.exports = [
         "reply": "真的吗！那说好了，不许放我鸽子",
         "fx": {
           "money": -240,
-          "career": -4,
-          "mood": 12,
           "affection": 22,
-          "health": -1
+          "mood": 12
         },
         "affection": 22,
         "mood": 12,
@@ -2449,28 +2026,20 @@ module.exports = [
         "label": "「我看过了，不太好看」",
         "reply": "哦，那我自己去",
         "fx": {
-          "money": 4,
-          "career": 4,
-          "mood": -4,
-          "affection": -14,
-          "health": -2
+          "affection": -14
         },
         "affection": -14,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「我陪你看别的行不行」",
         "reply": "你总是这样打折扣",
         "fx": {
-          "career": 2,
-          "family": -2,
-          "mood": 4,
-          "affection": 8,
-          "money": -4
+          "affection": 8
         },
         "affection": 8,
-        "mood": 4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -2498,10 +2067,8 @@ module.exports = [
         "reply": "不用啦……那你路上小心",
         "fx": {
           "money": -140,
-          "health": -4,
-          "mood": 8,
           "affection": 26,
-          "career": -4
+          "mood": 8
         },
         "affection": 26,
         "mood": 8,
@@ -2511,25 +2078,19 @@ module.exports = [
         "label": "「多喝热水，早点睡」",
         "reply": "……哦",
         "fx": {
-          "health": 2,
-          "career": 4,
-          "mood": -2,
-          "affection": -8,
-          "money": -4
+          "affection": -8
         },
         "affection": -8,
-        "mood": -2,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「我妈说姜汤管用，我教你煮」",
         "reply": "你还会煮这个？",
         "fx": {
-          "career": -2,
-          "family": 8,
-          "mood": 6,
           "affection": 14,
-          "money": -1
+          "family": 8,
+          "mood": 6
         },
         "affection": 14,
         "mood": 6,
@@ -2559,11 +2120,8 @@ module.exports = [
         "label": "「然后呢」",
         "reply": "然后就走了呀。你紧张啦？",
         "fx": {
-          "health": 2,
-          "career": 2,
-          "mood": -6,
           "affection": 12,
-          "money": -1
+          "mood": -6
         },
         "affection": 12,
         "mood": -6,
@@ -2573,11 +2131,8 @@ module.exports = [
         "label": "「你跟我说这个干嘛」",
         "reply": "……我就是想跟你说",
         "fx": {
-          "career": 4,
-          "family": 2,
-          "mood": -8,
           "affection": -18,
-          "money": -1
+          "mood": -8
         },
         "affection": -18,
         "mood": -8,
@@ -2587,11 +2142,8 @@ module.exports = [
         "label": "「我有点吃醋，但我忍着」",
         "reply": "傻子。我现在的电话是你接的。",
         "fx": {
-          "health": -2,
-          "career": -2,
-          "mood": 10,
           "affection": 24,
-          "money": -2
+          "mood": 10
         },
         "affection": 24,
         "mood": 10,
@@ -2621,11 +2173,8 @@ module.exports = [
         "label": "「那我不客气了」",
         "reply": "就该这样",
         "fx": {
-          "money": 6,
-          "career": -2,
-          "mood": 6,
           "affection": 14,
-          "health": -1
+          "mood": 6
         },
         "affection": 14,
         "mood": 6,
@@ -2635,28 +2184,21 @@ module.exports = [
         "label": "「我请吧，你上次已经请过」",
         "reply": "你这人怎么这么犟",
         "fx": {
-          "money": -6,
-          "career": 2,
-          "mood": -4,
-          "affection": 8,
-          "health": 4
+          "affection": 8
         },
         "affection": 8,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「AA 吧，我自己算得清」",
         "reply": "……那以后都 AA？",
         "fx": {
-          "money": 4,
-          "career": 6,
-          "mood": -4,
           "affection": -12,
-          "health": -2
+          "career": 6
         },
         "affection": -12,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -2683,11 +2225,8 @@ module.exports = [
         "label": "「听了，有点丧，你没事吧」",
         "reply": "……你怎么听出来的",
         "fx": {
-          "health": -2,
-          "career": -2,
-          "mood": 6,
           "affection": 20,
-          "money": 2
+          "mood": 6
         },
         "affection": 20,
         "mood": 6,
@@ -2696,26 +2235,17 @@ module.exports = [
       {
         "label": "「不难听，但我不循环」",
         "reply": "要求还挺高",
-        "fx": {
-          "career": 4,
-          "family": -2,
-          "mood": 2,
-          "affection": 4,
-          "money": -1
-        },
-        "affection": 4,
-        "mood": 2,
+        "fx": {},
+        "affection": 0,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「我给你唱两句？」",
         "reply": "别，你别唱",
         "fx": {
-          "career": -4,
-          "looks": -2,
-          "mood": 12,
           "affection": 16,
-          "money": -1
+          "mood": 12
         },
         "affection": 16,
         "mood": 12,
@@ -2744,25 +2274,20 @@ module.exports = [
         "label": "「项目上线，我熬了两天」",
         "reply": "那你快去睡，我不打扰你",
         "fx": {
-          "health": -6,
           "career": 12,
-          "mood": -6,
           "affection": 6,
-          "money": 4
+          "health": -6
         },
         "affection": 6,
-        "mood": -6,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「我故意的。」",
         "reply": "……",
         "fx": {
-          "health": 4,
-          "career": 2,
-          "mood": -12,
           "affection": -24,
-          "money": -3
+          "mood": -12
         },
         "affection": -24,
         "mood": -12,
@@ -2772,14 +2297,10 @@ module.exports = [
         "label": "「对不起，我改」",
         "reply": "你不用改，说一下就好了",
         "fx": {
-          "career": -4,
-          "family": 2,
-          "mood": 4,
-          "affection": 10,
-          "money": -4
+          "affection": 10
         },
         "affection": 10,
-        "mood": 4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -2805,11 +2326,8 @@ module.exports = [
         "label": "「随你，反正只有你这么叫」",
         "reply": "那我以后就这么叫了，不许反对",
         "fx": {
-          "career": -2,
-          "family": 4,
-          "mood": 12,
           "affection": 26,
-          "money": -1
+          "mood": 12
         },
         "affection": 26,
         "mood": 12,
@@ -2819,28 +2337,21 @@ module.exports = [
         "label": "「太肉麻了，换一个」",
         "reply": "那你起",
         "fx": {
-          "career": 4,
-          "looks": -2,
-          "mood": 2,
-          "affection": -6,
-          "money": 2
+          "affection": -6
         },
         "affection": -6,
-        "mood": 2,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「我叫我妈也这么叫我」",
         "reply": "……当我没说",
         "fx": {
-          "family": 6,
-          "mood": -4,
           "affection": -14,
-          "money": 2,
-          "health": 1
+          "family": 6
         },
         "affection": -14,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -2865,11 +2376,9 @@ module.exports = [
         "label": "「你在哪儿，我就在哪儿」",
         "reply": "……你说得这么好听，我记下了",
         "fx": {
-          "career": -6,
-          "family": -4,
-          "mood": 8,
           "affection": 20,
-          "money": 4
+          "mood": 8,
+          "career": -6
         },
         "affection": 20,
         "mood": 8,
@@ -2879,28 +2388,21 @@ module.exports = [
         "label": "「我想回老家，压力小」",
         "reply": "那我呢",
         "fx": {
-          "career": -4,
           "family": 10,
-          "mood": 4,
-          "affection": -8,
-          "money": -1
+          "affection": -8
         },
         "affection": -8,
-        "mood": 4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「没想过，先把这个月过完」",
         "reply": "你真的好现实",
         "fx": {
-          "health": 4,
-          "career": 8,
-          "mood": -4,
-          "affection": -4,
-          "money": 1
+          "career": 8
         },
-        "affection": -4,
-        "mood": -4,
+        "affection": 0,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -2926,11 +2428,9 @@ module.exports = [
         "label": "「好啊，我准备一下」",
         "reply": "别紧张，他们人很好的",
         "fx": {
-          "money": -4,
-          "family": 12,
-          "mood": -6,
           "affection": 18,
-          "health": 1
+          "family": 12,
+          "mood": -6
         },
         "affection": 18,
         "mood": -6,
@@ -2940,25 +2440,20 @@ module.exports = [
         "label": "「下次吧，我这阵子太忙」",
         "reply": "……行",
         "fx": {
-          "career": 6,
-          "family": -6,
-          "mood": 2,
           "affection": -16,
-          "money": -2
+          "career": 6,
+          "family": -6
         },
         "affection": -16,
-        "mood": 2,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「先别说是男朋友，行吗」",
         "reply": "……那算什么",
         "fx": {
-          "career": 4,
-          "family": -2,
-          "mood": -6,
           "affection": -10,
-          "money": 2
+          "mood": -6
         },
         "affection": -10,
         "mood": -6,
@@ -2987,11 +2482,9 @@ module.exports = [
         "label": "「一起还，两个人快一倍」",
         "reply": "……你算过了？",
         "fx": {
-          "money": -8,
-          "family": 8,
-          "mood": 6,
           "affection": 24,
-          "health": -4
+          "family": 8,
+          "mood": 6
         },
         "affection": 24,
         "mood": 6,
@@ -3001,28 +2494,21 @@ module.exports = [
         "label": "「那就先别买」",
         "reply": "不买住哪",
         "fx": {
-          "money": 8,
-          "career": 2,
-          "mood": 2,
-          "affection": -6,
-          "health": -4
+          "affection": -6
         },
         "affection": -6,
-        "mood": 2,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「我家里能帮一点」",
         "reply": "我不想靠家里……但还是谢谢你",
         "fx": {
-          "money": -6,
-          "family": 12,
-          "mood": -4,
           "affection": 12,
-          "health": -1
+          "family": 12
         },
         "affection": 12,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -3048,11 +2534,9 @@ module.exports = [
         "label": "「我正想跟你说这件事」",
         "reply": "……你别现在说，我想当面听",
         "fx": {
-          "career": -4,
-          "family": 6,
-          "mood": 14,
           "affection": 30,
-          "money": -4
+          "mood": 14,
+          "family": 6
         },
         "affection": 30,
         "mood": 14,
@@ -3062,11 +2546,8 @@ module.exports = [
         "label": "「不是挺好的吗，为什么非要定义」",
         "reply": "懂了",
         "fx": {
-          "health": 2,
-          "career": 4,
-          "mood": -8,
           "affection": -20,
-          "money": -4
+          "mood": -8
         },
         "affection": -20,
         "mood": -8,
@@ -3076,14 +2557,11 @@ module.exports = [
         "label": "「先同居试试？」",
         "reply": "你想得倒挺美",
         "fx": {
-          "money": -4,
-          "family": -6,
-          "mood": 4,
           "affection": 10,
-          "health": -3
+          "family": -6
         },
         "affection": 10,
-        "mood": 4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -3108,11 +2586,9 @@ module.exports = [
         "label": "「那我们也准备准备」",
         "reply": "你说真的？那要开始备孕了",
         "fx": {
-          "money": -6,
-          "family": 12,
-          "mood": 10,
           "affection": 22,
-          "health": -2
+          "family": 12,
+          "mood": 10
         },
         "affection": 22,
         "mood": 10,
@@ -3121,29 +2597,21 @@ module.exports = [
       {
         "label": "「先攒够钱再说」",
         "reply": "……你总是这么说",
-        "fx": {
-          "money": 8,
-          "career": 4,
-          "mood": -2,
-          "affection": -4,
-          "health": 3
-        },
-        "affection": -4,
-        "mood": -2,
+        "fx": {},
+        "affection": 0,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「我不太想要小孩，你呢」",
         "reply": "我……我没想过你会这么说",
         "fx": {
-          "career": 6,
-          "family": -8,
-          "mood": 4,
           "affection": -12,
-          "money": -3
+          "family": -8,
+          "career": 6
         },
         "affection": -12,
-        "mood": 4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -3168,11 +2636,9 @@ module.exports = [
         "label": "「来吧，我去收拾客房」",
         "reply": "你真的不介意？",
         "fx": {
-          "health": -4,
           "family": 14,
-          "mood": -6,
           "affection": 12,
-          "money": -2
+          "mood": -6
         },
         "affection": 12,
         "mood": -6,
@@ -3182,28 +2648,21 @@ module.exports = [
         "label": "「一个月？我们家就两间房」",
         "reply": "……她说打地铺也行",
         "fx": {
-          "career": 4,
-          "family": -6,
-          "mood": -4,
           "affection": -10,
-          "money": 3
+          "family": -6
         },
         "affection": -10,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「你决定就好」",
         "reply": "你每次都这样",
         "fx": {
-          "health": 2,
-          "career": 6,
-          "mood": -2,
-          "affection": -2,
-          "money": -3
+          "career": 6
         },
-        "affection": -2,
-        "mood": -2,
+        "affection": 0,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -3228,11 +2687,8 @@ module.exports = [
         "label": "（翻聊天记录）「认识第 200 天」",
         "reply": "……你居然真的记得",
         "fx": {
-          "money": -2,
-          "career": -4,
-          "mood": 12,
           "affection": 28,
-          "health": -2
+          "mood": 12
         },
         "affection": 28,
         "mood": 12,
@@ -3242,11 +2698,8 @@ module.exports = [
         "label": "「是不是你生日？」",
         "reply": "……不是",
         "fx": {
-          "career": 2,
-          "family": -4,
-          "mood": -6,
           "affection": -18,
-          "money": 2
+          "mood": -6
         },
         "affection": -18,
         "mood": -6,
@@ -3256,14 +2709,10 @@ module.exports = [
         "label": "「我记性不好，你提醒我一下」",
         "reply": "算了",
         "fx": {
-          "health": 2,
-          "career": 4,
-          "mood": -2,
-          "affection": -8,
-          "money": -3
+          "affection": -8
         },
         "affection": -8,
-        "mood": -2,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -3290,11 +2739,8 @@ module.exports = [
         "label": "「下次我来做，你负责洗碗」",
         "reply": "那我亏了，凭什么我洗碗",
         "fx": {
-          "money": -2,
-          "health": 4,
-          "mood": 10,
           "affection": 20,
-          "career": -2
+          "mood": 10
         },
         "affection": 20,
         "mood": 10,
@@ -3303,14 +2749,8 @@ module.exports = [
       {
         "label": "「多喝水，明天就好了」",
         "reply": "……你这人",
-        "fx": {
-          "health": -2,
-          "career": 4,
-          "affection": 2,
-          "money": 3,
-          "looks": -1
-        },
-        "affection": 2,
+        "fx": {},
+        "affection": 0,
         "mood": 0,
         "correct": false
       },
@@ -3318,11 +2758,8 @@ module.exports = [
         "label": "「发张图，我要嘲笑你」",
         "reply": "不给！",
         "fx": {
-          "looks": -2,
-          "mood": 8,
           "affection": 12,
-          "money": 3,
-          "health": -2
+          "mood": 8
         },
         "affection": 12,
         "mood": 8,
@@ -3352,11 +2789,8 @@ module.exports = [
         "label": "「我陪你去，有伴才坚持得住」",
         "reply": "那说好了，你别第三周就不来",
         "fx": {
-          "money": -4,
-          "health": 8,
-          "career": -4,
           "affection": 18,
-          "looks": -4
+          "health": 8
         },
         "affection": 18,
         "mood": 0,
@@ -3366,28 +2800,21 @@ module.exports = [
         "label": "「办卡容易去着难」",
         "reply": "你就不能说点好听的",
         "fx": {
-          "money": 4,
-          "career": 6,
-          "mood": -2,
           "affection": -8,
-          "health": -3
+          "career": 6
         },
         "affection": -8,
-        "mood": -2,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「在家跟着视频练也行，省钱」",
         "reply": "你倒是会过日子",
         "fx": {
-          "money": 4,
-          "looks": -2,
-          "mood": 2,
-          "affection": 6,
-          "health": -1
+          "affection": 6
         },
         "affection": 6,
-        "mood": 2,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -3414,11 +2841,9 @@ module.exports = [
         "label": "「一起去，我当家属」",
         "reply": "……谁是你家属啊",
         "fx": {
-          "money": -6,
-          "family": 6,
-          "mood": 8,
           "affection": 22,
-          "health": -3
+          "mood": 8,
+          "family": 6
         },
         "affection": 22,
         "mood": 8,
@@ -3428,28 +2853,20 @@ module.exports = [
         "label": "「随多少份子？我参考一下」",
         "reply": "……你就关心这个",
         "fx": {
-          "money": 6,
-          "career": 4,
-          "mood": -4,
-          "affection": -6,
-          "health": 4
+          "affection": -6
         },
         "affection": -6,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「你羡慕吗」",
         "reply": "……有一点",
         "fx": {
-          "career": -2,
-          "family": 4,
-          "mood": -4,
-          "affection": 10,
-          "money": 2
+          "affection": 10
         },
         "affection": 10,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -3476,11 +2893,9 @@ module.exports = [
         "label": "「下来，我在你楼下」",
         "reply": "你疯了吧……等我五分钟",
         "fx": {
-          "money": -4,
-          "health": -6,
-          "mood": 14,
           "affection": 26,
-          "career": 3
+          "mood": 14,
+          "health": -6
         },
         "affection": 26,
         "mood": 14,
@@ -3490,25 +2905,19 @@ module.exports = [
         "label": "「明天吃，今天忍忍」",
         "reply": "你一点都不好玩",
         "fx": {
-          "health": 6,
-          "career": 4,
-          "mood": -4,
           "affection": -10,
-          "money": 4
+          "health": 6
         },
         "affection": -10,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「点外卖吧，我出配送费」",
         "reply": "这个可以有",
         "fx": {
-          "money": -2,
-          "health": -4,
-          "mood": 6,
           "affection": 12,
-          "career": -4
+          "mood": 6
         },
         "affection": 12,
         "mood": 6,
@@ -3537,11 +2946,8 @@ module.exports = [
         "label": "「有，但我只回你消息」",
         "reply": "……油嘴滑舌",
         "fx": {
-          "health": -2,
-          "career": -4,
-          "mood": 10,
           "affection": 24,
-          "money": -1
+          "mood": 10
         },
         "affection": 24,
         "mood": 10,
@@ -3551,25 +2957,19 @@ module.exports = [
         "label": "「你想多了，人家有对象」",
         "reply": "哦",
         "fx": {
-          "career": 6,
-          "family": 2,
-          "mood": -2,
           "affection": -6,
-          "money": -1
+          "career": 6
         },
         "affection": -6,
-        "mood": -2,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「你查我手机了？」",
         "reply": "……我没有，我就是看见屏幕亮了",
         "fx": {
-          "career": 4,
-          "mood": -10,
           "affection": -20,
-          "money": 3,
-          "health": -3
+          "mood": -10
         },
         "affection": -20,
         "mood": -10,
@@ -3599,11 +2999,8 @@ module.exports = [
         "label": "「那你就是有两只猫的人了」",
         "reply": "什么嘛，那是野猫",
         "fx": {
-          "money": -2,
-          "family": 4,
-          "mood": 10,
           "affection": 18,
-          "health": -3
+          "mood": 10
         },
         "affection": 18,
         "mood": 10,
@@ -3613,11 +3010,8 @@ module.exports = [
         "label": "「别喂，喂了就不走了」",
         "reply": "……我已经喂了",
         "fx": {
-          "money": 4,
-          "career": 6,
           "affection": -8,
-          "health": -3,
-          "looks": 4
+          "career": 6
         },
         "affection": -8,
         "mood": 0,
@@ -3627,11 +3021,8 @@ module.exports = [
         "label": "「明天我带猫粮过去」",
         "reply": "你真的会来吗？",
         "fx": {
-          "money": -2,
-          "health": -2,
-          "mood": 8,
           "affection": 22,
-          "career": 2
+          "mood": 8
         },
         "affection": 22,
         "mood": 8,
@@ -3660,11 +3051,8 @@ module.exports = [
         "label": "「你从第一天就在备份？」",
         "reply": "……你是不是觉得我很可怕",
         "fx": {
-          "career": -2,
-          "family": 4,
-          "mood": 12,
           "affection": 26,
-          "money": -2
+          "mood": 12
         },
         "affection": 26,
         "mood": 12,
@@ -3674,11 +3062,8 @@ module.exports = [
         "label": "「这个习惯挺好，我也存了」",
         "reply": "真的？",
         "fx": {
-          "career": 2,
-          "mood": 8,
           "affection": 18,
-          "money": -1,
-          "health": -3
+          "mood": 8
         },
         "affection": 18,
         "mood": 8,
@@ -3688,11 +3073,9 @@ module.exports = [
         "label": "「删了吧，占空间」",
         "reply": "……好",
         "fx": {
-          "health": 2,
-          "career": 6,
-          "mood": -12,
           "affection": -26,
-          "money": 1
+          "mood": -12,
+          "career": 6
         },
         "affection": -26,
         "mood": -12,
@@ -3722,11 +3105,8 @@ module.exports = [
         "label": "「你怎么看我手机？」",
         "reply": "……我是为了你好",
         "fx": {
-          "career": 4,
-          "mood": -10,
           "affection": -26,
-          "money": -4,
-          "health": 3
+          "mood": -10
         },
         "affection": -26,
         "mood": -10,
@@ -3736,25 +3116,18 @@ module.exports = [
         "label": "「那我从这个月开始记账」",
         "reply": "这还差不多，我教你用表格",
         "fx": {
-          "money": 6,
-          "career": -2,
-          "mood": 4,
-          "affection": 18,
-          "health": -3
+          "affection": 18
         },
         "affection": 18,
-        "mood": 4,
+        "mood": 0,
         "correct": true
       },
       {
         "label": "「四百块而已，至于吗」",
         "reply": "……至于",
         "fx": {
-          "money": -4,
-          "career": -2,
-          "mood": 6,
           "affection": -22,
-          "health": 2
+          "mood": 6
         },
         "affection": -22,
         "mood": 6,
@@ -3783,11 +3156,9 @@ module.exports = [
         "label": "「不签，谈钱伤感情」",
         "reply": "……我以为你会理解",
         "fx": {
-          "career": -2,
-          "family": 6,
-          "mood": -6,
           "affection": -22,
-          "money": 1
+          "family": 6,
+          "mood": -6
         },
         "affection": -22,
         "mood": -6,
@@ -3797,11 +3168,8 @@ module.exports = [
         "label": "「签，各自财产各自清楚」",
         "reply": "你比我想的通透",
         "fx": {
-          "money": -4,
-          "career": 4,
-          "mood": 6,
           "affection": 22,
-          "health": -1
+          "mood": 6
         },
         "affection": 22,
         "mood": 6,
@@ -3811,11 +3179,8 @@ module.exports = [
         "label": "「你要签那就算了」",
         "reply": "……行，我知道了",
         "fx": {
-          "health": 2,
-          "career": 2,
-          "mood": -12,
           "affection": -28,
-          "money": -3
+          "mood": -12
         },
         "affection": -28,
         "mood": -12,
@@ -3845,11 +3210,8 @@ module.exports = [
         "label": "「你想多了」",
         "reply": "……每次你都这么说",
         "fx": {
-          "health": 2,
-          "career": 4,
-          "mood": -8,
           "affection": -24,
-          "money": 1
+          "mood": -8
         },
         "affection": -24,
         "mood": -8,
@@ -3859,11 +3221,8 @@ module.exports = [
         "label": "「我今天确实状态不好，不是你的问题」",
         "reply": "……那你早点说啊",
         "fx": {
-          "health": 4,
-          "career": -4,
-          "mood": 6,
           "affection": 20,
-          "money": -2
+          "mood": 6
         },
         "affection": 20,
         "mood": 6,
@@ -3873,11 +3232,8 @@ module.exports = [
         "label": "「那你想要我怎样」",
         "reply": "算了，没事",
         "fx": {
-          "career": 2,
-          "family": -4,
-          "mood": -14,
           "affection": -30,
-          "money": 2
+          "mood": -14
         },
         "affection": -30,
         "mood": -14,
@@ -3906,11 +3262,9 @@ module.exports = [
         "label": "「幼稚。」",
         "reply": "……嗯，我幼稚",
         "fx": {
-          "health": 2,
-          "career": 6,
-          "mood": -10,
           "affection": -26,
-          "money": -3
+          "mood": -10,
+          "career": 6
         },
         "affection": -26,
         "mood": -10,
@@ -3920,11 +3274,8 @@ module.exports = [
         "label": "「我知道，所以我又发了第四条」",
         "reply": "……你什么时候发现的",
         "fx": {
-          "health": -2,
-          "career": -2,
-          "mood": 10,
           "affection": 24,
-          "money": -4
+          "mood": 10
         },
         "affection": 24,
         "mood": 10,
@@ -3934,11 +3285,8 @@ module.exports = [
         "label": "「那我以后不发了」",
         "reply": "……",
         "fx": {
-          "career": 4,
-          "mood": -12,
           "affection": -32,
-          "money": -4,
-          "health": 1
+          "mood": -12
         },
         "affection": -32,
         "mood": -12,
@@ -3968,11 +3316,8 @@ module.exports = [
         "label": "「你朋友说得对，我改」",
         "reply": "……我也没要你改",
         "fx": {
-          "career": 4,
-          "looks": 2,
-          "mood": -6,
           "affection": -22,
-          "money": 3
+          "mood": -6
         },
         "affection": -22,
         "mood": -6,
@@ -3982,11 +3327,8 @@ module.exports = [
         "label": "「闷是闷了点，但我记性好」",
         "reply": "记性好体现在哪？举个例子",
         "fx": {
-          "career": -2,
-          "family": 4,
-          "mood": 8,
           "affection": 18,
-          "money": -2
+          "mood": 8
         },
         "affection": 18,
         "mood": 8,
@@ -3996,11 +3338,8 @@ module.exports = [
         "label": "「你朋友管得真宽」",
         "reply": "……她是我最好的朋友",
         "fx": {
-          "career": 2,
-          "mood": -8,
           "affection": -22,
-          "money": 2,
-          "health": -1
+          "mood": -8
         },
         "affection": -22,
         "mood": -8,
@@ -4029,11 +3368,8 @@ module.exports = [
         "label": "「十个？！」",
         "reply": "……我就知道",
         "fx": {
-          "money": 4,
-          "health": 4,
-          "mood": -8,
           "affection": -22,
-          "career": 1
+          "mood": -8
         },
         "affection": -22,
         "mood": -8,
@@ -4043,11 +3379,8 @@ module.exports = [
         "label": "「行，我来做饭，你负责洗碗」",
         "reply": "真的？！我就知道你最好了",
         "fx": {
-          "money": -6,
-          "health": -4,
-          "mood": 10,
           "affection": 24,
-          "career": 2
+          "mood": 10
         },
         "affection": 24,
         "mood": 10,
@@ -4057,14 +3390,11 @@ module.exports = [
         "label": "「我那天不在家，你们玩」",
         "reply": "……你是不是不太想见他们",
         "fx": {
-          "career": 6,
-          "family": -4,
-          "mood": -4,
           "affection": -24,
-          "money": 1
+          "career": 6
         },
         "affection": -24,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -4091,25 +3421,18 @@ module.exports = [
         "label": "「行，随便你」",
         "reply": "……你答应得也太快了",
         "fx": {
-          "health": 2,
-          "career": 4,
-          "mood": -4,
-          "affection": -22,
-          "money": 4
+          "affection": -22
         },
         "affection": -22,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「顺其自然可以，但我得知道自己在哪」",
         "reply": "……想那么多干嘛",
         "fx": {
-          "career": -2,
-          "family": 2,
-          "mood": 6,
           "affection": 20,
-          "money": -1
+          "mood": 6
         },
         "affection": 20,
         "mood": 6,
@@ -4119,11 +3442,8 @@ module.exports = [
         "label": "「那我也去见别人？」",
         "reply": "……随你",
         "fx": {
-          "career": 2,
-          "mood": -10,
           "affection": -28,
-          "money": 3,
-          "health": -2
+          "mood": -10
         },
         "affection": -28,
         "mood": -10,
@@ -4153,11 +3473,8 @@ module.exports = [
         "label": "「玩得开心，回来找我」",
         "reply": "你真的不生气？",
         "fx": {
-          "career": 4,
-          "family": -2,
-          "mood": 6,
           "affection": 18,
-          "money": -3
+          "mood": 6
         },
         "affection": 18,
         "mood": 6,
@@ -4167,11 +3484,8 @@ module.exports = [
         "label": "「半个月？那我们还算什么」",
         "reply": "……你又来了",
         "fx": {
-          "health": 2,
-          "career": 2,
-          "mood": -10,
           "affection": -22,
-          "money": -3
+          "mood": -10
         },
         "affection": -22,
         "mood": -10,
@@ -4181,11 +3495,9 @@ module.exports = [
         "label": "「我也去，我请假」",
         "reply": "……你别，我自己走走",
         "fx": {
-          "money": -8,
-          "career": -8,
-          "mood": 8,
           "affection": -20,
-          "health": 4
+          "career": -8,
+          "mood": 8
         },
         "affection": -20,
         "mood": 8,
@@ -4214,25 +3526,19 @@ module.exports = [
         "label": "「那得先看看房子够不够住」",
         "reply": "……你先想的是房子",
         "fx": {
-          "money": 6,
-          "career": 4,
-          "mood": -4,
-          "affection": -22,
-          "health": -3
+          "affection": -22
         },
         "affection": -22,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「什么时候接，我去帮忙」",
         "reply": "……你真的愿意",
         "fx": {
-          "money": -6,
-          "family": 16,
-          "mood": 8,
           "affection": 26,
-          "health": -3
+          "family": 16,
+          "mood": 8
         },
         "affection": 26,
         "mood": 8,
@@ -4242,14 +3548,11 @@ module.exports = [
         "label": "「那能不能先请个护工」",
         "reply": "……请护工一个月六千，你算过吗",
         "fx": {
-          "career": 4,
-          "family": -6,
-          "mood": 2,
           "affection": -20,
-          "money": -4
+          "family": -6
         },
         "affection": -20,
-        "mood": 2,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -4275,11 +3578,9 @@ module.exports = [
         "label": "「轮流，今年你家明年我家」",
         "reply": "……我还以为你要争",
         "fx": {
-          "career": -2,
-          "family": 10,
-          "mood": 6,
           "affection": 22,
-          "money": -1
+          "family": 10,
+          "mood": 6
         },
         "affection": 22,
         "mood": 6,
@@ -4289,11 +3590,9 @@ module.exports = [
         "label": "「当然是我家」",
         "reply": "……凭什么",
         "fx": {
-          "career": 4,
-          "family": -8,
-          "mood": -6,
           "affection": -22,
-          "money": 3
+          "family": -8,
+          "mood": -6
         },
         "affection": -22,
         "mood": -6,
@@ -4303,14 +3602,11 @@ module.exports = [
         "label": "「各回各家，谁也别为难」",
         "reply": "……结婚了还各回各家",
         "fx": {
-          "health": -2,
-          "career": 6,
-          "mood": 4,
           "affection": -20,
-          "money": 3
+          "career": 6
         },
         "affection": -20,
-        "mood": 4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -4337,25 +3633,21 @@ module.exports = [
         "label": "「去啊，这种机会不是常有」",
         "reply": "……你不拦我",
         "fx": {
-          "career": 12,
-          "family": -6,
-          "mood": 4,
           "affection": 16,
-          "money": -1
+          "career": 12,
+          "family": -6
         },
         "affection": 16,
-        "mood": 4,
+        "mood": 0,
         "correct": true
       },
       {
         "label": "「两年太久了，你能不能不去」",
         "reply": "……我以为你会支持我",
         "fx": {
-          "career": -6,
-          "family": 6,
-          "mood": -8,
           "affection": -22,
-          "money": 1
+          "mood": -8,
+          "career": -6
         },
         "affection": -22,
         "mood": -8,
@@ -4365,11 +3657,8 @@ module.exports = [
         "label": "「那我们怎么办，你想过吗」",
         "reply": "……你只问这个？",
         "fx": {
-          "health": 2,
-          "career": 2,
-          "mood": -8,
           "affection": -20,
-          "money": 4
+          "mood": -8
         },
         "affection": -20,
         "mood": -8,
@@ -4398,11 +3687,9 @@ module.exports = [
         "label": "「谁机会好谁上」",
         "reply": "……我还以为你会说你",
         "fx": {
-          "career": 8,
-          "family": -4,
-          "mood": 6,
           "affection": 20,
-          "money": -2
+          "career": 8,
+          "mood": 6
         },
         "affection": 20,
         "mood": 6,
@@ -4412,11 +3699,9 @@ module.exports = [
         "label": "「当然是我」",
         "reply": "……好，我知道了",
         "fx": {
-          "career": 10,
-          "family": -6,
-          "mood": -8,
           "affection": -24,
-          "money": 2
+          "career": 10,
+          "mood": -8
         },
         "affection": -24,
         "mood": -8,
@@ -4426,14 +3711,10 @@ module.exports = [
         "label": "「这问题你自己定，问我干嘛」",
         "reply": "……我在问你的意见",
         "fx": {
-          "career": -2,
-          "family": 4,
-          "mood": 4,
-          "affection": -20,
-          "money": 3
+          "affection": -20
         },
         "affection": -20,
-        "mood": 4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -4460,11 +3741,8 @@ module.exports = [
         "label": "「三十块就想打发我？」",
         "reply": "那你想怎样，我最多加五块",
         "fx": {
-          "money": -2,
-          "career": -2,
-          "mood": 10,
           "affection": 20,
-          "health": 3
+          "mood": 10
         },
         "affection": 20,
         "mood": 10,
@@ -4474,25 +3752,18 @@ module.exports = [
         "label": "「别买，存起来复利」",
         "reply": "……你真的很扫兴",
         "fx": {
-          "money": 6,
-          "career": 4,
-          "mood": -4,
-          "affection": -10,
-          "health": 4
+          "affection": -10
         },
         "affection": -10,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「我请你，你那三十自己留着」",
         "reply": "……你今天吃错药了？",
         "fx": {
-          "money": -4,
-          "career": -2,
-          "mood": 6,
           "affection": 16,
-          "health": 4
+          "mood": 6
         },
         "affection": 16,
         "mood": 6,
@@ -4521,11 +3792,8 @@ module.exports = [
         "label": "「因为我抠，谢谢夸奖」",
         "reply": "……不是，是因为不用乱花钱讨好谁",
         "fx": {
-          "money": 4,
-          "career": -2,
-          "mood": 8,
           "affection": 14,
-          "health": -3
+          "mood": 8
         },
         "affection": 14,
         "mood": 8,
@@ -4535,11 +3803,8 @@ module.exports = [
         "label": "「那以后工资卡交给我」",
         "reply": "……你还真敢想",
         "fx": {
-          "money": 6,
-          "family": -4,
-          "mood": 10,
           "affection": 22,
-          "health": -4
+          "mood": 10
         },
         "affection": 22,
         "mood": 10,
@@ -4549,11 +3814,9 @@ module.exports = [
         "label": "「这说明我值得投资」",
         "reply": "……你脸皮是越来越厚了",
         "fx": {
-          "career": 6,
-          "looks": -2,
-          "mood": 6,
           "affection": 12,
-          "money": -4
+          "career": 6,
+          "mood": 6
         },
         "affection": 12,
         "mood": 6,
@@ -4583,11 +3846,8 @@ module.exports = [
         "label": "「念给我听」",
         "reply": "……不行，太丢人了",
         "fx": {
-          "health": -2,
-          "career": -4,
-          "mood": 12,
           "affection": 24,
-          "money": -3
+          "mood": 12
         },
         "affection": 24,
         "mood": 12,
@@ -4597,25 +3857,18 @@ module.exports = [
         "label": "「你什么时候学会写诗了」",
         "reply": "……就今天",
         "fx": {
-          "career": 4,
-          "mood": 4,
-          "affection": 10,
-          "money": -2,
-          "health": -3
+          "affection": 10
         },
         "affection": 10,
-        "mood": 4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "（转发给了共同好友）",
         "reply": "……你发给谁了",
         "fx": {
-          "career": 2,
-          "mood": -10,
           "affection": -30,
-          "money": -4,
-          "health": 3
+          "mood": -10
         },
         "affection": -30,
         "mood": -10,
@@ -4644,11 +3897,8 @@ module.exports = [
         "label": "「哭了多久，喝水了吗」",
         "reply": "……你怎么不问为什么",
         "fx": {
-          "health": 4,
-          "career": -4,
-          "mood": 8,
           "affection": 26,
-          "money": -3
+          "mood": 8
         },
         "affection": 26,
         "mood": 8,
@@ -4658,11 +3908,9 @@ module.exports = [
         "label": "「别哭了，有什么好哭的」",
         "reply": "……",
         "fx": {
-          "health": 2,
-          "career": 6,
-          "mood": -12,
           "affection": -26,
-          "money": 2
+          "mood": -12,
+          "career": 6
         },
         "affection": -26,
         "mood": -12,
@@ -4672,11 +3920,9 @@ module.exports = [
         "label": "「我现在过来」",
         "reply": "……不用，我在笑",
         "fx": {
-          "health": -4,
-          "career": -6,
-          "mood": 10,
           "affection": 30,
-          "money": -4
+          "mood": 10,
+          "career": -6
         },
         "affection": 30,
         "mood": 10,
@@ -4706,11 +3952,8 @@ module.exports = [
         "label": "「你带路，我跟着」",
         "reply": "好！周六不见不散",
         "fx": {
-          "money": -4,
-          "career": -4,
-          "mood": 12,
           "affection": 22,
-          "health": 1
+          "mood": 12
         },
         "affection": 22,
         "mood": 12,
@@ -4720,25 +3963,19 @@ module.exports = [
         "label": "「我周末要补觉」",
         "reply": "……你就不能偶尔陪我疯一次",
         "fx": {
-          "health": 6,
-          "career": 2,
-          "mood": 2,
           "affection": -14,
-          "money": -1
+          "health": 6
         },
         "affection": -14,
-        "mood": 2,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「发定位，我自己去一次给你看」",
         "reply": "……那我不告诉你哪家",
         "fx": {
-          "money": -4,
-          "career": 2,
-          "mood": 6,
           "affection": 12,
-          "health": -1
+          "mood": 6
         },
         "affection": 12,
         "mood": 6,
@@ -4767,11 +4004,8 @@ module.exports = [
         "label": "「那肯定是灯的关系」",
         "reply": "……你就不能好好说话",
         "fx": {
-          "career": -2,
-          "looks": 4,
-          "mood": 10,
           "affection": 16,
-          "money": -2
+          "mood": 10
         },
         "affection": 16,
         "mood": 10,
@@ -4781,11 +4015,8 @@ module.exports = [
         "label": "「因为我？」",
         "reply": "……你说呢",
         "fx": {
-          "career": -2,
-          "mood": 12,
           "affection": 24,
-          "money": -2,
-          "health": -4
+          "mood": 12
         },
         "affection": 24,
         "mood": 12,
@@ -4795,14 +4026,11 @@ module.exports = [
         "label": "「那我得见见你朋友」",
         "reply": "……你想干嘛，查岗吗",
         "fx": {
-          "money": -2,
-          "family": 6,
-          "mood": 4,
           "affection": 12,
-          "health": -3
+          "family": 6
         },
         "affection": 12,
-        "mood": 4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -4829,25 +4057,18 @@ module.exports = [
         "label": "「这句听起来不像你」",
         "reply": "……网上学的",
         "fx": {
-          "career": 4,
-          "mood": 2,
-          "affection": -8,
-          "money": -4,
-          "health": 4
+          "affection": -8
         },
         "affection": -8,
-        "mood": 2,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「我穿拖鞋下去，你别笑」",
         "reply": "快点，风大",
         "fx": {
-          "health": -4,
-          "looks": -2,
-          "mood": 12,
           "affection": 24,
-          "money": 4
+          "mood": 12
         },
         "affection": 24,
         "mood": 12,
@@ -4857,11 +4078,9 @@ module.exports = [
         "label": "「太晚了，明天吧」",
         "reply": "……行",
         "fx": {
-          "health": 6,
-          "career": 4,
-          "mood": -6,
           "affection": -18,
-          "money": 2
+          "health": 6,
+          "mood": -6
         },
         "affection": -18,
         "mood": -6,
@@ -4890,11 +4109,9 @@ module.exports = [
         "label": "「那就待着，别动」",
         "reply": "……嗯",
         "fx": {
-          "career": -4,
-          "family": 6,
-          "mood": 12,
           "affection": 26,
-          "money": -2
+          "mood": 12,
+          "family": 6
         },
         "affection": 26,
         "mood": 12,
@@ -4904,25 +4121,18 @@ module.exports = [
         "label": "「这就算表白了？」",
         "reply": "……当我没说",
         "fx": {
-          "health": 2,
-          "career": 4,
-          "mood": -4,
-          "affection": -12,
-          "money": -2
+          "affection": -12
         },
         "affection": -12,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「我也是，虽然我不知道为什么」",
         "reply": "……不许反悔",
         "fx": {
-          "health": 2,
-          "career": -2,
-          "mood": 10,
           "affection": 22,
-          "money": -1
+          "mood": 10
         },
         "affection": 22,
         "mood": 10,
@@ -4951,11 +4161,9 @@ module.exports = [
         "label": "「给我留一份，我马上到」",
         "reply": "……那你快点，凉了就不好吃了",
         "fx": {
-          "health": -2,
-          "family": 12,
-          "mood": 12,
           "affection": 26,
-          "money": -3
+          "family": 12,
+          "mood": 12
         },
         "affection": 26,
         "mood": 12,
@@ -4965,11 +4173,8 @@ module.exports = [
         "label": "「拍张照我看看」",
         "reply": "不给，太丑了",
         "fx": {
-          "career": 2,
-          "mood": 6,
           "affection": 12,
-          "money": -2,
-          "health": -1
+          "mood": 6
         },
         "affection": 12,
         "mood": 6,
@@ -4979,11 +4184,9 @@ module.exports = [
         "label": "「下次我做吧，你别烫着」",
         "reply": "……那我下次看你做",
         "fx": {
-          "career": -2,
-          "family": 8,
-          "mood": 6,
           "affection": 18,
-          "money": -1
+          "family": 8,
+          "mood": 6
         },
         "affection": 18,
         "mood": 6,
@@ -5012,11 +4215,9 @@ module.exports = [
         "label": "「这个周末可以，我买点东西」",
         "reply": "……我妈肯定高兴坏了",
         "fx": {
-          "money": -6,
-          "family": 16,
-          "mood": 8,
           "affection": 24,
-          "health": -4
+          "family": 16,
+          "mood": 8
         },
         "affection": 24,
         "mood": 8,
@@ -5026,25 +4227,21 @@ module.exports = [
         "label": "「改天吧，我最近忙」",
         "reply": "……你每次都改天",
         "fx": {
-          "career": 6,
-          "family": -8,
-          "mood": -4,
           "affection": -16,
-          "money": 4
+          "family": -8,
+          "career": 6
         },
         "affection": -16,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「能不能先别跟阿姨说我们」",
         "reply": "……她早知道了",
         "fx": {
-          "career": 4,
-          "family": -6,
-          "mood": -8,
           "affection": -22,
-          "money": 3
+          "mood": -8,
+          "family": -6
         },
         "affection": -22,
         "mood": -8,
@@ -5074,11 +4271,9 @@ module.exports = [
         "label": "「说吧，我听着」",
         "reply": "……你不嫌我烦",
         "fx": {
-          "health": -4,
-          "career": 6,
-          "mood": 6,
           "affection": 20,
-          "money": -2
+          "career": 6,
+          "mood": 6
         },
         "affection": 20,
         "mood": 6,
@@ -5088,11 +4283,8 @@ module.exports = [
         "label": "「工作的事别带回家」",
         "reply": "……好",
         "fx": {
-          "health": 4,
-          "career": 2,
-          "mood": -6,
           "affection": -18,
-          "money": 2
+          "mood": -6
         },
         "affection": -18,
         "mood": -6,
@@ -5102,11 +4294,9 @@ module.exports = [
         "label": "「先喝口水，再说」",
         "reply": "……你怎么这么会",
         "fx": {
-          "health": 6,
-          "career": -2,
-          "mood": 8,
           "affection": 18,
-          "money": -1
+          "mood": 8,
+          "health": 6
         },
         "affection": 18,
         "mood": 8,
@@ -5135,11 +4325,9 @@ module.exports = [
         "label": "「下次别为我推，我不值得」",
         "reply": "……值不值得我说了算",
         "fx": {
-          "health": 2,
-          "career": 8,
-          "mood": -6,
           "affection": -10,
-          "money": -2
+          "career": 8,
+          "mood": -6
         },
         "affection": -10,
         "mood": -6,
@@ -5149,11 +4337,9 @@ module.exports = [
         "label": "「那我给你下碗面」",
         "reply": "……就这么定了",
         "fx": {
-          "money": -2,
-          "family": 8,
-          "mood": 12,
           "affection": 26,
-          "health": -3
+          "mood": 12,
+          "family": 8
         },
         "affection": 26,
         "mood": 12,
@@ -5162,15 +4348,9 @@ module.exports = [
       {
         "label": "「是不是那边没意思」",
         "reply": "……你非要这么理解也行",
-        "fx": {
-          "career": 4,
-          "family": -2,
-          "mood": 2,
-          "affection": 4,
-          "money": -1
-        },
-        "affection": 4,
-        "mood": 2,
+        "fx": {},
+        "affection": 0,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -5193,25 +4373,18 @@ module.exports = [
         "label": "「你好，我看过你的资料」",
         "reply": "资料是王阿姨写的，可能不太准",
         "fx": {
-          "career": -2,
-          "family": -2,
-          "mood": 4,
-          "affection": 8,
-          "money": 2
+          "affection": 8
         },
         "affection": 8,
-        "mood": 4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「你好，我先说：我照片是三年前的」",
         "reply": "哈哈，那我也坦白，我的是修过的",
         "fx": {
-          "looks": -4,
-          "mood": 8,
           "affection": 16,
-          "money": -2,
-          "health": 2
+          "mood": 8
         },
         "affection": 16,
         "mood": 8,
@@ -5221,14 +4394,10 @@ module.exports = [
         "label": "「嗯。」",
         "reply": "……",
         "fx": {
-          "career": 2,
-          "mood": -2,
-          "affection": -12,
-          "money": 3,
-          "health": -3
+          "affection": -12
         },
         "affection": -12,
-        "mood": -2,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -5252,27 +4421,17 @@ module.exports = [
         "label": "（如实说，并补一句「很普通」）",
         "reply": "普通才好，我怕那种太厉害的",
         "fx": {
-          "career": 4,
-          "mood": 4,
-          "affection": 10,
-          "money": -2,
-          "health": -2
+          "affection": 10
         },
         "affection": 10,
-        "mood": 4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "（含糊带过，反问对方）",
         "reply": "……你这人，问你还保密",
-        "fx": {
-          "health": 2,
-          "career": 2,
-          "affection": -4,
-          "money": -2,
-          "looks": 2
-        },
-        "affection": -4,
+        "fx": {},
+        "affection": 0,
         "mood": 0,
         "correct": false
       },
@@ -5280,11 +4439,9 @@ module.exports = [
         "label": "（说了，并顺手发张工位照）",
         "reply": "你们公司看着好乱啊哈哈",
         "fx": {
-          "career": 6,
-          "looks": -2,
-          "mood": 6,
           "affection": 14,
-          "money": -1
+          "career": 6,
+          "mood": 6
         },
         "affection": 14,
         "mood": 6,
@@ -5311,11 +4468,8 @@ module.exports = [
         "label": "「因为我挑，现在在挑你」",
         "reply": "……你这话挺会的",
         "fx": {
-          "career": -2,
-          "looks": 2,
-          "mood": 8,
           "affection": 18,
-          "money": -1
+          "mood": 8
         },
         "affection": 18,
         "mood": 8,
@@ -5325,11 +4479,8 @@ module.exports = [
         "label": "「工作太忙，圈子小」",
         "reply": "大家都这么说",
         "fx": {
-          "health": -2,
-          "career": 6,
           "affection": 6,
-          "money": 3,
-          "looks": -2
+          "career": 6
         },
         "affection": 6,
         "mood": 0,
@@ -5339,11 +4490,8 @@ module.exports = [
         "label": "「因为之前有一段，不太想提」",
         "reply": "……对不起，我不该问",
         "fx": {
-          "family": 4,
-          "mood": -6,
           "affection": -6,
-          "money": 2,
-          "health": -3
+          "mood": -6
         },
         "affection": -6,
         "mood": -6,
@@ -5370,39 +4518,28 @@ module.exports = [
         "label": "（原相机，直接发）",
         "reply": "……还不错，比王阿姨给的那张真实",
         "fx": {
-          "looks": -2,
-          "mood": -2,
-          "affection": 16,
-          "money": -2,
-          "health": 4
+          "affection": 16
         },
         "affection": 16,
-        "mood": -2,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "（发一张风景照岔开）",
         "reply": "……我要看的是你",
         "fx": {
-          "career": 2,
-          "looks": 2,
-          "mood": 2,
-          "affection": -10,
-          "money": -1
+          "affection": -10
         },
         "affection": -10,
-        "mood": 2,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「见面看吧，照片不准」",
         "reply": "……那你要是骗我呢",
         "fx": {
-          "career": -2,
-          "looks": 4,
-          "mood": 6,
           "affection": 12,
-          "money": -1
+          "mood": 6
         },
         "affection": 12,
         "mood": 6,
@@ -5429,11 +4566,8 @@ module.exports = [
         "label": "「好，你选地方，我订」",
         "reply": "那我选了，别嫌贵",
         "fx": {
-          "money": -4,
-          "career": -2,
-          "mood": 8,
           "affection": 20,
-          "health": 1
+          "mood": 8
         },
         "affection": 20,
         "mood": 8,
@@ -5443,25 +4577,18 @@ module.exports = [
         "label": "「再聊几天吧，我有点紧张」",
         "reply": "……紧张什么，我又不会吃了你",
         "fx": {
-          "health": 4,
-          "family": -2,
-          "mood": -4,
-          "affection": 6,
-          "money": 2
+          "affection": 6
         },
         "affection": 6,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「行，中午还是晚上」",
         "reply": "晚上吧，中午太赶了",
         "fx": {
-          "health": -2,
-          "career": 4,
-          "mood": 6,
           "affection": 14,
-          "money": -2
+          "mood": 6
         },
         "affection": 14,
         "mood": 6,
@@ -5487,11 +4614,8 @@ module.exports = [
         "label": "「躺平，什么都不干」",
         "reply": "……真坦诚，我也是",
         "fx": {
-          "health": 4,
-          "career": -4,
-          "mood": 6,
           "affection": 10,
-          "money": -1
+          "mood": 6
         },
         "affection": 10,
         "mood": 6,
@@ -5501,11 +4625,8 @@ module.exports = [
         "label": "（说一个很小众的爱好）",
         "reply": "这个我还真没听过，你给我讲讲",
         "fx": {
-          "career": 2,
-          "family": -2,
-          "mood": 8,
           "affection": 16,
-          "money": -1
+          "mood": 8
         },
         "affection": 16,
         "mood": 8,
@@ -5515,13 +4636,11 @@ module.exports = [
         "label": "「加班，一般加到九点」",
         "reply": "……那你要注意身体",
         "fx": {
-          "health": -6,
           "career": 10,
-          "mood": -6,
-          "affection": -4,
-          "money": 1
+          "health": -6,
+          "mood": -6
         },
-        "affection": -4,
+        "affection": 0,
         "mood": -6,
         "correct": false
       }
@@ -5546,39 +4665,30 @@ module.exports = [
         "label": "（如实说，并提一句家里催得紧）",
         "reply": "……我妈也催",
         "fx": {
-          "family": 8,
-          "mood": -4,
           "affection": 12,
-          "money": -1,
-          "health": 1
+          "family": 8
         },
         "affection": 12,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「这个见面再说吧」",
         "reply": "……好正式的问题吗",
         "fx": {
-          "health": 2,
-          "career": 4,
-          "mood": -2,
-          "affection": -8,
-          "money": 1
+          "affection": -8
         },
         "affection": -8,
-        "mood": -2,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "（说了，顺便问对方父母身体）",
         "reply": "你还挺细心的",
         "fx": {
-          "career": -2,
-          "family": 12,
-          "mood": 6,
           "affection": 18,
-          "money": -2
+          "family": 12,
+          "mood": 6
         },
         "affection": 18,
         "mood": 6,
@@ -5605,11 +4715,8 @@ module.exports = [
         "label": "「在看你朋友圈，翻到 2019 年」",
         "reply": "……你别翻了，太丢人",
         "fx": {
-          "health": -4,
-          "career": -4,
-          "mood": 10,
           "affection": 22,
-          "money": -1
+          "mood": 10
         },
         "affection": 22,
         "mood": 10,
@@ -5619,11 +4726,9 @@ module.exports = [
         "label": "「在想明天见面穿什么」",
         "reply": "……你别太隆重，我压力大",
         "fx": {
-          "career": -2,
-          "looks": 6,
-          "mood": 8,
           "affection": 18,
-          "money": -1
+          "mood": 8,
+          "looks": 6
         },
         "affection": 18,
         "mood": 8,
@@ -5633,11 +4738,8 @@ module.exports = [
         "label": "「准备睡了，晚安」",
         "reply": "……好吧，晚安",
         "fx": {
-          "health": 6,
-          "career": 4,
           "affection": -6,
-          "money": -3,
-          "looks": 3
+          "health": 6
         },
         "affection": -6,
         "mood": 0,
@@ -5668,11 +4770,8 @@ module.exports = [
         "label": "「好，我订地方，你定时间」",
         "reply": "那就这周六，我等你地址",
         "fx": {
-          "money": -6,
-          "career": -4,
-          "mood": 10,
           "affection": 20,
-          "health": -1
+          "mood": 10
         },
         "affection": 20,
         "mood": 10,
@@ -5682,11 +4781,9 @@ module.exports = [
         "label": "「我最近实在抽不开身」",
         "reply": "……那再等等吧",
         "fx": {
-          "health": -2,
-          "career": 8,
-          "mood": -6,
           "affection": -14,
-          "money": 4
+          "career": 8,
+          "mood": -6
         },
         "affection": -14,
         "mood": -6,
@@ -5696,11 +4793,8 @@ module.exports = [
         "label": "「要不见面先别吃饭，喝杯咖啡就行」",
         "reply": "这个可以，压力小点",
         "fx": {
-          "money": -2,
-          "mood": 6,
           "affection": 12,
-          "health": -4,
-          "career": -4
+          "mood": 6
         },
         "affection": 12,
         "mood": 6,
@@ -5731,11 +4825,8 @@ module.exports = [
         "label": "「那我下班在那儿等你」",
         "reply": "好，我带伞",
         "fx": {
-          "health": -2,
-          "career": -4,
-          "mood": 12,
           "affection": 24,
-          "money": 4
+          "mood": 12
         },
         "affection": 24,
         "mood": 12,
@@ -5745,25 +4836,20 @@ module.exports = [
         "label": "「明天吧，今天我状态不好」",
         "reply": "……那你早点睡",
         "fx": {
-          "health": 6,
-          "career": 2,
-          "mood": 2,
           "affection": -10,
-          "money": -4
+          "health": 6
         },
         "affection": -10,
-        "mood": 2,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「你就在楼下？我现在下来」",
         "reply": "……你真下来了？我还没收拾",
         "fx": {
-          "health": -4,
-          "career": -6,
-          "mood": 14,
           "affection": 28,
-          "money": 3
+          "mood": 14,
+          "career": -6
         },
         "affection": 28,
         "mood": 14,
@@ -5793,11 +4879,8 @@ module.exports = [
         "label": "「我帮你看看别的房子」",
         "reply": "……你还真会帮我算",
         "fx": {
-          "money": 4,
-          "career": -4,
-          "mood": 6,
           "affection": 18,
-          "health": -2
+          "mood": 6
         },
         "affection": 18,
         "mood": 6,
@@ -5807,11 +4890,9 @@ module.exports = [
         "label": "「要不搬到我这边来？」（说完自己愣了）",
         "reply": "……你再说一遍",
         "fx": {
-          "career": -4,
-          "family": 10,
-          "mood": 10,
           "affection": 26,
-          "money": -3
+          "family": 10,
+          "mood": 10
         },
         "affection": 26,
         "mood": 10,
@@ -5821,14 +4902,10 @@ module.exports = [
         "label": "「六百还好吧」",
         "reply": "……对你来说是还好",
         "fx": {
-          "money": 2,
-          "career": 4,
-          "mood": -4,
-          "affection": -16,
-          "health": 2
+          "affection": -16
         },
         "affection": -16,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -5854,11 +4931,8 @@ module.exports = [
         "label": "「打车，我给你报销一半」",
         "reply": "……那我截图给你",
         "fx": {
-          "money": -4,
-          "career": -2,
-          "mood": 6,
           "affection": 20,
-          "health": -4
+          "mood": 6
         },
         "affection": 20,
         "mood": 6,
@@ -5868,25 +4942,20 @@ module.exports = [
         "label": "「下次早点走」",
         "reply": "……你以为我不想",
         "fx": {
-          "health": 4,
-          "career": 6,
-          "mood": -4,
           "affection": -10,
-          "money": -1
+          "career": 6
         },
         "affection": -10,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「我去接你」",
         "reply": "……这么晚，你别来了",
         "fx": {
-          "health": -6,
-          "career": -6,
-          "mood": 12,
           "affection": 28,
-          "money": -1
+          "mood": 12,
+          "health": -6
         },
         "affection": 28,
         "mood": 12,
@@ -5916,11 +4985,8 @@ module.exports = [
         "label": "「我今天被骂了，不想说话」",
         "reply": "……那你现在想说了吗",
         "fx": {
-          "health": 2,
-          "career": -4,
-          "mood": 6,
           "affection": 22,
-          "money": -3
+          "mood": 6
         },
         "affection": 22,
         "mood": 6,
@@ -5930,11 +4996,8 @@ module.exports = [
         "label": "「没事」",
         "reply": "……",
         "fx": {
-          "health": 2,
-          "career": 4,
-          "mood": -6,
           "affection": -16,
-          "money": -3
+          "mood": -6
         },
         "affection": -16,
         "mood": -6,
@@ -5944,14 +5007,10 @@ module.exports = [
         "label": "「那你先说你的」",
         "reply": "我今天也一般",
         "fx": {
-          "career": -2,
-          "family": 4,
-          "mood": 4,
-          "affection": 10,
-          "money": -4
+          "affection": 10
         },
         "affection": 10,
-        "mood": 4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -5978,25 +5037,18 @@ module.exports = [
         "label": "「玩你的，别管我」",
         "reply": "……那我挂了",
         "fx": {
-          "career": 4,
-          "family": -2,
-          "mood": 4,
-          "affection": 12,
-          "money": -3
+          "affection": 12
         },
         "affection": 12,
-        "mood": 4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「你喝了多少」",
         "reply": "两杯，不多",
         "fx": {
-          "health": 4,
-          "career": -2,
-          "mood": 6,
           "affection": 20,
-          "money": -3
+          "mood": 6
         },
         "affection": 20,
         "mood": 6,
@@ -6006,11 +5058,8 @@ module.exports = [
         "label": "（发一句「我想你了」，然后撤回）",
         "reply": "……我看见了",
         "fx": {
-          "health": -2,
-          "career": -2,
-          "mood": 12,
           "affection": 26,
-          "money": 4
+          "mood": 12
         },
         "affection": 26,
         "mood": 12,
@@ -6040,25 +5089,19 @@ module.exports = [
         "label": "「一个人？」",
         "reply": "……嗯，一个人",
         "fx": {
-          "career": 4,
-          "mood": -4,
-          "affection": 10,
-          "money": -2,
-          "health": 2
+          "affection": 10
         },
         "affection": 10,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「我请假陪你去」",
         "reply": "……你疯了",
         "fx": {
-          "money": -10,
-          "career": -8,
-          "mood": 10,
           "affection": 24,
-          "health": -3
+          "mood": 10,
+          "career": -8
         },
         "affection": 24,
         "mood": 10,
@@ -6068,14 +5111,10 @@ module.exports = [
         "label": "「记得发照片」",
         "reply": "……就这句？",
         "fx": {
-          "career": -2,
-          "mood": 4,
-          "affection": 8,
-          "money": 3,
-          "health": -4
+          "affection": 8
         },
         "affection": 8,
-        "mood": 4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -6101,11 +5140,9 @@ module.exports = [
         "label": "「替我谢谢阿姨，我会穿的」",
         "reply": "……她肯定高兴坏了",
         "fx": {
-          "looks": -2,
-          "family": 16,
-          "mood": 10,
           "affection": 24,
-          "money": -3
+          "family": 16,
+          "mood": 10
         },
         "affection": 24,
         "mood": 10,
@@ -6115,25 +5152,20 @@ module.exports = [
         "label": "「这个……不太好吧」",
         "reply": "……我就说不合适",
         "fx": {
-          "career": 4,
-          "family": -8,
-          "mood": -4,
           "affection": -14,
-          "money": 3
+          "family": -8
         },
         "affection": -14,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「我也给她买了护膝」",
         "reply": "……你什么时候买的",
         "fx": {
-          "money": -6,
-          "family": 18,
-          "mood": 10,
           "affection": 26,
-          "health": -2
+          "family": 18,
+          "mood": 10
         },
         "affection": 26,
         "mood": 10,
@@ -6162,11 +5194,9 @@ module.exports = [
         "label": "「好，我明天就转」",
         "reply": "……你居然不问我打算存多少",
         "fx": {
-          "money": -6,
-          "family": 6,
-          "mood": 10,
           "affection": 22,
-          "health": -1
+          "mood": 10,
+          "family": 6
         },
         "affection": 22,
         "mood": 10,
@@ -6176,25 +5206,18 @@ module.exports = [
         "label": "「共同账户？这也太认真了」",
         "reply": "……我不该提的",
         "fx": {
-          "money": 4,
-          "career": 4,
-          "mood": -4,
-          "affection": -12,
-          "health": 1
+          "affection": -12
         },
         "affection": -12,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「一千太少，两千吧」",
         "reply": "……你想清楚了",
         "fx": {
-          "money": -10,
-          "career": 4,
-          "mood": 6,
           "affection": 18,
-          "health": -2
+          "mood": 6
         },
         "affection": 18,
         "mood": 6,
@@ -6224,39 +5247,28 @@ module.exports = [
         "label": "「你打算借吗」",
         "reply": "……我不知道，你说呢",
         "fx": {
-          "career": 4,
-          "family": -2,
-          "mood": -2,
-          "affection": 14,
-          "money": 2
+          "affection": 14
         },
         "affection": 14,
-        "mood": -2,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「别借，十年不联系的人不靠谱」",
         "reply": "……你倒是干脆",
         "fx": {
-          "money": 6,
-          "career": 4,
-          "mood": -2,
-          "affection": -8,
-          "health": -3
+          "affection": -8
         },
         "affection": -8,
-        "mood": -2,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「要多少，我先给你」",
         "reply": "……你干嘛对我这么好",
         "fx": {
-          "money": -10,
-          "career": -4,
-          "mood": 8,
           "affection": 24,
-          "health": 1
+          "mood": 8
         },
         "affection": 24,
         "mood": 8,
@@ -6286,11 +5298,8 @@ module.exports = [
         "label": "「看出来了。」",
         "reply": "……",
         "fx": {
-          "career": 2,
-          "mood": -8,
           "affection": -18,
-          "money": 2,
-          "health": -2
+          "mood": -8
         },
         "affection": -18,
         "mood": -8,
@@ -6300,11 +5309,8 @@ module.exports = [
         "label": "「胖哪儿了，我摸摸」（然后挨了一下）",
         "reply": "……你找打",
         "fx": {
-          "career": -2,
-          "looks": 2,
-          "mood": 12,
           "affection": 22,
-          "money": -1
+          "mood": 12
         },
         "affection": 22,
         "mood": 12,
@@ -6314,14 +5320,11 @@ module.exports = [
         "label": "「那我们一起少吃点」",
         "reply": "……你陪我？",
         "fx": {
-          "health": 6,
-          "career": -2,
-          "mood": 4,
           "affection": 16,
-          "money": -1
+          "health": 6
         },
         "affection": 16,
-        "mood": 4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -6348,11 +5351,8 @@ module.exports = [
         "label": "「一天倒霉三次，明天该转运了」",
         "reply": "……借你吉言",
         "fx": {
-          "health": -2,
-          "career": -2,
-          "mood": 10,
           "affection": 18,
-          "money": 3
+          "mood": 10
         },
         "affection": 18,
         "mood": 10,
@@ -6362,11 +5362,8 @@ module.exports = [
         "label": "「我给你讲个我今天出的糗」",
         "reply": "哈哈哈哈你也有今天",
         "fx": {
-          "career": -2,
-          "looks": -2,
-          "mood": 12,
           "affection": 22,
-          "money": 3
+          "mood": 12
         },
         "affection": 22,
         "mood": 12,
@@ -6376,13 +5373,9 @@ module.exports = [
         "label": "「早点睡，明天就好了」",
         "reply": "……哦",
         "fx": {
-          "health": 6,
-          "career": 4,
-          "affection": 2,
-          "money": -3,
-          "looks": -1
+          "health": 6
         },
-        "affection": 2,
+        "affection": 0,
         "mood": 0,
         "correct": false
       }
@@ -6409,11 +5402,8 @@ module.exports = [
         "label": "「我买给你，就当提前送生日礼物」",
         "reply": "……你是不是疯了",
         "fx": {
-          "money": -12,
-          "career": -4,
-          "mood": 12,
           "affection": 26,
-          "health": -1
+          "mood": 12
         },
         "affection": 26,
         "mood": 12,
@@ -6423,11 +5413,8 @@ module.exports = [
         "label": "「喜欢就买，别算那么清楚」",
         "reply": "……你说的啊",
         "fx": {
-          "money": -6,
-          "career": 2,
-          "mood": 8,
           "affection": 16,
-          "health": -1
+          "mood": 8
         },
         "affection": 16,
         "mood": 8,
@@ -6437,14 +5424,10 @@ module.exports = [
         "label": "「看看有没有同款便宜的」",
         "reply": "……算了，不买了",
         "fx": {
-          "money": 6,
-          "career": 4,
-          "mood": -4,
-          "affection": -12,
-          "health": -2
+          "affection": -12
         },
         "affection": -12,
-        "mood": -4,
+        "mood": 0,
         "correct": false
       }
     ]
@@ -6469,11 +5452,8 @@ module.exports = [
         "label": "「那你掐我，我翻个身」",
         "reply": "……我掐了，你没反应",
         "fx": {
-          "health": 2,
-          "career": -2,
-          "mood": 8,
           "affection": 18,
-          "money": -1
+          "mood": 8
         },
         "affection": 18,
         "mood": 8,
@@ -6483,11 +5463,9 @@ module.exports = [
         "label": "「要不我去看下医生」",
         "reply": "……你真愿意去",
         "fx": {
-          "money": -6,
-          "health": 6,
-          "mood": 8,
           "affection": 22,
-          "career": -4
+          "mood": 8,
+          "health": 6
         },
         "affection": 22,
         "mood": 8,
@@ -6497,11 +5475,8 @@ module.exports = [
         "label": "「那你戴耳塞」",
         "reply": "……",
         "fx": {
-          "health": 4,
-          "career": 4,
-          "mood": -6,
           "affection": -14,
-          "money": 4
+          "mood": -6
         },
         "affection": -14,
         "mood": -6,
@@ -6531,11 +5506,9 @@ module.exports = [
         "label": "「你想家了？」",
         "reply": "……有一点",
         "fx": {
-          "career": -2,
-          "family": 8,
-          "mood": 6,
           "affection": 20,
-          "money": -1
+          "family": 8,
+          "mood": 6
         },
         "affection": 20,
         "mood": 6,
@@ -6545,25 +5518,19 @@ module.exports = [
         "label": "「这边也冷，多穿点」",
         "reply": "……嗯",
         "fx": {
-          "health": 4,
-          "mood": 4,
-          "affection": 12,
-          "money": -1,
-          "career": -2
+          "affection": 12
         },
         "affection": 12,
-        "mood": 4,
+        "mood": 0,
         "correct": false
       },
       {
         "label": "「过年我陪你回去」",
         "reply": "……你说真的",
         "fx": {
-          "money": -8,
-          "family": 16,
-          "mood": 10,
           "affection": 28,
-          "health": -4
+          "family": 16,
+          "mood": 10
         },
         "affection": 28,
         "mood": 10,
@@ -6592,11 +5559,8 @@ module.exports = [
         "label": "「别问这种问题」",
         "reply": "……我就问问",
         "fx": {
-          "health": 2,
-          "career": 4,
-          "mood": -8,
           "affection": -8,
-          "money": -1
+          "mood": -8
         },
         "affection": -8,
         "mood": -8,
@@ -6606,11 +5570,8 @@ module.exports = [
         "label": "「记得你第一次给我发消息，手抖打错三个字」",
         "reply": "……你怎么记得那么清楚",
         "fx": {
-          "health": -2,
-          "career": -4,
-          "mood": 14,
           "affection": 30,
-          "money": 4
+          "mood": 14
         },
         "affection": 30,
         "mood": 14,
@@ -6620,14 +5581,275 @@ module.exports = [
         "label": "「不会有那一天」",
         "reply": "……不许骗我",
         "fx": {
-          "career": -2,
-          "family": 6,
-          "mood": 10,
           "affection": 22,
-          "money": -4
+          "mood": 10,
+          "family": 6
         },
         "affection": 22,
         "mood": 10,
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "n_x_c_hunmei",
+    "kind": "grill",
+    "personalityId": "money",
+    "phases": [
+      "talking",
+      "dating",
+      "lead",
+      "meeting"
+    ],
+    "minAffection": 8,
+    "weight": 3,
+    "opener": [
+      "我手机里有个理财",
+      "年化十五，我自己的钱全在里面"
+    ],
+    "options": [
+      {
+        "label": "「合同发我看看，我研究一下」",
+        "reply": "……你是不是不信我",
+        "fx": {
+          "affection": -6
+        },
+        "affection": -6,
+        "mood": 0,
+        "correct": true
+      },
+      {
+        "label": "「行，我先投十万」",
+        "reply": "我就知道你靠谱",
+        "fx": {
+          "mood": -12,
+          "affection": 8,
+          "zero": [
+            "money"
+          ]
+        },
+        "affection": 8,
+        "mood": -12,
+        "correct": false
+      },
+      {
+        "label": "「年化十五，我不敢碰」",
+        "reply": "……原来你也这么看我",
+        "fx": {
+          "affection": -22
+        },
+        "affection": -22,
+        "mood": 0,
+        "correct": false
+      },
+      {
+        "label": "「我同事上个月刚被这种骗了」",
+        "reply": "……你什么意思，我骗你？",
+        "fx": {
+          "affection": -24,
+          "mood": -6
+        },
+        "affection": -24,
+        "mood": -6,
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "n_x_c_rage",
+    "kind": "grill",
+    "personalityId": "emo",
+    "phases": [
+      "talking",
+      "dating",
+      "married",
+      "lead",
+      "meeting"
+    ],
+    "minAffection": 30,
+    "weight": 3,
+    "opener": [
+      "你刚刚那句话什么意思",
+      "你自己听听你刚才说了什么"
+    ],
+    "options": [
+      {
+        "label": "「我在，等你想说的时候再讲」",
+        "reply": "……那你别走",
+        "fx": {
+          "affection": 10,
+          "mood": -6
+        },
+        "affection": 10,
+        "mood": -6,
+        "correct": true
+      },
+      {
+        "label": "「你说，我听着」",
+        "reply": "（她说了两个多小时。你一句话都没插进去。）",
+        "fx": {
+          "affection": -22,
+          "zero": [
+            "mood"
+          ]
+        },
+        "affection": -22,
+        "mood": 0,
+        "correct": false
+      },
+      {
+        "label": "「我们今天先各自冷静一下」",
+        "reply": "……你就是想走",
+        "fx": {
+          "affection": -24,
+          "mood": -6
+        },
+        "affection": -24,
+        "mood": -6,
+        "correct": false
+      },
+      {
+        "label": "「你刚才那句话我也不爱听」",
+        "reply": "……行，那都别说了",
+        "fx": {
+          "affection": -30,
+          "mood": -8
+        },
+        "affection": -30,
+        "mood": -8,
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "n_x_c_secret",
+    "kind": "grill",
+    "personalityId": "casual",
+    "phases": [
+      "dating",
+      "married",
+      "lead",
+      "meeting"
+    ],
+    "minAffection": 35,
+    "weight": 3,
+    "opener": [
+      "我翻到一张照片",
+      "三年前的",
+      "你旁边那个人是谁"
+    ],
+    "options": [
+      {
+        "label": "「我可以讲，但不是这样被逼着讲」",
+        "reply": "……好，我不逼你。但你得讲。",
+        "fx": {
+          "affection": 10,
+          "mood": -6
+        },
+        "affection": 10,
+        "mood": -6,
+        "correct": true
+      },
+      {
+        "label": "一五一十地讲完",
+        "reply": "（讲完已经是凌晨三点。你发现自己一晚上没喘上气。）",
+        "fx": {
+          "affection": -20,
+          "zero": [
+            "mood"
+          ]
+        },
+        "affection": -20,
+        "mood": 0,
+        "correct": false
+      },
+      {
+        "label": "「那是我表姐」",
+        "reply": "……哦。她姓什么来着",
+        "fx": {
+          "affection": -28,
+          "mood": -6
+        },
+        "affection": -28,
+        "mood": -6,
+        "correct": false
+      },
+      {
+        "label": "「过去的事，不聊了」",
+        "reply": "……那就算了",
+        "fx": {
+          "affection": -32
+        },
+        "affection": -32,
+        "mood": 0,
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "n_x_c_betrothal",
+    "kind": "grill",
+    "personalityId": "family",
+    "phases": [
+      "dating",
+      "married",
+      "lead",
+      "meeting"
+    ],
+    "minAffection": 45,
+    "weight": 3,
+    "opener": [
+      "我妈刚刚跟我说",
+      "我们结婚的话，彩礼要三十八万八"
+    ],
+    "options": [
+      {
+        "label": "「能不能先坐下来，把账算一算」",
+        "reply": "……我妈那边，我去说",
+        "fx": {
+          "affection": 6,
+          "mood": -6
+        },
+        "affection": 6,
+        "mood": -6,
+        "correct": true
+      },
+      {
+        "label": "「我给，砸锅卖铁也给」",
+        "reply": "……你别这么说，我心疼",
+        "fx": {
+          "affection": 16,
+          "family": 6,
+          "zero": [
+            "money"
+          ]
+        },
+        "affection": 16,
+        "mood": 0,
+        "correct": false
+      },
+      {
+        "label": "「这个数，我拿不出来」",
+        "reply": "……那可能我们真的不合适",
+        "fx": {
+          "affection": -22,
+          "family": -6,
+          "mood": -6
+        },
+        "affection": -22,
+        "mood": -6,
+        "correct": false
+      },
+      {
+        "label": "「你妈这是在卖女儿吗」",
+        "reply": "……你再说一遍？",
+        "fx": {
+          "affection": -32,
+          "family": -10,
+          "mood": -6
+        },
+        "affection": -32,
+        "mood": -6,
         "correct": false
       }
     ]

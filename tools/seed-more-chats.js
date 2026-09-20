@@ -964,5 +964,74 @@ module.exports = [
       { label: '「记得你第一次给我发消息，手抖打错三个字」', fx: { affection: 15, mood: 7, career: -2, health: -1 }, reply: '……你怎么记得那么清楚' },
       { label: '「不会有那一天」', fx: { affection: 11, mood: 5, family: 3, career: -1 }, reply: '……不许骗我' }
     ]
+  },
+
+  /* -------------------------------------------------------
+   * 极端聊天（n_x_c_ 前缀）：对象本人就是风险本身
+   * -------------------------------------------------------
+   * 和上面的事件同理，断崖式后果一律用 fx.zero 表达「直接洗空」，
+   * 而不是写一个巨大的负数（原因见 tools/seed-more-events.js 里的说明）。
+   * minAffection 门槛普遍偏高：这些内容需要一段已经成立的关系才成立，
+   * 顺带把它们挡在「还没见面的 lead 阶段」（那时好感上限只有 20）之外。
+   * ----------------------------------------------------- */
+  {
+    id: 'n_x_c_hunmei',
+    kind: 'grill',
+    personalityId: 'money',
+    phases: ['talking', 'dating'],
+    minAffection: 8,
+    weight: 3,
+    opener: ['我手机里有个理财', '年化十五，我自己的钱全在里面'],
+    options: [
+      { label: '「合同发我看看，我研究一下」', fx: { affection: -3, mood: 1, career: 2 }, correct: true, reply: '……你是不是不信我' },
+      { label: '「行，我先投十万」', fx: { zero: ['money'], mood: -6, affection: 4 }, reply: '我就知道你靠谱' },
+      { label: '「年化十五，我不敢碰」', fx: { affection: -11, mood: -2, career: 1 }, reply: '……原来你也这么看我' },
+      { label: '「我同事上个月刚被这种骗了」', fx: { affection: -12, mood: -3, career: 1 }, reply: '……你什么意思，我骗你？' }
+    ]
+  },
+  {
+    id: 'n_x_c_rage',
+    kind: 'grill',
+    personalityId: 'emo',
+    phases: ['talking', 'dating', 'married'],
+    minAffection: 30,
+    weight: 3,
+    opener: ['你刚刚那句话什么意思', '你自己听听你刚才说了什么'],
+    options: [
+      { label: '「我在，等你想说的时候再讲」', fx: { affection: 5, mood: -3, health: 1 }, correct: true, reply: '……那你别走' },
+      { label: '「你说，我听着」', fx: { zero: ['mood'], affection: -11 }, reply: '（她说了两个多小时。你一句话都没插进去。）' },
+      { label: '「我们今天先各自冷静一下」', fx: { affection: -12, mood: -3, health: 1 }, reply: '……你就是想走' },
+      { label: '「你刚才那句话我也不爱听」', fx: { affection: -15, mood: -4, career: 2 }, reply: '……行，那都别说了' }
+    ]
+  },
+  {
+    id: 'n_x_c_secret',
+    kind: 'grill',
+    personalityId: 'casual',
+    phases: ['dating', 'married'],
+    minAffection: 35,
+    weight: 3,
+    opener: ['我翻到一张照片', '三年前的', '你旁边那个人是谁'],
+    options: [
+      { label: '「我可以讲，但不是这样被逼着讲」', fx: { affection: 5, mood: -3 }, correct: true, reply: '……好，我不逼你。但你得讲。' },
+      { label: '一五一十地讲完', fx: { zero: ['mood'], affection: -10 }, reply: '（讲完已经是凌晨三点。你发现自己一晚上没喘上气。）' },
+      { label: '「那是我表姐」', fx: { affection: -14, mood: -3, career: 1 }, reply: '……哦。她姓什么来着' },
+      { label: '「过去的事，不聊了」', fx: { affection: -16, mood: -2, family: -2 }, reply: '……那就算了' }
+    ]
+  },
+  {
+    id: 'n_x_c_betrothal',
+    kind: 'grill',
+    personalityId: 'family',
+    phases: ['dating', 'married'],
+    minAffection: 45,
+    weight: 3,
+    opener: ['我妈刚刚跟我说', '我们结婚的话，彩礼要三十八万八'],
+    options: [
+      { label: '「能不能先坐下来，把账算一算」', fx: { affection: 3, mood: -3, career: 2 }, correct: true, reply: '……我妈那边，我去说' },
+      { label: '「我给，砸锅卖铁也给」', fx: { zero: ['money'], affection: 8, family: 3 }, reply: '……你别这么说，我心疼' },
+      { label: '「这个数，我拿不出来」', fx: { affection: -11, mood: -3, family: -3 }, reply: '……那可能我们真的不合适' },
+      { label: '「你妈这是在卖女儿吗」', fx: { affection: -16, mood: -3, family: -5 }, reply: '……你再说一遍？' }
+    ]
   }
 ];

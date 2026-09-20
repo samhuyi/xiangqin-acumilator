@@ -82,7 +82,7 @@ function makeCtx() {
    * 若 restore 是空操作，透明度会泄漏到后续所有绘制上。 */
   var stack = [];
   var ctx = {
-    scale: noop, translate: noop,
+    scale: noop, translate: noop, rotate: noop,
     save: function () { stack.push({ fillStyle: state.fillStyle, strokeStyle: state.strokeStyle, font: state.font, lineWidth: state.lineWidth, globalAlpha: state.globalAlpha, lineCap: state.lineCap }); },
     restore: function () {
       var s = stack.pop();
@@ -104,6 +104,7 @@ function makeCtx() {
       return { width: textWidth(t, size) };
     },
     createLinearGradient: function () { return { addColorStop: noop }; },
+    strokeText: function () {},
     fillText: function (t, x, y) {
       var size = 15;
       var m = /(\d+)px/.exec(state.font);
@@ -268,10 +269,12 @@ function installCloudFixture(opts) {
   };
 }
 
-/* 同步版 rAF，让渲染层的动画循环在测试里立刻结束 */
+/* 异步版 rAF（setTimeout 实现），模拟小游戏运行时的真实循环驱动：
+ * 既让渲染层的标题动画循环在测试里能正常驱动，又不会像同步版那样
+ * 造成无限同步递归。测试结束若未 restore，由各自的 process.exit 兜底终止。 */
 function installSyncRaf() {
   var prev = global.requestAnimationFrame;
-  global.requestAnimationFrame = function (fn) { fn(); };
+  global.requestAnimationFrame = function (fn) { setTimeout(function () { fn(Date.now()); }, 0); };
   return function () { global.requestAnimationFrame = prev; };
 }
 

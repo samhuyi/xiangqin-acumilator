@@ -87,11 +87,22 @@ function setFont(ctx, size, bold) {
   ctx.font = (bold ? 'bold ' : '') + (size || 15) + 'px sans-serif';
 }
 
+/* emoji 专用字体：显式带上各平台的彩色 emoji 字体族。
+ * 部分安卓机型的默认 sans-serif 没有彩色 emoji 字形，直接画成方块（看着像乱码）。
+ * 只在「整串就是一个图标」时使用 —— 混排文字仍走 setFont，
+ * 免得某些机型只认字体列表里的第一个族，把中文也一起画成方块。 */
+var EMOJI_FONT = '"Apple Color Emoji","Noto Color Emoji","Segoe UI Emoji",sans-serif';
+
+function setEmojiFont(ctx, size, bold) {
+  ctx.font = (bold ? 'bold ' : '') + (size || 15) + 'px ' + EMOJI_FONT;
+}
+
 module.exports = {
   PALETTE: PALETTE,
   roundRectPath: roundRectPath,
   fillRoundRect: fillRoundRect,
   wrapText: wrapText,
   drawWrapped: drawWrapped,
-  setFont: setFont
+  setFont: setFont,
+  setEmojiFont: setEmojiFont
 };

@@ -17,6 +17,7 @@ var DB = require('../db/repository.js');
 var R = require('./canvas-kit.js');
 var gallery = require('./gallery.js');
 var ad = require('../core/ad.js');
+var audio = require('../audio.js');
 
 var P = R.PALETTE;
 
@@ -51,7 +52,10 @@ var DEADLINE_HINT_KEY = {
 
 var buttons = [];            // 滚动内容命中区（内容坐标系）
 var fixedButtons = [];       // 底部固定操作区命中区（屏幕坐标系）
+var pressedBox = null;       // 当前按下的按钮命中框（按下视觉反馈用，松手即清空）
 var bottomActions = [];      // 本帧待绘制的底部操作按钮
+var bottomHint = null;        // 底部确认栏上方的「当前已选」提示（开局设定等页面设置）
+var barTopY = 0;             // 本帧底部叠加层（含提示）顶边，供布局审计跳过
 var scrollY = 0;
 var contentH = 0;
 var C = { y: 0 };            // 内容绘制游标
@@ -75,6 +79,31 @@ var CARD_PAD = 16;           // 卡片内边距
 var BOTTOM_GAP = 16;         // 底部操作区到屏幕底的距离
 var BAR_BTN_H = 46;          // 底部按钮高度
 var BAR_RESERVE = 82;        // 内容区为底部操作区预留的高度
+var MUSIC_BTN = 36;          // 左上角音乐浮窗直径
+var TOP_INSET = MUSIC_BTN + 8;   // 内容区顶部预留：给左上角音乐浮窗让位（所有页面统一）
+
+/* =========================================================
+ * 图标（emoji）选用约定
+ * ---------------------------------------------------------
+ * 小游戏 Canvas 的 emoji 是借系统字体画的，安卓机型字体覆盖率差别很大：
+ *   · 需要变体选择符（U+FE0F）才呈彩色样式的（🌤️ 🍽️ ☕ ❤️ ✉）在部分机型上会退化成
+ *     黑白字形，甚至因为字形缺失画成方块 —— 玩家看到的就是「乱码」；
+ *   · Unicode 7.0 之后才收录的（🤝 😴 🌤️ 🍽️）在老安卓上直接缺字。
+ * 因此这里只用「Unicode 6.0 时代、各平台都有彩色字形」的图标，
+ * 并在绘制时用 emoji 字体族兜底（见 canvas-kit 的 setEmojiFont）。
+ * 已替换：🌤️→🌱  🍽️→🍜  ☕→🍵  ❤️→💪  ✉→💌  🤝→👋  😴→🌙
+ * ========================================================= */
+var ICON = {
+  planOther: '🌱',    // 其余安排（过日子 / 提升 / 加班 / 休息）
+  date: '🍜',         // 约会
+  dateSimple: '🍵',   // 约会档位：简单的
+  dateActivity: '🎡', // 约会档位：活动类
+  meet: '👋',         // 赴约 / 见面
+  rest: '🌙',         // 休息
+  health: '💪',       // 健康属性
+  chance: '💌',       // 相亲机会角标
+  warn: '🚨'          // 关系预警（主界面关系卡上的常驻提醒）
+};
 
 /* =========================================================
  * 美术资源（主包 + 分包）
@@ -172,6 +201,7 @@ function init(cv) {
 
   wx.onTouchStart(onTouchStart);
   wx.onTouchMove(onTouchMove);
+  wx.onTouchEnd(onTouchEnd);
 
   /* 页面过渡动效只在真机 / 开发者工具里跑。
    * 测试是同步直连 draw() 的：让动效默认关闭，排版断言看到的永远是终态，
@@ -202,7 +232,11 @@ function resetFrame() {
   buttons = [];
   fixedButtons = [];
   bottomActions = [];
-  C.y = SAFE_TOP + 10;
+  bottomHint = null;        // 每帧重置；由需要「已选提示」的页面（如开局设定）设置
+  barTopY = H;              // 无底部叠加层时不跳过任何内容
+  frameCards.note = 0;
+  frameCards.delta = 0;
+  C.y = SAFE_TOP + 10 + TOP_INSET;   // 顶部预留：左上角音乐浮窗不压正文
   ctx.fillStyle = P.bg;
   ctx.fillRect(0, 0, W, H);
 }
@@ -228,6 +262,17 @@ function pageKey() {
     (today && today.stylePayload ? '|style' : '');
 }
 
+/* 「本页卡片集合」的指纹：换页、事件从「选项态」翻到「结果态」、
+ * 结算页换了一条结果 —— 都会让指纹变化，从而重播一段卡片入场。 */
+function cardSig() {
+  var s = pageKey();
+  if (today) {
+    s += '|' + (today.resolved ? 'R' : 'O');
+    if (today.event) s += '|' + (today.event.id || '-');
+  }
+  return s;
+}
+
 function easeOutCubic(k) { return 1 - Math.pow(1 - k, 3); }
 
 /* 当前动效状态：k=线性进度；dy=内容下移量；alpha=整体透明度。
@@ -248,6 +293,93 @@ function scheduleTransTick() {
     if (trans) { draw(); if (trans) scheduleTransTick(); }
   }, 16);
 }
+
+/* ================= 卡片进出动效 =================
+ * 事件正文 / 选项 / 结果 / 属性变化都是卡片，这里统一提供两种动效：
+ *   · 入场：每张卡按序号错落「上移 + 淡入」（第 0 张先动，后面的依次跟上）；
+ *   · 退场：整体「下沉 + 淡出」，播完再执行真正的状态变更（换页 / 落实结果），
+ *     这样「卡片出去、新卡片进来」的交接是看得见的。
+ *
+ * 入场由 cardEnterSet(key) 触发：key 是本页「卡片集合」的指纹，
+ * 指纹一变就重播一段入场 —— 换页、事件从「选项态」翻到「结果态」都会命中，
+ * 不需要每个跳转点手动登记。
+ *
+ * transOn 关闭（测试环境）时全部返回终态：排版断言看到的永远是稳定版式。 */
+var CARD_IN_MS = 300;         // 单张卡片入场时长
+var CARD_OUT_MS = 240;        // 单张卡片退场时长
+var CARD_STAGGER_MS = 55;     // 相邻卡片的错落间隔
+var CARD_STAGGER_MAX = 8;     // 错落最多算到第几张（再往后一起入场，别让列表末尾等太久）
+var cardEnterKey = null, cardEnterT0 = 0;
+var cardExitCb = null, cardExitT0 = 0;
+var cardAnimEndAt = 0;        // 本段动效的最晚结束时刻（定时重绘据此收敛）
+var cardTickTimer = null;
+
+/* 登记「本页卡片集合」的指纹；变了就重播入场并安排逐帧重绘 */
+function cardEnterSet(key) {
+  if (cardEnterKey !== key) {
+    cardEnterKey = key;
+    cardEnterT0 = Date.now();
+    cardAnimEndAt = Math.max(cardAnimEndAt, cardEnterT0 + CARD_IN_MS + CARD_STAGGER_MS * CARD_STAGGER_MAX + 40);
+    scheduleCardTick();
+  }
+  return cardEnterT0;
+}
+
+/* 第 i 张卡片的动效状态：a=不透明度 · dy=视觉下移量 · on=是否还在动 */
+var CARD_ANIM_NONE = { on: false, a: 1, dy: 0 };   // 明确「不动」的占位（浮窗自带入场动效时用）
+function cardAnim(i) {
+  if (!transOn) return { on: false, a: 1, dy: 0 };
+  var now = Date.now();
+  var idx = Math.min(i || 0, CARD_STAGGER_MAX);
+  if (cardExitCb) {
+    var ko = engine.clamp((now - cardExitT0 - idx * 12) / CARD_OUT_MS, 0, 1);
+    return { on: ko < 1, a: 1 - ko, dy: Math.round(ko * 22) };
+  }
+  var e = easeOutCubic(engine.clamp((now - cardEnterT0 - idx * CARD_STAGGER_MS) / CARD_IN_MS, 0, 1));
+  return { on: e < 1, a: Math.min(1, e * 1.6), dy: Math.round((1 - e) * 26) };
+}
+
+/* 退场：先播卡片下沉淡出，再执行 cb（换页 / 落实选项结果）。
+ * 动效关闭时直接执行 —— 测试与无动效环境的行为完全同步。 */
+function cardExitThen(cb) {
+  if (!transOn) { cb(); return; }
+  cardExitCb = cb;
+  cardExitT0 = Date.now();
+  cardAnimEndAt = Math.max(cardAnimEndAt, cardExitT0 + CARD_OUT_MS + 12 * CARD_STAGGER_MAX + 40);
+  scheduleCardTick();
+}
+
+/* 是否正在播「卡片退场」（这期间新卡片不该跟着往下沉） */
+function cardExiting() { return !!cardExitCb; }
+
+/* 动效期间的逐帧重绘：到点收尾（并执行退场回调），否则继续。
+ * 收敛条件是「时间到了」而不是「还在动」—— 不会出现停不下来的循环。
+ * 收尾判定抽成 cardTick()，定时器与测试（手动拨表）共用同一段逻辑。 */
+function cardTick() {
+  var now = Date.now();
+  if (cardExitCb && now >= cardExitT0 + CARD_OUT_MS + 12 * CARD_STAGGER_MAX) {
+    var cb = cardExitCb;
+    cardExitCb = null;
+    cb();
+    return;
+  }
+  draw();
+}
+
+function scheduleCardTick() {
+  if (!transOn || cardTickTimer) return;
+  cardTickTimer = setTimeout(function () {
+    cardTickTimer = null;
+    var wasExit = !!cardExitCb;
+    cardTick();
+    if (cardExitCb) { scheduleCardTick(); return; }        // 退场还没播完
+    if (wasExit) return;                                   // 刚收尾（回调里已重绘）
+    if (Date.now() < cardAnimEndAt) scheduleCardTick();
+  }, 16);
+}
+
+/* 本帧画了几张「旁白卡 / 属性变化卡」——供测试断言卡片化改造确实生效 */
+var frameCards = { note: 0, delta: 0 };
 
 function section(title, sub) {
   R.setFont(ctx, 17, true);
@@ -271,12 +403,16 @@ function button(label, sub, onClick, opts) {
   var size = opts.small ? 14 : 16;
   var padX = 14, padY = opts.small ? 10 : 14;
 
-  /* 左侧头像（职业头像）：占位后文字整体右移 */
+  /* 左侧头像（职业头像）或图标盒：占位后文字整体右移 */
   var lead = opts.lead || null;
   var leadSize = lead ? (opts.leadSize || 44) : 0;
   var leadGap = lead ? 12 : 0;
-  var textX = PAD + padX + leadSize + leadGap;
-  var textW = w - padX * 2 - leadSize - leadGap;
+  var icon = opts.icon || null;                       // 纯文本 emoji 图标
+  var iconSize = icon ? 34 : 0;
+  var iconGap = icon ? 10 : 0;
+  var radioW = opts.selectable ? 30 : 0;              // 右侧单选圆点占位
+  var textX = PAD + padX + leadSize + leadGap + iconSize + iconGap;
+  var textW = w - padX * 2 - leadSize - leadGap - iconSize - iconGap - radioW;
 
   R.setFont(ctx, size, true);
   var labelLines = R.wrapText(ctx, label, textW);
@@ -284,9 +420,12 @@ function button(label, sub, onClick, opts) {
   var lh = size * 1.5;
   var h = padY * 2 + labelLines.length * lh + (subLines.length ? subLines.length * 18 + 2 : 0);
   if (lead) h = Math.max(h, padY * 2 + leadSize);
+  if (icon) h = Math.max(h, padY * 2 + iconSize);
 
+  var pressed = isPressed(PAD, C.y, w, h);
   var bg = P.card, fg = P.text1, subColor = P.text2, border = P.line;
   if (opts.disabled) { bg = P.disabled; fg = '#ffffff'; subColor = '#f1ece3'; border = P.disabled; }
+  else if (pressed) { bg = '#ece9e4'; fg = P.text1; subColor = P.text2; border = P.primary; }
   else if (opts.selected) { bg = '#fbeae5'; fg = P.primaryDark; subColor = '#a8564a'; border = P.primary; }
   else if (opts.primary) { bg = P.primary; fg = '#ffffff'; subColor = '#f7ddd6'; border = P.primary; }
   else if (opts.ghost) { bg = P.ghost; border = P.line; }
@@ -294,11 +433,19 @@ function button(label, sub, onClick, opts) {
   R.fillRoundRect(ctx, PAD, C.y, w, h, 12, bg);
   R.roundRectPath(ctx, PAD, C.y, w, h, 12);
   ctx.strokeStyle = border;
-  ctx.lineWidth = opts.selected ? 2 : 1;
+  ctx.lineWidth = (opts.selected || pressed) ? 2 : 1;
   ctx.stroke();
 
   if (lead) {
     drawRoleAvatar(lead, PAD + padX + leadSize / 2, C.y + h / 2, leadSize, '?');
+  }
+  if (icon) {
+    var ibx = PAD + padX + leadSize + leadGap;
+    var iby = C.y + (h - iconSize) / 2;
+    R.fillRoundRect(ctx, ibx, iby, iconSize, iconSize, 10, '#f3ece0');
+    R.setEmojiFont(ctx, 18); ctx.fillStyle = P.text2;
+    var iw = ctx.measureText(icon).width;
+    ctx.fillText(icon, ibx + iconSize / 2 - iw / 2, iby + iconSize / 2 + 6);
   }
 
   var yy = C.y + padY;
@@ -316,6 +463,35 @@ function button(label, sub, onClick, opts) {
       ctx.fillText(subLines[j], textX, yy + 12);
       yy += 18;
     }
+  }
+
+  /* 单选圆点：选中态填主色 + 白勾 */
+  if (opts.selectable) {
+    var rx = PAD + w - padX - 10;
+    var ry = C.y + h / 2;
+    var r = 10;
+    R.roundRectPath(ctx, rx - r, ry - r, r * 2, r * 2, r);
+    if (opts.selected) {
+      ctx.fillStyle = P.primary; ctx.fill();
+      ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(rx - 4, ry); ctx.lineTo(rx - 1, ry + 3); ctx.lineTo(rx + 4, ry - 3);
+      ctx.stroke();
+    } else {
+      ctx.strokeStyle = '#d8cfba'; ctx.lineWidth = 2; ctx.stroke();
+    }
+  }
+
+  /* 徽章（如「推进主线」）：右上角金标 */
+  if (opts.badge) {
+    R.setFont(ctx, 10, true);
+    var bw = ctx.measureText(opts.badge).width + 14;
+    var bh = 18;
+    var bx = PAD + w - bw - padX;
+    var by = C.y - bh / 2 + 4;
+    R.fillRoundRect(ctx, bx, by, bw, bh, 999, P.money);
+    ctx.fillStyle = '#ffffff';
+    ctx.fillText(opts.badge, bx + 7, by + 13);
   }
 
   /* inert = 只画不点：被模态叠层盖住的下层页面用，
@@ -342,6 +518,296 @@ function button(label, sub, onClick, opts) {
 function bottomAction(label, onClick, opts) {
   if (modalInert) return;
   bottomActions.push({ label: label, onClick: onClick, opts: opts || {} });
+}
+
+/* =========================================================
+ * 卡片式选项（对齐「开局设定原型 V2」视觉语言）
+ *   · 区块标题带序号徽章（sectionBadge）
+ *   · 性别等互斥项用分段控件（drawSegmented）
+ *   · 选项统一用富卡片（optionCard）：左头像/图标 + 标题 + 右侧难度/标签胶囊
+ *     + 标签行 + 副描述 + 属性 chips + 选中 ✓ 角标；短文本选项不传头像/chips
+ *     即为简洁卡片，视觉一致。
+ * ========================================================= */
+
+/* 难度 / 标签胶囊配色 */
+var DIFF_PILL = {
+  easy:   { bg: '#e8f5ec', fg: '#2e9e5b' },
+  normal: { bg: '#e9effb', fg: '#4a7fd4' },
+  hard:   { bg: '#fdf3e0', fg: '#d8852f' },
+  hell:   { bg: '#fdeeec', fg: '#e0657a' },
+  gold:   { bg: '#fdf3e0', fg: '#c9902f' }
+};
+/* 属性 chips 配色（hi 绿 / mid 金 / lo 红 / money 金 / neutral 灰） */
+var CHIP_TONE = {
+  hi:     { bg: '#e8f5ec', val: '#2e9e5b' },
+  mid:    { bg: '#fdf3e0', val: '#d8852f' },
+  lo:     { bg: '#fdeeec', val: '#e0657a' },
+  money:  { bg: '#fdf3e0', val: '#c9902f' },
+  neutral:{ bg: '#f6f1e5', val: '#7d7369' }
+};
+
+/* 自动给一个数值分档（money 按金额、其余按 0-100 量程），用于属性 chips 配色 */
+function chipTone(v, isMoney) {
+  if (isMoney) { if (v >= 150000) return 'hi'; if (v >= 20000) return 'mid'; return 'lo'; }
+  if (v >= 70) return 'hi';
+  if (v >= 45) return 'mid';
+  return 'lo';
+}
+
+/* 带序号徽章的区块标题（原型：① 选择性别） */
+function sectionBadge(title, sub, no) {
+  if (no != null) {
+    var nb = 18;
+    R.fillRoundRect(ctx, PAD, C.y, nb, nb, 6, P.text1);
+    R.setFont(ctx, 10, true); ctx.fillStyle = '#ffffff';
+    ctx.fillText(String(no), PAD + nb / 2 - 3, C.y + 13);
+    R.setFont(ctx, 15, true); ctx.fillStyle = P.text1;
+    ctx.fillText(title, PAD + nb + 8, C.y + 14);
+    C.y += 30;
+  } else {
+    R.setFont(ctx, 15, true); ctx.fillStyle = P.text1;
+    ctx.fillText(title, PAD, C.y + 14);
+    C.y += 24;
+  }
+  if (sub) {
+    R.setFont(ctx, 12); ctx.fillStyle = P.text2;
+    C.y = R.drawWrapped(ctx, sub, PAD, C.y + 12, W - PAD * 2, 18, P.text2, 12);
+  }
+  C.y += 8;
+}
+
+/* 分段控件（原型：性别一行两个，选中白底主色字 + 描边） */
+function drawSegmented(opts) {
+  var items = opts.options || [];
+  if (!items.length) return;
+  var cols = Math.min(items.length, opts.cols || items.length);
+  var w = W - PAD * 2, gap = 4, outerPad = 4;
+  var h = 46;
+  var y = C.y;
+  R.fillRoundRect(ctx, PAD, y, w, h + outerPad * 2, 12, '#ece4d2');
+  var iw = (w - outerPad * 2 - gap * (cols - 1)) / cols;
+  var iy = y + outerPad;
+  for (var i = 0; i < items.length; i++) {
+    var it = items[i];
+    var ix = PAD + outerPad + i * (iw + gap);
+    var sel = (it.id === opts.selectedId);
+    R.fillRoundRect(ctx, ix, iy, iw, h, 9, sel ? '#ffffff' : 'transparent');
+    if (sel) { R.roundRectPath(ctx, ix, iy, iw, h, 9); ctx.strokeStyle = P.primary; ctx.lineWidth = 1; ctx.stroke(); }
+    R.setFont(ctx, 15, true); ctx.fillStyle = sel ? P.primary : P.text2;
+    var label = (it.icon ? it.icon + ' ' : '') + it.label;
+    var lw = ctx.measureText(label).width;
+    ctx.fillText(label, ix + (iw - lw) / 2, iy + h / 2 + 5);
+    buttons.push({
+      x: ix, y: iy, w: iw, h: h, label: it.label, selectable: false,
+      setup: opts.setup || null, setupId: it.id,
+      onClick: (function (id) { return function () { opts.onPick(id); }; })(it.id)
+    });
+  }
+  C.y = y + h + outerPad * 2 + GAP;
+}
+
+/* 富选项卡片（原型 bg-card：头像 + 名称 + 难度胶囊 + 标签 + 属性 chips + 选中 ✓） */
+function optionCard(o) {
+  o = o || {};
+  /* 与 button() 同一规则：命中「待确认 key」的卡片自动进入选中态。
+   * 渠道 / 其余安排 / 约会档位 / 赴约 / 表白 / 求婚… 全部靠这一条 ——
+   * 之前只有行动菜单显式写了 selected，其它页点了没有任何反馈。 */
+  var cardKey = o.key || ('btn:' + (o.title || ''));
+  if (o.selectable && !o.disabled && pendingKey === cardKey) o.selected = true;
+
+  var x = (o.x != null) ? o.x : PAD;
+  var w = (o.w != null) ? o.w : (W - PAD * 2);
+  var compact = !!o.compact;                 // 短文本选项（事件/聊天）用更紧凑的排版
+  var titleSize = compact ? 15 : 16;
+  var padX = 14, padY = compact ? 10 : 13;
+  var avatar = o.avatar || null;
+  var avatarSize = avatar ? (o.avatarSize || 48) : 0;
+  var icon = o.icon || null;
+  var iconSize = icon ? (o.iconSize || 40) : 0;
+  var leftSize = Math.max(avatarSize, iconSize);
+  var leftGap = (avatar || icon) ? 12 : 0;
+
+  /* 右侧胶囊预留 */
+  var badge = o.badge || null, badgeH = 18, badgeW = 0;
+  if (badge) { R.setFont(ctx, 10, true); badgeW = ctx.measureText(badge).width + 16; }
+  var titleW = w - padX * 2 - leftSize - leftGap - (badge ? badgeW + 8 : 0);
+
+  R.setFont(ctx, titleSize, true);
+  var titleLines = R.wrapText(ctx, o.title || '', titleW);
+  R.setFont(ctx, 11);
+  var tagline = o.tagline || null;
+  var taglineLines = tagline ? R.wrapText(ctx, tagline, titleW) : [];
+  var subW = w - padX * 2 - leftSize - leftGap;
+  R.setFont(ctx, 12);
+  var subLines = o.sub ? R.wrapText(ctx, o.sub, subW) : [];
+
+  /* chips 换行排列 */
+  var chips = o.chips || [];
+  var chipH = 22, chipGap = 6, chipLineGap = 6, chipLines = [];
+  if (chips.length) {
+    var cx = 0, line = [];
+    chips.forEach(function (c) {
+      R.setFont(ctx, 11);
+      var cw = ctx.measureText(c.label + (c.value != null ? ' ' + c.value : '')).width + 14;
+      if (cx + cw > subW && line.length) { chipLines.push(line); line = []; cx = 0; }
+      line.push({ c: c, w: cw }); cx += cw + chipGap;
+    });
+    if (line.length) chipLines.push(line);
+  }
+
+  var lhTitle = compact ? 19 : 20, lhTag = 15, lhSub = 18;
+  var titleBlockH = titleLines.length * lhTitle;
+  var tagBlockH = taglineLines.length * lhTag;
+  var subBlockH = subLines.length * lhSub;
+  var chipsBlockH = chipLines.length ? (chipLines.length * (chipH + chipLineGap) - chipLineGap) : 0;
+  var leftBlockH = leftSize || 0;
+  var h = padY + Math.max(leftBlockH, titleBlockH + tagBlockH)
+    + (subLines.length ? 6 + subBlockH : 0)
+    + (chipLines.length ? 10 + chipsBlockH : 0) + padY;
+  h = Math.max(h, padY * 2 + (leftBlockH || 44));
+
+  /* 卡片动效：把 C.y 本身挪到「视觉位置」，于是绘制与命中框自动跟着走；
+   * 布局流不受影响 —— 末尾用保存的 layY 推进，下一张卡片不会跟着漂。 */
+  var layY = C.y;
+  var anim = o.anim || null;
+  var animA = anim ? anim.a : 1;
+  if (anim && anim.dy) C.y = layY + anim.dy;
+  if (animA < 1) { ctx.save(); ctx.globalAlpha = Math.max(0, animA); }
+
+  var selected = !!o.selected;
+  var disabled = !!o.disabled;
+  var pressed = isPressed(x, C.y, w, h);
+
+  var bg = disabled ? P.disabled : (pressed ? '#ece9e4' : (selected ? '#fffdfb' : P.card));
+  var border = disabled ? P.disabled : (selected ? P.primary : P.line);
+  R.fillRoundRect(ctx, x, C.y, w, h, 16, bg);
+  R.roundRectPath(ctx, x, C.y, w, h, 16);
+  ctx.strokeStyle = border; ctx.lineWidth = selected ? 2 : 1; ctx.stroke();
+
+  var innerX = x + padX + leftSize + leftGap;
+  var cy = C.y + padY;
+
+  if (avatar) drawRoleAvatar(avatar, x + padX + avatarSize / 2, C.y + padY + avatarSize / 2, avatarSize, '?');
+  else if (icon) {
+    var ix0 = x + padX, iy0 = C.y + padY;
+    R.fillRoundRect(ctx, ix0, iy0, iconSize, iconSize, 12, '#f3ece0');
+    R.setEmojiFont(ctx, 22); ctx.fillStyle = P.text2;
+    var iw0 = ctx.measureText(icon).width;
+    ctx.fillText(icon, ix0 + iconSize / 2 - iw0 / 2, iy0 + iconSize / 2 + 7);
+  }
+
+  var ty = cy + (compact ? 14 : 15);
+  R.setFont(ctx, titleSize, true);
+  ctx.fillStyle = disabled ? '#f1ece3' : (selected ? P.primaryDark : P.text1);
+  for (var i = 0; i < titleLines.length; i++) { ctx.fillText(titleLines[i], innerX, ty); ty += lhTitle; }
+  if (badge) {
+    var btone = o.badgeTone || 'normal';
+    var bBg = (DIFF_PILL[btone] || DIFF_PILL.normal).bg;
+    var bFg = (DIFF_PILL[btone] || DIFF_PILL.normal).fg;
+    R.fillRoundRect(ctx, x + w - padX - badgeW, cy, badgeW, badgeH, 999, bBg);
+    R.setFont(ctx, 10, true); ctx.fillStyle = bFg;
+    ctx.fillText(badge, x + w - padX - badgeW + 8, cy + 13);
+  }
+  if (taglineLines.length) {
+    R.setFont(ctx, 11); ctx.fillStyle = disabled ? '#f1ece3' : P.text3;
+    for (var t = 0; t < taglineLines.length; t++) { ctx.fillText(taglineLines[t], innerX, ty); ty += lhTag; }
+  }
+  if (subLines.length) {
+    ty += 6;
+    R.setFont(ctx, 12); ctx.fillStyle = disabled ? '#f1ece3' : (selected ? '#a8564a' : P.text2);
+    for (var s = 0; s < subLines.length; s++) { ctx.fillText(subLines[s], innerX, ty); ty += lhSub; }
+  }
+  if (chipLines.length) {
+    ty += 10;
+    chipLines.forEach(function (ln) {
+      var chx = innerX;
+      ln.forEach(function (it) {
+        var ch = it.c;
+        var tone = ch.tone || 'neutral';
+        var cb = (CHIP_TONE[tone] || CHIP_TONE.neutral).bg;
+        var cv = (CHIP_TONE[tone] || CHIP_TONE.neutral).val;
+        R.fillRoundRect(ctx, chx, ty, it.w, chipH, 8, cb);
+        R.setFont(ctx, 11); ctx.fillStyle = P.text2;
+        ctx.fillText(ch.label, chx + 7, ty + 15);
+        if (ch.value != null) {
+          R.setFont(ctx, 12, true); ctx.fillStyle = cv;
+          ctx.fillText(String(ch.value), chx + 7 + ctx.measureText(ch.label).width + 3, ty + 15);
+        }
+        chx += it.w + chipGap;
+      });
+      ty += chipH + chipLineGap;
+    });
+  }
+
+  if (selected) {
+    var rx = x + w - 12, ry = C.y + 12, rr = 11;
+    R.fillRoundRect(ctx, rx - rr, ry - rr, rr * 2, rr * 2, rr, P.primary);
+    R.setFont(ctx, 12, true); ctx.fillStyle = '#ffffff';
+    ctx.fillText('✓', rx - 4, ry + 5);
+  }
+
+  if (!disabled && !o.inert && !modalInert) {
+    var key = cardKey;   // 与 button() 一致：单选卡片总有一个稳定 key
+    var wrap = o.selectable
+      ? (function (k, f) { return function () { selectOnly(k, f); }; })(key, o.onClick)
+      : o.onClick;
+    buttons.push({ x: x, y: C.y, w: w, h: h, label: o.title, selectable: !!o.selectable,
+      onClick: wrap, setup: o.setup || null, setupId: o.setupId || null });
+  }
+  if (animA < 1) ctx.restore();
+  C.y = layY + h + GAP;
+}
+
+/* 旁白卡：把事件正文（旁白 + 剧情 / 结果正文）装进一张白卡，
+ * 与选项卡片共用同一套视觉语言（16 圆角 / 细描边 / 白底）。
+ * 段落之间留 8px，空串当作一次「换段」。
+ * opts.anim 传 cardAnim(i) 的结果即可获得入场 / 退场动效。 */
+function noteCard(paras, opts) {
+  opts = opts || {};
+  var x = (opts.x != null) ? opts.x : PAD;
+  var w = (opts.w != null) ? opts.w : (W - PAD * 2);
+  var padX = 16, padY = 14, paraGap = 8;
+  var size = opts.size || 15;
+  var innerW = w - padX * 2;
+
+  /* 先按最终字号量高：wrapText 依赖 ctx.font，字号必须在测量前设好 */
+  var blocks = [], lineCount = 0;
+  R.setFont(ctx, size);
+  (paras || []).forEach(function (p) {
+    if (p === '' || p == null) { blocks.push([]); return; }
+    var ls = R.wrapText(ctx, engine.fillText(p, S), innerW);
+    blocks.push(ls);
+    lineCount += ls.length;
+  });
+  var h = padY * 2 + lineCount * LINEH + Math.max(0, blocks.length - 1) * paraGap;
+  h = Math.max(h, padY * 2 + LINEH);
+
+  var layY = C.y;
+  var anim = opts.anim || null;
+  var a = anim ? anim.a : 1;
+  var topY = layY + ((anim && anim.dy) ? anim.dy : 0);
+  if (a < 1) { ctx.save(); ctx.globalAlpha = Math.max(0, a); }
+  frameCards.note++;
+
+  R.fillRoundRect(ctx, x, topY, w, h, 16, P.card);
+  R.roundRectPath(ctx, x, topY, w, h, 16);
+  ctx.strokeStyle = P.line; ctx.lineWidth = 1; ctx.stroke();
+
+  /* 首行基线 = 卡片顶 + 内边距 + 0.8×字号（与 bbox 上沿对齐，不会顶出卡片） */
+  var yy = topY + padY + Math.round(size * 0.8);
+  blocks.forEach(function (ls) {
+    if (!ls.length) { yy += paraGap; return; }
+    ls.forEach(function (l) {
+      R.setFont(ctx, size); ctx.fillStyle = P.text1;
+      ctx.fillText(l, x + padX, yy);
+      yy += LINEH;
+    });
+    yy += paraGap;
+  });
+  if (a < 1) ctx.restore();
+
+  C.y = layY + h + (opts.gap != null ? opts.gap : 12);
+  return h;
 }
 
 function smallLink(label, onClick) {
@@ -406,52 +872,70 @@ function paintSoftPanel(x, y, w, h, r, color, alpha) {
   ctx.restore();
 }
 
-/* 首页（开始游戏页）按钮：文字水平居中、比通用按钮大一号、底色 70% 透明、边缘渐隐。
- * 与通用 button() 的区别只在观感 —— 命中判定、两步确认规则完全一致。 */
+/* 首页（开始游戏页）按钮：取消渐变、保持透明；文字水平居中、比通用按钮大一号。
+ * 与通用 button() 的区别只在观感 —— 命中判定、两步确认规则完全一致。
+ * opts.w 指定宽度（标题页男女主中间的窄按钮列用），不传则整宽；
+ * 指定宽度时按钮水平居中。 */
+/* 首页（开始游戏页）按钮：白底 + 投影，文字放大加粗，带「按下」反馈。
+ * 仍是居中、单/双行自适应，不铺渐变、不与背景图混底。 */
 function titleButton(label, sub, onClick, opts) {
   opts = opts || {};
   var key = 'title:' + label;
   if (pendingKey === key) opts.selected = true;
-  var w = W - PAD * 2;
-  var size = opts.small ? 16 : 17;          // 通用按钮是 16，首页再大一号
-  var padX = 22, padY = 15;
+  var w = opts.w || (W - PAD * 2);
+  var bx = (opts.center === false) ? PAD : Math.round((W - w) / 2);
+  var size = opts.small ? 18 : 20;          // 比通用按钮（16）大一号：放大加粗
+  var padX = 22, padY = 16;
 
   R.setFont(ctx, size, true);
   var labelLines = R.wrapText(ctx, label, w - padX * 2);
   var subLines = sub ? R.wrapText(ctx, sub, w - padX * 2) : [];
+  /* 副标题只在「能一行装下」时显示：居中窄按钮列里副标题折行会撑太高、
+   * 导致按钮超出屏幕，此时直接隐藏，保持按钮紧凑、始终落在屏幕内。 */
+  var showSub = subLines.length === 1;
   var lh = size * 1.5;
-  var h = padY * 2 + labelLines.length * lh + (subLines.length ? subLines.length * 18 + 2 : 0);
+  var h = padY * 2 + labelLines.length * lh + (showSub ? subLines.length * 18 + 2 : 0);
 
-  var base = opts.primary ? P.primary : '#ffffff';
-  var fg = opts.primary ? '#ffffff' : P.text1;
-  var subColor = opts.primary ? 'rgba(255,255,255,0.85)' : P.text2;
-  if (opts.selected) { base = P.primary; fg = '#ffffff'; subColor = '#f7ddd6'; }
+  var pressed = isPressed(bx, C.y, w, h);
 
-  paintSoftPanel(PAD, C.y, w, h, 16, base, 0.7);
-
-  /* 选中态：加一圈描边，把「已选中」这件事说清楚 */
-  if (opts.selected) {
-    R.roundRectPath(ctx, PAD + 1, C.y + 1, w - 2, h - 2, 15);
-    ctx.strokeStyle = P.primary;
-    ctx.lineWidth = 2;
-    ctx.stroke();
+  /* 白底 + 投影：正常态悬浮阴影，按下态阴影收小、底色微灰，呈现「按进去」 */
+  ctx.save();
+  if (pressed) {
+    ctx.shadowColor = 'rgba(0,0,0,0.12)';
+    ctx.shadowBlur = 3; ctx.shadowOffsetY = 1;
+    R.fillRoundRect(ctx, bx, C.y, w, h, 16, '#eceae9');
+  } else {
+    ctx.shadowColor = 'rgba(0,0,0,0.22)';
+    ctx.shadowBlur = 12; ctx.shadowOffsetY = 5;
+    R.fillRoundRect(ctx, bx, C.y, w, h, 16, '#ffffff');
   }
+  ctx.restore();
+
+  /* 主按钮 / 选中态：主色描边；普通按钮：极淡描边兜底边界 */
+  var stroke = opts.primary ? P.primary : (opts.selected ? P.primary : 'rgba(0,0,0,0.06)');
+  var lw = (opts.primary || opts.selected) ? 2 : 1;
+  R.roundRectPath(ctx, bx + (lw === 2 ? 1 : 0.5), C.y + (lw === 2 ? 1 : 0.5),
+    w - (lw === 2 ? 2 : 1), h - (lw === 2 ? 2 : 1), 15);
+  ctx.strokeStyle = stroke;
+  ctx.lineWidth = lw;
+  ctx.stroke();
+
+  var fg = opts.primary ? P.primary : '#34302c';
+  if (pressed) fg = opts.primary ? P.primaryDark : '#1f1c1a';
+  var subColor = opts.primary ? P.primaryDark : '#6b6660';
 
   var yy = C.y + padY;
   R.setFont(ctx, size, true);
   ctx.fillStyle = fg;
   for (var i = 0; i < labelLines.length; i++) {
-    ctx.fillText(labelLines[i], PAD + (w - ctx.measureText(labelLines[i]).width) / 2, yy + size);
+    ctx.fillText(labelLines[i], bx + (w - ctx.measureText(labelLines[i]).width) / 2, yy + size);
     yy += lh;
   }
-  if (subLines.length) {
+  if (showSub) {
     yy += 2;
-    R.setFont(ctx, 12);
+    R.setFont(ctx, 13, true);
     ctx.fillStyle = subColor;
-    for (var j = 0; j < subLines.length; j++) {
-      ctx.fillText(subLines[j], PAD + (w - ctx.measureText(subLines[j]).width) / 2, yy + 12);
-      yy += 18;
-    }
+    ctx.fillText(subLines[0], bx + (w - ctx.measureText(subLines[0]).width) / 2, yy + 13);
   }
 
   if (!opts.disabled) {
@@ -459,7 +943,7 @@ function titleButton(label, sub, onClick, opts) {
       ? (function (k, f) { return function () { selectOnly(k, f); }; })(key, onClick)
       : onClick;
     buttons.push({
-      x: PAD, y: C.y, w: w, h: h, label: label,
+      x: bx, y: C.y, w: w, h: h, label: label,
       selectable: !!opts.selectable, onClick: wrap
     });
   }
@@ -611,7 +1095,8 @@ function runPending() {
 }
 
 /* 登记底部「确认」按钮：未选中时置灰，选中后可点并直接执行。
- * opts.run 可选：确认时改跑这个函数（用于「先提交选中项、再做后续动作」）。 */
+ * opts.run 可选：确认时改跑这个函数（用于「先提交选中项、再做后续动作」）。
+ * opts.disabledLabel 可选：置灰时显示的引导文案（默认仍是 label）。 */
 function confirmAction(label, opts) {
   var o = opts || {};
   var extra = o.run || null;
@@ -619,6 +1104,7 @@ function confirmAction(label, opts) {
   o.primary = true;
   o.key = 'confirm';
   o.disabled = !pendingAction;    // 没选东西时置灰，提示先选一项
+  if (o.disabledLabel === undefined) o.disabledLabel = null;
   var handler = extra
     ? function () { runPending(); extra(); }   // 先落实选中项，再做这一步自己的事
     : runPending;
@@ -650,6 +1136,8 @@ function draw() {
   var t = transState(Date.now());
 
   resetFrame();
+  /* 卡片集合指纹：换页 / 事件翻到结果态 → 重播一段错落入场（见 cardEnterSet） */
+  cardEnterSet(cardSig());
 
   /* 滚动内容层 */
   ctx.save();
@@ -674,6 +1162,9 @@ function draw() {
   /* 提示条画在最上层：不会被背景图盖住，任何页面都能看见 */
   drawFlashes();
 
+  /* 音乐开关浮窗：钉在左上角，所有页面（含叠层 / 浮窗）都看得见、点得到 */
+  drawMusicToggle();
+
   if (t.active) scheduleTransTick();
 }
 
@@ -682,7 +1173,7 @@ function drawContent() {
   if (scene === 'loading') drawLoading();
   else if (scene === 'error') drawError();
   else if (scene === 'intro') drawIntro();
-  else if (scene === 'title') drawTitle();
+  else if (scene === 'title') { drawTitle(); startTitleAnim(); }
   else if (scene === 'rules') drawRules();
   else if (scene === 'setup') drawSetup();
   else if (scene === 'play') drawPlay();
@@ -693,21 +1184,49 @@ function drawContent() {
   else if (scene === 'gallery') drawGallery();            // 相亲图鉴（分男女）
   else if (scene === 'galleryDetail') drawGalleryDetail(); // 图鉴 · 单个人物资料
   else if (scene === 'end') drawEnd();
-  // 为底部固定操作区预留空间，避免内容被遮挡
-  if (bottomActions.length) C.y += BAR_RESERVE;
+  // 为底部固定操作区预留空间，避免内容被遮挡：
+  // 「确认置顶 + 次级一行」布局更高，其余单行布局用基础预留值
+  if (bottomActions.length) {
+    var split = false;
+    for (var bi = 0; bi < bottomActions.length; bi++) {
+      if (bottomActions[bi].opts.key === 'confirm') { split = bottomActions.length >= 2; break; }
+    }
+    C.y += split ? 150 : BAR_RESERVE;
+  }
   contentH = C.y + 24;
 }
 
 /* ================= 底部固定操作区 ================= */
+/* 含「确认」键且有 ≥2 个按钮时，走「确认置顶 + 次级一行」布局（对齐主页原型）；
+ * 否则沿用原来的单行等分布局，保证其余页面（重开确认、二级页等）不变。 */
 function drawBottomBar() {
   if (!bottomActions.length || scene === 'loading') return;
+  var confirmIdx = -1;
+  for (var k = 0; k < bottomActions.length; k++) {
+    if (bottomActions[k].opts.key === 'confirm') { confirmIdx = k; break; }
+  }
+  if (confirmIdx >= 0 && bottomActions.length >= 2) drawBottomBarSplit(confirmIdx);
+  else drawBottomBarRow();
+}
+
+/* 单行等分布局（原逻辑） */
+function drawBottomBarRow() {
   var n = bottomActions.length;
   var gap = 10;
   var totalW = W - PAD * 2;
   var bw = (totalW - gap * (n - 1)) / n;
   var by = H - SAFE_BOTTOM - BOTTOM_GAP - BAR_BTN_H;
+  barTopY = bottomHint ? (by - 20) : by;   // 叠加层顶边（含提示条）
 
   drawBottomShade(by);
+
+  /* 「当前已选」提示条（原型：确认按钮上方一行小字） */
+  if (bottomHint) {
+    R.setFont(ctx, 11);
+    ctx.fillStyle = P.text2;
+    var hw = ctx.measureText(bottomHint).width;
+    ctx.fillText(bottomHint, (W - hw) / 2, by - 8);
+  }
 
   for (var i = 0; i < n; i++) {
     var a = bottomActions[i];
@@ -726,17 +1245,67 @@ function drawBottomBar() {
     ctx.lineWidth = pending ? 2 : 1;
     ctx.stroke();
 
+    var lbl = (dis && a.opts.disabledLabel) ? a.opts.disabledLabel : a.label;
     R.setFont(ctx, 15, true);
     ctx.fillStyle = fg;
-    var tw = ctx.measureText(a.label).width;
-    ctx.fillText(a.label, x + (bw - tw) / 2, by + BAR_BTN_H / 2 + 5);
+    var tw = ctx.measureText(lbl).width;
+    ctx.fillText(lbl, x + (bw - tw) / 2, by + BAR_BTN_H / 2 + 5);
 
-    // 底部操作区按钮统一单次点击执行（确认 / 重开 / 返回 / 上一步 等）
-    if (!dis) {
-      fixedButtons.push({
-        x: x, y: by, w: bw, h: BAR_BTN_H, label: a.label, onClick: a.onClick
-      });
-    }
+    if (!dis) fixedButtons.push({ x: x, y: by, w: bw, h: BAR_BTN_H, label: a.label, onClick: a.onClick });
+  }
+}
+
+/* 确认置顶 + 次级一行（主页原型布局） */
+function drawBottomBarSplit(confirmIdx) {
+  var confirm = bottomActions[confirmIdx];
+  var rest = [];
+  for (var i = 0; i < bottomActions.length; i++) if (i !== confirmIdx) rest.push(bottomActions[i]);
+
+  var gap = 10, bottomGap = BOTTOM_GAP, confirmH = 48, secH = 44;
+  var secY = H - SAFE_BOTTOM - bottomGap - secH;
+  var confirmY = secY - gap - confirmH;
+  barTopY = bottomHint ? (confirmY - 18) : confirmY;   // 叠加层顶边（含提示条）
+  drawBottomShade(confirmY);
+
+  /* 「当前已选」提示条（原型：确认按钮上方一行小字） */
+  if (bottomHint) {
+    R.setFont(ctx, 11);
+    ctx.fillStyle = P.text2;
+    var hw = ctx.measureText(bottomHint).width;
+    ctx.fillText(bottomHint, (W - hw) / 2, confirmY - 7);
+  }
+
+  /* 确认：整宽主按钮 */
+  var cdis = !!confirm.opts.disabled;
+  R.fillRoundRect(ctx, PAD, confirmY, W - PAD * 2, confirmH, 14, cdis ? P.disabled : P.primary);
+  R.roundRectPath(ctx, PAD, confirmY, W - PAD * 2, confirmH, 14);
+  ctx.strokeStyle = cdis ? P.disabled : P.primary; ctx.lineWidth = 1; ctx.stroke();
+  var clbl = (cdis && confirm.opts.disabledLabel) ? confirm.opts.disabledLabel : confirm.label;
+  R.setFont(ctx, 16, true); ctx.fillStyle = cdis ? '#f1ece3' : '#ffffff';
+  var cw = ctx.measureText(clbl).width;
+  ctx.fillText(clbl, (W - cw) / 2, confirmY + confirmH / 2 + 5);
+  if (!cdis) fixedButtons.push({ x: PAD, y: confirmY, w: W - PAD * 2, h: confirmH, label: confirm.label, onClick: confirm.onClick });
+
+  /* 次级：等分一行（如 相亲图鉴 / 重开，或 返回） */
+  var n = rest.length, secGap = 10;
+  var secW = (W - PAD * 2 - secGap * (n - 1)) / n;
+  for (var j = 0; j < n; j++) {
+    var a = rest[j];
+    var x = PAD + j * (secW + secGap);
+    var akey = a.opts.key || ('bar:' + a.label);
+    var adis = !!a.opts.disabled;
+    var apending = !adis && (pendingKey === akey);
+    var aprimary = !!a.opts.primary || apending;
+    var abg = adis ? P.disabled : (aprimary ? P.primary : P.card);
+    var afg = adis ? '#f1ece3' : (aprimary ? '#ffffff' : P.text2);
+    var abd = adis ? P.disabled : (aprimary ? P.primary : P.line);
+    R.fillRoundRect(ctx, x, secY, secW, secH, 12, abg);
+    R.roundRectPath(ctx, x, secY, secW, secH, 12);
+    ctx.strokeStyle = abd; ctx.lineWidth = apending ? 2 : 1; ctx.stroke();
+    R.setFont(ctx, 14, true); ctx.fillStyle = afg;
+    var aw = ctx.measureText(a.label).width;
+    ctx.fillText(a.label, x + (secW - aw) / 2, secY + secH / 2 + 5);
+    if (!adis) fixedButtons.push({ x: x, y: secY, w: secW, h: secH, label: a.label, onClick: a.onClick });
   }
 }
 
@@ -860,11 +1429,184 @@ function skipIntro() {
 /* ================= 标题页 ================= */
 function gotoTitle() { scene = 'title'; scrollY = 0; draw(); }
 
+/* ---------------- 标题页动效 ----------------
+ * 「动图」实现：微信小游戏 Canvas 的 drawImage 不会播放 GIF，
+ * 动态感全部在这里逐帧绘制：
+ *   · 背景轻微「呼吸」（慢速缩放）
+ *   · 男女主角独立上下浮动 + 轻微摇摆（intro_lead_m / intro_lead_f）
+ *   · 爱心粒子从底部往上飘、渐隐
+ *   · 标题逐字跳动（金色立体字由 Canvas 绘制，文案来自 texts.app.title）
+ * 动画循环只在支持逐帧调度的环境（真机 / 开发者工具）里跑：
+ * 测试用同步 mock 画布没有 canvas.requestAnimationFrame，自动保持静态终态。 */
+var TITLE_ANIM = { on: false, raf: 0, t0: 0 };
+var TITLE_HEARTS = [];      // 漂浮爱心粒子
+var TITLE_SPAWN_AT = 0;     // 上一次生成爱心的时刻
+
+/* 逐帧调度：小游戏主画布的 canvas.requestAnimationFrame 优先，
+ * 其次用全局 requestAnimationFrame（小游戏运行时的标准循环驱动，最可靠），
+ * 再退回 wx.requestAnimationFrame。三者都没有（测试 mock）就返回 0，
+ * 标题页保持静态终态，不跑循环。
+ * 说明：测试夹具装的是「异步版」全局 rAF（setTimeout 实现），
+ * 不会像同步版那样造成无限同步递归，这里可以放心使用全局版本。 */
+function rafSupported() {
+  return (canvas && typeof canvas.requestAnimationFrame === 'function') ||
+    (typeof requestAnimationFrame === 'function') ||
+    (typeof wx !== 'undefined' && typeof wx.requestAnimationFrame === 'function');
+}
+function raf(cb) {
+  if (canvas && typeof canvas.requestAnimationFrame === 'function') return canvas.requestAnimationFrame(cb);
+  if (typeof requestAnimationFrame === 'function') return requestAnimationFrame(cb);
+  if (typeof wx !== 'undefined' && typeof wx.requestAnimationFrame === 'function') return wx.requestAnimationFrame(cb);
+  return 0;
+}
+
+function startTitleAnim() {
+  if (TITLE_ANIM.on) return;
+  if (!canvas || !rafSupported()) return;
+  TITLE_ANIM.on = true;
+  TITLE_ANIM.t0 = Date.now();
+  TITLE_HEARTS.length = 0;
+  var loop = function () {
+    if (!TITLE_ANIM.on) return;
+    if (scene !== 'title') { TITLE_ANIM.on = false; return; }
+    draw();
+    TITLE_ANIM.raf = raf(loop);
+  };
+  TITLE_ANIM.raf = raf(loop);
+}
+
+/* 动效时间（秒）。静态兜底取 1.2s：一个各相位都好看的中间帧 */
+function titleT() { return TITLE_ANIM.on ? (Date.now() - TITLE_ANIM.t0) / 1000 : 1.2; }
+
+function drawTitleScene() {
+  var t = titleT();
+
+  /* 背景：以 cover 方式铺满，叠加慢速呼吸缩放 */
+  var img = art.mainImg('intro_bg');
+  if (img) {
+    var zoom = 1.015 + 0.008 * Math.sin(t * 0.6);
+    var s = Math.max(W / img.width, H / img.height) * zoom;
+    var dw = img.width * s, dh = img.height * s;
+    ctx.drawImage(img, (W - dw) / 2, (H - dh) / 2, dw, dh);
+  } else {
+    ctx.fillStyle = P.bg;
+    ctx.fillRect(0, 0, W, H);
+  }
+
+  drawTitleLeads(t);
+  drawTitleHearts(t);
+  drawTitleLogo(t);
+}
+
+/* 男女主角：放大、外缘贴左右屏幕边、膝盖（底部）贴下边缘、中间留白给按钮。
+ * 以「图片底边中点」为支点轻摆：脚/膝始终贴底，不会随动画抬离下边缘。 */
+function drawTitleLeads(t) {
+  var baseH = H * 0.56;            // 放大：约占屏高 56%
+  var bottomY = H - 2;             // 膝盖/脚贴屏幕下边缘
+  function leadW(key) {
+    var im = art.mainImg(key);
+    return (im && im.width) ? baseH * im.width / im.height : 0;
+  }
+  function lead(key, cx, phase) {
+    var img = art.mainImg(key);
+    if (!img || !img.width) return;
+    var h = baseH;
+    var w = h * img.width / img.height;
+    var sway = Math.sin(t * 0.9 + phase) * 0.025;   // 仅绕底部支点轻摆
+    ctx.save();
+    ctx.translate(cx, bottomY);     // 支点 = 图片底边中点
+    ctx.rotate(sway);
+    ctx.drawImage(img, -w / 2, -h, w, h);
+    ctx.restore();
+  }
+  var wm = leadW('intro_lead_m');
+  var wf = leadW('intro_lead_f');
+  var cxM = W * 0.30 - wm / 2;      // 右缘落在 0.30W，左肩略出屏 → 手肘贴左边
+  var cxF = W * 0.70 + wf / 2;      // 左缘落在 0.70W，右肩略出屏 → 手肘贴右边
+  lead('intro_lead_m', cxM, 0);
+  lead('intro_lead_f', cxF, 2.8);
+}
+
+/* 爱心粒子：约 650ms 一颗，从底部往上飘、左右轻摆、渐隐 */
+function drawTitleHearts(t) {
+  var now = Date.now();
+  if (TITLE_ANIM.on && now - TITLE_SPAWN_AT > 650 && TITLE_HEARTS.length < 12) {
+    TITLE_SPAWN_AT = now;
+    TITLE_HEARTS.push({
+      x: W * (0.12 + Math.random() * 0.76),
+      y: H * (0.72 + Math.random() * 0.22),
+      v: H * 0.00006 * (0.8 + Math.random() * 0.5),   // px/ms
+      size: Math.round(9 + Math.random() * 8),
+      life: 0
+    });
+  }
+  for (var i = TITLE_HEARTS.length - 1; i >= 0; i--) {
+    var p = TITLE_HEARTS[i];
+    p.life += 16;
+    p.y -= p.v * 16;
+    p.x += Math.sin(t * 2 + p.y * 0.02) * 0.35;
+    var fade = 1 - p.life / 6500;
+    if (!TITLE_ANIM.on || fade <= 0 || p.y < H * 0.42) { TITLE_HEARTS.splice(i, 1); continue; }
+    ctx.save();
+    ctx.globalAlpha = Math.min(1, fade) * 0.7;
+    ctx.fillStyle = P.accent;
+    R.setFont(ctx, p.size, true);
+    ctx.textAlign = 'center';
+    ctx.fillText('\u2665', p.x, p.y);
+    ctx.restore();
+  }
+}
+
+/* 标题 Logo：金色立体字 + 逐字跳动；文案来自 texts.app.title（不硬编码） */
+function drawTitleLogo(t) {
+  var app = tset('app') || {};
+  var title = app.title || '我妈又催婚';
+  var chars = String(title).split('');
+  var n = chars.length;
+  if (!n) return;
+  var size = Math.min(W * 0.82 / n, W * 0.16);
+  var cy = SAFE_TOP + H * 0.13;
+  for (var i = 0; i < n; i++) {
+    var cx = W / 2 + (i - (n - 1) / 2) * size * 1.12;
+    var y = cy + Math.sin(t * 2.4 - i * 0.55) * size * 0.10;
+    ctx.save();
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    R.setFont(ctx, Math.round(size), true);
+    /* 立体阴影 */
+    ctx.fillStyle = 'rgba(122, 74, 18, 0.4)';
+    ctx.fillText(chars[i], cx + size * 0.06, y + size * 0.09);
+    /* 深色描边 */
+    ctx.lineWidth = Math.max(2, size * 0.14);
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = '#7a4a12';
+    ctx.strokeText(chars[i], cx, y);
+    /* 金色渐变填充 */
+    var grad = ctx.createLinearGradient(0, y - size / 2, 0, y + size / 2);
+    grad.addColorStop(0, '#fff3bd');
+    grad.addColorStop(0.55, '#f8c94e');
+    grad.addColorStop(1, '#e8961e');
+    ctx.fillStyle = grad;
+    ctx.fillText(chars[i], cx, y);
+    ctx.restore();
+  }
+  /* 副标题 */
+  if (app.sub) {
+    ctx.save();
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    R.setFont(ctx, Math.round(Math.max(11, W * 0.032)), false);
+    ctx.fillStyle = 'rgba(110, 70, 30, 0.72)';
+    ctx.fillText(app.sub, W / 2, cy + size * 0.85);
+    ctx.restore();
+  }
+}
+
 function drawTitle() {
   var app = tset('app') || {};
 
-  /* 全屏背景图，不盖蒙层：整张图完整露出，文字由内容自己承担可读性 */
-  drawFullBg();
+  /* 动态标题场景：背景呼吸 + 人物浮动 + 爱心 + 逐字跳动标题 */
+  drawTitleScene();
 
   /* 资源自检：只在「还没加载完 / 有失败」时露一行小字，方便定位问题；
    * 一切正常时完全不出现，不干扰标题页。 */
@@ -896,16 +1638,21 @@ function drawTitle() {
     onClick: function () { scene = 'rules'; scrollY = 0; draw(); }, opts: {}
   });
 
-  /* 按钮组整体上移到画布 50% 处：上半屏留给背景图，下半屏放操作。
-   * 首页按钮走 titleButton：文字居中、字号大一号、底色 70% 透明、四周边缘渐隐。 */
-  C.y = Math.max(SAFE_TOP + 40, Math.round(H * 0.5));
+  /* 按钮列放在男女主中间的留白区：居中、窄于整屏，
+   * 左右缘（0.30W / 0.70W）正好避开两侧人物。 */
+  var btnW = Math.round(W * 0.40);
+  C.y = Math.max(SAFE_TOP + 40, Math.round(H * 0.50));
 
   items.forEach(function (it) {
     var o = {};
     for (var k in it.opts) o[k] = it.opts[k];
     o.gap = 12;
+    o.w = btnW;
     titleButton(it.label, it.sub, it.onClick, o);
   });
+
+  /* 音乐开关已改为「左上角全局浮窗」（见 drawMusicToggle），
+   * 所有页面都能看到、能点，这里不再单独画一个。 */
 }
 
 /* ================= 玩法说明 ================= */
@@ -913,11 +1660,20 @@ function drawRules() {
   var RULE = tset('rules') || {};
   section(RULE.head || '玩法说明', RULE.sub || '');
   var lines = RULE.lines || [];
-  var boxH = lines.length * LINEH + 32;
-  R.fillRoundRect(ctx, PAD, C.y, W - PAD * 2, boxH, 14, P.card);
-  var yy = C.y + CARD_PAD + 4;
+  var padIn = CARD_PAD;                       // 卡片内边距 16
+  var textW = W - PAD * 2 - padIn * 2;
+  var innerTop = padIn + 4, innerGap = 4;
+  /* 先按真实换行量出高度，保证白框包住所有文字（含自动折行） */
+  var totalLines = 0;
   for (var i = 0; i < lines.length; i++) {
-    yy = R.drawWrapped(ctx, lines[i], PAD + CARD_PAD, yy, W - PAD * 2 - CARD_PAD * 2, LINEH, P.text1, 14);
+    totalLines += R.wrapText(ctx, lines[i], textW).length;
+  }
+  var boxH = innerTop + totalLines * LINEH + (lines.length ? (lines.length - 1) * innerGap : 0) + (padIn - 4);
+  R.fillRoundRect(ctx, PAD, C.y, W - PAD * 2, boxH, 14, P.card);
+  var yy = C.y + innerTop;
+  for (var j = 0; j < lines.length; j++) {
+    yy = R.drawWrapped(ctx, lines[j], PAD + padIn, yy, textW, LINEH, P.text1, 14);
+    if (j < lines.length - 1) yy += innerGap;
   }
   C.y = C.y + boxH + 12;
   bottomAction(RULE.back || '返回', function () { scene = 'title'; scrollY = 0; draw(); });
@@ -995,37 +1751,106 @@ function setupConfirm(label, pageKey) {
     { primary: true, disabled: !setupPageReady(pageKey) });
 }
 
+/* ---- 开局设定页头（原型：步骤标签 + 大标题 + 副描述） ---- */
+function setupHead() {
+  var U = tset('setup') || {};
+  var step = U.stepLabel || '开局设定 · CHARACTER SETUP';
+  var title = U.pageTitle || '创建你的角色';
+  var sub = U.pageSub || '性别决定相亲对象与部分剧情措辞，出身背景决定全部初始属性与职业。';
+  R.setFont(ctx, 11, true); ctx.fillStyle = P.text3;
+  ctx.fillText(step, PAD, C.y + 12);
+  C.y += 20;
+  R.setFont(ctx, 24, true); ctx.fillStyle = P.text1;
+  ctx.fillText(title, PAD, C.y + 22);
+  C.y += 30;
+  C.y = R.drawWrapped(ctx, sub, PAD, C.y + 12, W - PAD * 2, 18, P.text2, 12);
+  C.y += 12;
+}
+
+/* 出身背景的「起步难度」胶囊：由初始属性综合评分推导（游戏无该字段，视觉对齐原型） */
+function bgTierBadge(b) {
+  var ini = (b && b.init) || {};
+  var moneyScore = Math.min(100, (ini.money || 0) / 5000);
+  var comp = (moneyScore + (ini.health || 0) + (ini.career || 0)
+    + (ini.looks || 0) + (ini.family || 0) + (ini.mood || 0)) / 6;
+  if (comp >= 68) return { text: '轻松 ★', tone: 'easy' };
+  if (comp >= 52) return { text: '普通 ★★', tone: 'normal' };
+  if (comp >= 42) return { text: '困难 ★★★', tone: 'hard' };
+  return { text: '地狱 ★★★★', tone: 'hell' };
+}
+
+/* 出身背景的初始属性 chips（原型：结构化 chips 替代长文字流） */
+function bgChips(b) {
+  var ini = (b && b.init) || {};
+  return [
+    { label: '存款', value: engine.moneyText(ini.money || 0), tone: chipTone(ini.money || 0, true) },
+    { label: '健康', value: ini.health || 0, tone: chipTone(ini.health || 0) },
+    { label: '事业', value: ini.career || 0, tone: chipTone(ini.career || 0) },
+    { label: '颜值', value: ini.looks || 0, tone: chipTone(ini.looks || 0) },
+    { label: '家境', value: ini.family || 0, tone: chipTone(ini.family || 0) },
+    { label: '情绪', value: ini.mood || 0, tone: chipTone(ini.mood || 0) }
+  ];
+}
+
+var GOAL_EMOJI = { marry: '💍', true_love: '💗', rich_alone: '💰', career_peak: '📈', settle: '🏠' };
+function goalEmoji(id) { return GOAL_EMOJI[id] || '🎯'; }
+
+/* 底部「当前已选」提示（原型：确认栏上方一行小字） */
+function setupPickedHint() {
+  function findName(list, id, gender) {
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].id === id) {
+        var nm = list[i].name;
+        if (list[i].nameByGender && gender) nm = list[i].nameByGender[gender] || nm;
+        return nm;
+      }
+    }
+    return null;
+  }
+  if (setupStep === 1) {
+    var gn = findName(DB.list('goals'), pick.goalId, pick.gender);
+    var dn = findName(DB.list('difficulties'), pick.difficulty);
+    var parts = [];
+    if (gn) parts.push(gn);
+    if (dn) parts.push(dn);
+    return parts.length ? ('当前已选：' + parts.join(' · ')) : '请选择人生目标与难度';
+  }
+  var bn = findName(DB.list('backgrounds'), pick.bgId);
+  return bn ? ('当前已选：' + bn) : '请选择性别与出身背景';
+}
+
 function drawSetup() {
   var U = tset('setup') || {};
+  setupHead();
 
   if (setupStep === 0) {
-    /* 第 0 页：性别（一行两个）+ 出身背景（选了性别才联动出现，每行一个） */
-    section(U.genderHead, U.genderSub);
+    /* 第 0 页：性别（分段控件）+ 出身背景（选了性别才联动出现，富卡片） */
+    sectionBadge(U.genderHead, U.genderSub, 1);
     drawGenderRow(U);
     if (pick.gender) {
-      section(U.bgHead, U.bgSub);
+      sectionBadge(U.bgHead, U.bgSub, 2);
       var bgs = DB.list('backgrounds');
       bgs.forEach(function (b) {
-        var sel = isSetupSelected('bg', b.id);
-        var ini = (b && b.init) || {};   // 防御：云端 backgrounds.init 缺失时不崩溃
-        button(b.name + '  ' + b.tag,
-          fmt(U.statsLine, {
-            money: engine.moneyText(ini.money || 0), health: ini.health || 0, career: ini.career || 0,
-            looks: ini.looks || 0, family: ini.family || 0, mood: ini.mood || 0, job: ini.jobName || '—'
-          }),
-          function () { pickSetup('bg', b.id); },
-          /* 合并页：每个选项按钮直接切换 pick（不走全局 pendingKey，避免两个 section 互相清除），
-           * 选了就在选中态高亮；出身背景配职业头像，选的时候就能看到这张脸 */
-          { selected: sel, ghost: !sel, selectable: false, setup: 'bg', setupId: b.id,
-            lead: art.heroImg(b.id, pick.gender), leadSize: 44 });
+        var tier = bgTierBadge(b);
+        optionCard({
+          title: b.name,
+          tagline: b.tag,
+          badge: tier.text, badgeTone: tier.tone,
+          avatar: art.heroImg(b.id, pick.gender), avatarSize: 48,
+          chips: bgChips(b),
+          selected: isSetupSelected('bg', b.id),
+          setup: 'bg', setupId: b.id,
+          onClick: (function (id) { return function () { pickSetup('bg', id); }; })(b.id)
+        });
       });
     }
     /* base 页没有上一步；性别 + 出身都选齐才放行「确认」 */
+    bottomHint = setupPickedHint();
     setupConfirm(U.confirm || '确认', 'base');
   } else if (setupStep === 1) {
-    /* 第 1 页：人生目标 + 难度，都每行一个 */
+    /* 第 1 页：人生目标 + 难度，均富卡片 */
     drawSetupHero();
-    section(U.goalHead, U.goalSub);
+    sectionBadge(U.goalHead, U.goalSub, 1);
     var bgs2 = DB.list('backgrounds');
     var bg = null;
     for (var i = 0; i < bgs2.length; i++) if (bgs2[i].id === pick.bgId) bg = bgs2[i];
@@ -1035,57 +1860,46 @@ function drawSetup() {
       for (var j = 0; j < goals.length; j++) if (goals[j].id === gid) g = goals[j];
       if (!g) return;
       var nm = (g.nameByGender && g.nameByGender[pick.gender]) || g.name;
-      var sel = isSetupSelected('goal', gid);
-      button(nm, g.desc, function () { pickSetup('goal', gid); },
-        { selected: sel, ghost: !sel, selectable: false, setup: 'goal', setupId: gid });
+      optionCard({
+        icon: goalEmoji(gid),
+        title: nm,
+        sub: g.desc,
+        selected: isSetupSelected('goal', gid),
+        setup: 'goal', setupId: gid,
+        onClick: (function (id) { return function () { pickSetup('goal', id); }; })(gid)
+      });
     });
-    section(U.diffHead, U.diffSub);
+    sectionBadge(U.diffHead, U.diffSub, 2);
     var diffs = DB.list('difficulties');
     diffs.forEach(function (d) {
-      var sel = isSetupSelected('diff', d.id);
-      button(d.name,
-        d.desc + '　' + fmt(U.diffMeta, { days: d.partnerDeadline }),
-        function () { pickSetup('diff', d.id); },
-        { selected: sel, ghost: !sel, selectable: false, setup: 'diff', setupId: d.id });
+      var stars = d.id === 'easy' ? '★' : (d.id === 'normal' ? '★★' : '★★★');
+      optionCard({
+        title: d.name,
+        sub: d.desc + '　' + fmt(U.diffMeta, { days: d.partnerDeadline }),
+        badge: stars, badgeTone: DIFF_PILL[d.id] ? d.id : 'normal',
+        selected: isSetupSelected('diff', d.id),
+        setup: 'diff', setupId: d.id,
+        onClick: (function (id) { return function () { pickSetup('diff', id); }; })(d.id)
+      });
     });
+    bottomHint = setupPickedHint();
     bottomAction(U.backBase || '上一步', function () { setupStep = 0; scrollY = 0; draw(); });
     setupConfirm(U.begin || '开始游戏', 'goaldiff');
   }
 }
 
-/* 性别一行两个：男 / 女 横向并排，点一次选中、再点一次取消 */
+/* 性别分段控件：男 / 女 横向并排，点一次选中、再点一次取消 */
 function drawGenderRow(U) {
   var opts = U.genderOptions || [];
   if (!opts.length) return;
-  var w = W - PAD * 2;
-  var gap = 12;
-  var cols = opts.length > 1 ? 2 : 1;
-  var cw = (w - gap) / 2;
-  var h = 46;
-  var y = C.y;
-  for (var i = 0; i < opts.length; i++) {
-    var g = opts[i];
-    var col = i % cols;
-    var row = Math.floor(i / cols);
-    var x = PAD + col * (cw + gap);
-    var yy = y + row * (h + GAP);
-    var sel = isSetupSelected('gender', g.id);
-    var bgc = sel ? '#fbeae5' : P.card;
-    var fg = sel ? P.primaryDark : P.text1;
-    var bd = sel ? P.primary : P.line;
-    R.fillRoundRect(ctx, x, yy, cw, h, 12, bgc);
-    R.roundRectPath(ctx, x, yy, cw, h, 12);
-    ctx.strokeStyle = bd; ctx.lineWidth = sel ? 2 : 1; ctx.stroke();
-    R.setFont(ctx, 16, true);
-    ctx.fillStyle = fg;
-    ctx.fillText(g.label, x + (cw - ctx.measureText(g.label).width) / 2, yy + h / 2 + 5);
-    buttons.push({
-      x: x, y: yy, w: cw, h: h, label: g.label,
-      selectable: false, setup: 'gender', setupId: g.id,
-      onClick: (function (id) { return function () { pickSetup('gender', id); }; })(g.id)
-    });
-  }
-  C.y = y + Math.ceil(opts.length / cols) * (h + GAP);
+  drawSegmented({
+    setup: 'gender',
+    options: opts.map(function (g) {
+      return { id: g.id, label: g.label, icon: g.id === 'm' ? '👦' : '👧' };
+    }),
+    selectedId: pick.gender,
+    onPick: function (id) { pickSetup('gender', id); }
+  });
 }
 
 /* 主角形象：按「出身背景职业 + 性别」取职业头像，不再随机生成 */
@@ -1268,106 +2082,339 @@ function drawPlay() {
 }
 
 function drawStatus() {
+  /* 卡片化主界面（对齐「主页原型 V2」）：
+   * 顶部条（日期 + 紧凑倒计时） → 三栏收支卡 → 关系卡（头像 + 阶段进度）→ 2×3 属性卡 */
+  drawPlayTopBar();
+  drawFinanceCard();
+  drawRelationCard();
+  drawAttrGrid(playStatDefs());
+  C.y += 10;
+}
+
+/* ============ 顶部条：日期 + 紧凑倒计时 ============ */
+var PLAY_GREETINGS = ['早安，开始新的一天', '今天也要加油呀', '新的一天，新的可能', '稳住，我们能赢', '今天也要元气满满'];
+function playGreeting() {
+  if (S.day <= 1) return txt('greetFirst') || '早安，开始新的一天';
+  return PLAY_GREETINGS[(S.day - 2) % PLAY_GREETINGS.length];
+}
+
+function drawChip(text, x, y) {
+  R.setFont(ctx, 11);
+  var tw = ctx.measureText(text).width;
+  var padX = 8, h = 22, w = tw + padX * 2;
+  R.fillRoundRect(ctx, x, y, w, h, 999, '#efe8d8');
+  R.roundRectPath(ctx, x, y, w, h, 999);
+  ctx.strokeStyle = '#e5dcc8'; ctx.lineWidth = 1; ctx.stroke();
+  R.setFont(ctx, 11); ctx.fillStyle = P.text2;
+  ctx.fillText(text, x + padX, y + 15);
+  return w;
+}
+
+function drawPlayTopBar() {
+  var topY = C.y;
   var left = Math.max(0, S.diff.maxDays - S.day);
 
-  /* 第一行：天数 + 总进度 */
-  R.setFont(ctx, 18, true);
-  ctx.fillStyle = P.text1;
-  ctx.fillText('第 ' + S.day + ' 天 · ' + engine.weekdayName(S.day), PAD, C.y + 16);
-  C.y += 24;
-  R.setFont(ctx, 12);
-  ctx.fillStyle = P.text2;
-  ctx.fillText(fmt(ui('dayLeft', '剩余 {n} 天 · 共 ' + S.diff.maxDays + ' 天'), { n: left }), PAD, C.y + 10);
-  C.y += 22;
+  /* 左：天数 + 问候 + 难度/目标/职业 胶囊 */
+  R.setFont(ctx, 12); ctx.fillStyle = P.text3;
+  ctx.fillText('第 ' + S.day + ' 天 · ' + engine.weekdayName(S.day), PAD, topY + 12);
+  R.setFont(ctx, 21, true); ctx.fillStyle = P.text1;
+  ctx.fillText(playGreeting(), PAD, topY + 38);
+  var chipY = topY + 50;
+  var cx = PAD;
+  cx += drawChip(S.diff.name, cx, chipY) + 6;
+  cx += drawChip(engine.goalName(S), cx, chipY) + 6;
+  if (S.jobName) cx += drawChip(S.jobName, cx, chipY);
+  var leftBottom = chipY + 22;
 
-  /* 倒计时卡片（醒目展示） */
-  drawDeadlineCard();
+  /* 右：紧凑倒计时卡（仅限时目标的局显示；保留紧急/警告配色语义） */
+  var cdW = 112, cdH = 76, cdX = W - PAD - cdW, cdY = topY;
+  if (S.goal && S.goal.needRelation) {
+    drawCompactCountdown(cdX, cdY, cdW, cdH, left);
+  }
+  C.y = Math.max(leftBottom, cdY + cdH) + 14;
+}
 
-  /* 目标行 */
-  R.setFont(ctx, 13);
-  ctx.fillStyle = P.text2;
-  C.y = R.drawWrapped(ctx, fmt(txt('goalLine'), { diff: S.diff.name, goal: engine.goalName(S), job: S.jobName }),
-    PAD, C.y + 12, W - PAD * 2, 18, P.text2, 13);
-  C.y += 10;
+function drawCompactCountdown(x, y, w, h, left) {
+  var limit = S.singleLimit || 0;
+  var streak = S.singleStreak || 0;
+  var remain = Math.max(0, limit - streak);
+  var ds = engine.deadlineState(S);
+  var single = ds.running, paused = !ds.running;
+  var urgent = single && remain <= 10;
+  var warn = single && remain <= 20 && remain > 10;
+  var main = paused ? P.up : (urgent ? P.down : (warn ? P.warn : P.primary));
+  var bg = paused ? '#eef6f1' : (urgent ? '#fdecea' : (warn ? '#fdf3e5' : P.card));
+  R.fillRoundRect(ctx, x, y, w, h, 14, bg);
+  R.roundRectPath(ctx, x, y, w, h, 14);
+  ctx.strokeStyle = (urgent || warn) ? main : P.line;
+  ctx.lineWidth = urgent ? 2 : 1; ctx.stroke();
 
-  /* 收支 */
+  /* 标题（小字）单独一行：避免与大号天数同排相撞（剩余天数大时尤其明显） */
+  R.setFont(ctx, 12, true); ctx.fillStyle = main;
+  ctx.fillText(ui('deadlineTitle', '相亲期限'), x + 10, y + 15);
+
+  /* 大号剩余天数 + 天：单独一行，左对齐，不再和标题抢占同一横排 */
+  var numTxt = String(remain);
+  R.setFont(ctx, 18, true); ctx.fillStyle = main;
+  var numW = ctx.measureText(numTxt).width;
+  ctx.fillText(numTxt, x + 10, y + 37);
+  R.setFont(ctx, 11); ctx.fillStyle = P.text2;
+  ctx.fillText('天', x + 10 + numW + 4, y + 37);
+
+  /* 状态提示（暂停 / 仍单身 / 待赴约）：去掉引导的「· 」，换行展示 */
+  var hint = (txt(DEADLINE_HINT_KEY[ds.state] || 'deadlinePaused') || '').replace(/^\s*·\s*/, '');
+  R.setFont(ctx, 10); ctx.fillStyle = P.text2;
+  R.drawWrapped(ctx, hint, x + 10, y + 52, w - 20, 13, P.text2, 10);
+
+  /* 进度条（已消耗比例） */
+  var barW = w - 20, barY = y + h - 8;
+  R.fillRoundRect(ctx, x + 10, barY, barW, 4, 2, '#f0e9da');
+  var used = limit > 0 ? Math.min(1, streak / limit) : 0;
+  if (used > 0) R.fillRoundRect(ctx, x + 10, barY, Math.max(used * barW, 4), 4, 2, main);
+}
+
+/* ============ 收支三栏卡 ============ */
+function drawFinanceCard() {
   var fin = engine.monthFinance(S);
-  var netTxt = (fin.net >= 0 ? '+' : '') + engine.moneyText(fin.net);
-  R.setFont(ctx, 12);
-  ctx.fillStyle = P.text2;
-  C.y = R.drawWrapped(ctx, fmt(txt('financeLine'), {
-    income: engine.moneyText(fin.income), base: engine.moneyText(fin.baseIncome),
-    bonus: engine.moneyText(fin.careerBonus), expense: engine.moneyText(fin.expense), net: netTxt
-  }), PAD, C.y + 12, W - PAD * 2, 18, P.text2, 12);
-  C.y += 14;
+  var net = fin.net;
+  var w = W - PAD * 2, x = PAD, y = C.y, h = 62;
+  R.fillRoundRect(ctx, x, y, w, h, 14, P.card);
+  R.roundRectPath(ctx, x, y, w, h, 14); ctx.strokeStyle = P.line; ctx.lineWidth = 1; ctx.stroke();
 
-  /* 双人头像区：左右两列等宽、头像各自居中；
-   * 左列点头像看「近期变化」，右列点头像看「对方资料」。
-   * 好感度条挂在对象头像正下方，没有对象时整块不出现。 */
-  var relNames = tset('rel_names') || {};
-  var avSize = 56;
-  var colW = 92;                      // 两列宽度：既容得下头像，也放得下好感度条
-  var ly = C.y;
-  var leftCx = PAD + colW / 2;
-  var rightCx = W - PAD - colW / 2;
+  var colW = (w - 2) / 3;
+  drawFinItem('本月收入', (fin.income >= 0 ? '+' : '') + engine.moneyText(fin.income), P.primary, x + 10, y, false, null);
+  drawFinItem('本月支出', (fin.expense >= 0 ? '-' : '') + engine.moneyText(fin.expense), P.text2, x + colW + 10, y, false, null);
+  var note = '基本' + engine.moneyText(fin.baseIncome) + '＋事业' + engine.moneyText(fin.careerBonus);
+  drawFinItem('净结余', (net >= 0 ? '+' : '') + engine.moneyText(net), P.primary, x + colW * 2 + 10, y, true, clipText(note, colW - 20));
 
-  /* 左列：主角（出身背景职业头像） */
-  drawRoleAvatar(art.heroImg(S.bg.id, S.gender), leftCx, ly + avSize / 2, avSize, '我');
-  centerText(txt('you') || '我', leftCx, ly + avSize + 16, 12, P.text1, false);
-  centerText(S.bg.name, leftCx, ly + avSize + 32, 11, P.text2, false);
-  if (S.jobName) centerText(S.jobName, leftCx, ly + avSize + 48, 10, P.text3, false);
-  var ownHint = txt('statTap');
-  if (ownHint) centerText(ownHint, leftCx, ly + avSize + 72, 10, P.text3, false);
-  buttons.push({
-    x: leftCx - colW / 2, y: ly - 6, w: colW, h: avSize + 82,
-    label: 'hero:stats', onClick: openStatDetail
-  });
+  ctx.save(); ctx.setLineDash([3, 3]); ctx.strokeStyle = P.line; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(x + colW, y + 12); ctx.lineTo(x + colW, y + h - 12); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(x + colW * 2, y + 12); ctx.lineTo(x + colW * 2, y + h - 12); ctx.stroke();
+  ctx.restore();
+  C.y += h + GAP;
+}
 
-  var rel = relNames[S.relationship] || S.relationship;
+function drawFinItem(k, v, vColor, x, y, isNet, note) {
+  R.setFont(ctx, 11); ctx.fillStyle = P.text3;
+  ctx.fillText(k, x, y + 20);
+  R.setFont(ctx, isNet ? 20 : 16, true); ctx.fillStyle = vColor;
+  ctx.fillText(v, x, y + 42);
+  if (note) { R.setFont(ctx, 9); ctx.fillStyle = P.text3; ctx.fillText(note, x, y + 56); }
+}
+
+/* ============ 关系卡：头像 + 阶段进度 ============ */
+function relationStageIndex(rel) {
+  if (rel === 'talking') return 1;
+  if (rel === 'dating' || rel === 'married') return 2;
+  return 0;                              // single / meeting
+}
+
+function drawStatusTag(rel, cx, y) {
   R.setFont(ctx, 14, true);
+  var tw = ctx.measureText(rel).width;
+  var pw = tw + 28, ph = 26;
+  R.fillRoundRect(ctx, cx - pw / 2, y, pw, ph, 999, '#fbe9ec');
+  R.roundRectPath(ctx, cx - pw / 2, y, pw, ph, 999);
+  ctx.strokeStyle = '#f6d3d0'; ctx.lineWidth = 1; ctx.stroke();
   ctx.fillStyle = P.accent;
-  ctx.fillText(rel, W / 2 - ctx.measureText(rel).width / 2, ly + avSize / 2 + 5);
+  ctx.fillText(rel, cx - tw / 2, y + ph / 2 + 5);
+}
 
-  /* 右列：对象 / 待见面的人 */
+function drawStageProgress(activeIdx, cx, y, totalW) {
+  var labels = ['相亲', '暧昧', '恋爱'];
+  var nodeD = 22, segW = (totalW - nodeD * 3) / 2;
+  var sx = cx - totalW / 2;
+  for (var i = 0; i < 3; i++) {
+    var nx = sx + nodeD / 2 + i * (nodeD + segW);
+    var ncy = y + nodeD / 2;
+    var isActive = i === activeIdx;
+    var isDone = i < activeIdx;
+    if (i < 2) {
+      ctx.strokeStyle = isDone ? P.accent : P.line; ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(nx + nodeD / 2, ncy);
+      ctx.lineTo(nx + nodeD / 2 + segW, ncy);
+      ctx.stroke();
+    }
+    if (isActive) {
+      ctx.save(); ctx.fillStyle = '#fbe9ec';
+      ctx.beginPath(); ctx.arc(nx, ncy, nodeD / 2 + 4, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+    }
+    R.fillRoundRect(ctx, nx - nodeD / 2, ncy - nodeD / 2, nodeD, nodeD, 999,
+      isActive ? P.accent : (isDone ? '#fbe9ec' : '#f0e9da'));
+    if (!isActive) {
+      R.roundRectPath(ctx, nx - nodeD / 2, ncy - nodeD / 2, nodeD, nodeD, 999);
+      ctx.strokeStyle = isDone ? P.accent : '#e5dcc8'; ctx.lineWidth = 1.5; ctx.stroke();
+    }
+    centerText(String(i + 1), nx, ncy + 4, 11, isActive ? '#fff' : (isDone ? P.accent : P.text3), true);
+    R.setFont(ctx, 10); ctx.fillStyle = isActive ? P.accent : P.text3;
+    var lw = ctx.measureText(labels[i]).width;
+    ctx.fillText(labels[i], nx - lw / 2, ncy + nodeD / 2 + 12);
+  }
+}
+
+function drawRelationCard() {
+  var w = W - PAD * 2, x = PAD;
+  var avSize = 52;
+  var top = C.y + 12;
+  var avCy = top + avSize / 2;
+  var nameY = top + avSize + 16;
+  var descY = nameY + 15;
+  var extraY = descY + 14;
+  var h = (extraY + 26) - C.y;
+
+  /* 关系预警：踩到对方在意的那条底线之后，这里会一直挂着一条红色提示条。
+   * 只靠「闪 3 秒的提示条」传这种信息太容易错过 —— 而这条信息决定玩家接下来
+   * 几天要不要优先救这一项。挂在关系卡上，等于把「分手倒计时」摆在最显眼处。 */
+  var warnReason = (S.leaveWarnDay != null && S.leaveWarnReason) ? S.leaveWarnReason : null;
+  if (warnReason) h += 30;
+
+  R.fillRoundRect(ctx, x, C.y, w, h, 14, P.card);
+  R.roundRectPath(ctx, x, C.y, w, h, 14); ctx.strokeStyle = P.line; ctx.lineWidth = 1; ctx.stroke();
+
+  var colHalf = 44;
+  var leftCx = x + colHalf;
+  var rightCx = x + w - colHalf;
+
+  /* 左：主角 */
+  drawRoleAvatar(art.heroImg(S.bg.id, S.gender), leftCx, avCy, avSize, '我');
+  centerText('你', leftCx, nameY, 13, P.text1, true);
+  centerText(S.bg.name, leftCx, descY, 10, P.text2, false);
+  var ownHint = txt('statTap');
+  if (ownHint) centerText(ownHint, leftCx, extraY + 8, 10, P.text3, false);
+  buttons.push({ x: leftCx - colHalf, y: top - 12, w: colHalf * 2, h: h - 12, label: 'hero:stats', onClick: openStatDetail });
+
+  /* 右：对象 / 待见面的人 */
   var other = S.partner || S.lead;
   if (other) {
-    /* 对象 / 待见面的人：职业头像（职业与头像一一对应） */
-    drawRoleAvatar(art.partnerImg(other.job, other.gender, other.avatar), rightCx, ly + avSize / 2, avSize, 'TA');
-    centerText(other.name, rightCx, ly + avSize + 16, 12, P.text1, false);
-    centerText(S.partner ? other.personality : txt('leadTag'),
-      rightCx, ly + avSize + 32, 11, P.text2, false);
-    /* 好感度：聊天框里只要有人（对象 / 待见面的人）就显示，不用点进去看。
-     * 待见面时在微信上聊出来的那部分，初遇时会折算成「第一印象的底子」。 */
-    drawPartnerAffection(rightCx, ly + avSize + 38, colW);
-    /* 点对方头像 → 看资料（含姓名/职业/性格/条件等） */
-    var hint = txt('profileTap');
-    if (hint) centerText(hint, rightCx, ly + avSize + 72, 10, P.text3, false);
-    buttons.push({
-      x: rightCx - colW / 2, y: ly - 6,
-      w: colW, h: avSize + 82,
-      label: 'partner:profile', onClick: openPartnerProfile
-    });
+    drawRoleAvatar(art.partnerImg(other.job, other.gender, other.avatar), rightCx, avCy, avSize, 'TA');
+    centerText(other.name, rightCx, nameY, 13, P.text1, true);
+    centerText(S.partner ? other.personality : (txt('leadTag') || ''), rightCx, descY, 10, P.text2, false);
+    drawPartnerAffection(rightCx, extraY - 2, colHalf * 2 - 8);
   } else {
-    R.setFont(ctx, 24);
-    ctx.fillStyle = P.text3;
-    ctx.fillText('?', rightCx - 5, ly + avSize / 2 + 8);
-    centerText(txt('noPartner'), rightCx, ly + avSize + 32, 11, P.text2, false);
-    centerText(txt('noPartnerSub') || '', rightCx, ly + avSize + 48, 10, P.text3, false);
-    /* 还没有对象时，点「?」也能进资料页看引导，而不是无处可点 */
-    var hint0 = txt('profileTap');
-    if (hint0) centerText(hint0, rightCx, ly + avSize + 72, 10, P.text3, false);
-    buttons.push({
-      x: rightCx - colW / 2, y: ly - 6,
-      w: colW, h: avSize + 82,
-      label: 'partner:profile', onClick: openPartnerProfile
-    });
+    R.fillRoundRect(ctx, rightCx - avSize / 2, top, avSize, avSize, 26, '#f0ead9');
+    R.roundRectPath(ctx, rightCx - avSize / 2, top, avSize, avSize, 26);
+    ctx.strokeStyle = '#d8cfba'; ctx.lineWidth = 1.5; ctx.setLineDash([4, 3]); ctx.stroke(); ctx.setLineDash([]);
+    R.setFont(ctx, 24); ctx.fillStyle = P.text3;
+    ctx.fillText('?', rightCx - ctx.measureText('?').width / 2, top + avSize / 2 + 8);
+    centerText(txt('noPartner') || '暂无对象', rightCx, nameY, 13, P.text1, true);
+    centerText(txt('noPartnerSub') || '先去找机会', rightCx, descY, 10, P.text2, false);
+    var ph = txt('profileTap');
+    if (ph) centerText(ph, rightCx, extraY + 8, 10, P.text3, false);
   }
-  C.y = ly + avSize + 82;
+  buttons.push({ x: rightCx - colHalf, y: top - 12, w: colHalf * 2, h: h - 12, label: 'partner:profile', onClick: openPartnerProfile });
 
-  /* 属性条：一行两条。好感度已挪到对象头像下方，这里不再重复展示；
-   * 点击入口在主角头像上（见上面 'hero:stats'）。 */
-  drawStatGrid(playStatDefs());
-  C.y += 10;
+  /* 中：状态标签 + 三阶段进度 */
+  var relNames = tset('rel_names') || {};
+  var rel = relNames[S.relationship] || S.relationship;
+  var midCx = x + w / 2;
+  drawStatusTag(rel, midCx, top + 6);
+  drawStageProgress(relationStageIndex(S.relationship), midCx, top + 44, Math.min(w - colHalf * 4 - 8, 150));
+
+  /* 底部预警条（内嵌在卡里，占满可用宽度） */
+  if (warnReason) {
+    var padIn = 12;
+    var bw = w - padIn * 2, bh = 24;
+    var by = C.y + h - bh - 6;
+    R.fillRoundRect(ctx, x + padIn, by, bw, bh, 12, '#fbebe9');
+    R.roundRectPath(ctx, x + padIn, by, bw, bh, 12);
+    ctx.strokeStyle = '#f2d5d2'; ctx.lineWidth = 1; ctx.stroke();
+
+    R.setEmojiFont(ctx, 11);
+    ctx.fillStyle = P.down;
+    var iw = ctx.measureText(ICON.warn).width;
+    var ibx = x + padIn + 8;
+    ctx.fillText(ICON.warn, ibx, by + bh / 2 + 4);
+
+    R.setFont(ctx, 11, true);
+    ctx.fillStyle = P.down;
+    var label = fmt(ui('partner_leave_warn_card', '关系预警 · {reason}'), { reason: warnReason });
+    /* 先设好字体再量宽度 —— clipText 用的是当前 ctx.font */
+    ctx.fillText(clipText(label, bw - 16 - iw - 10), ibx + iw + 5, by + bh / 2 + 4);
+  }
+
+  C.y += h + GAP;
+}
+
+/* ============ 2×3 属性卡 ============ */
+var ATTR_META = {
+  money: { icon: '💰', bg: '#fdf3e0' },
+  health: { icon: ICON.health, bg: '#e8f5ec' },
+  career: { icon: '💼', bg: '#e9effb' },
+  looks: { icon: '✨', bg: '#f3ecfb' },
+  family: { icon: '🏠', bg: '#f7efdf' },
+  mood: { icon: '😊', bg: '#e6f5f2' },
+  affection: { icon: '💕', bg: '#fbe9ec' }
+};
+
+function drawAttrGrid(defs) {
+  if (!defs || !defs.length) return;
+  var colGap = 12, colW = (W - PAD * 2 - colGap) / 2;
+  var rowY = C.y, rowH = 0, col = 0;
+  for (var i = 0; i < defs.length; i++) {
+    var hh = drawAttrCard(defs[i], PAD + col * (colW + colGap), rowY, colW);
+    if (hh > rowH) rowH = hh;
+    col++;
+    if (col >= 2) { col = 0; rowY += rowH + 12; rowH = 0; }
+  }
+  C.y = rowY + rowH;
+}
+
+function drawAttrCard(d, x, y, w) {
+  var meta = ATTR_META[d.key] || { icon: '•', bg: '#f3ece0' };
+  var padX = 11, padY = 10;
+  var h = padY * 2 + 20 + 7;
+  R.fillRoundRect(ctx, x, y, w, h, 12, P.card);
+  R.roundRectPath(ctx, x, y, w, h, 12); ctx.strokeStyle = P.line; ctx.lineWidth = 1; ctx.stroke();
+
+  /* 图标盒 */
+  var ib = 20;
+  R.fillRoundRect(ctx, x + padX, y + padY, ib, ib, 6, meta.bg);
+  R.setEmojiFont(ctx, 12); ctx.fillStyle = P.text2;
+  var iw = ctx.measureText(meta.icon).width;
+  ctx.fillText(meta.icon, x + padX + ib / 2 - iw / 2, y + padY + ib / 2 + 4);
+
+  /* 标签 + 数值 */
+  R.setFont(ctx, 12); ctx.fillStyle = P.text2;
+  ctx.fillText(d.label, x + padX + ib + 6, y + padY + 14);
+  var v = Math.round(S[d.key] || 0);
+  var tw = statFlashAnim(d.key);
+  var shown = tw ? Math.round(tw.from + (v - tw.from) * tw.e) : v;
+  var display = d.format === 'money' ? engine.moneyText(shown) : String(shown);
+  R.setFont(ctx, 13, true);
+  ctx.fillStyle = tw ? (tw.dir > 0 ? P.up : P.down) : d.color;
+  var vt = display, vW = ctx.measureText(vt).width;
+  ctx.fillText(vt, x + w - padX - vW, y + padY + 14);
+
+  /* 进度条 */
+  drawStatBar(d, x + padX, y + padY + 22, w - padX * 2, 6, false);
+
+  /* 结算飘字（涨/跌） */
+  var fp = statFlashProgress();
+  if (fp >= 0 && statFlash.delta && statFlash.delta[d.key]) {
+    var dv = Math.round(statFlash.delta[d.key]);
+    if (dv !== 0) {
+      var ftxt = (dv > 0 ? '+' : '-') +
+        (d.key === 'money' && Math.abs(dv) >= 10000 ? engine.moneyText(Math.abs(dv)) : String(Math.abs(dv)));
+      var rise = 14 * fp;
+      var al = fp < 0.65 ? 1 : (1 - (fp - 0.65) / 0.35);
+      ctx.save(); ctx.globalAlpha = Math.max(0, Math.min(1, al));
+      R.setFont(ctx, 13, true); ctx.fillStyle = dv > 0 ? P.up : P.down;
+      var fW = ctx.measureText(ftxt).width;
+      ctx.fillText(ftxt, x + w - padX - fW, y + padY + 14 - rise);
+      ctx.restore();
+    }
+  }
+  return h;
+}
+
+function clipText(text, maxW) {
+  if (!text) return '';
+  if (ctx.measureText(text).width <= maxW) return text;
+  var t = text;
+  while (t.length > 1 && ctx.measureText(t + '…').width > maxW) t = t.slice(0, -1);
+  return t + '…';
 }
 
 /* 主界面属性条用的定义：数据里标了 slot 的（如好感度）改在别处展示，不在这里重复 */
@@ -1531,7 +2578,7 @@ function chatEntryButton() {
       sub += '\n' + fmt(T.mustDateSoon, { n: n, thr: thr });
     }
   }
-  button(label, sub, function () { openChat(false); }, { selectable: true });
+  optionCard({ icon: '💬', title: label, sub: sub, selectable: true, onClick: function () { openChat(false); } });
 }
 
 /* 兜底告警：微信里有人，但 chats 里没有这个阶段可聊的题目。
@@ -1547,12 +2594,20 @@ function warnChatPoolIfStale(s) {
     '这通常是云端 chats 集合还是旧数据，请用 Upsert/覆盖 重新导入 db/export/import/chats.json。');
 }
 
-/* 行动菜单：只给两个方向（相亲向 / 自我提升向），
- * 具体安排收进各自的二级页（带背景图），主界面不再铺一长串按钮。 */
+/* 行动菜单：只给两个方向（相亲向 / 自我提升向），做成单选卡，
+ * 选中后由底部「确认」进入对应的二级页（带背景图）。 */
 function drawActionMenu() {
   section(txt('actionTitle'), txt('actionNote'));
-  button(txt('seekTitle'), txt('seekSub'), gotoSeek);
-  button(txt('otherTitle'), txt('otherSub'), gotoUpgrade);
+  optionCard({
+    icon: '💝', title: txt('seekTitle'), sub: txt('seekSub'),
+    badge: txt('mainLine') || '推进主线', badgeTone: 'gold',
+    selected: pendingKey === 'choose:seek', selectable: true, key: 'choose:seek', onClick: gotoSeek
+  });
+  optionCard({
+    icon: ICON.planOther, title: txt('otherTitle'), sub: txt('otherSub'),
+    selected: pendingKey === 'choose:upgrade', selectable: true, key: 'choose:upgrade', onClick: gotoUpgrade
+  });
+  confirmAction(txt('confirm') || '确认', { disabledLabel: ui('confirmPick', '请先选择今日安排') });
 }
 
 /* 二级页 · 寻找相亲机会
@@ -1568,36 +2623,45 @@ function drawSeekMenu() {
     section(txt('seekMenuTitle'), null);
     var channels = DB.list('channels');
     channels.forEach(function (c) {
-      button(c.name, fmt(txt('seekMeta'), { cost: engine.moneyText(Math.round(c.cost * S.diff.costMod)), pct: Math.round(c.chance * 100), sub: c.sub }),
-        function () { actSeek(c.id); }, { selectable: true });
+      var cost = Math.round(c.cost * S.diff.costMod);
+      var pct = Math.round(c.chance * 100);
+      optionCard({
+        icon: '💘', title: c.name, sub: c.sub,
+        chips: [
+          { label: '花费', value: engine.moneyText(cost), tone: 'money' },
+          { label: '成功率', value: pct + '%', tone: pct >= 50 ? 'hi' : (pct >= 30 ? 'mid' : 'lo') }
+        ],
+        selectable: true, key: 'seek:' + c.id,
+        onClick: (function (id) { return function () { actSeek(id); }; })(c.id)
+      });
     });
   } else if (r === 'single' && S.lead) {
-    button(fmt(txt('meetTitle'), { name: S.lead.name }), fmt(txt('meetSub'), { days: Math.round(3 * S.diff.timeMod) }), actMeet, { selectable: true });
+    optionCard({ icon: ICON.meet, title: fmt(txt('meetTitle'), { name: S.lead.name }), sub: fmt(txt('meetSub'), { days: Math.round(3 * S.diff.timeMod) }), selectable: true, onClick: actMeet });
     /* 赴约之前也能在微信上先聊两句（chats 里带 lead 阶段的对话） */
     chatEntryButton();
   } else if (r === 'talking') {
-    button(fmt(txt('dateTitle'), { name: S.partner.name }), txt('dateSub'), gotoDate, { selectable: true });
-    button(fmt(txt('confessTitle'), { name: S.partner.name }), fmt(txt('confessSub'), { pct: Math.round(engine.confessChance(S) * 100), days: engine.actionDays('confess', S) }), actConfess, { selectable: true });
+    optionCard({ icon: ICON.date, title: fmt(txt('dateTitle'), { name: S.partner.name }), sub: txt('dateSub'), selectable: true, onClick: gotoDate });
+    optionCard({ icon: '💗', title: fmt(txt('confessTitle'), { name: S.partner.name }), sub: fmt(txt('confessSub'), { pct: Math.round(engine.confessChance(S) * 100), days: engine.actionDays('confess', S) }), selectable: true, onClick: actConfess });
     chatEntryButton();
-    button(txt('breakupTitle'), txt('breakupSub'), actBreakup, { selectable: true });
+    optionCard({ icon: '💔', title: txt('breakupTitle'), sub: txt('breakupSub'), selectable: true, onClick: actBreakup });
   } else if (r === 'dating') {
-    button(fmt(txt('dateTitle'), { name: S.partner.name }), txt('dateSub'), gotoDate, { selectable: true });
+    optionCard({ icon: ICON.date, title: fmt(txt('dateTitle'), { name: S.partner.name }), sub: txt('dateSub'), selectable: true, onClick: gotoDate });
     /* 求婚看的是「恋爱后的感情刻度」：还没养够就明说还差多少，别让人蒙头送人头 */
     var pMin = engine.proposeAffectionMin(S);
     var pNeed = Math.max(0, pMin - Math.round(S.affection || 0));
     var pSub = pNeed > 0
       ? fmt(txt('proposeSubWait'), { need: pNeed, cur: Math.round(S.affection || 0), cap: engine.affectionCap(S) })
       : fmt(txt('proposeSub'), { pct: Math.round(engine.proposeChance(S) * 100), cost: engine.moneyText(DB.num('PROPOSE_COST', 60000)), days: engine.actionDays('propose', S) });
-    button(fmt(txt('proposeTitle'), { name: S.partner.name }), pSub, actPropose, { selectable: true });
+    optionCard({ icon: '💍', title: fmt(txt('proposeTitle'), { name: S.partner.name }), sub: pSub, selectable: true, onClick: actPropose });
     chatEntryButton();
-    button(txt('breakupTitle2'), txt('breakupSub'), actBreakup, { selectable: true });
+    optionCard({ icon: '💔', title: txt('breakupTitle2'), sub: txt('breakupSub'), selectable: true, onClick: actBreakup });
   } else if (r === 'married') {
-    button(fmt(txt('dateTitleMarried'), { name: S.partner.name }), txt('dateSub'), gotoDate, { selectable: true });
+    optionCard({ icon: ICON.date, title: fmt(txt('dateTitleMarried'), { name: S.partner.name }), sub: txt('dateSub'), selectable: true, onClick: gotoDate });
     chatEntryButton();
     if (!S.flags.child) {
       var can = S.affection >= DB.num('CHILD_AFFECTION_MIN', 70);
       var sub = can ? fmt(txt('childSubOk'), { cost: '3 万', days: engine.actionDays('child', S), goal: engine.goalName(S) }) : fmt(txt('childSubNo'), { min: DB.num('CHILD_AFFECTION_MIN', 70) });
-      button(txt('childTitle'), sub, actChild, can ? { selectable: true } : { disabled: true });
+      optionCard({ icon: '👶', title: txt('childTitle'), sub: sub, selectable: can, disabled: !can, onClick: actChild });
     } else {
       R.setFont(ctx, 13);
       ctx.fillStyle = P.text3;
@@ -1614,10 +2678,10 @@ function drawSeekMenu() {
  * 头部背景图取 upgrade_bg_<主角性别>；内容是过日子 / 提升自己 / 加班挣钱 / 休息。 */
 function drawUpgradeMenu() {
   C.y = SAFE_TOP + PAGE_HEAD_H + 24;
-  button(txt('lifeTitle'), txt('lifeSub'), actLife, { selectable: true });
-  button(txt('improveTitle'), txt('improveSub'), actImprove, { selectable: true });
-  button(txt('overtimeTitle'), txt('overtimeSub'), actOvertime, { selectable: true });
-  button(txt('restTitle'), txt('restSub') + (S.jobType === 'worker' ? txt('restWorker') : ''), actRest, { selectable: true });
+  optionCard({ icon: '🏠', title: txt('lifeTitle'), sub: txt('lifeSub'), selectable: true, onClick: actLife });
+  optionCard({ icon: '📚', title: txt('improveTitle'), sub: txt('improveSub'), selectable: true, onClick: actImprove });
+  optionCard({ icon: '💼', title: txt('overtimeTitle'), sub: txt('overtimeSub'), selectable: true, onClick: actOvertime });
+  optionCard({ icon: ICON.rest, title: txt('restTitle'), sub: txt('restSub') + (S.jobType === 'worker' ? txt('restWorker') : ''), selectable: true, onClick: actRest });
   bottomAction(txt('back') || '返回', backToChoose);
   confirmAction(txt('confirm') || '确认');
 }
@@ -1628,6 +2692,7 @@ function drawUpgradeMenu() {
 function drawDateMenu() {
   C.y = SAFE_TOP + PAGE_HEAD_H + 24;
   var dts = DB.list('date_types');
+  var DATE_EMOJI = { simple: ICON.dateSimple, standard: ICON.date, activity: ICON.dateActivity };
   dts.forEach(function (t) {
     var cost = Math.round(t.cost * S.diff.costMod);
     var dis = S.money < cost;
@@ -1635,7 +2700,11 @@ function drawDateMenu() {
     if (S.jobType === 'worker' && !engine.isWeekend(S.day)) {
       sub += fmt(txt('dateWarn'), { day: engine.weekdayName(S.day + engine.daysToWeekend(S.day)) });
     }
-    button(t.name, sub, function () { gotoStyle('date', t.id); }, dis ? { disabled: true } : { selectable: true });
+    optionCard({
+      icon: DATE_EMOJI[t.id] || '💞', title: t.name, sub: sub,
+      disabled: dis, selectable: !dis,
+      onClick: (function (id) { return function () { gotoStyle('date', id); }; })(t.id)
+    });
   });
   bottomAction(txt('back') || '返回', backToChoose);
   confirmAction(txt('confirm') || '确认');
@@ -1716,7 +2785,7 @@ function drawStyleOverlay() {
   var styles = DB.list('court_styles');
   var w = W - PAD * 2;
   var padIn = 16;
-  var innerW = w - padIn * 2 - 12;
+  var innerW = w - padIn * 2 - 12 - 24;   // 预留右上角「选中 ✓」角标的位置
 
   /* 逐条量高：与下面绘制用同一套测量，量多少就画多少 */
   var rows = [];
@@ -1779,12 +2848,17 @@ function drawStyleOverlay() {
     var sel = pendingKey === ('style:' + r.st.id);
     var visible = (y + r.h > viewTop) && (y < viewTop + viewH);
     if (visible) {
-      R.fillRoundRect(ctx, rowX, y, rowW, r.h, 12, sel ? '#fbeae5' : P.ghost);
+      /* 卡片式行：白底 + 描边；选中 → 主色描边 + 右上 ✓ 角标（与其它选项卡片一致） */
+      R.fillRoundRect(ctx, rowX, y, rowW, r.h, 12, sel ? '#fffdfb' : P.card);
+      R.roundRectPath(ctx, rowX, y, rowW, r.h, 12);
+      ctx.strokeStyle = sel ? P.primary : P.line;
+      ctx.lineWidth = sel ? 2 : 1;
+      ctx.stroke();
       if (sel) {
-        R.roundRectPath(ctx, rowX, y, rowW, r.h, 12);
-        ctx.strokeStyle = P.primary;
-        ctx.lineWidth = 2;
-        ctx.stroke();
+        var rrx = rowX + rowW - 12, rry = y + 12, rr = 11;
+        R.fillRoundRect(ctx, rrx - rr, rry - rr, rr * 2, rr * 2, rr, P.primary);
+        R.setFont(ctx, 12, true); ctx.fillStyle = '#ffffff';
+        ctx.fillText('✓', rrx - 4, rry + 5);
       }
       var ty = y + 14;
       R.setFont(ctx, 15, true);
@@ -1909,7 +2983,7 @@ function drawResultModalBody(m, onClose, scheduleAnim) {
   var headTop = 56;
   var titleH = titleLines.length ? titleLines.length * 26 + 8 : 0;
   var linesH = lineRows.reduce(function (a, r) { return a + (r.empty ? 10 : 20); }, 0);
-  var deltaH = hasDelta(m.delta) ? 44 : 0;
+  var deltaH = hasDelta(m.delta) ? (deltaCardsH(m.delta) + 6) : 0;
   var footH = 60;
   var panelH = bgH + headTop + titleH + linesH + deltaH + footH;
   var maxPanel = H - SAFE_TOP - SAFE_BOTTOM - 36;
@@ -1976,11 +3050,11 @@ function drawResultModalBody(m, onClose, scheduleAnim) {
     ty += 20;
   });
 
-  /* 属性变化 */
+  /* 属性变化（浮窗自带入场动效，卡片只跟随，不再叠一层） */
   if (deltaH) {
     ty += 6;
     C.y = ty;
-    drawDeltaTags(m.delta, PAD + padIn);
+    drawDeltaTags(m.delta, PAD + padIn, { noAnim: true });
     ty = C.y;
   }
 
@@ -2045,17 +3119,14 @@ function drawEventPage() {
   /* 内容从固定头部下方开始（头部在 drawEventHeader 里画，不随滚动） */
   C.y = SAFE_TOP + eventHeadH() + 14;
 
-  /* ---- 正文 ---- */
+  /* ---- 正文：一张旁白卡（相亲事件 / 随机事件同一套画法） ---- */
   var paras = [];
   if (today.introLines) paras = paras.concat(today.introLines);
   paras = paras.concat(ev.text);
 
-  for (var pi = 0; pi < paras.length; pi++) {
-    C.y = R.drawWrapped(ctx, engine.fillText(paras[pi], S),
-      PAD, C.y + 4, W - PAD * 2, LINEH, P.text1, 15);
-    C.y += 8;
-  }
-  C.y += 6;
+  /* 退场中旁白卡保持不动，只有选项卡片往下沉 —— 「选择题被收走」的观感更清楚 */
+  var exiting = cardExiting();
+  noteCard(paras, { anim: exiting ? null : cardAnim(0), gap: 14 });
 
   /* ---- 已确认：结果直接展示在原「选项区域」，头部头像与背景保持不变 ---- */
   if (today.resolved) {
@@ -2063,24 +3134,33 @@ function drawEventPage() {
     return;
   }
 
-  /* ---- 选项：单选，由底部「确认」按钮提交 ---- */
+  /* ---- 选项：单选，由底部「确认」按钮提交；逐张错落入场 ---- */
   ev.options.forEach(function (opt, oi) {
-    button(opt.label, null,
-      (function (i) { return function () { chooseOption(i); }; })(oi),
-      { selectable: true, ghost: true, key: 'opt:' + ev.id + ':' + oi });
+    optionCard({
+      title: opt.label, compact: true,
+      anim: cardAnim(oi + 1),
+      selected: pendingKey === ('opt:' + ev.id + ':' + oi),
+      selectable: true, key: 'opt:' + ev.id + ':' + oi,
+      /* 先播选项卡片退场，再落实结果 —— 新旧卡片交接看得见 */
+      onClick: (function (i) {
+        return function () { cardExitThen(function () { chooseOption(i); }); };
+      })(oi)
+    });
   });
   confirmAction(ui('confirm', '确认'));
 }
 
 /* 事件确认后的结果块：接在正文之后、原来选项的位置上。
  * 不跳页，因此场景背景与双方头像都留着，玩家不会「丢掉上下文」。
- * 展示顺序：你的选择（选项原文）→ 结果正文 → 属性增减 → （偶遇卡片）。 */
+ * 展示顺序：你的选择（选项原文）→ 结果正文 → 属性增减 → （偶遇卡片）。
+ * 除旁白卡外全部是卡片，并带错落入场动效。 */
 function drawEventResultInline() {
   var r = today.result || {};
   var pickT = ui('resolvedPickTitle', '你的选择');
   var resT = ui('resolvedResultTitle', '结果');
+  var idx = 0;      // 结果区卡片的错落序号（接在旁白卡之后）
 
-  /* 你的选择：用选中态的浅色框把刚点的选项复述一次 */
+  /* 你的选择：小标题 + 选中态卡片复述刚点的选项 */
   if (today.chosenLabel) {
     R.setFont(ctx, 11, true);
     ctx.fillStyle = P.text3;
@@ -2089,43 +3169,43 @@ function drawEventResultInline() {
 
     R.setFont(ctx, 15, true);
     var plines = R.wrapText(ctx, today.chosenLabel, W - PAD * 2 - 28);
-    var ph = plines.length * 22 + 22;
-    R.fillRoundRect(ctx, PAD, C.y, W - PAD * 2, ph, 12, '#fbeae5');
-    R.roundRectPath(ctx, PAD, C.y, W - PAD * 2, ph, 12);
+    var ph = plines.length * 24 + 20;
+    var anim0 = cardAnim(++idx);
+    var layY0 = C.y;
+    var topY0 = layY0 + (anim0.dy || 0);
+    if (anim0.a < 1) { ctx.save(); ctx.globalAlpha = Math.max(0, anim0.a); }
+    R.fillRoundRect(ctx, PAD, topY0, W - PAD * 2, ph, 14, '#fbeae5');
+    R.roundRectPath(ctx, PAD, topY0, W - PAD * 2, ph, 14);
     ctx.strokeStyle = P.primary;
     ctx.lineWidth = 2;
     ctx.stroke();
     R.setFont(ctx, 15, true);
     ctx.fillStyle = P.primaryDark;
-    var py = C.y + 10;
+    var py = topY0 + 10;
     for (var i = 0; i < plines.length; i++) {
       ctx.fillText(plines[i], PAD + 14, py + 16);
-      py += 22;
+      py += 24;
     }
-    C.y += ph + 16;
+    if (anim0.a < 1) ctx.restore();
+    C.y = layY0 + ph + 16;
   }
 
-  /* 结果：小标题 + 正文 + 属性增减
-   * 间距节奏统一为「小标题基线 +12 → 正文基线 +30」，避免文字贴在一起。 */
+  /* 结果：小标题 + 结果正文卡 */
   R.setFont(ctx, 11, true);
   ctx.fillStyle = P.text3;
   ctx.fillText(resT, PAD, C.y + 12);
   C.y += 18;
 
-  (r.lines || []).forEach(function (l) {
-    if (l === '') { C.y += 8; return; }
-    C.y = R.drawWrapped(ctx, engine.fillText(l, S), PAD, C.y + 12, W - PAD * 2, LINEH, P.text1, 15);
-    C.y += 4;
-  });
+  noteCard(r.lines || [], { anim: cardAnim(++idx), gap: 14 });
 
-  C.y += 6;
-  drawDeltaTags(r.delta, PAD);
+  drawDeltaTags(r.delta, PAD, { animBase: idx });
 
   /* 偶遇：本次安排顺带认识的人 */
   if (r.encounter) drawEncounterCard(r.encounter);
 
-  /* 继续：回到主界面 / 推进一天 */
-  bottomAction(fmt(txt('continueDay'), { n: today.costDays }), continueDay, { primary: true });
+  /* 继续：先让卡片退场，再回主界面 / 推进一天 */
+  bottomAction(fmt(txt('continueDay'), { n: today.costDays }),
+    function () { cardExitThen(continueDay); }, { primary: true });
 }
 
 /* 事件页固定头部：场景背景 + 主角/对象头像（屏幕坐标，不随内容滚动） */
@@ -2153,7 +3233,25 @@ function drawEventHeader() {
     return;
   }
   if (today.phase !== 'event' || !today.event) return;
-  drawPairHeader(eventHeadH(), eventSceneName());
+  drawPairHeader(eventHeadH(), eventSceneName(), eventInvolvesPartner());
+}
+
+/* 本次事件是否「与相亲对象有关」——决定事件页头部画不画对方头像。
+ * 判据（任一成立即算有关）：
+ *   · 事件正文 / 选项里出现 {p}（作者用占位符点名了对方）；
+ *   · 事件自带 dateType / stage（约会档位、恋爱阶段专属事件）；
+ *   · 本次安排本身就是见面（action=meet），或事件阶段是相亲现场 / 约会（meeting / date）。
+ * 无关的随机事件（加班、体检、朋友借钱、外卖超时…）只展示主角头像 ——
+ * 玩家在相亲对象面前没发生过的事，别硬塞一张对方的脸进来。 */
+function eventInvolvesPartner() {
+  if (!today || !today.event) return false;
+  if (today.dateType || today.action === 'meet') return true;
+  var ev = today.event;
+  if (ev.dateType || ev.stage) return true;
+  if (ev.phase === 'meeting' || ev.phase === 'date') return true;
+  var hay = (ev.text || []).join(' ') + ' ' +
+    (ev.options || []).map(function (o) { return (o.label || '') + ' ' + (o.result || ''); }).join(' ');
+  return hay.indexOf('{p}') >= 0;
 }
 
 /* 二级页头部：一张背景图铺满 + 顶部压暗、底部渐隐到页面底色。
@@ -2237,8 +3335,10 @@ function warnEndingArtIfStale(e) {
 }
 
 /* 双人头部：场景背景 + 「我 / 对方」两张头像 + 场景标签。
- * 事件页与结算页（告白 / 求婚）共用，避免两处样式走偏。 */
-function drawPairHeader(hh, scn) {
+ * 事件页与结算页（告白 / 求婚）共用，避免两处样式走偏。
+ * dual === false 时只画主角一张（居中对齐）—— 用于跟相亲对象无关的随机事件。 */
+function drawPairHeader(hh, scn, dual) {
+  var showOther = (dual !== false);
   var bg = scn ? art.sceneImg(scn) : null;
 
   ctx.save();
@@ -2265,25 +3365,28 @@ function drawPairHeader(hh, scn) {
 
   /* 双方头像：主角在左，对象/意向人在右。
    * 头部放大后头像整体下移一点，落在背景图偏下、渐隐到页面底色之前的位置，
-   * 既不被顶部压暗吞掉，也不会贴着正文。 */
+   * 既不被顶部压暗吞掉，也不会贴着正文。
+   * 单人（无关事件）时主角居中，不留下半张空位。 */
   var avSize = 64;
   var ay = SAFE_TOP + (bg ? 86 : 64) + avSize / 2;
-  var leftCx = W * 0.28;
+  var leftCx = showOther ? W * 0.28 : W * 0.5;
   var rightCx = W * 0.72;
 
   drawRoleAvatar(art.heroImg(S.bg.id, S.gender), leftCx, ay, avSize, '我');
   centerText(txt('you') || '我', leftCx, ay + avSize / 2 + 16, 12,
     bg ? 'rgba(255,255,255,0.92)' : P.text2, false);
 
-  var other = S.partner || S.lead;
-  if (other) {
-    drawRoleAvatar(art.partnerImg(other.job, other.gender, other.avatar), rightCx, ay, avSize, 'TA');
-    centerText(other.name, rightCx, ay + avSize / 2 + 16, 12,
-      bg ? 'rgba(255,255,255,0.92)' : P.text2, false);
-  } else {
-    drawRoleAvatar(null, rightCx, ay, avSize, '?');
-    centerText(txt('noPartner') || '暂无对象', rightCx, ay + avSize / 2 + 16, 11,
-      bg ? 'rgba(255,255,255,0.75)' : P.text3, false);
+  if (showOther) {
+    var other = S.partner || S.lead;
+    if (other) {
+      drawRoleAvatar(art.partnerImg(other.job, other.gender, other.avatar), rightCx, ay, avSize, 'TA');
+      centerText(other.name, rightCx, ay + avSize / 2 + 16, 12,
+        bg ? 'rgba(255,255,255,0.92)' : P.text2, false);
+    } else {
+      drawRoleAvatar(null, rightCx, ay, avSize, '?');
+      centerText(txt('noPartner') || '暂无对象', rightCx, ay + avSize / 2 + 16, 11,
+        bg ? 'rgba(255,255,255,0.75)' : P.text3, false);
+    }
   }
 
   /* 场景名标签（右上角） */
@@ -2353,7 +3456,7 @@ function drawResultPage() {
   var r = today.result;
 
   /* 有固定头部时内容从头部下方开始，否则沿用原来的顶部留白 */
-  C.y = SAFE_TOP + (resultHeadOn() ? resultHeadH() + 14 : 28);
+  C.y = SAFE_TOP + (resultHeadOn() ? resultHeadH() + 14 : 28 + TOP_INSET);
 
   /* 结果图标 + 标题：明确告诉玩家「这一趟成了 / 没成」 */
   var bad = r.title && /没|失败|落空|拒绝|结束|没答应|没有|告吹/.test(r.title);
@@ -2447,7 +3550,7 @@ function drawPartnerProfile() {
   var T = tset('profile') || {};
   var who = S && (S.partner || S.lead);
 
-  C.y = SAFE_TOP + 16;
+  C.y = SAFE_TOP + 16 + TOP_INSET;
 
   if (!who) {
     section(T.title || '对方资料', null);
@@ -2599,7 +3702,7 @@ function snapshotOf(delta) {
 
 function drawStatDetail() {
   var T = tset('statlog') || {};
-  C.y = SAFE_TOP + 16;
+  C.y = SAFE_TOP + 16 + TOP_INSET;
 
   section(T.title || '近期变化', T.hint || null);
 
@@ -2704,7 +3807,7 @@ function actLog() { return (S && S.acts) || []; }
 
 function drawRecentPage() {
   var T = tset('recent') || {};
-  C.y = SAFE_TOP + 16;
+  C.y = SAFE_TOP + 16 + TOP_INSET;
 
   section(T.title || '近期经历', T.hint || null);
 
@@ -2879,7 +3982,7 @@ function drawEnvelopeCard(who) {
 
   R.setFont(ctx, 12, true);
   ctx.fillStyle = P.primaryDark || P.primary;
-  ctx.fillText('✉ ' + (T.badge || '相亲机会'), x + pad, y + 18);
+  ctx.fillText(ICON.chance + ' ' + (T.badge || '相亲机会'), x + pad, y + 18);
   R.setFont(ctx, 12, false);
   ctx.fillStyle = P.text3;
   var tt = T.title || '对象信息';
@@ -3160,9 +4263,12 @@ function drawChatPage() {
       C.y += 20;
     }
     (c.options || []).forEach(function (o, i) {
-      var sel = (pendingKey === 'chat:' + i);      // 高亮只认本次点击
-      button(o.label, null, function () { pickChatOption(i); },
-        { selected: sel, ghost: !sel, selectable: true, key: 'chat:' + i, small: true });
+      optionCard({
+        title: o.label, compact: true,
+        selected: (pendingKey === 'chat:' + i),      // 高亮只认本次点击
+        selectable: true, key: 'chat:' + i,
+        onClick: function () { pickChatOption(i); }
+      });
     });
     /* 对方主动发来的不能一走了之，也就没有「返回」 */
     if (!chatState.proactive) bottomAction(T.back || '返回', closeChat);
@@ -3264,7 +4370,7 @@ function backFromGalleryDetail() {
 
 function drawGallery() {
   var G = galleryText();
-  C.y = SAFE_TOP + 16;
+  C.y = SAFE_TOP + 16 + TOP_INSET;
   section(G.title || '相亲图鉴', G.sub || '');
 
   var all = DB.list('partners').filter(function (p) { return p && p.gender; });
@@ -3405,7 +4511,7 @@ function drawGalleryDetail() {
   var doc = engine.partnerById(galleryPickId);
   var rec = gallery.record(galleryPickId);
 
-  C.y = SAFE_TOP + 16;
+  C.y = SAFE_TOP + 16 + TOP_INSET;
   section(G.detailTitle || '图鉴资料', null);
 
   if (!doc || !rec) {
@@ -3518,30 +4624,82 @@ function deltaTagText(key, raw) {
   return statLabel(key) + (v > 0 ? ' +' : ' -') + mag;
 }
 
-function drawDeltaTags(d, startX) {
+/* 属性增减的「数值部分」（纯函数，便于测试）：+5 / -3 / +2.5万 */
+function deltaValText(key, raw) {
+  var v = Math.round(raw);
+  var av = Math.abs(v);
+  var mag = (key === 'money' && av >= 10000) ? engine.moneyText(av) : String(av);
+  return (v > 0 ? '+' : '-') + mag;
+}
+
+/* 属性变化卡片：双列，每张 = 属性图标 + 名称 + 增减值（涨绿 / 跌红）。
+ * 与选项卡片同一套语言（圆角浅底 + 细描边），并带错落入场动效。
+ * opts.animBase 给出这批卡片在「本页卡片集合」里的起始序号（接在别的卡片之后）。
+ * 无变化时什么都不画（保持原来的行为）。 */
+function drawDeltaTags(d, startX, opts) {
   if (!d) return;
+  opts = opts || {};
   var keys = ['money', 'affection', 'health', 'career', 'looks', 'family', 'mood'];
-  var x = (startX === undefined) ? PAD : startX;
-  var yy = C.y + 10;
-  var any = false;
-  keys.forEach(function (k) {
-    if (d[k]) {
-      any = true;
-      var v = Math.round(d[k]);
-      var up = v > 0;
-      var color = up ? P.up : P.down;
-      var text = deltaTagText(k, v);
-      R.setFont(ctx, 12, true);
-      var tw = ctx.measureText(text).width;
-      var w = tw + 20;
-      if (x + w > W - PAD) { x = (startX === undefined) ? PAD : startX; yy += 30; }
-      R.fillRoundRect(ctx, x, yy, w, 24, 12, up ? '#e7f4ec' : '#f7e6e4');
-      ctx.fillStyle = color;
-      ctx.fillText(text, x + 10, yy + 16);
-      x += w + 8;
-    }
+  var changed = [];
+  keys.forEach(function (k) { if (d[k]) changed.push(k); });
+  if (!changed.length) return;
+
+  var gap = 12;
+  var x0 = (startX === undefined) ? PAD : startX;
+  var availW = W - PAD - x0;
+  var colW = (availW - gap) / 2;
+  var cardH = 40, rowGap = 10, animBase = opts.animBase || 0;
+  var y0 = C.y;
+  frameCards.delta += changed.length;
+
+  changed.forEach(function (k, i) {
+    var col = i % 2, row = Math.floor(i / 2);
+    var x = x0 + col * (colW + gap);
+    var y = y0 + row * (cardH + rowGap);
+    var v = Math.round(d[k]);
+    var up = v > 0;
+    var meta = ATTR_META[k] || { icon: '•', bg: '#f3ece0' };
+    var anim = opts.noAnim ? CARD_ANIM_NONE : cardAnim(animBase + i);
+    var topY = y + (anim.dy || 0);
+    if (anim.a < 1) { ctx.save(); ctx.globalAlpha = Math.max(0, anim.a); }
+
+    R.fillRoundRect(ctx, x, topY, colW, cardH, 12, up ? '#e9f5ee' : '#fbebe9');
+    R.roundRectPath(ctx, x, topY, colW, cardH, 12);
+    ctx.strokeStyle = up ? '#cde8d9' : '#f2d5d2';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    /* 图标盒 */
+    var ib = 22;
+    R.fillRoundRect(ctx, x + 10, topY + (cardH - ib) / 2, ib, ib, 7, meta.bg);
+    R.setEmojiFont(ctx, 12); ctx.fillStyle = P.text2;
+    var iw = ctx.measureText(meta.icon).width;
+    ctx.fillText(meta.icon, x + 10 + ib / 2 - iw / 2, topY + cardH / 2 + 4);
+
+    /* 名称（左） + 增减值（右对齐） */
+    var base = topY + cardH / 2 + 5;
+    R.setFont(ctx, 11); ctx.fillStyle = P.text2;
+    ctx.fillText(statLabel(k), x + 10 + ib + 7, base);
+    R.setFont(ctx, 14, true); ctx.fillStyle = up ? P.up : P.down;
+    var vt = deltaValText(k, v);
+    ctx.fillText(vt, x + colW - 10 - ctx.measureText(vt).width, base);
+
+    if (anim.a < 1) ctx.restore();
   });
-  C.y = yy + (any ? 34 : 0);
+
+  var rows = Math.ceil(changed.length / 2);
+  C.y = y0 + rows * cardH + (rows - 1) * rowGap + 12;
+}
+
+/* 属性变化卡片的整体高度（供浮窗提前量高，避免面板被撑破） */
+function deltaCardsH(d) {
+  if (!hasDelta(d)) return 0;
+  var n = 0;
+  ['money', 'affection', 'health', 'career', 'looks', 'family', 'mood'].forEach(function (k) {
+    if (d[k]) n++;
+  });
+  var rows = Math.ceil(n / 2);
+  return rows * 40 + (rows - 1) * 10 + 12;
 }
 
 function drawLog() {
@@ -3603,6 +4761,14 @@ function consumeFlashes() {
     S.log.push({ day: S.day, text: b.title });
     S.breakFlash = null;
   }
+  /* 关系预警：对方还没走，只是已经到了边缘。
+   * 提示条讲清楚「哪里出问题」，并写进「近期经历」——玩家回头还能查。 */
+  if (S.leaveWarnFlash) {
+    var lw = S.leaveWarnFlash;
+    pushFlash('🚨', lw.text || lw.reason || '', P.warn);
+    S.log.push({ day: S.day, text: lw.logText || lw.text || lw.reason || '' });
+    S.leaveWarnFlash = null;
+  }
   if (S.graceFlash) {
     var g = S.graceFlash;
     pushFlash('⏳', fmt(txt('graceFlash'), { reason: g.reason, n: g.amount }), P.up);
@@ -3662,6 +4828,37 @@ function drawFlashes() {
     }
     by -= 8;
   }
+}
+
+/* ================= 音乐开关浮窗（左上角 · 所有页面可见） =================
+ * 圆角圆形浮窗：🔊 正在播放 / 🔇 已静音，点一下切换（偏好存本地，下次启动沿用）。
+ * 画在固定层最上面，所以叠层 / 浮窗打开时它依然在，也依然点得到。
+ * 内容页顶部统一预留 TOP_INSET（见 resetFrame），保证第一行文字不被它压住。 */
+function drawMusicToggle() {
+  if (scene === 'loading') return;   // 载入页什么都没有，浮窗也跟着藏起来
+  var muted = audio.isMuted();
+  var size = MUSIC_BTN;
+  var x = PAD - 6;
+  var y = SAFE_TOP + 6;
+
+  R.fillRoundRect(ctx, x, y, size, size, size / 2, muted ? 'rgba(255,255,255,0.72)' : P.card);
+  R.roundRectPath(ctx, x, y, size, size, size / 2);
+  ctx.strokeStyle = muted ? '#ddd2c2' : P.line;
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  var icon = muted ? '🔇' : '🔊';
+  R.setEmojiFont(ctx, 16);
+  var iw = ctx.measureText(icon).width;
+  ctx.fillStyle = muted ? P.text3 : P.text2;
+  ctx.fillText(icon, x + size / 2 - iw / 2, y + size / 2 + 5);
+
+  fixedButtons.push({
+    x: x, y: y, w: size, h: size,
+    label: muted ? '音乐 关' : '音乐 开',
+    music: true,
+    onClick: function () { audio.toggleMute(); draw(); }
+  });
 }
 
 /* ================= 玩家操作 ================= */
@@ -3892,12 +5089,18 @@ function mergeDelta(a, b) {
 
 function maybePartnerLeaves() {
   var leave = engine.checkPartnerLeave(S);
-  if (leave) {
-    S.breakFlash = leave;
-    S.log.push({ day: S.day, text: leave.title });
-    /* 对方主动提分手（被分手）也是关键事件，用同一套浮窗强调 */
-    openKeyModal({ title: leave.title, lines: leave.lines || [], delta: leave.delta || {} }, 'breakup');
+  if (!leave) return null;
+  /* 两段式的第一段：只是预警，不分手。
+   * 挂到闪一下的提示条上，并写进日志 —— 玩家要能看见「再不管就要出事」，
+   * 否则「先预警后分手」就只是把随机数藏起来了，等于没做。 */
+  if (leave.warn) {
+    S.leaveWarnFlash = leave;
+    return null;
   }
+  S.breakFlash = leave;
+  S.log.push({ day: S.day, text: leave.title });
+  /* 对方主动提分手（被分手）也是关键事件，用同一套浮窗强调 */
+  openKeyModal({ title: leave.title, lines: leave.lines || [], delta: leave.delta || {} }, 'breakup');
   return leave;
 }
 
@@ -4149,8 +5352,6 @@ function statFlashAnim(key) {
   };
 }
 
-function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
-
 function triggerRandomEvent() {
   var ev = engine.pickLifeEvent(S);
   enterEvent(ev, 'life', { introLines: [txt('randomIntro')] });
@@ -4222,6 +5423,10 @@ function renderEnd(endingId) {
     var e = DB.list('endings').filter(function (x) { return x.id === endingId; })[0];
     if (e) { S.ending = e; S.over = true; }
   }
+  /* 对局已结束 → 立刻清掉存档：否则从结局页直接关掉小游戏（或点「回到标题」）后，
+   * 「继续游戏」仍然存在，读档会恢复到死亡属性下的「僵尸局」，而结局页本身不再重现。
+   * 广告奖励存在另一个 key，不受影响。 */
+  clearSave();
   scene = 'end';
   scrollY = 0;
   draw();
@@ -4343,7 +5548,15 @@ function saveGame() {
       looks: S.looks, family: S.family, mood: S.mood, affection: S.affection,
       relationship: S.relationship, partner: S.partner, lead: S.lead,
       flags: S.flags, singleStreak: S.singleStreak, singleLimit: S.singleLimit,
-      relStartDay: S.relStartDay, recent: S.recent, log: S.log.slice(-20),
+      /* relSpent 必须入档：分手心情三档靠「相处天数 + 关系内累计花费」定档，
+       * 漏存会让读档后的分手永远退到最轻档（相处再久、花得再多也不算数）。 */
+      relStartDay: S.relStartDay, relSpent: S.relSpent || 0, recent: S.recent, log: S.log.slice(-20),
+      /* 对象主动分手的四个字段必须入档：
+       * 漏存 leaveRollDay / leaveWarnDay / leaveStrikes 的话，读档就能把预警和宽容额度洗掉
+       * ——玩家只要在每次「被预警」后重进游戏，就永远轮不到分手。 */
+      partnerSinceDay: S.partnerSinceDay, leaveRollDay: S.leaveRollDay,
+      leaveWarnDay: S.leaveWarnDay, leaveWarnReason: S.leaveWarnReason,
+      leaveStrikes: S.leaveStrikes || 0,
       met: (S.met || []).slice(),
       /* 微信状态：总聊天次数 + 对方主动次数 + 是否被要求「当面见一面」 */
       chatCount: S.chatCount || 0,
@@ -4370,7 +5583,8 @@ function loadGame() {
 function resumeGame(d) {
   S = engine.createGame(d.gender, d.bgId, d.goalId, d.seed, d.difficultyId);
   ['day', 'courtStyle', 'money', 'health', 'career', 'looks', 'family', 'mood', 'affection',
-    'relationship', 'partner', 'lead', 'flags', 'singleStreak', 'singleLimit', 'relStartDay',
+    'relationship', 'partner', 'lead', 'flags', 'singleStreak', 'singleLimit', 'relStartDay', 'relSpent',
+    'partnerSinceDay', 'leaveRollDay', 'leaveWarnDay', 'leaveWarnReason', 'leaveStrikes',
     'recent', 'log', 'met', 'chatCount', 'proactiveChats', 'mustDate', 'history', 'acts']
     .forEach(function (k) {
       if (d[k] !== undefined) S[k] = d[k];
@@ -4407,22 +5621,41 @@ function clearSave() {
 
 /* ================= 触摸 ================= */
 var lastTouchY = 0;
+var lastTouchX = 0;
 
-function hit(list, x, y) {
+/* 命中框是否等于当前按下框（驱动按钮的「按下」视觉反馈）。
+ * 用坐标而非对象引用比对：draw() 每帧重建按钮对象，引用会失效，
+ * 但布局稳定时命中框坐标不变。 */
+function isPressed(x, y, w, h) {
+  return !!(pressedBox && pressedBox.x === x && pressedBox.y === y &&
+    pressedBox.w === w && pressedBox.h === h);
+}
+
+function findBtn(list, x, y) {
   for (var i = list.length - 1; i >= 0; i--) {
     var b = list[i];
-    if (x >= b.x && x <= b.x + b.w && y >= b.y && y <= b.y + b.h) {
-      b.onClick();
-      return true;
-    }
+    if (x >= b.x && x <= b.x + b.w && y >= b.y && y <= b.y + b.h) return b;
   }
-  return false;
+  return null;
+}
+
+/* 在 (x,y) 处按下：若命中某按钮则记录按下框并重绘（显示按下态），不直接执行 */
+function pressAt(x, y, list) {
+  var b = findBtn(list, x, y);
+  if (b) {
+    pressedBox = { x: b.x, y: b.y, w: b.w, h: b.h };
+    draw();
+  }
+  return b;
 }
 
 function onTouchStart(e) {
   var t = e.touches && e.touches[0];
+  /* 第一次触摸即解锁音频（iOS 要求用户手势后才能播放），幂等无副作用 */
+  audio.playBgm();
   if (!t) return;
   lastTouchY = t.clientY;
+  lastTouchX = t.clientX;
   var tx = t.clientX, ty = t.clientY;
 
   /* 交往风格叠层是模态：只认叠层自己的按钮；
@@ -4431,13 +5664,13 @@ function onTouchStart(e) {
     touchInPanel = !!(stylePanel &&
       tx >= stylePanel.x && tx <= stylePanel.x + stylePanel.w &&
       ty >= stylePanel.viewTop && ty <= stylePanel.viewTop + stylePanel.viewH);
-    hit(fixedButtons, tx, ty);
+    pressAt(tx, ty, fixedButtons);
     return;
   }
 
-  // 命中优先级：底部固定操作区 > 滚动内容
-  if (hit(fixedButtons, tx, ty)) return;
-  hit(buttons, tx, ty - scrollY);
+  // 命中优先级：底部固定操作区 > 滚动内容；只记按下、不立即执行
+  if (pressAt(tx, ty, fixedButtons)) return;
+  pressAt(tx, ty - scrollY, buttons);
 }
 
 function onTouchMove(e) {
@@ -4445,6 +5678,12 @@ function onTouchMove(e) {
   if (!t) return;
   var dy = t.clientY - lastTouchY;
   lastTouchY = t.clientY;
+
+  /* 拖动超过阈值 → 视为滚动而非点击，取消按下态 */
+  if (pressedBox) {
+    var dx = t.clientX - (lastTouchX || t.clientX);
+    if (Math.abs(dx) + Math.abs(dy) > 6) { pressedBox = null; draw(); }
+  }
 
   /* 叠层打开时只滚面板内部，底下的页面不许跟着动 */
   if (styleOverlayOpen()) {
@@ -4461,6 +5700,22 @@ function onTouchMove(e) {
     scrollY = next;
     draw();
   }
+}
+
+/* 松手：仅在松手点仍命中某按钮时执行它的 onClick（点击效果）。
+ * pressedBox 只用于按下时的视觉反馈，这里靠「松手点重新命中」来判断，
+ * 坐标转换（内容区要减去 scrollY）由 findBtn 各自处理，避免坐标系错配。 */
+function onTouchEnd(e) {
+  var t = (e.changedTouches && e.changedTouches[0]) || (e.touches && e.touches[0]);
+  var had = !!pressedBox;
+  pressedBox = null;
+  if (!t) return;
+  var tx = t.clientX, ty = t.clientY;
+  var b = null;
+  if (styleOverlayOpen()) b = findBtn(fixedButtons, tx, ty);
+  else b = findBtn(fixedButtons, tx, ty) || findBtn(buttons, tx, ty - scrollY);
+  if (b && b.onClick) b.onClick();
+  else if (had) draw();
 }
 
 /* ================= 对外启动 ================= */
@@ -4529,6 +5784,9 @@ module.exports = {
   _state: function () { return { scene: scene, S: S, today: today, pick: pick, setupStep: setupStep, prevScene: PREV_SCENE, chat: chatState }; },
   _buttons: function () { return buttons; },
   _fixedButtons: function () { return fixedButtons; },
+  /* 当前帧底部操作区配置（供布局审计动态判断底部条高度 / 是否「确认置顶」布局） */
+  _bottomActions: function () { return bottomActions; },
+  _barTop: function () { return barTopY; },
   /* 关键事件浮窗是否打开（供测试在结算后正确走「继续」：浮窗打开时
    * 唯一可点是浮窗内的「继续」，直接 continueDay 会留着浮窗盖住主界面） */
   _keyModalOpen: function () { return keyModalOpen(); },
@@ -4593,6 +5851,36 @@ module.exports = {
   _trans: function (now) { return transState(now === undefined ? Date.now() : now); },
   _startTrans: function (ageMs) { trans = { t0: Date.now() - (ageMs || 0) }; return transState(Date.now()); },
   _pageKey: function () { return pageKey(); },
+  /* 本次事件是否与相亲对象有关（决定事件页头部画不画对方头像） */
+  _eventPartnerShown: function () { return eventInvolvesPartner(); },
+  /* ---------- 卡片动效（测试钩子，沿用 _startTrans / _setFlashProgress 的「手动拨表」风格） ---------- */
+  /* 第 i 张卡片的动效状态：{ on, a, dy } */
+  _cardAnim: function (i) { return cardAnim(i === undefined ? 0 : i); },
+  /* 把「入场时间轴」拨到已过去 ageMs 毫秒（默认 0 = 刚开始），返回第 0 张的状态 */
+  _cardEnter: function (key, ageMs) {
+    cardEnterKey = (key === undefined ? '__test__' : key);
+    cardEnterT0 = Date.now() - (ageMs || 0);
+    return cardAnim(0);
+  },
+  /* 把「入场时间轴」往前拨 ageMs 毫秒（不改变当前指纹，用于驱动已开始的入场） */
+  _ageCardEnter: function (ageMs) { cardEnterT0 = Date.now() - (ageMs || 0); return cardAnim(0); },
+  /* 退场：返回是否「延后执行」（true = 正在播动画，cb 还没跑）；再配 _ageCardExit + _cardTick 收尾 */
+  _cardExit: function (cb) {
+    cardExitThen(cb || function () { });
+    return cardExiting();
+  },
+  _ageCardExit: function (ageMs) { cardExitT0 = Date.now() - (ageMs || 0); return cardExiting(); },
+  _cardExiting: function () { return cardExiting(); },
+  _cardTick: function () { cardTick(); },
+  _cardEnterKey: function () { return cardEnterKey; },
+  _cardSig: function () { return cardSig(); },
+  /* 本帧画了几张「旁白卡 / 属性变化卡」 */
+  _frameCards: function () { return { note: frameCards.note, delta: frameCards.delta }; },
+  /* 音乐浮窗（左上角全局控件）：位置 + 当前文案；没画返回 null */
+  _musicBtn: function () {
+    var bs = fixedButtons.filter(function (b) { return b.music; });
+    return bs.length ? { x: bs[0].x, y: bs[0].y, w: bs[0].w, h: bs[0].h, label: bs[0].label } : null;
+  },
   /* 测试只读：单条属性的动效中间态；未激活返回 null */
   _statFlashAnim: function (key) { return statFlashAnim(key); },
   /* 测试用：把动效时间轴拨到指定进度（0~1），断言动画中间帧而不依赖真实耗时 */
@@ -4604,5 +5892,6 @@ module.exports = {
   _affectionSlot: function () { return statDefBySlot('partnerHeader'); },
   _playStatDefs: function () { return playStatDefs(); },
   startStatFlash: startStatFlash,
-  deltaTagText: deltaTagText
+  deltaTagText: deltaTagText,
+  deltaValText: deltaValText
 };

@@ -102,7 +102,7 @@ function makeCtx() {
     }
   }
   var ctx = {
-    scale: noop, translate: noop,
+    scale: noop, translate: noop, rotate: noop,
     /* save/restore 必须真的生效：属性条淡出用 globalAlpha，
      * 若 restore 是空操作，透明度会泄漏，断言就会失真。 */
     save: function () { stack.push({ fillStyle: state.fillStyle, strokeStyle: state.strokeStyle, font: state.font, lineWidth: state.lineWidth, globalAlpha: state.globalAlpha, lineCap: state.lineCap }); },
@@ -123,7 +123,7 @@ function makeCtx() {
         x: box.x0, y: box.y0, w: box.x1 - box.x0, h: box.y1 - box.y0
       });
     },
-    stroke: noop, strokeRect: noop,
+    stroke: noop, strokeRect: noop, strokeText: noop,
     fillRect: function (x, y, w, h) {
       var f = state.fillStyle;
       if (f && f._grad) gradientFills.push({ grad: f, rect: [x, y, w, h] });
@@ -238,6 +238,11 @@ function main() {
      * 这里关掉，另有一节专门校验动效本身的数值。 */
     render._transOn(false);
 
+    /* 页面按钮 = 固定层里去掉「左上角音乐浮窗」（它是全局控件，不参与页面交互断言） */
+    var pageBtns = function () {
+      return render._fixedButtons().filter(function (b) { return !b.music; });
+    };
+
     render.goIntro();
     assert(render._state().scene === 'intro', '进入开场播片');
     render.gotoTitle();
@@ -311,7 +316,7 @@ function main() {
         }
         if (!twoStepBarChecked) {
           // 底部操作区单次点击即执行（重开按钮）
-          var rb = render._fixedButtons()[render._fixedButtons().length - 1];
+          var rb = pageBtns()[pageBtns().length - 1];
           rb.onClick();
           assert(render._state().today.confirmRestart === true, '底部按钮单次点击即执行动作');
           var cb = render._fixedButtons()[1];
@@ -615,9 +620,11 @@ function main() {
     var affOps = textOps.filter(function (o) { return o.text === affDef.label; });
     assert(affOps.length === 1, '好感度标签只出现一次，实际 ' + affOps.length);
     var affLabel = affOps[0];
-    var colW2 = 92;
-    var rightCx = 375 - 18 - colW2 / 2;              // 对象头像中心 x（PAD=18，列宽 92）
-    var colL = rightCx - colW2 / 2;
+    // 新布局：对象列半宽 44、好感度条宽 = 列宽-8 = 80（与 render.js 保持同步）
+    var colHalf = 44;
+    var affW = colHalf * 2 - 8;
+    var rightCx = 375 - 18 - colHalf;                // 对象头像中心 x（PAD=18）
+    var colL = rightCx - affW / 2;
     assert(Math.abs(affLabel.x - colL) < 4,
       '好感度标签左对齐在对象头像那一列（x≈' + Math.round(affLabel.x) + ' vs ' + colL + '）');
     // 数值落在同一行、右对齐到列右边缘。
@@ -626,9 +633,9 @@ function main() {
     var affValOps = textOps.filter(function (o) { return o.text === affText; });
     assert(affValOps.length >= 1, '好感度条带数值 ' + affText);
     assert(Math.abs(affValOps[0].y - affLabel.y) < 4, '好感度数值与标签同一行');
-    assert(Math.abs((affValOps[0].x + affValOps[0].w) - (colL + colW2)) < 4,
+    assert(Math.abs((affValOps[0].x + affValOps[0].w) - (colL + affW)) < 4,
       '好感度数值右对齐到列右边缘（' + Math.round(affValOps[0].x + affValOps[0].w) + '）');
-    assert(affLabel.y > 250, '好感度条在头像区下方（y≈' + Math.round(affLabel.y) + '）');
+    assert(affLabel.y > 200, '好感度条在头像区下方（y≈' + Math.round(affLabel.y) + '）');
 
     /* ---------- 属性区：三行 × 每行两条，且不含好感度 ---------- */
     console.log('  -- 属性区排版（3 行 × 2 列） --');
@@ -702,7 +709,7 @@ function main() {
     assert(chatBtns.length === 1,
       '还没见面时「寻找相亲机会」二级页里有「微信闲聊」入口，实际 ' + chatBtns.length);
 
-    // 真的聊一次：与事件同一套规则 —— 全属性生效，且有增有减
+    // 真的聊一次：与事件同一套规则 —— 只影响「看得见的」属性，且不铺满全部属性
     var leadChat = engine.pickChat(S4);
     assert(!!leadChat, 'lead 阶段能抽到一条对话');
     var opt0 = leadChat.options[0];
@@ -710,13 +717,15 @@ function main() {
     var res4 = engine.applyChat(S4, opt0);
     var fx0 = opt0.fx || {};
     var fxKeys = Object.keys(fx0).filter(function (k) { return fx0[k]; });
-    assert(fxKeys.length >= 5,
-      '闲聊回复与事件选项同一套规则：一条回复影响 ' + fxKeys.length + ' 项属性（≥5）');
-    assert(fxKeys.filter(function (k) { return fx0[k] > 0; }).length >= 2 &&
-      fxKeys.filter(function (k) { return fx0[k] < 0; }).length >= 2,
-      '闲聊回复也是「有增有减」，没有白嫖的选项');
-    assert(Object.keys(res4.delta).length >= 3,
-      '结算回报覆盖多个属性（实际变化 ' + Object.keys(res4.delta).length + ' 项）');
+    assert(fxKeys.length >= 1 && fxKeys.length <= 3,
+      '闲聊回复与事件选项同一套规则：一条回复影响 ' + fxKeys.length + ' 项属性（1~3 项，不铺满）');
+    var tiny = fxKeys.filter(function (k) {
+      return k === 'money' ? Math.abs(fx0[k]) < 100 : Math.abs(fx0[k]) < 5;
+    });
+    assert(tiny.length === 0,
+      '闲聊的每一项影响都是「看得见的幅度」（存款 ≥100 元 / 属性 ≥5 点）：' + JSON.stringify(fx0));
+    assert(Object.keys(res4.delta).length >= 1,
+      '结算回报至少覆盖一项属性（实际变化 ' + Object.keys(res4.delta).length + ' 项）');
     assert(S4.affection === engine.clamp(before4.aff + (opt0.affection || 0), 0, 100),
       '闲聊好感度按上限 100 结算（还没在一起）');
     assert(S4.affection > 0, '见面前的闲聊会攒下好感（' + S4.affection + '）');
@@ -746,7 +755,7 @@ function main() {
     }
     function barFills() {
       /* 好感度条：列宽 92、高 7；用宽度区分「轨道 / 已填充 / 变化段」 */
-      return fillOps.filter(function (o) { return o.h === 7 && o.w >= 8 && o.w <= 95; });
+      return fillOps.filter(function (o) { return o.h === 7 && o.w >= 6 && o.w <= 95; });
     }
     var PAL = require('../js/ui/canvas-kit.js').PALETTE;
 
@@ -769,7 +778,7 @@ function main() {
       });
       return m - colL;
     }
-    var W55 = 55 / 100 * 92, W65 = 65 / 100 * 92, W45 = 45 / 100 * 92, W10 = 10 / 100 * 92;
+    var W55 = 55 / 100 * 80, W65 = 65 / 100 * 80, W45 = 45 / 100 * 80, W10 = 10 / 100 * 80;
 
     frame(0);        // 起点：条长 = 结算前的 55
     assert(Math.abs(barRight() - W55) < 2, '动效起点条长还是旧值 55（实际 ' + barRight().toFixed(1) + 'px）');
@@ -781,7 +790,7 @@ function main() {
     assert(!!upMid, '动画中途出现涨色高亮段（这一段是新长出来的）');
     assert(Math.abs(upMid.x - (colL + W55)) < 2, '涨色段从「旧值位置」开始长（x≈' + Math.round(upMid.x) + '）');
     assert(upMid.w > 0.5 && upMid.w < W10, '高亮段还没长满（' + upMid.w.toFixed(1) + 'px < ' + W10.toFixed(0) + 'px）');
-    assert(barRight() > W55 + 1 && barRight() < W65 - 1, '条长正处于 55 与 65 之间（' + barRight().toFixed(1) + 'px）');
+    assert(barRight() > W55 && barRight() < W65, '条长正处于 55 与 65 之间（' + barRight().toFixed(1) + 'px）');
     var nums = textOps.map(function (o) { return numOf(o.text); })
       .filter(function (n) { return n !== null; });
     assert(nums.indexOf(64) >= 0, '数值在滚动中间帧（64）');
@@ -828,10 +837,12 @@ function main() {
     render.openStatDetail();
     assert(drawnTexts.some(function (t) { return t.indexOf('第 ') === 0 && t.indexOf(' 天') > 0; }),
       '变化页按天列出涨跌');
-    assert(drawnTexts.some(function (t) { return t.indexOf('存款') >= 0 && t.indexOf('-') > 0; }),
-      '变化页展示存款减少');
-    assert(drawnTexts.some(function (t) { return t.indexOf('好感度') >= 0 && t.indexOf('+') > 0; }),
-      '变化页展示好感度增加');
+    assert(drawnTexts.some(function (t) { return t.indexOf('存款') >= 0; }) &&
+      drawnTexts.some(function (t) { return t.indexOf('-') === 0; }),
+      '变化页展示存款减少（属性变化卡：名称 + 带减号的数值）');
+    assert(drawnTexts.some(function (t) { return t.indexOf('好感度') >= 0; }) &&
+      drawnTexts.some(function (t) { return t.indexOf('+') === 0; }),
+      '变化页展示好感度增加（属性变化卡：名称 + 带加号的数值）');
     assert(drawnTexts.some(function (t) { return t.indexOf('近期合计') >= 0; }), '变化页给出近期合计');
     render.recordStatHistory({ money: 0, mood: 0 });
     assert(render._state().S.history.length === 1, '全零变化不写入历史（不产生噪音记录）');
@@ -841,8 +852,8 @@ function main() {
       '历史长度受常量 STAT_HISTORY_MAX 限制（' + maxH + '）');
     render.backToPlay();
 
-    /* ---------- 标题页：上移到 50%、没有整屏蒙层、按钮居中 / 大字 / 70% 透明 / 边缘渐隐 ---------- */
-    console.log('  -- 标题页布局（按钮：居中 + 大一号 + 70% 透明 + 边缘渐隐） --');
+    /* ---------- 标题页：上移到 50%、没有整屏蒙层、按钮居中 / 大字 / 白底带投影 ---------- */
+    console.log('  -- 标题页布局（按钮：居中 + 大一号 + 白底 + 投影） --');
     render._clearFlashBar();
     render.gotoTitle();
     var tbtns = render._buttons();
@@ -859,23 +870,22 @@ function main() {
     gradientFills.length = 0;
     render.gotoTitle();
 
-    /* 不再铺整屏渐变蒙层（要求：按钮区不铺白色蒙层）；
-     * 渐变只剩在按钮自己的边缘羽化上。 */
-    var fullMask = gradientFills.filter(function (o) {
-      return o.rect[2] >= 375 - 1 && o.rect[3] >= 400;
-    });
-    assert(fullMask.length === 0, '标题页没有整屏渐变蒙层（' + gradientFills.length + ' 处渐变填充都在按钮里）');
-    assert(gradientCalls >= tbtns.length, '每个首页按钮都用了边缘渐隐（' + gradientCalls + ' 次渐变）');
+    /* 标题页按钮：白底 + 投影、无渐变 —— 纯色填充，不铺渐变蒙层 */
+    assert(gradientFills.length === 0, '标题页按钮无渐变填充（白底用纯色，不铺渐变）');
 
-    /* 底色 70% 不透明 + 两端渐隐到全透明 */
-    var allStops = [];
-    gradientFills.forEach(function (o) {
-      (((o.grad || {}).stops) || []).forEach(function (s) { allStops.push(String(s[1])); });
+    /* 白底按钮：每个按钮矩形区域都有白色纯色填充（fillRoundRect 记录到 fillOps） */
+    var btnFills = fillOps.filter(function (o) {
+      return tbtns.some(function (b) {
+        return Math.abs(o.x - b.x) < 2 && Math.abs(o.y - b.y) < 2 &&
+          Math.abs(o.w - b.w) < 2 && Math.abs(o.h - b.h) < 2;
+      });
     });
-    assert(allStops.some(function (c) { return /rgba\([^)]*,\s*0\.7\)/.test(c); }),
-      '按钮底色是 70% 不透明（' + allStops.join(' | ') + '）');
-    assert(allStops.some(function (c) { return /rgba\([^)]*,\s*0\)$/.test(c); }),
-      '按钮边缘渐隐到全透明（' + allStops.join(' | ') + '）');
+    var whiteFills = btnFills.filter(function (o) {
+      var c = String(o.fill || '').toLowerCase();
+      return c === '#ffffff' || c === 'white' || c === '#eceae9';
+    });
+    assert(whiteFills.length === tbtns.length,
+      '标题页按钮为白底（每个按钮都有白色填充，实得 ' + whiteFills.length + '/' + tbtns.length + '）');
 
     /* 文字居中 + 字号大一号（通用按钮是 16） */
     var labelOp = function (b) {
@@ -1025,8 +1035,8 @@ function main() {
     var st1 = render._chat();
     assert(!!st1 && !!st1.chat, '闲聊页拿到一条剧情');
     assert(drawnTexts.some(function (t) { return t === st1.chat.opener[0]; }), '画出对方发来的消息气泡');
-    assert(drawnTexts.some(function (t) { return t.indexOf('只影响好感度与情绪') >= 0; }),
-      '闲聊页说明「只影响好感度与情绪」');
+    assert(drawnTexts.some(function (t) { return t.indexOf('好感度为主') >= 0; }),
+      '闲聊页说明「好感度为主，也可能牵动情绪与其他状态」');
 
     var optBtns = render._buttons().filter(function (b) { return b.selectable; });
     assert(optBtns.length === st1.chat.options.length,
@@ -1051,8 +1061,9 @@ function main() {
       '选中最甜的一句后好感上升且不超上限（' + before1.affection + ' → ' + S1.affection + '）');
     var sideKeys = ['money', 'health', 'career', 'looks', 'family', 'mood']
       .filter(function (k) { return S1[k] !== before1[k]; });
-    assert(sideKeys.length >= 3,
-      '闲聊与事件同一套规则：一句回复同时带动 ' + sideKeys.length + ' 项其它属性（' + sideKeys.join('/') + '）');
+    assert(sideKeys.length >= 1 && sideKeys.length <= 2,
+      '闲聊与事件同一套规则：一句回复只带动捎带的少量属性（' +
+      sideKeys.length + ' 项：' + sideKeys.join('/') + '），不再全属性铺满');
 
     drawnTexts.length = 0;
     render.draw();
@@ -1257,6 +1268,35 @@ function main() {
     var endTL = engine.checkEnd(cs2);
     assert(!!endTL, '期限到点且仍单身 → 进入失败结局');
     assert(!!(endTL.reason && endTL.reason.key === 'deadline'), '失败原因是相亲期限（deadline）');
+
+    /* 时间上限（maxDays）到点时的兜底结局：文案必须跟当时的关系状态对得上。
+     * 旧版一律用 timeout（「你既没有走进婚姻」）—— 玩「城市立足」这类跟婚恋
+     * 无关的目标时，求婚成功反而被判定成「没走进婚姻」。 */
+    function pastLimit(goalId, rel) {
+      var x = engine.createGame('m', bg0, goalId, 11, 'normal');
+      x.day = x.diff.maxDays;                 // 再走一天就越过上限
+      x.relationship = rel;
+      if (rel !== 'single') x.partner = partnerObj;
+      if (rel === 'married') { x.flags.marriedOnce = true; x.affection = 120; }
+      x.money = 30000; x.career = 40;         // 离「城市立足」还差得远
+      return engine.advanceDays(x, 1);
+    }
+    var eM = pastLimit('settle', 'married');
+    assert(!!eM && eM.id === 'married_stall',
+      '已结婚 + 时间到 → 「婚姻里的将就」（实=' + (eM && eM.id) + '）');
+    assert(!!eM && eM.type === 'lose' && eM.art === 'badmarry',
+      '已婚兜底结局是 lose · badmarry 画面（实=' + (eM && eM.art) + '）');
+    assert(!!eM && eM.lines.join('').indexOf('{p}') < 0 &&
+      eM.lines.join('').indexOf(partnerObj.name) >= 0,
+      '失败结局也做占位符替换（{p} → 对象名，画面上不会出现字面量 {p}）');
+    var eT = pastLimit('settle', 'talking');
+    assert(!!eT && eT.id === 'stalled',
+      '有对象但未婚 + 时间到 → 「停在原地」（实=' + (eT && eT.id) + '）');
+    var eS = pastLimit('settle', 'single');
+    assert(!!eS && eS.id === 'timeout',
+      '单身 + 时间到 → 「时间到了」（实=' + (eS && eS.id) + '）');
+    assert(!!eS && eS.lines.join('').indexOf('没有走进婚姻') >= 0,
+      '单身兜底沿用「没走进婚姻」的文案（只在单身时才成立）');
 
     /* 倒计时卡片：非单身时应提示「暂停」 */
     var S3 = render._state().S;
@@ -1496,13 +1536,21 @@ function main() {
 
     /* ---------- 布局间距：文字之间 / 与固定层不重叠 ---------- */
     console.log('  -- 布局间距（文字不重叠） --');
-    var BAR_TOP = 667 - 16 - 46;      // 底部操作区上沿（BOTTOM_GAP + BAR_BTN_H）
     function auditLayout(label) {
       render._clearFlash();           // 飘字动效是刻意的覆盖层，审计前先关掉
       render._clearFlashBar();        // 发薪 / 分手提示条同理（常驻 3 秒，会压住正文）
       textOps.length = 0;
       render.draw();
-      var ov = cm.findTextOverlaps(textOps, { skipBottom: BAR_TOP - 8, minOverlap: 2 });
+      /* 底部操作区上沿：单行布局（BOTTOM_GAP + BAR_BTN_H）vs「确认置顶」布局
+       * （次级行 44 + 间距 10 + 确认 48 + BOTTOM_GAP）。后者更高，需动态跳过，
+       * 否则确认条会压住下方内容被误判为重叠。 */
+      var bos = render._bottomActions() || [];
+      var split = bos.some(function (a) { return a.opts.key === 'confirm'; }) && bos.length >= 2;
+      /* 底部叠加层顶边由渲染层给出：含「已选提示」时比按钮更高，一并跳过；
+       * 无底部操作区时返回 H（不跳过任何内容）。 */
+      var barTop = (typeof render._barTop === 'function') ? render._barTop()
+        : (split ? (667 - 16 - 44 - 10 - 48) : (667 - 16 - 46));
+      var ov = cm.findTextOverlaps(textOps, { skipBottom: barTop - 2, minOverlap: 2 });
       ov.slice(0, 3).forEach(function (o) {
         console.log('      ⚠ ' + label + '：「' + o.a + '」× 「' + o.b + '」重叠 ' +
           o.overlapX + '×' + o.overlapY + ' @' + o.aAt + ' / ' + o.bAt);
@@ -1523,6 +1571,21 @@ function main() {
     var aDOpts = render._buttons().filter(function (b) { return b.setup === 'diff'; });
     aDOpts[0].onClick();
     auditLayout('设定页（目标 + 难度）');
+
+    /* 卡片式重构：设定页 =「步骤标签 + 序号区块标题 + 富卡片（难度胶囊 + 属性 chips）+ 底部已选提示」 */
+    render.startSetup();
+    render._buttons().filter(function (b) { return b.setup === 'gender'; })[0].onClick();
+    render._buttons().filter(function (b) { return b.setup === 'bg'; })[0].onClick();
+    drawnTexts.length = 0;
+    render.draw();
+    assert(drawnTexts.some(function (t) { return t === '开局设定 · CHARACTER SETUP'; }),
+      '设定页顶部展示「开局设定 · CHARACTER SETUP」步骤标签');
+    assert(drawnTexts.some(function (t) { return /★/.test(String(t)); }),
+      '出身背景卡片带「起步难度」星级胶囊');
+    assert(drawnTexts.some(function (t) { return t === '存款'; }),
+      '出身背景卡片用「存款」等属性 chips 展示初始属性');
+    assert(drawnTexts.some(function (t) { return String(t).indexOf('当前已选') === 0; }),
+      '底部确认栏上方展示「当前已选」提示');
 
     /* 主界面：单身（含倒计时卡片） */
     render.gotoTitle();
@@ -1560,12 +1623,222 @@ function main() {
     });
     auditLayout('主界面（恋爱中）');
 
+    /* 主界面：有对象 + 关系预警挂着。
+     * 预警只在提示条上闪 3 秒太容易错过，所以关系卡里必须常驻一条 ——
+     * 这条信息决定玩家接下来几天要不要优先救某一项属性。 */
+    render.resumeGame({
+      v: 1, gender: 'm', bgId: bg0, goalId: 'marry', seed: 4245,
+      difficultyId: 'normal', day: 52, money: 9000, health: 70, career: 48,
+      looks: 60, family: 46, mood: 30, affection: 120,
+      relationship: 'dating', partner: partnerObj, lead: null,
+      flags: {}, singleStreak: 0, singleLimit: 60, relStartDay: 38,
+      partnerSinceDay: 38, leaveWarnDay: 49, leaveStrikes: 0,
+      leaveWarnReason: '你账户里的数字，让她越来越不安。',
+      recent: [], log: [], history: [], acts: []
+    });
+    auditLayout('主界面（关系预警挂着）');
+    assert(drawnTexts.some(function (t) { return t.indexOf('关系预警') >= 0; }),
+      '关系预警挂在主界面关系卡上（不用靠一闪而过的提示条）');
+    assert(drawnTexts.some(function (t) { return t.indexOf('越来越不安') >= 0; }),
+      '预警把「是哪一项出问题」写清楚了（原因原文）');
+    /* 预警解除 → 提示条随之消失（否则玩家看不出「已经救回来了」） */
+    render._state().S.leaveWarnDay = null;
+    render._state().S.leaveWarnReason = null;
+    drawnTexts.length = 0;
+    render.draw();
+    assert(!drawnTexts.some(function (t) { return t.indexOf('关系预警') >= 0; }),
+      '预警解除后关系卡上的提示条消失');
+    auditLayout('主界面（预警已解除）');
+
     /* 事件页（未确认）与页内结果 */
     render.actLife();
     auditLayout('事件页（选项态）');
     render.chooseOption(0);
     auditLayout('事件页（页内结果）');
     advanceAfterResult(render);
+
+    /* ---------- 事件页头像：跟相亲对象无关的随机事件不画对方 ---------- */
+    console.log('  -- 事件页头像：无关的随机事件不展示对方 --');
+    (function () {
+      function mentionsPartner(e) {
+        var hay = (e.text || []).join(' ') + ' ' +
+          (e.options || []).map(function (o) { return (o.label || '') + ' ' + (o.result || ''); }).join(' ');
+        return hay.indexOf('{p}') >= 0;
+      }
+      render.resumeGame({
+        v: 1, gender: 'm', bgId: bg0, goalId: 'marry', seed: 777,
+        difficultyId: 'normal', day: 45, money: 88000, health: 76, career: 52,
+        looks: 60, family: 46, mood: 64, affection: 120,
+        relationship: 'dating', partner: partnerObj, lead: null,
+        flags: {}, singleStreak: 0, singleLimit: 60, relStartDay: 38, recent: [], log: [],
+        history: [], acts: []
+      });
+      render.actLife();
+      var T = render._state().today;
+      assert(T.phase === 'event', '进入事件页（供头像断言用）');
+
+      var solo = DB.list('events').filter(function (e) {
+        return e.phase === 'any' && !mentionsPartner(e) && (e.options || []).length >= 2;
+      })[0];
+      var withP = DB.list('events').filter(function (e) {
+        return mentionsPartner(e) && e.phase !== 'date' && (e.options || []).length >= 2;
+      })[0];
+      assert(!!solo && !!withP, '事件库里同时有「与对方无关」和「提到对方」的随机事件');
+
+      /* 无关的随机事件：只画主角一张头像 */
+      T.event = solo; T.dateType = null; T.action = null; T.resolved = false;
+      render._clearFlash(); drawnTexts.length = 0; render.draw();
+      assert(render._eventPartnerShown() === false,
+        '无关事件（' + solo.id + '）不展示对方头像');
+      assert(!drawnTexts.some(function (x) { return x === partnerObj.name; }),
+        '无关事件页不画出对方名字（' + partnerObj.name + '）');
+      assert(drawnTexts.some(function (x) { return x === '我'; }),
+        '无关事件页仍然画主角名字');
+
+      /* 点名了对方的事件：照旧双人 */
+      T.event = withP; T.resolved = false;
+      render._clearFlash(); drawnTexts.length = 0; render.draw();
+      assert(render._eventPartnerShown() === true,
+        '提到对方的事件（' + withP.id + '）展示对方头像');
+      assert(drawnTexts.some(function (x) { return x === partnerObj.name; }),
+        '有关事件页画出对方名字');
+
+      /* 约会档位的事件：一定与对方有关 */
+      T.dateType = 'simple';
+      assert(render._eventPartnerShown() === true, '约会档位事件一定展示对方头像');
+      T.dateType = null;
+      render.backToPlay();
+    })();
+
+    /* ---------- 结算数值：只保留「看得见」的影响，且不铺满全属性 ---------- */
+    console.log('  -- 结算数值：看得见的幅度 · 最多 3 项影响 --');
+    (function () {
+      ['events', 'chats'].forEach(function (coll) {
+        var optCount = 0, empty = 0, badMoney = [], invisible = [], tooMany = [];
+        DB.list(coll).forEach(function (d) {
+          (d.options || []).forEach(function (o) {
+            var fx = o.fx || {};
+            /* zero 是「归零语义」的标记（见引擎 applyFx），不是一项数值影响：
+             * 它不计入「最多 3 项」，也不参与「幅度太小」的判定。 */
+            var keys = Object.keys(fx).filter(function (k) { return fx[k] && k !== 'zero'; });
+            optCount++;
+            if (!keys.length) empty++;
+            if (keys.length > 3) tooMany.push(d.id);
+            keys.forEach(function (k) {
+              if (k === 'money') {
+                if (Math.abs(fx[k]) < 100) badMoney.push(d.id + ':' + fx[k]);
+              } else if (Math.abs(fx[k]) < 5) {
+                invisible.push(d.id + ':' + k + fx[k]);
+              }
+            });
+          });
+        });
+        assert(badMoney.length === 0,
+          coll + ' 里没有「只动个位数」的存款影响（' + badMoney.slice(0, 3).join('、') + '）');
+        assert(invisible.length === 0,
+          coll + ' 里没有看不见的 ±1~4 属性噪声（' + invisible.slice(0, 3).join('、') + '）');
+        assert(tooMany.length === 0,
+          coll + ' 每个选项最多 3 项影响（超出：' + tooMany.slice(0, 3).join('、') + '）');
+        assert(empty <= Math.ceil(optCount * 0.15),
+          coll + ' 纯剧情选项（不硬凑数值）不超过 15%，实际 ' + empty + '/' + optCount);
+      });
+
+      /* ---------- 极端内容：属性归零 ----------
+       * 断崖式后果用 fx.zero 表达（「存款归零」而不是「存款 -47 万」），
+       * 因为负值会被属性下限截断，写多大都一样、还会误导玩家。
+       * 关键约束：归零必须停在 FX_ZERO_FLOOR（保底 1 点）——
+       * 真归 0 会立刻触发破产/抑郁结局，一条随机事件秒杀玩家等于没有玩法。 */
+      var zeroOpts = [];
+      ['events', 'chats'].forEach(function (coll) {
+        DB.list(coll).forEach(function (d) {
+          (d.options || []).forEach(function (o) {
+            if (o.fx && o.fx.zero && o.fx.zero.length) zeroOpts.push({ coll: coll, doc: d, opt: o });
+          });
+        });
+      });
+      assert(zeroOpts.length >= 8,
+        '存在足够的「属性归零」极端选项（实际 ' + zeroOpts.length + ' 处）');
+      var STAT_KEYS = ['money', 'health', 'career', 'looks', 'family', 'mood', 'affection'];
+      var badZeroKey = zeroOpts.filter(function (z) {
+        return z.opt.fx.zero.some(function (k) { return STAT_KEYS.indexOf(k) < 0; });
+      });
+      assert(badZeroKey.length === 0,
+        'zero 只声明七项基础属性（非法：' + badZeroKey.slice(0, 2).map(function (z) { return z.doc.id; }).join('、') + '）');
+      var floor = (DB.get('constants') || {}).FX_ZERO_FLOOR || 1;
+      var notFloor = [], killed = [];
+      zeroOpts.forEach(function (z) {
+        var s = engine.createGame('m', 'bg_youwo', 'free', 777, 'normal');
+        s.money = 480000; s.mood = 72; s.health = 66; s.career = 55;
+        /* 事件走 applyFx、聊天走 applyChat，两条路都要验证 */
+        var res = (z.coll === 'chats') ? engine.applyChat(s, z.opt) : engine.applyFx(s, z.opt.fx, 1);
+        z.opt.fx.zero.forEach(function (k) {
+          if (s[k] !== floor) notFloor.push(z.doc.id + ':' + k + '=' + s[k]);
+        });
+        if (engine.checkEnd(s)) killed.push(z.doc.id + ':' + engine.checkEnd(s).id);
+      });
+      assert(notFloor.length === 0,
+        '归零一律停在保底 ' + floor + ' 点（偏差：' + notFloor.slice(0, 3).join('、') + '）');
+      assert(killed.length === 0,
+        '归零不会当场触发结局（秒杀：' + killed.slice(0, 3).join('、') + '）');
+
+      /* ---------- 极端内容必须真的抽得到 ----------
+       * 权重 / 阶段（phase、stage）/ 人格定向（personalityId）任何一处写错，
+       * 一条内容就会变成「永远抽不到」的死数据 —— 等于白写。
+       * 这里用真实的抽取函数各跑几千次，确认六条事件、四条聊天都露过面。 */
+      var X_EVENTS = ['x_single_hunmei', 'x_talking_privacy', 'x_any_guarantee',
+        'x_dating_control', 'x_dating_married_secret', 'x_any_checkup'];
+      var X_CHATS = ['n_x_c_hunmei', 'n_x_c_rage', 'n_x_c_secret', 'n_x_c_betrothal'];
+      var seenEv = {}, seenCh = {};
+      ['single', 'meeting', 'talking', 'dating'].forEach(function (rel) {
+        var xs = engine.createGame('m', 'bg_youwo', 'free', 99, 'normal');
+        xs.relationship = rel;
+        xs.partner = (rel === 'single') ? null
+          : { id: 'p', name: '对象', job: 'teacher', gender: 'f', avatar: null, personalityId: 'money' };
+        for (var k = 0; k < 4000; k++) {
+          var pe = engine.pickEvent(xs);
+          if (pe) seenEv[pe.id] = (seenEv[pe.id] || 0) + 1;
+        }
+      });
+      ['talking', 'dating', 'married'].forEach(function (rel) {
+        ['money', 'emo', 'casual', 'family'].forEach(function (pid) {
+          var cs = engine.createGame('m', 'bg_youwo', 'free', 99, 'normal');
+          cs.relationship = rel;
+          cs.partner = { id: 'p', name: '对象', job: 'teacher', gender: 'f', avatar: null, personalityId: pid };
+          cs.affection = 80;
+          for (var k2 = 0; k2 < 3000; k2++) {
+            var pc = engine.pickChat(cs);
+            if (pc) seenCh[pc.id] = (seenCh[pc.id] || 0) + 1;
+          }
+        });
+      });
+      var deadEv = X_EVENTS.filter(function (id) { return !seenEv[id]; });
+      var deadCh = X_CHATS.filter(function (id) { return !seenCh[id]; });
+      assert(deadEv.length === 0,
+        '新增的 6 条极端事件都能被抽到（抽不到：' + (deadEv.join('、') || '无') + '）');
+      assert(deadCh.length === 0,
+        '新增的 4 条极端聊天都能被抽到（抽不到：' + (deadCh.join('、') || '无') + '）');
+
+      /* 存款影响都落在游戏经济「看得见」的区间（起步存款 5k~80w、求婚 6w） */
+      var moneys = [];
+      DB.list('events').forEach(function (e) {
+        (e.options || []).forEach(function (o) {
+          if (o.fx && o.fx.money) moneys.push(Math.abs(o.fx.money));
+        });
+      });
+      assert(moneys.length > 100 && Math.min.apply(null, moneys) >= 100,
+        '事件里的存款影响都在 100 元以上（最小 ' + Math.min.apply(null, moneys) +
+        ' 元，共 ' + moneys.length + ' 处）');
+
+      /* 聊天的扁平字段与 fx 必须同源（引擎两种写法都读） */
+      var mismatch = 0;
+      DB.list('chats').forEach(function (c) {
+        (c.options || []).forEach(function (o) {
+          var fx = o.fx || {};
+          if ((o.affection || 0) !== (fx.affection || 0) || (o.mood || 0) !== (fx.mood || 0)) mismatch++;
+        });
+      });
+      assert(mismatch === 0, '聊天的 affection / mood 与 fx 同源（不一致 ' + mismatch + ' 条）');
+    })();
 
     /* 对方资料 / 近期变化 / 近期经历 */
     render.openPartnerProfile();
@@ -1684,19 +1957,28 @@ function main() {
     var navOther = menuBtns.filter(function (b) { return b.label === (DB.text('play').otherTitle || '其余安排'); });
     assert(navSeek.length === 1, '行动菜单有「寻找相亲机会」入口，实际 ' + navSeek.length);
     assert(navOther.length === 1, '行动菜单有「其余安排」入口，实际 ' + navOther.length);
-    assert(navSeek[0].selectable === false && navOther[0].selectable === false,
-      '两个入口都是「单击即进」的导航按钮（不是列表选项）');
+    assert(navSeek[0].selectable === true && navOther[0].selectable === true,
+      '两个入口都是「单选卡片」：先点选一项，再由底部「确认」提交（不是单击即进）');
     var chatOnMenu = render._buttons().filter(function (b) { return b.label === '微信闲聊'; }).length;
     assert(chatOnMenu === 0, '行动菜单不再堆具体操作（微信闲聊等已收进二级页）');
-    /* 菜单上不该再有可选中的列表项：具体安排都在二级页里 */
-    assert(render._buttons().filter(function (b) { return b.selectable; }).length === 0,
-      '行动菜单上没有可单选的列表项（避免和导航按钮混淆）');
+    /* 主页原型：今日安排就是两张单选卡片，具体安排都在二级页里 */
+    var selMain = render._buttons().filter(function (b) { return b.selectable; });
+    assert(selMain.length === 2, '主界面恰有两个可单选的方向卡片（实际 ' + selMain.length + '）');
+    assert(selMain.some(function (b) { return b.label === (DB.text('play').seekTitle || '寻找相亲机会'); })
+      && selMain.some(function (b) { return b.label === (DB.text('play').otherTitle || '其余安排'); }),
+      '两个单选卡片分别是「寻找相亲机会」与「其余安排」');
     auditLayout('行动菜单（两级入口）');
 
-    /* 点「寻找相亲机会」 → 二级页：头部背景图 + 相亲向的操作 */
+    /* 点「寻找相亲机会」卡片 → 进入待确认态（不立即进页）；再点底部「确认」→ 进二级页 */
     navSeek[0].onClick();
+    assert(render._pending() === 'choose:seek', '点选「寻找相亲机会」卡片后进入待确认态（单选 + 确认模型）');
+    var confirmSeek = render._fixedButtons().filter(function (b) {
+      return b.label === (DB.text('setup').confirm || '确认');
+    })[0];
+    assert(!!confirmSeek, '选中方向卡片后底部「确认」可点');
+    confirmSeek.onClick();
     var ph = render._pageHead();
-    assert(render._state().today.phase === 'seek', '单击入口即进入「寻找相亲机会」二级页');
+    assert(render._state().today.phase === 'seek', '确认后进入「寻找相亲机会」二级页');
     assert(ph.kind === 'seek' && ph.h > 0, '二级页头部高度为 ' + ph.h + '（有背景图的位置）');
     /* 只留这一页的绘制记录：drawnTexts 是跨次累计的，不清理会被上一页干扰 */
     drawnTexts.length = 0;
@@ -1760,8 +2042,13 @@ function main() {
     })[0];
     assert(!!other2, '回到菜单后「其余安排」入口仍在');
     other2.onClick();
+    var confirmUp = render._fixedButtons().filter(function (b) {
+      return b.label === (DB.text('setup').confirm || '确认');
+    })[0];
+    assert(!!confirmUp, '选中「其余安排」卡片后底部「确认」可点');
+    confirmUp.onClick();
     var ph2 = render._pageHead();
-    assert(render._state().today.phase === 'upgrade', '单击入口即进入「其余安排」二级页');
+    assert(render._state().today.phase === 'upgrade', '确认后进入「其余安排」二级页');
     assert(ph2.kind === 'upgrade' && ph2.h > 0, '二级页头部高度为 ' + ph2.h);
     drawnTexts.length = 0;
     render.draw();
@@ -1860,11 +2147,24 @@ function main() {
     assert(render._endHead().art === 'alone', '破产的结局用 alone 画面');
     auditLayout('结局页（独自落魄）');
 
-    /* 13 个结局逐个渲染：文案长短不一，任何一个都不许把正文压到「为什么」框上 */
+    /* 14 个结局逐个渲染：文案长短不一，任何一个都不许把正文压到「为什么」框上 */
     DB.list('endings').forEach(function (e) {
       render.renderEnd(e.id);
       auditLayout('结局页 · ' + e.title);
     });
+    /* 已婚 + 有对象时的兜底结局（玩家真实遇到的那一种：求婚成功后时间到了）：
+     * 双人头像 + 关系标签 + 正文卡一起出现，排版也得排得开。 */
+    render._state().S.partner = partnerObj;
+    render._state().S.relationship = 'married';
+    render.renderEnd('married_stall');
+    assert(render._endHead().art === 'badmarry', '「婚姻里的将就」用 badmarry 画面');
+    drawnTexts.length = 0;
+    render.draw();
+    assert(drawnTexts.some(function (t) { return t.indexOf('{p}') < 0 && t.indexOf(partnerObj.name) >= 0; }),
+      '结局页正文里的 {p} 已换成对象名（不会把 {p} 原样画出来）');
+    auditLayout('结局页（已婚兜底 · 双人头像）');
+    render._state().S.partner = null;
+    render._state().S.relationship = 'single';
     /* 有对象在场（双人头像那一版）也要排得开 */
     render._state().S.partner = partnerObj;
     render._state().S.relationship = 'married';
@@ -1900,7 +2200,7 @@ function main() {
     assert(render._fixedButtons().filter(function (b) {
       return b.label === '直接再开一局';
     }).length === 1, '不看广告也能直接开新一局（广告不是强制门槛）');
-    assert(render._fixedButtons().length === 2, '底部只放两个重开入口（三个会被挤到文案截断）');
+    assert(pageBtns().length === 2, '底部只放两个重开入口（三个会被挤到文案截断）');
     assert(render._buttons().filter(function (b) {
       return b.label === '回到标题';
     }).length === 1, '「回到标题」收成内容区小链接');
@@ -2036,13 +2336,21 @@ function main() {
     assert(render._fixedButtons().filter(function (b) { return b.label === '返回' || b.label === '← 返回'; }).length === 1,
       '叠层自带「返回」按钮');
     /* 叠层是刻意盖在页面上的（和飘字一样），不能拿「文字不重叠」去审 ——
-     * 这里改成审叠层自身的几何：面板不出屏、底部按钮在面板里。 */
-    var ovFoot = render._fixedButtons().filter(function (b) {
-      return b.label === '确认' || b.label === '返回' || b.label === '← 返回';
-    });
-    assert(ovFoot.length === 2 && ovFoot.every(function (b) {
-      return b.y >= ovOpen.panel.y && b.y + b.h <= ovOpen.panel.y + ovOpen.panel.h;
-    }), '叠层的「返回 / 确认」都落在面板内部');
+     * 这里改成审叠层自身的几何：面板不出屏、底部按钮在面板里。
+     * 「返回」始终存在；「确认」初始为未选中态（灰显且不注册），
+     * 选中一个风格后才出现可点的确认，所以分两步校验。 */
+    var back = render._fixedButtons().filter(function (b) {
+      return b.label === '返回' || b.label === '← 返回';
+    })[0];
+    assert(!!back && back.y >= ovOpen.panel.y && back.y + back.h <= ovOpen.panel.y + ovOpen.panel.h,
+      '叠层「返回」落在面板内部');
+    /* 选一个风格 → 确认按钮出现且仍在面板内 */
+    var one = render._fixedButtons().filter(function (b) { return /^style:/.test(String(b.label)); })[0];
+    if (one && one.onClick) one.onClick();
+    var confirmBtn = render._fixedButtons().filter(function (b) { return b.label === '确认'; })[0];
+    assert(!!confirmBtn, '选中风格后叠层出现「确认」按钮');
+    assert(confirmBtn && confirmBtn.y >= ovOpen.panel.y && confirmBtn.y + confirmBtn.h <= ovOpen.panel.y + ovOpen.panel.h,
+      '叠层「确认」落在面板内部');
 
     /* 「返回」收起叠层：下层页面原样回来 */
     render.closeStyleOverlay();
@@ -2167,6 +2475,205 @@ function main() {
     var tOff = render._trans();
     assert(tOff.active === false, '测试模式（动效关）下绘制恒为终态，排版断言不受影响');
     render.gotoTitle();
+
+    /* ---------- 存读档往返：relSpent 等关键字段必须随档保存并还原 ---------- */
+    console.log('  -- 存读档往返（relSpent 回归） --');
+    (function () {
+      var bg = DB.list('backgrounds')[0];
+      var d = {
+        v: 1, day: 37, gender: 'm', bgId: bg.id, goalId: bg.goals[0],
+        difficultyId: 'normal', seed: 4242, courtStyle: 'modest',
+        money: 88888, health: 66, career: 55, looks: 60, family: 40, mood: 70, affection: 33,
+        relationship: 'single', partner: null, lead: null,
+        flags: { child: false, marriedOnce: false, breakupCount: 1, rejectCount: 2 },
+        singleStreak: 3, singleLimit: 30, relStartDay: 5, relSpent: 4321,
+        recent: [], log: [], met: [], chatCount: 2, proactiveChats: 1, mustDate: true,
+        history: [], acts: [], today: null
+      };
+      render.resumeGame(d);
+      var S2 = render._state().S;
+      assert(S2.relSpent === 4321, '读档还原 relSpent（实=' + S2.relSpent + '）');
+      assert(S2.day === 37 && S2.money === 88888 && S2.chatCount === 2 && S2.mustDate === true,
+        '读档还原 day / money / chatCount / mustDate');
+      assert(!!(S2.flags && S2.flags.breakupCount === 1), '读档还原 flags');
+      render.saveGame();
+      var back = storage['xq_save_v1'] ? JSON.parse(storage['xq_save_v1']) : null;
+      assert(!!(back && back.relSpent === 4321), 'saveGame 写出的档含 relSpent（实=' +
+        (back && back.relSpent) + '）');
+      assert(!!(back && back.day === 37 && back.mustDate === true), '关键字段随档写出');
+      render.gotoTitle();
+    })();
+
+    /* ---------- 结局清档：对局结束后不应还能「继续游戏」 ---------- */
+    console.log('  -- 结局清档（结束后不可继续） --');
+    (function () {
+      render.saveGame();
+      assert(!!storage['xq_save_v1'], '结局前先确保存在存档');
+      var endId = (DB.list('endings')[0] || {}).id;
+      render.renderEnd(endId);
+      assert(render._state().scene === 'end', '进入结局页');
+      assert(!storage['xq_save_v1'], '进入结局页后存档被清除（结束后不可「继续游戏」）');
+      render.gotoTitle();
+    })();
+
+    /* ---------- 卡片式改造：选中态 / 正文卡 / 属性变化卡 / 音乐浮窗 / 进出动效 ---------- */
+    console.log('  -- 卡片式改造（选中态 · 正文卡 · 属性卡 · 音乐浮窗 · 进出动效） --');
+    render._transOn(false);      // 先断言终态；动效单列在最后
+
+    /* 开一局干净的「单身」档：渠道页 / 其余安排页 / 事件页都要用到 */
+    render.gotoTitle();
+    render.resumeGame({
+      v: 1, gender: 'm', bgId: DB.list('backgrounds')[0].id, goalId: 'marry', seed: 20260920,
+      difficultyId: 'normal', day: 6, money: 60000, health: 70, career: 55,
+      looks: 60, family: 45, mood: 60, affection: 0,
+      relationship: 'single', partner: null, lead: null,
+      flags: {}, singleStreak: 3, singleLimit: 30, relStartDay: 1,
+      recent: [], log: [], history: [], acts: [], met: []
+    });
+    var countTick = function () {
+      return drawnTexts.filter(function (t) { return t === '✓'; }).length;
+    };
+
+    /* ① 相亲渠道卡片：点一下必须看得见「选中」 */
+    (function () {
+      render.gotoSeek();
+      var cards = render._buttons().filter(function (b) { return b.selectable; });
+      assert(cards.length > 0, '寻找相亲机会渲染出可选的渠道卡片');
+      assert(render._pending() === null, '刚进渠道页时没有任何选中项');
+      cards[0].onClick();
+      assert(render._pending() === 'seek:' + DB.list('channels')[0].id,
+        '点渠道卡片进入选中态（pendingKey 命中该渠道，实=' + render._pending() + '）');
+      drawnTexts.length = 0;
+      render.draw();
+      assert(countTick() >= 1, '选中的渠道卡片画出右上角 ✓ 角标（选中态可见）');
+      assert(render._buttons().filter(function (b) { return b.selectable; }).length > 0 &&
+        render._fixedButtons().filter(function (b) { return b.label === '确认'; }).length === 1,
+        '选中渠道后底部「确认」可点（单选 + 确认流程完整）');
+      render._state().today.phase = 'choose';   // 清场，不影响后面的用例
+      render.backToChoose();
+    })();
+
+    /* 同级问题一并覆盖：其余安排的卡片同样要看得见选中 */
+    (function () {
+      render.gotoUpgrade();
+      var cards = render._buttons().filter(function (b) { return b.selectable; });
+      assert(cards.length >= 4, '其余安排渲染出 4 张可选卡片（实=' + cards.length + '）');
+      cards[0].onClick();
+      assert(render._pending() !== null, '点「其余安排」卡片同样进入选中态');
+      drawnTexts.length = 0;
+      render.draw();
+      assert(countTick() >= 1, '「其余安排」选中的卡片也画出 ✓（同类问题一并修好）');
+      render.backToChoose();
+    })();
+
+    /* ② 事件页（相亲事件 / 随机事件同一套画法）：正文旁白卡 + 选项卡 + 结果属性卡 */
+    (function () {
+      render.actLife();                     // 过日子 → 随机事件
+      assert(render._state().today.phase === 'event', '进事件页（随机事件）');
+      drawnTexts.length = 0;
+      render.draw();
+      assert(render._frameCards().note >= 1,
+        '事件正文用旁白卡承载（本帧旁白卡 ' + render._frameCards().note + ' 张）');
+      var opts = render._buttons().filter(function (b) { return b.selectable; });
+      assert(opts.length >= 2, '事件选项是卡片（实=' + opts.length + ' 张）');
+      opts[0].onClick();
+      assert(render._pending() !== null, '事件选项点击进入选中态');
+      drawnTexts.length = 0;
+      render.draw();
+      assert(countTick() >= 1, '选中的事件选项卡画出 ✓');
+      render.runPending();
+      assert(render._state().today.resolved === true, '提交后在本页展示结果');
+      assert(render._frameCards().delta >= 1,
+        '结果区的属性变化用卡片展示（本帧变化卡 ' + render._frameCards().delta + ' 张）');
+      var d0 = render._state().today.result.delta;
+      assert(render.deltaValText('money', -60000) === '-6万', '属性卡数值沿用万单位简写');
+      assert(render.deltaValText('health', 5) === '+5' &&
+        render.deltaValText('health', -5) === '-5', '属性卡数值带正负号');
+      assert(Object.keys(d0).length > 0, '结果里确实有属性变化（供卡片展示）');
+    })();
+
+    /* ③ 音乐浮窗：钉在左上角，所有页面都在，点一下切换静音 */
+    (function () {
+      var audioMod = require('../js/audio.js');
+      var pages = [
+        ['标题页', function () { render.gotoTitle(); }],
+        ['设定页', function () { render.startSetup(); }],
+        ['主界面', function () {
+          render.gotoTitle();
+          render.resumeGame({
+            v: 1, gender: 'm', bgId: DB.list('backgrounds')[0].id, goalId: 'marry', seed: 20260921,
+            difficultyId: 'normal', day: 7, money: 60000, health: 70, career: 55,
+            looks: 60, family: 45, mood: 60, affection: 0,
+            relationship: 'single', partner: null, lead: null,
+            flags: {}, singleStreak: 3, singleLimit: 30, relStartDay: 1,
+            recent: [], log: [], history: [], acts: [], met: []
+          });
+        }],
+        ['相亲图鉴', function () { render.openGallery(); }],
+        ['对方资料页', function () { render.openPartnerProfile(); }],
+        ['玩法说明页', function () { render.closeGallery(); render.gotoTitle(); render.draw(); }]
+      ];
+      pages.forEach(function (pg) {
+        pg[1]();
+        var mb = render._musicBtn();
+        assert(!!mb, pg[0] + '展示音乐开关浮窗');
+        assert(mb.x + mb.w <= 375 * 0.25 && mb.y < 60,
+          pg[0] + '的音乐浮窗在左上角（x=' + mb.x + ' y=' + mb.y + '）');
+      });
+      var before = audioMod.isMuted();
+      render._fixedButtons().filter(function (b) { return b.music; })[0].onClick();
+      assert(audioMod.isMuted() !== before, '点浮窗即可切换静音（' + before + ' → ' + audioMod.isMuted() + '）');
+      assert(render._musicBtn().label === (audioMod.isMuted() ? '音乐 关' : '音乐 开'),
+        '浮窗文案跟随静音状态（' + render._musicBtn().label + '）');
+      render._fixedButtons().filter(function (b) { return b.music; })[0].onClick();
+      assert(audioMod.isMuted() === before, '再点一次切回原状态');
+
+      /* 叠层打开时浮窗依然在、依然能点（它是固定层最上面的全局控件） */
+      render.gotoSeek();
+      render.gotoStyle('date', 'simple');
+      assert(render._styleOverlay().open === true, '约会档位 → 打开交往风格叠层');
+      assert(!!render._musicBtn(), '交往风格叠层打开时，音乐浮窗仍在（不被叠层盖掉）');
+      assert(render._fixedButtons().filter(function (b) { return b.music; }).length === 1,
+        '叠层打开时音乐浮窗仍可点（在固定层最上面）');
+      render.closeStyleOverlay();
+    })();
+
+    /* ④ 卡片进出动效：入场错落 + 退场延后执行（数值断言，不依赖真实耗时） */
+    (function () {
+      render._transOn(true);
+
+      /* 入场：拨表到 0ms 是「刚起步」（还在下方且半透明），拨到结束后是终态 */
+      var inStart = render._cardEnter('test', 0);
+      assert(inStart.on === true && inStart.dy > 0 && inStart.a < 1,
+        '卡片入场起步：还在下方且半透明（dy=' + inStart.dy + ' · a=' + inStart.a.toFixed(2) + '）');
+      var inMid = render._cardEnter('test', 60);
+      assert(inMid.dy > 0 && inMid.dy < inStart.dy && inMid.a > inStart.a && inMid.a < 1,
+        '入场中途：位移在收、透明度在涨（dy=' + inMid.dy + ' · a=' + inMid.a.toFixed(2) + '）');
+      var inDone = render._ageCardEnter(render._transMs() + 3000);
+      assert(inDone.on === false && inDone.dy === 0 && inDone.a === 1,
+        '入场结束回到终态（不残留位移 / 半透明）');
+
+      /* 退场：先播动画、回调延后；手动拨到结束才真正执行 */
+      var ran = false;
+      var deferring = render._cardExit(function () { ran = true; });
+      assert(deferring === true && ran === false, '退场先播动画，真正的状态变更被推迟');
+      render._ageCardExit(120);
+      var outMid = render._cardAnim(0);
+      assert(outMid.dy > 0 && outMid.a < 1,
+        '退场中途卡片在往下沉且变淡（dy=' + outMid.dy + ' · a=' + outMid.a.toFixed(2) + '）');
+      render._ageCardExit(render._transMs() + 3000);
+      render._cardTick();
+      assert(ran === true && render._cardExiting() === false, '退场播完后才执行回调');
+
+      /* 动效关闭（测试 / 无动效环境）：退场必须同步执行，行为完全一致 */
+      render._transOn(false);
+      var ran2 = false;
+      render._cardExit(function () { ran2 = true; });
+      assert(ran2 === true, '动效关闭时退场同步执行（不影响测试与低端机的正确性）');
+      var off = render._cardAnim(0);
+      assert(off.on === false && off.a === 1 && off.dy === 0, '动效关闭时卡片恒为终态');
+      render.gotoTitle();
+    })();
 
     console.log('UI SMOKE OK');
   });

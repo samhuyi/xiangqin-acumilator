@@ -241,16 +241,16 @@ function runSeed(seed) {
       if (err) break;
       visited.done = true;
     } else if (phase === 'choose') {
-      /* 行动菜单：两个「方向入口」是导航按钮（单击即进二级页，不套二次确认）。
-       * 轮流点，让 seek / upgrade 两条支路都能被走到。 */
+      /* 行动菜单：两个「方向入口」现在是单选卡片（先点选一项，再由底部「确认」提交）。
+       * 轮流选，让 seek / upgrade 两条支路都能被走到。 */
       var navs = render._buttons().filter(function (b) {
-        return !b.selectable && /寻找相亲机会|其余安排/.test(String(b.label));
+        return b.selectable && /寻找相亲机会|其余安排/.test(String(b.label));
       });
       if (navs.length !== 2) { err = 'choose 阶段方向入口应为 2 个，实际 ' + navs.length; break; }
-      if (render._buttons().filter(function (b) { return b.selectable; }).length !== 0) {
-        err = 'choose 阶段不该再有可单选的列表项'; break;
-      }
-      click(navs[navTurn++ % navs.length]);
+      click(navs[navTurn++ % navs.length]);        // 选中方向卡片
+      var cfNav = findBy(render._fixedButtons(), '确认');
+      if (!cfNav) { err = 'choose 阶段选中方向后没有可点的「确认」按钮'; break; }
+      click(cfNav);                                // 确认 → 进入对应二级页
       visited.choose = true;
     } else {
       var act = render._buttons().filter(function (b) { return b.selectable; })[0];

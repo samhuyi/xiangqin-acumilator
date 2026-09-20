@@ -1,4 +1,4 @@
-/* 自动生成，请勿手改。来源：tools/gen-seed.js */
+/* 自动生成，请勿手改。来源：tools/gen-seed.js；数值经 tools/rebalance-fx.js 复算 */
 module.exports = [
   {
     "id": "s_overtime",
@@ -17,9 +17,7 @@ module.exports = [
         "fx": {
           "money": 1600,
           "health": -10,
-          "career": 8,
-          "looks": -2,
-          "family": -1
+          "career": 8
         },
         "result": "你在凌晨一点提交了方案。主管回了个「辛苦了」，你盯着这三个字看了很久。",
         "breakup": false
@@ -28,10 +26,7 @@ module.exports = [
         "label": "准时下班，给自己做顿饭",
         "fx": {
           "money": -200,
-          "health": 10,
-          "career": -4,
-          "looks": 1,
-          "family": 3
+          "health": 10
         },
         "result": "你炒了个西红柿鸡蛋，味道一般，但吃得比外卖安心。",
         "breakup": false
@@ -39,11 +34,7 @@ module.exports = [
       {
         "label": "下班去相个亲吧，再晚菜都凉了",
         "fx": {
-          "money": -400,
-          "health": -4,
-          "career": 1,
-          "looks": 1,
-          "family": -2
+          "money": -400
         },
         "result": "你换了件外套出门。地铁上，你在心里预演了三遍开场白。",
         "breakup": false
@@ -65,36 +56,20 @@ module.exports = [
       {
         "label": "「我在努力了，别催。」",
         "fx": {
-          "health": -6,
-          "money": 3,
-          "career": 3,
-          "looks": 3,
-          "family": -4
+          "health": -6
         },
         "result": "电话那头沉默了一下，然后说：「我也没催你。」你们都知道这句话不是真的。",
         "breakup": false
       },
       {
         "label": "「好好好，我知道了。」",
-        "fx": {
-          "health": -2,
-          "career": -2,
-          "money": 3,
-          "looks": -2,
-          "family": 2
-        },
+        "fx": {},
         "result": "你熟练地应付过去，挂了电话。这通电话你只用了四分钟，创下新纪录。",
         "breakup": false
       },
       {
         "label": "主动汇报：「我最近在见了。」",
-        "fx": {
-          "health": 4,
-          "affection": 4,
-          "money": 4,
-          "career": -1,
-          "looks": -3
-        },
+        "fx": {},
         "result": "妈妈的声音立刻亮了八度，开始追问对方多高、做什么的、家里几口人。你后悔了。",
         "breakup": false
       }
@@ -115,11 +90,7 @@ module.exports = [
       {
         "label": "包个大红包，到场祝贺",
         "fx": {
-          "money": -4000,
-          "health": 4,
-          "career": 2,
-          "looks": -4,
-          "family": 1
+          "money": -4000
         },
         "result": "婚礼上你被安排在第二桌，和一群同样单身的高中同学坐在一起，气氛微妙。",
         "breakup": false
@@ -127,11 +98,7 @@ module.exports = [
       {
         "label": "包个标准红包，人到就行",
         "fx": {
-          "money": -2000,
-          "health": -2,
-          "career": 4,
-          "looks": 4,
-          "family": 1
+          "money": -2000
         },
         "result": "你坐在角落里看完了全程，司仪说「祝新人早生贵子」时，你低头喝了口饮料。",
         "breakup": false
@@ -139,11 +106,7 @@ module.exports = [
       {
         "label": "找借口不去，省下这笔钱",
         "fx": {
-          "money": -400,
-          "health": -4,
-          "career": 4,
-          "looks": 3,
-          "family": -3
+          "money": -400
         },
         "result": "你在家加班，把项目提前了两天。室友后来没再联系你。",
         "breakup": false
@@ -165,11 +128,7 @@ module.exports = [
       {
         "label": "认真看完资料，给一个心动的人打招呼",
         "fx": {
-          "money": -200,
-          "health": -4,
-          "affection": 2,
-          "career": 2,
-          "looks": -2
+          "money": -200
         },
         "result": "你斟酌了十分钟措辞，发出去。消息显示「已读」，然后就没有然后了。",
         "breakup": false
@@ -177,11 +136,7 @@ module.exports = [
       {
         "label": "充个会员，提高曝光",
         "fx": {
-          "money": -1200,
-          "career": -2,
-          "health": -3,
-          "looks": 1,
-          "family": 2
+          "money": -1200
         },
         "result": "充值后你收到了二十个赞。你忽然觉得，这件事和投简历没什么区别。",
         "breakup": false
@@ -189,11 +144,7 @@ module.exports = [
       {
         "label": "关掉 App，去楼下跑两圈",
         "fx": {
-          "health": 12,
-          "money": 3,
-          "career": -3,
-          "looks": 1,
-          "family": -1
+          "health": 12
         },
         "result": "跑到第三圈的时候你出了一身汗，脑子意外地清醒。",
         "breakup": false
@@ -215,36 +166,20 @@ module.exports = [
       {
         "label": "「妈你快撤下来，太丢人了。」",
         "fx": {
-          "health": -6,
-          "affection": -2,
-          "money": 3,
-          "career": -3,
-          "looks": 1
+          "health": -6
         },
         "result": "她不情不愿地撤了，但转发到了三个家长群里。你无从阻拦。",
         "breakup": false
       },
       {
         "label": "随她去吧，反正也没人看",
-        "fx": {
-          "health": 2,
-          "affection": 2,
-          "money": -3,
-          "career": -4,
-          "looks": -3
-        },
+        "fx": {},
         "result": "一周后你妈说有人打电话来问，条件是「女方本地有房，男方要有编制」。",
         "breakup": false
       },
       {
         "label": "「那你帮我写得好看点。」",
-        "fx": {
-          "health": -2,
-          "career": 2,
-          "affection": 2,
-          "money": 4,
-          "looks": -1
-        },
+        "fx": {},
         "result": "你妈很高兴，当晚给你打了四十分钟电话，逐字讨论措辞。",
         "breakup": false
       }
@@ -265,11 +200,7 @@ module.exports = [
       {
         "label": "去，说不定能认识人",
         "fx": {
-          "money": -1000,
-          "health": -4,
-          "affection": 4,
-          "career": 4,
-          "looks": -2
+          "money": -1000
         },
         "result": "席间有人问你「怎么还单着」，你说「工作忙」，这个答案你用了三年。",
         "breakup": false
@@ -278,10 +209,7 @@ module.exports = [
         "label": "去，顺便维护一下人脉",
         "fx": {
           "money": -1000,
-          "health": -4,
-          "career": 6,
-          "looks": -3,
-          "family": 3
+          "career": 6
         },
         "result": "你和两个同行换了名片，聊到了年底跳槽的机会。",
         "breakup": false
@@ -289,11 +217,7 @@ module.exports = [
       {
         "label": "不去，社恐发作",
         "fx": {
-          "health": 6,
-          "career": -2,
-          "money": 3,
-          "looks": -2,
-          "family": -4
+          "health": 6
         },
         "result": "你在群里发了个红包，说「下次一定」。群里没人接话。",
         "breakup": false
@@ -315,11 +239,7 @@ module.exports = [
       {
         "label": "硬扛，多喝热水",
         "fx": {
-          "health": -12,
-          "money": -3,
-          "career": -3,
-          "looks": 1,
-          "family": 2
+          "health": -12
         },
         "result": "你在被窝里躺了两天。第三天能下床时，你觉得自己像一件被拧干的衣服。",
         "breakup": false
@@ -328,23 +248,14 @@ module.exports = [
         "label": "花钱去看医生",
         "fx": {
           "money": -1600,
-          "health": 8,
-          "career": 3,
-          "looks": -2,
-          "family": 2
+          "health": 8
         },
         "result": "医生说是普通感冒，开了药。你拿着药走出医院，阳光刺眼。",
         "breakup": false
       },
       {
         "label": "发个朋友圈求安慰",
-        "fx": {
-          "health": 2,
-          "affection": -2,
-          "money": 4,
-          "career": -1,
-          "looks": 4
-        },
+        "fx": {},
         "result": "收获三十二个赞和七条「多喝热水」。其中一条来自你妈：「叫你不穿秋裤」。",
         "breakup": false
       }
@@ -366,10 +277,7 @@ module.exports = [
         "label": "报个班，系统学点东西",
         "fx": {
           "money": -6000,
-          "health": -4,
-          "career": 12,
-          "looks": 3,
-          "family": 4
+          "career": 12
         },
         "result": "你开始每周两晚上课。三个月后，你在简历上加了一行新技能。",
         "breakup": false
@@ -378,10 +286,7 @@ module.exports = [
         "label": "买本书，自己啃",
         "fx": {
           "money": -200,
-          "health": 2,
-          "career": 6,
-          "looks": -3,
-          "family": -4
+          "career": 6
         },
         "result": "书看完了前三十页，然后在书架上落灰。但前三十页确实有用。",
         "breakup": false
@@ -389,11 +294,7 @@ module.exports = [
       {
         "label": "算了，先睡吧",
         "fx": {
-          "health": 8,
-          "career": -4,
-          "money": -3,
-          "looks": -3,
-          "family": 1
+          "health": 8
         },
         "result": "你睡了八个小时。第二天精神很好，也什么都没改变。",
         "breakup": false
@@ -416,10 +317,7 @@ module.exports = [
         "label": "办张健身卡，认真练",
         "fx": {
           "money": -5000,
-          "health": 16,
-          "career": 2,
-          "looks": 2,
-          "family": -1
+          "health": 16
         },
         "result": "你去了健身房，在器械区手足无措。教练很热情，热情到你最后买了二十节课。",
         "breakup": false
@@ -427,24 +325,14 @@ module.exports = [
       {
         "label": "在家跟着视频练",
         "fx": {
-          "health": 8,
-          "money": -2,
-          "career": 1,
-          "looks": 3,
-          "family": -1
+          "health": 8
         },
         "result": "坚持了十一天。第十二天你加班到十点，从此再没打开过那个视频。",
         "breakup": false
       },
       {
         "label": "接受自己，开心就好",
-        "fx": {
-          "health": 2,
-          "career": -2,
-          "money": 1,
-          "looks": -2,
-          "family": -4
-        },
+        "fx": {},
         "result": "你点了份炸鸡，一边吃一边想：这也是一种和解。",
         "breakup": false
       }
@@ -465,11 +353,7 @@ module.exports = [
       {
         "label": "笑着应付，全盘接收",
         "fx": {
-          "health": -8,
-          "money": 3,
-          "career": 4,
-          "looks": -2,
-          "family": 4
+          "health": -8
         },
         "result": "你笑到脸僵。回程的高铁上，你在黑暗里坐了两个小时没说话。",
         "breakup": false
@@ -477,24 +361,14 @@ module.exports = [
       {
         "label": "当场反驳：「我过得挺好。」",
         "fx": {
-          "health": 6,
-          "money": 2,
-          "career": -2,
-          "looks": -2,
-          "family": 3
+          "health": 6
         },
         "result": "饭桌安静了三秒，然后话题转向了你表弟的成绩。你知道这话题明年还会来。",
         "breakup": false
       },
       {
         "label": "拿出手机给他们看相亲对象的照片",
-        "fx": {
-          "health": 4,
-          "affection": 4,
-          "money": 2,
-          "career": -2,
-          "looks": -1
-        },
+        "fx": {},
         "result": "亲戚们瞬间围过来评头论足。你妈笑得合不拢嘴，你却在心里叹了口气。",
         "breakup": false
       }
@@ -517,9 +391,7 @@ module.exports = [
         "fx": {
           "money": 12000,
           "health": -14,
-          "career": 6,
-          "looks": -2,
-          "family": 4
+          "career": 6
         },
         "result": "你连续两周凌晨两点睡。钱到手那天，你给自己买了个很贵的枕头。",
         "breakup": false
@@ -527,11 +399,7 @@ module.exports = [
       {
         "label": "研究理财，让钱生钱",
         "fx": {
-          "money": 3000,
-          "health": -2,
-          "career": 4,
-          "looks": 3,
-          "family": -4
+          "money": 3000
         },
         "result": "你学会了看 K 线，也学会了什么叫「绿得发慌」。",
         "breakup": false
@@ -539,11 +407,7 @@ module.exports = [
       {
         "label": "记账节流，少花点",
         "fx": {
-          "money": 2400,
-          "health": 4,
-          "career": -3,
-          "looks": -4,
-          "family": 4
+          "money": 2400
         },
         "result": "你开始带饭上班。同事问你是不是要买房，你说不是，只是想存点钱。",
         "breakup": false
@@ -566,10 +430,7 @@ module.exports = [
         "label": "发消息问「你喝什么，我还没点」",
         "fx": {
           "money": -160,
-          "affection": 16,
-          "health": -2,
-          "career": 4,
-          "looks": -1
+          "affection": 16
         },
         "result": "她说「那就美式吧，谢谢」。三分钟后她推门进来，比照片上更放松一些。",
         "breakup": false
@@ -578,10 +439,7 @@ module.exports = [
         "label": "先点好，表现得成熟一点",
         "fx": {
           "money": -160,
-          "affection": 6,
-          "health": 1,
-          "career": -1,
-          "looks": -3
+          "affection": 6
         },
         "result": "她端起杯子喝了一口，说「我不太喝得惯苦的」。你有点后悔。",
         "breakup": false
@@ -590,10 +448,7 @@ module.exports = [
         "label": "等她来了再一起点",
         "fx": {
           "money": -160,
-          "affection": 10,
-          "health": -1,
-          "career": -3,
-          "looks": 3
+          "affection": 10
         },
         "result": "她站在柜台前犹豫了很久，最后要了一杯拿铁。你们聊了四十分钟，话题没断过。",
         "breakup": false
@@ -615,11 +470,7 @@ module.exports = [
       {
         "label": "每晚固定找她聊，形成习惯",
         "fx": {
-          "health": -4,
-          "career": -2,
-          "affection": 14,
-          "money": 4,
-          "looks": -4
+          "affection": 14
         },
         "result": "两周后，如果某天晚上没聊，你会觉得缺了点什么。她也是。",
         "breakup": false
@@ -627,11 +478,7 @@ module.exports = [
       {
         "label": "分享一件自己真正想说的事",
         "fx": {
-          "health": 4,
-          "affection": 20,
-          "money": 4,
-          "career": -3,
-          "looks": -3
+          "affection": 20
         },
         "result": "你讲了自己创业失败/加班崩溃的往事。她回了一句「原来你也会这样」。距离忽然近了。",
         "breakup": false
@@ -639,11 +486,7 @@ module.exports = [
       {
         "label": "忙起来就忘了回，隔天才想起来",
         "fx": {
-          "affection": -16,
-          "money": 3,
-          "health": -3,
-          "career": 2,
-          "looks": -1
+          "affection": -16
         },
         "result": "隔天你回过去，她的回复只有两个字：「好的」。你盯着这两个字看了很久。",
         "breakup": false
@@ -665,11 +508,7 @@ module.exports = [
       {
         "label": "「不急，慢慢来。」",
         "fx": {
-          "affection": 8,
-          "money": -3,
-          "health": -3,
-          "career": 4,
-          "looks": 4
+          "affection": 8
         },
         "result": "她坐下时带来一阵风，小声说了句抱歉。电影开场前，你们聊了很久。",
         "breakup": false
@@ -678,10 +517,7 @@ module.exports = [
         "label": "「我等你，爆米花买好了。」",
         "fx": {
           "money": -140,
-          "affection": 16,
-          "health": -2,
-          "career": -3,
-          "looks": 3
+          "affection": 16
         },
         "result": "她笑了一下，说你挺会。那场电影你其实没怎么看进去。",
         "breakup": false
@@ -689,11 +525,7 @@ module.exports = [
       {
         "label": "「下次能早点出门吗？」",
         "fx": {
-          "affection": -14,
-          "money": 3,
-          "health": -4,
-          "career": 3,
-          "looks": 3
+          "affection": -14
         },
         "result": "整场电影都很安静。散场后她说今天有点累了，先回去了。",
         "breakup": false
@@ -716,10 +548,7 @@ module.exports = [
         "label": "买个贵一点的，表个心意",
         "fx": {
           "money": -5000,
-          "affection": 24,
-          "health": 3,
-          "career": -3,
-          "looks": 2
+          "affection": 24
         },
         "result": "她拆开包装时愣了一下，说「太贵重了」。但她第二天就用上了。",
         "breakup": false
@@ -728,10 +557,7 @@ module.exports = [
         "label": "买个有心意的小东西",
         "fx": {
           "money": -800,
-          "affection": 16,
-          "health": 3,
-          "career": -1,
-          "looks": 4
+          "affection": 16
         },
         "result": "你送了本她提过一次的书。她说「你居然记得」，眼睛亮了一下。",
         "breakup": false
@@ -740,10 +566,7 @@ module.exports = [
         "label": "发个红包，简单直接",
         "fx": {
           "money": -400,
-          "affection": -12,
-          "health": 4,
-          "career": -3,
-          "looks": 1
+          "affection": -12
         },
         "result": "红包收了，但那天的对话明显变少了。你隐约觉得哪里不对。",
         "breakup": false
@@ -765,11 +588,7 @@ module.exports = [
       {
         "label": "如实说，然后补一句「都过去了」",
         "fx": {
-          "affection": 12,
-          "money": 2,
-          "health": -1,
-          "career": -4,
-          "looks": -1
+          "affection": 12
         },
         "result": "她点点头，也讲了自己的故事。你们第一次聊到这么深的地方。",
         "breakup": false
@@ -777,11 +596,7 @@ module.exports = [
       {
         "label": "含糊过去：「没几个，不重要。」",
         "fx": {
-          "affection": -6,
-          "money": 3,
-          "health": 3,
-          "career": -3,
-          "looks": -3
+          "affection": -6
         },
         "result": "她「哦」了一声，转开了话题。空气里多了一点说不清的东西。",
         "breakup": false
@@ -789,11 +604,7 @@ module.exports = [
       {
         "label": "反问她，把球踢回去",
         "fx": {
-          "affection": -16,
-          "money": 3,
-          "health": -1,
-          "career": -3,
-          "looks": 3
+          "affection": -16
         },
         "result": "她沉默了几秒，说「这个问题你都不敢答吗」。那晚的聊天结束得很早。",
         "breakup": false
@@ -815,11 +626,7 @@ module.exports = [
       {
         "label": "直接问：「你是不是不太想聊了？」",
         "fx": {
-          "affection": 12,
-          "money": -1,
-          "health": 2,
-          "career": 4,
-          "looks": -1
+          "affection": 12
         },
         "result": "她回：「最近项目忙，不是你的问题。」后面跟了一个表情包。你的心放下来一半。",
         "breakup": false
@@ -827,11 +634,7 @@ module.exports = [
       {
         "label": "发个有趣的东西，试探一下",
         "fx": {
-          "affection": 6,
-          "money": 4,
-          "health": -2,
-          "career": -2,
-          "looks": 2
+          "affection": 6
         },
         "result": "她回了个「哈哈」，然后没有下文。你盯着对话框，像个守株待兔的人。",
         "breakup": false
@@ -839,11 +642,7 @@ module.exports = [
       {
         "label": "冷处理，她冷我也冷",
         "fx": {
-          "affection": -20,
-          "money": -3,
-          "health": 4,
-          "career": 3,
-          "looks": 2
+          "affection": -20
         },
         "result": "两天后，你们已经有四十八小时没说过话。这段关系像一列正在减速的火车。",
         "breakup": false
@@ -865,11 +664,7 @@ module.exports = [
       {
         "label": "点个赞，什么都不问",
         "fx": {
-          "affection": 8,
-          "money": -4,
-          "health": 1,
-          "career": -4,
-          "looks": -2
+          "affection": 8
         },
         "result": "她回赞了你的上一条。你们心照不宣，都没有多说。",
         "breakup": false
@@ -877,11 +672,7 @@ module.exports = [
       {
         "label": "评论：「这是谁呀？」",
         "fx": {
-          "affection": -12,
-          "money": 4,
-          "health": 4,
-          "career": -2,
-          "looks": 1
+          "affection": -12
         },
         "result": "她回复「大学同学」。然后那条评论底下再无下文，气氛微妙。",
         "breakup": false
@@ -889,11 +680,7 @@ module.exports = [
       {
         "label": "忍不住私聊问清楚",
         "fx": {
-          "affection": -18,
-          "money": 1,
-          "health": -2,
-          "career": -3,
-          "looks": 3
+          "affection": -18
         },
         "result": "她解释了半天，最后说「你是不是想太多了」。你知道自己确实想多了，但已经说出口了。",
         "breakup": false
@@ -914,11 +701,8 @@ module.exports = [
       {
         "label": "硬着头皮请假，准时赴约",
         "fx": {
-          "career": -8,
           "affection": 18,
-          "money": 2,
-          "health": -1,
-          "looks": -1
+          "career": -8
         },
         "result": "你跑着赶到餐厅，她已经点好了菜。你说抱歉，她说「没事，我也刚到」——你看见她面前的水已经喝了一半。",
         "breakup": false
@@ -927,10 +711,7 @@ module.exports = [
         "label": "发消息说明，改完再去",
         "fx": {
           "career": 10,
-          "affection": -8,
-          "money": 3,
-          "health": 3,
-          "looks": -3
+          "affection": -8
         },
         "result": "你九点半才到。她还在，但话少了很多。整顿饭你都在解释。",
         "breakup": false
@@ -938,11 +719,8 @@ module.exports = [
       {
         "label": "直接放鸽子，「下次我请」",
         "fx": {
-          "career": 12,
           "affection": -24,
-          "money": -4,
-          "health": -3,
-          "looks": 1
+          "career": 12
         },
         "result": "她说「好」。这个「好」字里，藏着一整个太平洋的距离。",
         "breakup": false
@@ -964,11 +742,7 @@ module.exports = [
       {
         "label": "笑着挡回去：「还早还早。」",
         "fx": {
-          "affection": 10,
-          "money": 1,
-          "health": -3,
-          "career": -4,
-          "looks": -1
+          "affection": 10
         },
         "result": "她没有生气，反而帮你挡了后面几个问题。回去的路上你们都在笑。",
         "breakup": false
@@ -976,11 +750,7 @@ module.exports = [
       {
         "label": "认真说：「我们在认真了解。」",
         "fx": {
-          "affection": 22,
-          "money": -1,
-          "health": 1,
-          "career": -3,
-          "looks": -1
+          "affection": 22
         },
         "result": "桌上安静了一秒，然后有人吹了声口哨。她低着头，但耳根红了。",
         "breakup": false
@@ -988,11 +758,7 @@ module.exports = [
       {
         "label": "开玩笑：「看她愿不愿意呗。」",
         "fx": {
-          "affection": -10,
-          "money": 1,
-          "health": 3,
-          "career": -3,
-          "looks": -1
+          "affection": -10
         },
         "result": "她也笑了，但笑得有点勉强。你觉得那句话可能不太合适。",
         "breakup": false
@@ -1014,11 +780,7 @@ module.exports = [
       {
         "label": "坦诚现状：「我在攒，还需要点时间。」",
         "fx": {
-          "affection": 14,
-          "money": -1,
-          "health": -4,
-          "career": 2,
-          "looks": -4
+          "affection": 14
         },
         "result": "她点点头，说「谁不是呢」。那天你们第一次聊到了「以后」。",
         "breakup": false
@@ -1026,24 +788,14 @@ module.exports = [
       {
         "label": "画饼：「过两年肯定能买。」",
         "fx": {
-          "career": -2,
-          "affection": -8,
-          "money": -4,
-          "health": 1,
-          "looks": 4
+          "affection": -8
         },
         "result": "她笑了笑没接话。你知道这个饼她听过很多次了，来自不同的人。",
         "breakup": false
       },
       {
         "label": "转移话题，聊点开心的",
-        "fx": {
-          "affection": -4,
-          "money": -4,
-          "health": 3,
-          "career": 4,
-          "looks": -1
-        },
+        "fx": {},
         "result": "话题被岔开了，但那句话像一根刺，留在了空气里。",
         "breakup": false
       }
@@ -1064,11 +816,8 @@ module.exports = [
       {
         "label": "「跟你聊天真舒服。」",
         "fx": {
-          "health": -6,
           "affection": 18,
-          "money": -1,
-          "career": 2,
-          "looks": -1
+          "health": -6
         },
         "result": "她回：「我也是。快睡吧，明天还要上班。」你抱着手机睡着了。",
         "breakup": false
@@ -1076,11 +825,7 @@ module.exports = [
       {
         "label": "「我们这样算什么？」",
         "fx": {
-          "affection": 10,
-          "money": 2,
-          "health": -4,
-          "career": -3,
-          "looks": 4
+          "affection": 10
         },
         "result": "那边安静了很久，然后发来一句：「你觉得呢？」你把这个问题又抛了回去，问题最终还是回到了你手里。",
         "breakup": false
@@ -1088,11 +833,8 @@ module.exports = [
       {
         "label": "「不早了，早点休息。」",
         "fx": {
-          "health": 6,
           "affection": 6,
-          "money": -2,
-          "career": 2,
-          "looks": -2
+          "health": 6
         },
         "result": "你选择了一个体面的结束方式。第二天醒来，你有点后悔没多说一句。",
         "breakup": false
@@ -1115,10 +857,7 @@ module.exports = [
         "label": "带着伞去她公司楼下等",
         "fx": {
           "money": -120,
-          "health": -4,
-          "affection": 26,
-          "career": -2,
-          "looks": 2
+          "affection": 26
         },
         "result": "她走出写字楼时愣住了。那天你们共撑一把伞走了很长一段路，你半边肩膀都湿了。",
         "breakup": false
@@ -1127,10 +866,7 @@ module.exports = [
         "label": "发消息：「我给你叫个车。」",
         "fx": {
           "money": -160,
-          "affection": 10,
-          "health": -2,
-          "career": 1,
-          "looks": -4
+          "affection": 10
         },
         "result": "她说「谢谢，你真细心」。关心到位了，但也只是到位了。",
         "breakup": false
@@ -1138,11 +874,7 @@ module.exports = [
       {
         "label": "回一句「辛苦了，早点回」",
         "fx": {
-          "affection": -6,
-          "money": 2,
-          "health": -2,
-          "career": -4,
-          "looks": 1
+          "affection": -6
         },
         "result": "她回了个「嗯」。那天晚上你没有再收到她的消息。",
         "breakup": false
@@ -1165,10 +897,8 @@ module.exports = [
         "label": "去她想去的地方",
         "fx": {
           "money": -12000,
-          "health": 8,
           "affection": 20,
-          "career": -2,
-          "looks": 3
+          "health": 8
         },
         "result": "她在海边跑得像个孩子。你拍了很多照片，其中一张后来成了你的手机壁纸。",
         "breakup": false
@@ -1177,10 +907,8 @@ module.exports = [
         "label": "各退一步，选个折中方案",
         "fx": {
           "money": -8000,
-          "health": 6,
           "affection": 12,
-          "career": -3,
-          "looks": 4
+          "health": 6
         },
         "result": "你们去了个不远不近的古镇。不算完美，但也没吵架。",
         "breakup": false
@@ -1189,10 +917,7 @@ module.exports = [
         "label": "坚持自己的选择",
         "fx": {
           "money": -10000,
-          "health": 4,
-          "affection": -16,
-          "career": 1,
-          "looks": -4
+          "affection": -16
         },
         "result": "全程她都在配合你，配合得很礼貌。你后来才意识到，那不是开心。",
         "breakup": false
@@ -1215,10 +940,7 @@ module.exports = [
         "label": "精心准备，带足礼物",
         "fx": {
           "money": -6000,
-          "career": -2,
-          "affection": 24,
-          "health": 3,
-          "looks": 4
+          "affection": 24
         },
         "result": "她爸问了你的工作、房子和家庭。你答得中规中矩。临走时她妈说：「这孩子挺实在。」",
         "breakup": false
@@ -1227,10 +949,7 @@ module.exports = [
         "label": "平常心去，做自己",
         "fx": {
           "money": -1600,
-          "affection": 8,
-          "health": 3,
-          "career": -1,
-          "looks": -1
+          "affection": 8
         },
         "result": "你表现得自然，但有些话明显说得太随意了。回去路上她说「我爸觉得你有点……随性」。",
         "breakup": false
@@ -1238,11 +957,7 @@ module.exports = [
       {
         "label": "找借口推掉，再等等",
         "fx": {
-          "career": 2,
-          "affection": -22,
-          "money": 4,
-          "health": -3,
-          "looks": -3
+          "affection": -22
         },
         "result": "她说「好」。这个「好」里有多少失望，你不敢细想。",
         "breakup": false
@@ -1264,11 +979,7 @@ module.exports = [
       {
         "label": "先低头，主动道歉",
         "fx": {
-          "health": -4,
-          "affection": 16,
-          "money": -2,
-          "career": 1,
-          "looks": 1
+          "affection": 16
         },
         "result": "她愣了一下，然后说「我也有不对」。这场雨来得快，去得也快。",
         "breakup": false
@@ -1276,11 +987,8 @@ module.exports = [
       {
         "label": "据理力争，把话说清楚",
         "fx": {
-          "health": -8,
           "affection": -12,
-          "money": 1,
-          "career": 4,
-          "looks": -4
+          "health": -8
         },
         "result": "你赢了道理，输了一整个晚上。她背对着你睡了。",
         "breakup": false
@@ -1288,11 +996,8 @@ module.exports = [
       {
         "label": "冷静一夜，第二天再聊",
         "fx": {
-          "health": -6,
           "affection": 6,
-          "money": -1,
-          "career": 4,
-          "looks": -4
+          "health": -6
         },
         "result": "第二天你们平心静气地谈了一次。问题没完全解决，但至少没有升级。",
         "breakup": false
@@ -1300,11 +1005,8 @@ module.exports = [
       {
         "label": "摔门而出",
         "fx": {
-          "health": -10,
           "affection": -30,
-          "money": 3,
-          "career": 2,
-          "looks": 3
+          "health": -10
         },
         "result": "你在便利店门口站了一个小时。手机没有响。",
         "breakup": false
@@ -1327,10 +1029,8 @@ module.exports = [
         "label": "答应，一起租个大点的房子",
         "fx": {
           "money": -8000,
-          "health": 6,
           "affection": 24,
-          "career": 1,
-          "looks": -1
+          "health": 6
         },
         "result": "搬家的那天你们累瘫在地板上，点了份外卖，觉得这就是生活。",
         "breakup": false
@@ -1339,10 +1039,7 @@ module.exports = [
         "label": "答应，但说好房租 AA",
         "fx": {
           "money": -4000,
-          "health": 4,
-          "affection": 10,
-          "career": -2,
-          "looks": 3
+          "affection": 10
         },
         "result": "她愣了一下说「可以」。很理性，理性得让气氛降温了两度。",
         "breakup": false
@@ -1350,11 +1047,7 @@ module.exports = [
       {
         "label": "「再等等吧，我还没准备好。」",
         "fx": {
-          "affection": -18,
-          "money": 4,
-          "health": 3,
-          "career": -2,
-          "looks": -4
+          "affection": -18
         },
         "result": "她说「好」。你们之间多了一道看不见的门。",
         "breakup": false
@@ -1377,10 +1070,7 @@ module.exports = [
         "label": "订餐厅，准备一份惊喜",
         "fx": {
           "money": -3000,
-          "career": -2,
-          "affection": 28,
-          "health": -2,
-          "looks": 2
+          "affection": 28
         },
         "result": "她推开门时捂住了嘴。那晚她说了句「你真好」，说了不止一次。",
         "breakup": false
@@ -1389,10 +1079,7 @@ module.exports = [
         "label": "手写一张卡片，笨拙但真诚",
         "fx": {
           "money": -100,
-          "affection": 20,
-          "health": -3,
-          "career": -1,
-          "looks": 3
+          "affection": 20
         },
         "result": "她读完以后把卡片收进了包里。你说字丑，她说没事。",
         "breakup": false
@@ -1400,11 +1087,7 @@ module.exports = [
       {
         "label": "完全忘了这回事",
         "fx": {
-          "career": 4,
-          "affection": -26,
-          "money": 3,
-          "health": -1,
-          "looks": -1
+          "affection": -26
         },
         "result": "她提了一句「今天是什么日子」，你大脑一片空白。那顿饭吃得像一场审判。",
         "breakup": false
@@ -1426,11 +1109,7 @@ module.exports = [
       {
         "label": "装作没看见",
         "fx": {
-          "health": -6,
-          "affection": -4,
-          "money": -3,
-          "career": 2,
-          "looks": 3
+          "health": -6
         },
         "result": "这件事像一根细小的刺，扎在心里拔不出来。你开始留意她的手机。",
         "breakup": false
@@ -1438,11 +1117,7 @@ module.exports = [
       {
         "label": "平静地问一句：「谁啊？」",
         "fx": {
-          "affection": 10,
-          "money": -2,
-          "health": -1,
-          "career": -4,
-          "looks": 1
+          "affection": 10
         },
         "result": "她说「大学同学」，然后把聊天记录给你看了。你松了口气，也觉得自己有点小气。",
         "breakup": false
@@ -1450,11 +1125,7 @@ module.exports = [
       {
         "label": "质问她为什么还联系前任",
         "fx": {
-          "affection": -24,
-          "money": 2,
-          "health": 2,
-          "career": 3,
-          "looks": -4
+          "affection": -24
         },
         "result": "她把手机摔在沙发上：「你能不能别这样？」那是你们第一次大声说话。",
         "breakup": false
@@ -1477,10 +1148,8 @@ module.exports = [
         "label": "掏空存款，双方父母补贴，买了",
         "fx": {
           "money": -800000,
-          "health": -10,
-          "career": 4,
           "affection": 26,
-          "looks": 2
+          "health": -10
         },
         "result": "签合同那天你们的手都在抖。她说：「我们有家了。」你说是，然后开始算月供。",
         "breakup": false
@@ -1489,10 +1158,8 @@ module.exports = [
         "label": "再等等，先攒钱",
         "fx": {
           "money": 40000,
-          "career": 6,
           "affection": -10,
-          "health": 3,
-          "looks": -2
+          "career": 6
         },
         "result": "她说「好」。但你知道，「好」这个字说多了，会变成「算了」。",
         "breakup": false
@@ -1500,11 +1167,7 @@ module.exports = [
       {
         "label": "坦诚说买不起，问她愿不愿意一起扛",
         "fx": {
-          "health": 4,
-          "affection": 16,
-          "money": -3,
-          "career": -1,
-          "looks": -4
+          "affection": 16
         },
         "result": "她沉默了很久，然后说：「我愿意，但你别让我等太久。」",
         "breakup": false
@@ -1527,10 +1190,8 @@ module.exports = [
         "label": "推掉部分工作，抽时间陪她",
         "fx": {
           "money": -4000,
-          "career": -10,
           "affection": 18,
-          "health": 2,
-          "looks": -4
+          "career": -10
         },
         "result": "你们在家看了部老电影。她说：「好久没这样了。」",
         "breakup": false
@@ -1538,11 +1199,9 @@ module.exports = [
       {
         "label": "带着她一起加班，在公司附近吃饭",
         "fx": {
-          "health": -6,
-          "career": 6,
           "affection": 8,
-          "money": 2,
-          "looks": -4
+          "health": -6,
+          "career": 6
         },
         "result": "她在会议室外的沙发上等你到十点。你们一起回了家，一路上都没说话。",
         "breakup": false
@@ -1550,11 +1209,9 @@ module.exports = [
       {
         "label": "继续加班，事业要紧",
         "fx": {
-          "health": -10,
-          "career": 14,
           "affection": -20,
-          "money": 3,
-          "looks": -4
+          "career": 14,
+          "health": -10
         },
         "result": "项目结束那天你升职了。你想告诉她，发现你们已经两周没好好说过话。",
         "breakup": false
@@ -1577,10 +1234,8 @@ module.exports = [
         "label": "请假在家照顾她",
         "fx": {
           "money": -600,
-          "health": -4,
-          "career": -6,
           "affection": 26,
-          "looks": 4
+          "career": -6
         },
         "result": "你煮了白粥，笨手笨脚地。她一边嫌弃一边喝完了。那天她说了句「有你在真好」。",
         "breakup": false
@@ -1589,10 +1244,7 @@ module.exports = [
         "label": "买药送过去，然后去上班",
         "fx": {
           "money": -400,
-          "affection": 10,
-          "health": 4,
-          "career": -3,
-          "looks": -1
+          "affection": 10
         },
         "result": "她说了谢谢。你关上门的那一刻，听见她在里面咳嗽。",
         "breakup": false
@@ -1600,11 +1252,7 @@ module.exports = [
       {
         "label": "发消息让她多喝热水",
         "fx": {
-          "career": 4,
-          "affection": -22,
-          "money": 3,
-          "health": -1,
-          "looks": 1
+          "affection": -22
         },
         "result": "「多喝热水」——这四个字在恋爱里，是最冷的四个字。",
         "breakup": false
@@ -1627,10 +1275,8 @@ module.exports = [
         "label": "去她家，你这边我去解释",
         "fx": {
           "money": -3000,
-          "health": -6,
           "affection": 20,
-          "career": 3,
-          "looks": -3
+          "health": -6
         },
         "result": "她很惊讶，也很高兴。你妈在电话里说了句「随你吧」，语气你听懂了。",
         "breakup": false
@@ -1640,9 +1286,7 @@ module.exports = [
         "fx": {
           "money": -1600,
           "health": 8,
-          "affection": -6,
-          "career": 3,
-          "looks": -1
+          "affection": -6
         },
         "result": "很公平，也很冷清。初五你们才见面，她说「感觉好久没见了」。",
         "breakup": false
@@ -1651,10 +1295,8 @@ module.exports = [
         "label": "接两边父母一起过年",
         "fx": {
           "money": -16000,
-          "health": -12,
           "affection": 12,
-          "career": -4,
-          "looks": 2
+          "health": -12
         },
         "result": "两桌人坐在一起，气氛微妙地和谐。你像个外交官，累但有效。",
         "breakup": false
@@ -1676,11 +1318,7 @@ module.exports = [
       {
         "label": "认真描述你们的未来",
         "fx": {
-          "career": -2,
-          "affection": 24,
-          "money": -1,
-          "health": 2,
-          "looks": 3
+          "affection": 24
         },
         "result": "你说到了房子、孩子、每年一次的旅行。她转过头看着你，眼睛亮亮的。",
         "breakup": false
@@ -1688,11 +1326,7 @@ module.exports = [
       {
         "label": "「我不知道，但我愿意一起走。」",
         "fx": {
-          "affection": 16,
-          "money": -2,
-          "health": -3,
-          "career": 1,
-          "looks": -4
+          "affection": 16
         },
         "result": "她笑了，说「你这个回答还算诚实」。然后握住了你的手。",
         "breakup": false
@@ -1700,11 +1334,7 @@ module.exports = [
       {
         "label": "打着哈哈岔开话题",
         "fx": {
-          "affection": -20,
-          "money": -2,
-          "health": 1,
-          "career": 1,
-          "looks": -3
+          "affection": -20
         },
         "result": "她没再问第二遍。有些问题，一辈子只会被问一次。",
         "breakup": false
@@ -1726,11 +1356,7 @@ module.exports = [
       {
         "label": "慢慢适应，这都不算事",
         "fx": {
-          "health": -2,
-          "affection": 14,
-          "money": 3,
-          "career": -1,
-          "looks": 3
+          "affection": 14
         },
         "result": "你开始习惯这些细节，甚至觉得有点可爱。所谓亲近，大概就是这个。",
         "breakup": false
@@ -1738,11 +1364,7 @@ module.exports = [
       {
         "label": "认真地和她谈一次",
         "fx": {
-          "health": -2,
-          "affection": 6,
-          "money": 3,
-          "career": -4,
-          "looks": 2
+          "affection": 6
         },
         "result": "谈完的结果：前三天有效，第四天恢复原样。但你们至少谈过了。",
         "breakup": false
@@ -1750,11 +1372,7 @@ module.exports = [
       {
         "label": "忍不住抱怨几句",
         "fx": {
-          "affection": -16,
-          "money": 4,
-          "health": -4,
-          "career": 3,
-          "looks": -1
+          "affection": -16
         },
         "result": "她说「你身上毛病也不少」。那天晚上你们各自睡在床的两边。",
         "breakup": false
@@ -1777,10 +1395,7 @@ module.exports = [
         "label": "「明天我做饭，你别抢。」",
         "fx": {
           "money": -200,
-          "health": 4,
-          "affection": 12,
-          "career": 4,
-          "looks": -2
+          "affection": 12
         },
         "result": "第二天你真的做了一桌菜，卖相一般。她拍了照发朋友圈，配文「厨艺进步了」。",
         "breakup": false
@@ -1789,10 +1404,7 @@ module.exports = [
         "label": "「天天吃外卖不健康，得改。」",
         "fx": {
           "money": -6000,
-          "health": 8,
-          "affection": 4,
-          "career": -4,
-          "looks": -2
+          "health": 8
         },
         "result": "你们办了张超市卡，开始自己做饭。一个月后，冰箱里还是堆满了外卖盒。",
         "breakup": false
@@ -1801,10 +1413,7 @@ module.exports = [
         "label": "「随便吧，我都行。」",
         "fx": {
           "money": -240,
-          "health": -4,
-          "affection": -10,
-          "career": 1,
-          "looks": 3
+          "affection": -10
         },
         "result": "这句话你说过太多次了，多到它已经变成了一种态度。",
         "breakup": false
@@ -1826,11 +1435,8 @@ module.exports = [
       {
         "label": "站在{p}这边，私下再和妈妈解释",
         "fx": {
-          "health": -6,
           "affection": 24,
-          "money": -3,
-          "career": 3,
-          "looks": 4
+          "health": -6
         },
         "result": "她抱了你一下。你妈后来三天没理你，但第四天还是打来了电话。",
         "breakup": false
@@ -1838,11 +1444,7 @@ module.exports = [
       {
         "label": "和稀泥：「妈也是为我们好。」",
         "fx": {
-          "health": -4,
-          "affection": -16,
-          "money": 2,
-          "career": 1,
-          "looks": -3
+          "affection": -16
         },
         "result": "她看了你一眼，什么都没说。那一眼，比吵架还难受。",
         "breakup": false
@@ -1850,11 +1452,8 @@ module.exports = [
       {
         "label": "召开家庭会议，把话说开",
         "fx": {
-          "health": -8,
-          "career": -2,
           "affection": 14,
-          "money": -4,
-          "looks": 2
+          "health": -8
         },
         "result": "会议进行了两个小时，哭了两次，但最后三个人一起吃了顿饭。",
         "breakup": false
@@ -1877,10 +1476,7 @@ module.exports = [
         "label": "一起做预算，开源节流",
         "fx": {
           "money": 10000,
-          "health": -4,
-          "career": 4,
-          "affection": 12,
-          "looks": -1
+          "affection": 12
         },
         "result": "你们做了张 Excel，把每一项都列了出来。她说：「这样心里踏实多了。」",
         "breakup": false
@@ -1890,9 +1486,7 @@ module.exports = [
         "fx": {
           "money": 16000,
           "health": -16,
-          "career": 6,
-          "affection": -4,
-          "looks": -4
+          "career": 6
         },
         "result": "你连续一个月凌晨睡。她给你泡了杯枸杞，说「别太拼」。",
         "breakup": false
@@ -1901,10 +1495,8 @@ module.exports = [
         "label": "先透支信用卡，走一步看一步",
         "fx": {
           "money": -12000,
-          "health": -6,
           "affection": -12,
-          "career": 4,
-          "looks": 4
+          "health": -6
         },
         "result": "账单越滚越大。你们开始为钱吵架，频率越来越高。",
         "breakup": false
@@ -1927,10 +1519,8 @@ module.exports = [
         "label": "「好，我们现在就开始准备。」",
         "fx": {
           "money": -10000,
-          "health": -6,
           "affection": 28,
-          "career": -4,
-          "looks": 1
+          "health": -6
         },
         "result": "她笑了，眼睛有点湿。那天晚上你们聊到很晚，给孩子取了三个名字，都被对方否决了。",
         "breakup": false
@@ -1939,10 +1529,8 @@ module.exports = [
         "label": "「再等等，我还没准备好。」",
         "fx": {
           "money": 6000,
-          "career": 6,
           "affection": -14,
-          "health": 4,
-          "looks": -1
+          "career": 6
         },
         "result": "她说「好」。但这个话题，她一年后还会再提一次。",
         "breakup": false
@@ -1950,11 +1538,7 @@ module.exports = [
       {
         "label": "「我其实不想要孩子。」",
         "fx": {
-          "career": 4,
-          "affection": -28,
-          "money": 1,
-          "health": -1,
-          "looks": -2
+          "affection": -28
         },
         "result": "她放下筷子，很久没有说话。这一刻，你意识到你们从来没认真聊过这件事。",
         "breakup": false
@@ -1977,10 +1561,8 @@ module.exports = [
         "label": "策划一次两个人的旅行",
         "fx": {
           "money": -16000,
-          "health": 8,
-          "career": -4,
           "affection": 22,
-          "looks": -1
+          "health": 8
         },
         "result": "在陌生的城市里，你们重新说了好多话。她靠在你肩上，说「好久没这样了」。",
         "breakup": false
@@ -1989,10 +1571,8 @@ module.exports = [
         "label": "培养一个共同爱好",
         "fx": {
           "money": -4000,
-          "health": 10,
           "affection": 14,
-          "career": 2,
-          "looks": -1
+          "health": 10
         },
         "result": "你们开始一起跑步/爬山/做饭。日子还是那个日子，但多了点盼头。",
         "breakup": false
@@ -2000,11 +1580,7 @@ module.exports = [
       {
         "label": "就这样吧，大家都这么过",
         "fx": {
-          "health": -4,
-          "affection": -12,
-          "money": 1,
-          "career": -1,
-          "looks": 2
+          "affection": -12
         },
         "result": "日子继续往前走，平静，且越来越安静。",
         "breakup": false
@@ -2026,11 +1602,8 @@ module.exports = [
       {
         "label": "为了家庭，放弃这个机会",
         "fx": {
-          "career": -16,
           "affection": 26,
-          "money": -4,
-          "health": 4,
-          "looks": -3
+          "career": -16
         },
         "result": "她知道后抱了你很久。你说不后悔，但有天深夜你会想起那封邮件。",
         "breakup": false
@@ -2039,10 +1612,8 @@ module.exports = [
         "label": "和她商量，看能不能一起去",
         "fx": {
           "money": 30000,
-          "career": 10,
           "affection": 12,
-          "health": -4,
-          "looks": -3
+          "career": 10
         },
         "result": "她考虑了三天，说「我跟你去」。这意味着她也要放弃一些东西。",
         "breakup": false
@@ -2051,10 +1622,8 @@ module.exports = [
         "label": "接受机会，先斩后奏",
         "fx": {
           "money": 60000,
-          "career": 24,
           "affection": -30,
-          "health": -1,
-          "looks": 4
+          "career": 24
         },
         "result": "你签了字才告诉她。她看着你，像在看一个陌生人。",
         "breakup": false
@@ -2076,11 +1645,7 @@ module.exports = [
       {
         "label": "立刻起身去洗：「我的错。」",
         "fx": {
-          "health": -2,
-          "affection": 16,
-          "money": 3,
-          "career": -3,
-          "looks": -3
+          "affection": 16
         },
         "result": "她叹了口气，过来帮忙。你们一边洗碗一边聊了聊各自的一天。",
         "breakup": false
@@ -2088,11 +1653,7 @@ module.exports = [
       {
         "label": "制定轮值表，公平分工",
         "fx": {
-          "career": 2,
-          "affection": 10,
-          "money": -4,
-          "health": -3,
-          "looks": 4
+          "affection": 10
         },
         "result": "轮值表贴在冰箱上，执行了两周。第三周开始失效，但气氛缓和了不少。",
         "breakup": false
@@ -2100,11 +1661,7 @@ module.exports = [
       {
         "label": "「你回来顺手洗了不就行了。」",
         "fx": {
-          "affection": -26,
-          "money": -2,
-          "health": 4,
-          "career": 2,
-          "looks": -3
+          "affection": -26
         },
         "result": "她把包摔在沙发上。那天的争吵持续到了深夜。",
         "breakup": false
@@ -2127,10 +1684,8 @@ module.exports = [
         "label": "接下这个位置，迎接更大的压力",
         "fx": {
           "money": 16000,
-          "health": -12,
           "career": 20,
-          "looks": -3,
-          "family": 1
+          "health": -12
         },
         "result": "你升职了。恭喜声里，你先想到的是下个月要带的那个项目。",
         "breakup": false
@@ -2139,10 +1694,8 @@ module.exports = [
         "label": "接下，但和领导谈好资源支持",
         "fx": {
           "money": 10000,
-          "health": -6,
           "career": 14,
-          "looks": -4,
-          "family": 4
+          "health": -6
         },
         "result": "你要到了两个人头和一笔预算。这一步，你走得很稳。",
         "breakup": false
@@ -2151,10 +1704,7 @@ module.exports = [
         "label": "婉拒：「我目前更想专注技术。」",
         "fx": {
           "money": 2000,
-          "health": 6,
-          "career": 4,
-          "looks": -4,
-          "family": -1
+          "health": 6
         },
         "result": "领导有点意外，但没为难你。你在自己的节奏里松了口气。",
         "breakup": false
@@ -2178,9 +1728,7 @@ module.exports = [
         "fx": {
           "money": 50000,
           "health": -10,
-          "career": -10,
-          "looks": 3,
-          "family": -4
+          "career": -10
         },
         "result": "你拿到了 N+1，也拿到了三个月的不确定。简历投出去八十份，回复九个。",
         "breakup": false
@@ -2189,10 +1737,7 @@ module.exports = [
         "label": "休息两周，调整状态再出发",
         "fx": {
           "money": 40000,
-          "health": 12,
-          "career": -4,
-          "looks": -3,
-          "family": 4
+          "health": 12
         },
         "result": "你在家睡了三天，然后开始跑步。第四天，你重新打开了招聘软件。",
         "breakup": false
@@ -2201,10 +1746,8 @@ module.exports = [
         "label": "借机转行，去试一直想做的事",
         "fx": {
           "money": -20000,
-          "health": -6,
           "career": 8,
-          "looks": 4,
-          "family": -3
+          "health": -6
         },
         "result": "你跳去了一个全新的领域，薪资降了三成，但你每天早上愿意起床了。",
         "breakup": false
@@ -2227,10 +1770,7 @@ module.exports = [
         "label": "立刻去医院，全面检查",
         "fx": {
           "money": -10000,
-          "health": 12,
-          "career": -4,
-          "looks": 3,
-          "family": 2
+          "health": 12
         },
         "result": "复查结果：虚惊一场，但医生建议你少熬夜、少喝酒。你点头如捣蒜。",
         "breakup": false
@@ -2238,11 +1778,7 @@ module.exports = [
       {
         "label": "拖一拖，等忙完这阵",
         "fx": {
-          "health": -16,
-          "career": 4,
-          "money": -2,
-          "looks": -2,
-          "family": 3
+          "health": -16
         },
         "result": "你忙完了这阵，还有下一阵。身体的问题，也从「建议复查」变成了「需要干预」。",
         "breakup": false
@@ -2252,9 +1788,7 @@ module.exports = [
         "fx": {
           "money": -3000,
           "health": 20,
-          "career": -8,
-          "looks": -1,
-          "family": 3
+          "career": -8
         },
         "result": "你开始十一点睡、自己做饭、每周运动三次。同事们说你变了。",
         "breakup": false
@@ -2276,11 +1810,7 @@ module.exports = [
       {
         "label": "小赌怡情，投一点",
         "fx": {
-          "money": 12000,
-          "health": -4,
-          "career": 2,
-          "looks": -1,
-          "family": -4
+          "money": 12000
         },
         "result": "涨了三天，你觉得自己是天才。第四天开始跌，你果断跑路，赚了顿火锅钱。",
         "breakup": false
@@ -2289,10 +1819,7 @@ module.exports = [
         "label": "重仓押上，搏一把",
         "fx": {
           "money": -60000,
-          "health": -12,
-          "career": 4,
-          "looks": 1,
-          "family": -4
+          "health": -12
         },
         "result": "一周后，那只股票跌了 40%。你学会了人生重要一课：别人贪婪时我恐惧，但我总是慢半拍。",
         "breakup": false
@@ -2300,11 +1827,7 @@ module.exports = [
       {
         "label": "不碰，我不懂的东西不投",
         "fx": {
-          "money": 1600,
-          "career": 2,
-          "health": 4,
-          "looks": -3,
-          "family": -3
+          "money": 1600
         },
         "result": "你把钱放进了定期。收益很低，但晚上睡得着。",
         "breakup": false
@@ -2327,10 +1850,8 @@ module.exports = [
         "label": "立刻请假回老家",
         "fx": {
           "money": -16000,
-          "health": -6,
           "career": -10,
-          "affection": 6,
-          "looks": 2
+          "affection": 6
         },
         "result": "病房里，他看见你第一句话是「你怎么回来了，工作不要了」。你没接话，坐下削了个苹果。",
         "breakup": false
@@ -2338,11 +1859,7 @@ module.exports = [
       {
         "label": "打钱回去，请个护工",
         "fx": {
-          "money": -30000,
-          "health": -4,
-          "affection": 2,
-          "career": 2,
-          "looks": -2
+          "money": -30000
         },
         "result": "钱到账了，你的愧疚没有到账。妈妈在电话里说「你忙你的」。",
         "breakup": false
@@ -2351,10 +1868,8 @@ module.exports = [
         "label": "把父母接来身边照顾",
         "fx": {
           "money": -40000,
-          "health": 6,
-          "career": -6,
           "affection": 8,
-          "looks": -3
+          "health": 6
         },
         "result": "你把次卧收拾了出来。父母来了以后，家里忽然热闹了很多，也拥挤了很多。",
         "breakup": false
@@ -2376,11 +1891,7 @@ module.exports = [
       {
         "label": "借，不问原因",
         "fx": {
-          "money": -40000,
-          "health": 4,
-          "career": -2,
-          "looks": -3,
-          "family": 2
+          "money": -40000
         },
         "result": "他说「三个月还你」。三个月后他真的还了，还请你吃了顿饭。",
         "breakup": false
@@ -2388,24 +1899,14 @@ module.exports = [
       {
         "label": "借一半，说明自己的难处",
         "fx": {
-          "money": -20000,
-          "health": -2,
-          "career": 4,
-          "looks": 3,
-          "family": -4
+          "money": -20000
         },
         "result": "他说「够了够了，谢谢」。你们的关系没有被金额考验，这挺好。",
         "breakup": false
       },
       {
         "label": "不借，找借口推掉",
-        "fx": {
-          "health": -4,
-          "career": 2,
-          "money": 4,
-          "looks": 2,
-          "family": -3
-        },
+        "fx": {},
         "result": "他回了句「理解」。你们的朋友圈，从此再没互动过。",
         "breakup": false
       }
@@ -2428,9 +1929,7 @@ module.exports = [
         "fx": {
           "money": 12000,
           "health": -16,
-          "career": 16,
-          "looks": 2,
-          "family": -1
+          "career": 16
         },
         "result": "你的项目做成了，也在镜子里看见了一个更疲惫的自己。",
         "breakup": false
@@ -2439,10 +1938,7 @@ module.exports = [
         "label": "和领导谈，要求调整节奏",
         "fx": {
           "money": 4000,
-          "health": 10,
-          "career": 4,
-          "looks": -1,
-          "family": -1
+          "health": 10
         },
         "result": "谈完以后，周末多了一天。你用来睡觉，睡了十四个小时。",
         "breakup": false
@@ -2452,9 +1948,7 @@ module.exports = [
         "fx": {
           "money": -30000,
           "health": 24,
-          "career": -16,
-          "looks": 1,
-          "family": -3
+          "career": -16
         },
         "result": "你在家躺了十天，看完了三部剧，然后开始焦虑地刷招聘软件。",
         "breakup": false
@@ -2476,11 +1970,7 @@ module.exports = [
       {
         "label": "存起来，一分不动",
         "fx": {
-          "money": 40000,
-          "career": 4,
-          "health": -4,
-          "looks": -2,
-          "family": 2
+          "money": 40000
         },
         "result": "你看着余额上涨的数字，第一次觉得安全感是可以量化的。",
         "breakup": false
@@ -2489,10 +1979,7 @@ module.exports = [
         "label": "拿出一部分犒劳自己",
         "fx": {
           "money": 20000,
-          "health": 12,
-          "affection": 4,
-          "career": -4,
-          "looks": -1
+          "health": 12
         },
         "result": "你买了那件一直舍不得买的东西。快乐很短暂，但确实快乐。",
         "breakup": false
@@ -2501,10 +1988,7 @@ module.exports = [
         "label": "请重要的人吃顿好的",
         "fx": {
           "money": -6000,
-          "career": 2,
-          "affection": 16,
-          "health": -3,
-          "looks": -3
+          "affection": 16
         },
         "result": "那顿饭吃得很好。你发现，钱花在别人身上的时候，快乐会更久一点。",
         "breakup": false
@@ -2527,10 +2011,8 @@ module.exports = [
         "label": "花三个月系统学习",
         "fx": {
           "money": -8000,
-          "health": -8,
           "career": 16,
-          "looks": 3,
-          "family": -3
+          "health": -8
         },
         "result": "学完之后，你成了部门里唯一懂这块的人。这种感觉久违了。",
         "breakup": false
@@ -2539,10 +2021,7 @@ module.exports = [
         "label": "了解个大概，够用就行",
         "fx": {
           "money": -1000,
-          "health": -2,
-          "career": 6,
-          "looks": -4,
-          "family": 4
+          "career": 6
         },
         "result": "你能听懂同事的讨论，但插不上话。至少没掉队。",
         "breakup": false
@@ -2550,11 +2029,7 @@ module.exports = [
       {
         "label": "不管了，船到桥头自然直",
         "fx": {
-          "health": 4,
-          "career": -8,
-          "money": 4,
-          "looks": -1,
-          "family": -2
+          "career": -8
         },
         "result": "半年后，你发现自己被默默地排在了核心项目之外。",
         "breakup": false
@@ -2577,10 +2052,7 @@ module.exports = [
         "label": "都去，人情不能欠",
         "fx": {
           "money": -16000,
-          "health": -6,
-          "affection": 4,
-          "career": 3,
-          "looks": -2
+          "health": -6
         },
         "result": "四个周末，四场仪式。你学会了在同一首歌里露出同一种笑容。",
         "breakup": false
@@ -2588,11 +2060,7 @@ module.exports = [
       {
         "label": "只去关系最好的两场",
         "fx": {
-          "money": -8000,
-          "health": -2,
-          "career": 3,
-          "looks": 1,
-          "family": -1
+          "money": -8000
         },
         "result": "另外两位后来没再联系你。人情社会，有它自己的记账方式。",
         "breakup": false
@@ -2600,11 +2068,7 @@ module.exports = [
       {
         "label": "人不到，红包到",
         "fx": {
-          "money": -10000,
-          "health": -4,
-          "career": 4,
-          "looks": 4,
-          "family": 4
+          "money": -10000
         },
         "result": "你省下了四个周末，也省下了四段寒暄。你在家睡了两天。",
         "breakup": false
@@ -2627,10 +2091,8 @@ module.exports = [
         "label": "去谈，争取最好的条件",
         "fx": {
           "money": 240000,
-          "health": -6,
           "career": 14,
-          "looks": -2,
-          "family": 3
+          "health": -6
         },
         "result": "三轮面试后你拿到了 offer，还多谈了五千。签字费到账那天，你请自己吃了顿好的。",
         "breakup": false
@@ -2639,10 +2101,7 @@ module.exports = [
         "label": "拿 offer 去和现老板谈加薪",
         "fx": {
           "money": 90000,
-          "health": -2,
-          "career": 6,
-          "looks": 2,
-          "family": -4
+          "career": 6
         },
         "result": "老板给你涨了薪，也记住了这件事。你留下了，但位置微妙了一些。",
         "breakup": false
@@ -2650,11 +2109,7 @@ module.exports = [
       {
         "label": "不去，现在这份工作挺稳的",
         "fx": {
-          "money": 10000,
-          "health": 4,
-          "career": -2,
-          "looks": 2,
-          "family": -1
+          "money": 10000
         },
         "result": "你婉拒了猎头。那天晚上你睡得很踏实，第二天照常上班。",
         "breakup": false
@@ -2678,9 +2133,7 @@ module.exports = [
         "fx": {
           "money": 440000,
           "health": -12,
-          "career": 8,
-          "looks": -3,
-          "family": 3
+          "career": 8
         },
         "result": "你连续两个月没有周末。收入翻了几番，也第一次体会到「钱多了，人没了」是什么感觉。",
         "breakup": false
@@ -2688,11 +2141,7 @@ module.exports = [
       {
         "label": "保持节奏，稳步做",
         "fx": {
-          "money": 160000,
-          "health": -4,
-          "career": 4,
-          "looks": 3,
-          "family": -1
+          "money": 160000
         },
         "result": "你把它控制在业余时间。收入不算爆发，但每个月都准时到账，像第二份工资。",
         "breakup": false
@@ -2701,10 +2150,7 @@ module.exports = [
         "label": "见好就收，卖掉账号",
         "fx": {
           "money": 240000,
-          "health": 6,
-          "career": -2,
-          "looks": 4,
-          "family": -2
+          "health": 6
         },
         "result": "你套现离场。钱到手了，但你偶尔会想：如果当时继续做下去呢？",
         "breakup": false
@@ -2726,11 +2172,7 @@ module.exports = [
       {
         "label": "继续持有，相信长期",
         "fx": {
-          "money": 200000,
-          "health": 2,
-          "career": 4,
-          "looks": -1,
-          "family": -1
+          "money": 200000
         },
         "result": "你忍住了落袋为安的冲动。半年后，这个数字又大了一圈。",
         "breakup": false
@@ -2738,11 +2180,7 @@ module.exports = [
       {
         "label": "立刻卖出，落袋为安",
         "fx": {
-          "money": 120000,
-          "career": -2,
-          "health": 4,
-          "looks": -4,
-          "family": 4
+          "money": 120000
         },
         "result": "你卖在了最高点附近。朋友们说你有远见，你知道那只是运气。",
         "breakup": false
@@ -2751,10 +2189,7 @@ module.exports = [
         "label": "追加投入，乘胜追击",
         "fx": {
           "money": 1000000,
-          "health": -10,
-          "career": 3,
-          "looks": -2,
-          "family": 3
+          "health": -10
         },
         "result": "你押上了更多。这次运气站在你这边，账户余额翻了好几倍——你开始相信自己是天才，这很危险。",
         "breakup": false
@@ -2776,11 +2211,7 @@ module.exports = [
       {
         "label": "全部存起来",
         "fx": {
-          "money": 120000,
-          "career": 4,
-          "health": -2,
-          "looks": 1,
-          "family": -1
+          "money": 120000
         },
         "result": "你把它转进了定期。余额上涨的感觉，比买任何东西都踏实。",
         "breakup": false
@@ -2790,9 +2221,7 @@ module.exports = [
         "fx": {
           "money": 40000,
           "health": 8,
-          "affection": 6,
-          "career": -2,
-          "looks": -2
+          "affection": 6
         },
         "result": "你给爸妈转了钱。妈妈打电话来说「别乱花」，但你能听出她有多高兴。",
         "breakup": false
@@ -2801,10 +2230,7 @@ module.exports = [
         "label": "给自己买样一直想要的东西",
         "fx": {
           "money": -40000,
-          "health": 10,
-          "career": 2,
-          "looks": -1,
-          "family": -3
+          "health": 10
         },
         "result": "东西到手那天你很开心。三天后，开心变成了习惯。",
         "breakup": false
@@ -2827,10 +2253,8 @@ module.exports = [
         "label": "押上积蓄，再赌一次",
         "fx": {
           "money": 1400000,
-          "health": -14,
           "career": 28,
-          "looks": -3,
-          "family": 2
+          "health": -14
         },
         "result": "这一次你赌赢了。两年后公司被收购，你的股份换成了银行卡上那串很长的数字。庆功宴上你没喝多少，只是觉得很累，也很值。",
         "breakup": false
@@ -2839,10 +2263,8 @@ module.exports = [
         "label": "以技术入股，不掏现金",
         "fx": {
           "money": 180000,
-          "health": -10,
           "career": 16,
-          "looks": -4,
-          "family": 4
+          "health": -10
         },
         "result": "你用业余时间参与，风险可控。项目活下来了，你分到了一笔不算夸张、但足够改变生活的钱。",
         "breakup": false
@@ -2851,10 +2273,7 @@ module.exports = [
         "label": "婉拒，我输不起了",
         "fx": {
           "money": 20000,
-          "health": 8,
-          "career": -4,
-          "looks": -4,
-          "family": -1
+          "health": 8
         },
         "result": "你说了抱歉。前同事说理解。后来那家公司做起来了，你在新闻里看到过两次。",
         "breakup": false
@@ -2876,11 +2295,7 @@ module.exports = [
       {
         "label": "拿补偿款，全款",
         "fx": {
-          "money": 4000000,
-          "health": -4,
-          "career": 2,
-          "looks": -1,
-          "family": 3
+          "money": 4000000
         },
         "result": "钱到账那天，你的人生第一次有了「安全垫」这个概念。你站在废墟上，想起小时候在院子里写作业。",
         "breakup": false
@@ -2889,10 +2304,7 @@ module.exports = [
         "label": "要安置房，少拿点现金",
         "fx": {
           "money": 1000000,
-          "health": 6,
-          "career": -2,
-          "looks": 2,
-          "family": -4
+          "health": 6
         },
         "result": "你换了两套房，一套自己住，一套出租。每个月租金到账，像一种迟到的补偿。",
         "breakup": false
@@ -2915,10 +2327,8 @@ module.exports = [
         "label": "接下这个位置",
         "fx": {
           "money": 160000,
-          "health": -12,
           "career": 28,
-          "looks": 1,
-          "family": -4
+          "health": -12
         },
         "result": "你成了部门最年轻的总监。名片换了，作息也换了——凌晨的办公室你比谁都熟。",
         "breakup": false
@@ -2927,10 +2337,8 @@ module.exports = [
         "label": "接下，但谈好团队和资源",
         "fx": {
           "money": 200000,
-          "health": -8,
           "career": 18,
-          "looks": -1,
-          "family": -1
+          "health": -8
         },
         "result": "你要到了编制和预算。这一步走得稳，你开始明白「管理」不是「多干活」。",
         "breakup": false
@@ -2940,9 +2348,7 @@ module.exports = [
         "fx": {
           "money": 40000,
           "health": 8,
-          "career": 6,
-          "looks": -2,
-          "family": -1
+          "career": 6
         },
         "result": "你选择做那条更难但更纯粹的路。有人替你惋惜，你自己倒是松了口气。",
         "breakup": false
@@ -2965,10 +2371,8 @@ module.exports = [
         "label": "趁热打铁，接住这波流量",
         "fx": {
           "money": 300000,
-          "health": -10,
           "career": 20,
-          "looks": 3,
-          "family": -1
+          "health": -10
         },
         "result": "合作邀约、广告、课程纷至沓来。你用三个月把流量变成了钱，也变成了颈椎病。",
         "breakup": false
@@ -2977,10 +2381,7 @@ module.exports = [
         "label": "保持克制，只接喜欢的合作",
         "fx": {
           "money": 240000,
-          "health": -2,
-          "career": 10,
-          "looks": 3,
-          "family": -4
+          "career": 10
         },
         "result": "你推掉了大部分商务，只留下三个真心想做的。钱少赚了，但你还认得自己。",
         "breakup": false
@@ -2989,10 +2390,7 @@ module.exports = [
         "label": "关掉手机，当没发生过",
         "fx": {
           "money": 16000,
-          "health": 10,
-          "career": -2,
-          "looks": -2,
-          "family": 3
+          "health": 10
         },
         "result": "热度来得快去得也快。一周后，一切恢复原样，像什么都没发生过。",
         "breakup": false
@@ -3014,11 +2412,7 @@ module.exports = [
       {
         "label": "请两天假，在家彻底躺平",
         "fx": {
-          "health": 18,
-          "career": -4,
-          "money": 4,
-          "looks": -3,
-          "family": 3
+          "health": 18
         },
         "result": "你睡了十四个小时，醒来时天是黑的。那一刻你有点慌，然后觉得很爽。",
         "breakup": false
@@ -3027,10 +2421,7 @@ module.exports = [
         "label": "去做个体检，顺便理疗一下颈椎",
         "fx": {
           "money": -6000,
-          "health": 14,
-          "career": -2,
-          "looks": -4,
-          "family": 2
+          "health": 14
         },
         "result": "医生说「还能救」。你加了医生的微信，开始认真考虑养生这件事。",
         "breakup": false
@@ -3040,9 +2431,7 @@ module.exports = [
         "fx": {
           "money": 4000,
           "health": -12,
-          "career": 8,
-          "looks": 1,
-          "family": -3
+          "career": 8
         },
         "result": "你撑住了。项目结束那天你在工位上坐了很久，忘了自己要站起来干什么。",
         "breakup": false
@@ -3065,10 +2454,7 @@ module.exports = [
         "label": "去，每周一次",
         "fx": {
           "money": -1000,
-          "health": 14,
-          "career": -2,
-          "looks": -3,
-          "family": 3
+          "health": 14
         },
         "result": "第一次爬到半山腰你就想放弃。但到山顶那刻，风很大，脑子很空，很值。",
         "breakup": false
@@ -3077,23 +2463,14 @@ module.exports = [
         "label": "办张卡，去健身房",
         "fx": {
           "money": -4000,
-          "health": 10,
-          "career": -4,
-          "looks": 4,
-          "family": -4
+          "health": 10
         },
         "result": "你去了六次，然后转为线上打卡。但还是比躺着强。",
         "breakup": false
       },
       {
         "label": "不去，周末要补觉",
-        "fx": {
-          "health": 4,
-          "career": -2,
-          "money": -4,
-          "looks": 2,
-          "family": 4
-        },
+        "fx": {},
         "result": "你睡到中午，然后点了外卖，看了一下午剧。也很充实，大概。",
         "breakup": false
       }
@@ -3115,10 +2492,7 @@ module.exports = [
         "label": "起身拉开椅子，先问她想喝什么",
         "fx": {
           "money": -160,
-          "affection": 18,
-          "health": -1,
-          "career": 4,
-          "looks": -4
+          "affection": 18
         },
         "result": "她愣了一下说谢谢。点单时聊到各自喜欢的咖啡，气氛比想象中松弛。",
         "breakup": false
@@ -3127,10 +2501,7 @@ module.exports = [
         "label": "直接开场：「你的情况介绍人都跟我说了。」",
         "fx": {
           "money": -160,
-          "affection": -12,
-          "health": 4,
-          "career": 3,
-          "looks": -3
+          "affection": -12
         },
         "result": "她笑了笑，回答得很简短。你意识到这句话把气氛变成了面试。",
         "breakup": false
@@ -3139,10 +2510,7 @@ module.exports = [
         "label": "坦白说「我有点紧张，第一次来这种场合」",
         "fx": {
           "money": -160,
-          "affection": 16,
-          "health": -4,
-          "career": 4,
-          "looks": -2
+          "affection": 16
         },
         "result": "她说「我也是」。两个人都笑了，那点紧绷感散了一半。",
         "breakup": false
@@ -3165,10 +2533,7 @@ module.exports = [
         "label": "「我随便，你点吧，我什么都吃。」",
         "fx": {
           "money": -800,
-          "affection": 6,
-          "health": 4,
-          "career": -4,
-          "looks": 4
+          "affection": 6
         },
         "result": "她点了三个菜，都很家常。你发现这样反而聊得起来。",
         "breakup": false
@@ -3177,10 +2542,7 @@ module.exports = [
         "label": "接过菜单点了两个招牌，问她能不能吃辣",
         "fx": {
           "money": -1000,
-          "affection": 16,
-          "health": 1,
-          "career": -4,
-          "looks": -1
+          "affection": 16
         },
         "result": "她眼睛亮了一下：「你也爱吃辣？」这顿饭的话题从这里就没断过。",
         "breakup": false
@@ -3189,10 +2551,7 @@ module.exports = [
         "label": "掏出手机先拍照发朋友圈",
         "fx": {
           "money": -800,
-          "affection": -16,
-          "health": 1,
-          "career": 4,
-          "looks": -2
+          "affection": -16
         },
         "result": "她看着你拍了三张照片，礼貌地等着。整顿饭的后半段，都很安静。",
         "breakup": false
@@ -3215,10 +2574,7 @@ module.exports = [
         "label": "聊她的工作，认真听",
         "fx": {
           "money": -200,
-          "affection": 14,
-          "health": 3,
-          "career": 4,
-          "looks": -1
+          "affection": 14
         },
         "result": "她讲起工作时语速变快了。你说「听起来你挺喜欢这份工作」，她点点头。",
         "breakup": false
@@ -3227,10 +2583,7 @@ module.exports = [
         "label": "聊各自的家乡和小时候",
         "fx": {
           "money": -200,
-          "affection": 18,
-          "health": 3,
-          "career": -2,
-          "looks": -4
+          "affection": 18
         },
         "result": "你们居然来自相邻的两个县。她说「这也太巧了」，走了整整一圈。",
         "breakup": false
@@ -3239,10 +2592,7 @@ module.exports = [
         "label": "一直聊自己的工作和规划",
         "fx": {
           "money": -200,
-          "affection": -12,
-          "health": 4,
-          "career": 4,
-          "looks": -4
+          "affection": -12
         },
         "result": "她很耐心地听，偶尔点头。走到出口时你才发现，你几乎没问过她任何事。",
         "breakup": false
@@ -3265,10 +2615,7 @@ module.exports = [
         "label": "「这本我也看过。」",
         "fx": {
           "money": -300,
-          "affection": 20,
-          "health": -1,
-          "career": 2,
-          "looks": -3
+          "affection": 20
         },
         "result": "你们从这本书聊到了各自的书架。这是你最近说得最多的一次话。",
         "breakup": false
@@ -3277,10 +2624,7 @@ module.exports = [
         "label": "「你平时喜欢看这类书？」",
         "fx": {
           "money": -300,
-          "affection": 12,
-          "health": 1,
-          "career": 1,
-          "looks": -1
+          "affection": 12
         },
         "result": "她讲了讲自己喜欢的作者。你没读过，但听得很认真。",
         "breakup": false
@@ -3289,10 +2633,7 @@ module.exports = [
         "label": "「看这个有什么用，还不如看点实用的。」",
         "fx": {
           "money": -300,
-          "affection": -22,
-          "health": 2,
-          "career": -4,
-          "looks": 4
+          "affection": -22
         },
         "result": "她把书放回了书架。后来的半小时，她一直在看手机。",
         "breakup": false
@@ -3315,10 +2656,7 @@ module.exports = [
         "label": "主动破冰：「说起来，你周末一般干嘛？」",
         "fx": {
           "money": -160,
-          "affection": 14,
-          "health": -2,
-          "career": 4,
-          "looks": -1
+          "affection": 14
         },
         "result": "她说了自己的爱好，越说越多。冷场被你救回来了。",
         "breakup": false
@@ -3327,10 +2665,7 @@ module.exports = [
         "label": "掏出手机：「不好意思我回个工作消息。」",
         "fx": {
           "money": -160,
-          "affection": -18,
-          "health": 1,
-          "career": 3,
-          "looks": -1
+          "affection": -18
         },
         "result": "你回了消息，也回掉了这次见面的最后一丝可能。",
         "breakup": false
@@ -3339,10 +2674,7 @@ module.exports = [
         "label": "直接说「我其实不太会相亲，咱们随便聊就好」",
         "fx": {
           "money": -160,
-          "affection": 16,
-          "health": -1,
-          "career": 1,
-          "looks": 1
+          "affection": 16
         },
         "result": "她笑出声：「我也是被我妈逼来的。」坦诚是有效的。",
         "breakup": false
@@ -3365,10 +2697,7 @@ module.exports = [
         "label": "「等很久了吧？」顺手带了杯她爱喝的",
         "fx": {
           "money": -120,
-          "affection": 16,
-          "health": -4,
-          "career": -4,
-          "looks": 3
+          "affection": 16
         },
         "result": "她有点意外：「你怎么知道我喜欢这个？」——上次她提过一句，你记下了。",
         "breakup": false
@@ -3377,10 +2706,7 @@ module.exports = [
         "label": "讲讲今天工作里的破事",
         "fx": {
           "money": -120,
-          "affection": 8,
-          "health": -1,
-          "career": 2,
-          "looks": -3
+          "affection": 8
         },
         "result": "她听得很认真，还帮你骂了两句同事。这种默契让人舒服。",
         "breakup": false
@@ -3389,10 +2715,7 @@ module.exports = [
         "label": "心事重重，话很少",
         "fx": {
           "money": -120,
-          "affection": -10,
-          "health": -1,
-          "career": 2,
-          "looks": 2
+          "affection": -10
         },
         "result": "她问了两次「你是不是累了」。这杯咖啡喝得比预想的快。",
         "breakup": false
@@ -3414,11 +2737,7 @@ module.exports = [
       {
         "label": "把外套披给她",
         "fx": {
-          "health": -4,
-          "affection": 20,
-          "money": -1,
-          "career": 1,
-          "looks": 1
+          "affection": 20
         },
         "result": "她没拒绝，把衣服往身上拢了拢。你们并肩走完了整整一条江。",
         "breakup": false
@@ -3427,10 +2746,7 @@ module.exports = [
         "label": "提议去前面那家店买个热饮",
         "fx": {
           "money": -160,
-          "affection": 12,
-          "health": -2,
-          "career": 3,
-          "looks": 3
+          "affection": 12
         },
         "result": "两杯热奶茶捧在手心，话也跟着暖起来了。",
         "breakup": false
@@ -3438,11 +2754,7 @@ module.exports = [
       {
         "label": "埋头走，一直聊自己的事",
         "fx": {
-          "affection": -6,
-          "money": -3,
-          "health": 2,
-          "career": -4,
-          "looks": 2
+          "affection": -6
         },
         "result": "她跟在你身后半步，偶尔应一声。风把很多话吹散了。",
         "breakup": false
@@ -3465,10 +2777,7 @@ module.exports = [
         "label": "带她去那家还开着的小酒馆",
         "fx": {
           "money": -600,
-          "health": -4,
-          "affection": 18,
-          "career": 2,
-          "looks": -4
+          "affection": 18
         },
         "result": "两杯酒下肚，你们聊到了很多白天不会说的事。",
         "breakup": false
@@ -3476,24 +2785,15 @@ module.exports = [
       {
         "label": "就在小区门口坐着聊",
         "fx": {
-          "mood": 8,
           "affection": 12,
-          "money": -3,
-          "health": -1,
-          "career": -1
+          "mood": 8
         },
         "result": "没什么特别的，但夜里的便利店灯光下，她笑起来很好看。",
         "breakup": false
       },
       {
         "label": "走了两圈就各自回家",
-        "fx": {
-          "affection": 4,
-          "money": -2,
-          "health": 4,
-          "career": 4,
-          "looks": -2
-        },
+        "fx": {},
         "result": "短暂，但她说「下次再约」。你已经开始期待下次了。",
         "breakup": false
       }
@@ -3515,10 +2815,7 @@ module.exports = [
         "label": "「随便点，今天我请。」",
         "fx": {
           "money": -1200,
-          "affection": 18,
-          "health": -3,
-          "career": -1,
-          "looks": 4
+          "affection": 18
         },
         "result": "她只点了两样，都不算贵。结账时你心里松了口气，也记住了她的分寸感。",
         "breakup": false
@@ -3527,10 +2824,8 @@ module.exports = [
         "label": "点一瓶酒，气氛拉满",
         "fx": {
           "money": -1800,
-          "health": -6,
           "affection": 14,
-          "career": -3,
-          "looks": 4
+          "health": -6
         },
         "result": "微醺的时候她说了很多真心话。这顿饭很值。",
         "breakup": false
@@ -3539,10 +2834,7 @@ module.exports = [
         "label": "一直在看手机回消息",
         "fx": {
           "money": -1200,
-          "affection": -20,
-          "health": -4,
-          "career": 3,
-          "looks": 3
+          "affection": -20
         },
         "result": "她放下筷子说「你先忙」。那顿饭剩下的部分，只剩餐具碰撞的声音。",
         "breakup": false
@@ -3565,10 +2857,7 @@ module.exports = [
         "label": "自然地把手收回来，让她先拿",
         "fx": {
           "money": -400,
-          "affection": 12,
-          "health": 2,
-          "career": -1,
-          "looks": -4
+          "affection": 12
         },
         "result": "散场后你们聊了一路剧情。有些进展，不需要着急。",
         "breakup": false
@@ -3577,10 +2866,7 @@ module.exports = [
         "label": "握住她的手",
         "fx": {
           "money": -400,
-          "affection": 24,
-          "health": -3,
-          "career": 1,
-          "looks": 2
+          "affection": 24
         },
         "result": "她没有抽开。电影后半小时你什么都没看进去，只记得手心的温度。",
         "breakup": false
@@ -3589,10 +2875,7 @@ module.exports = [
         "label": "看到一半睡着了",
         "fx": {
           "money": -400,
-          "health": 4,
-          "affection": -16,
-          "career": 3,
-          "looks": -4
+          "affection": -16
         },
         "result": "你太累了。散场时她说「你最近是不是太拼了」，语气里有心疼，也有点别的。",
         "breakup": false
@@ -3615,10 +2898,7 @@ module.exports = [
         "label": "「试试嘛，我觉得挺适合你。」然后买下",
         "fx": {
           "money": -3000,
-          "affection": 26,
-          "health": 2,
-          "career": -2,
-          "looks": 1
+          "affection": 26
         },
         "result": "她反复说不用，但你坚持。走出店门时，她把袋子抱得很紧。",
         "breakup": false
@@ -3626,11 +2906,7 @@ module.exports = [
       {
         "label": "「好看是好看，不过这个颜色你不是有一件类似的？」",
         "fx": {
-          "affection": -8,
-          "money": 1,
-          "health": 1,
-          "career": -1,
-          "looks": -2
+          "affection": -8
         },
         "result": "她笑了笑说「也是」，然后就没有再逛下去的兴致了。",
         "breakup": false
@@ -3639,10 +2915,7 @@ module.exports = [
         "label": "陪她逛完，什么都没买",
         "fx": {
           "money": -600,
-          "affection": 8,
-          "health": 1,
-          "career": 1,
-          "looks": -4
+          "affection": 8
         },
         "result": "你们喝了杯奶茶，试了很多东西。空着手回家，但心情不错。",
         "breakup": false
@@ -3665,10 +2938,7 @@ module.exports = [
         "label": "认真数着涮，然后递到她碗里",
         "fx": {
           "money": -1000,
-          "affection": 20,
-          "health": -1,
-          "career": 3,
-          "looks": 3
+          "affection": 20
         },
         "result": "她笑着说「还挺像回事」。烟火气里，你们的距离近了一大截。",
         "breakup": false
@@ -3677,10 +2947,8 @@ module.exports = [
         "label": "比赛谁涮得好，玩得起劲",
         "fx": {
           "money": -1000,
-          "mood": 10,
           "affection": 16,
-          "health": 1,
-          "career": -3
+          "mood": 10
         },
         "result": "最后两个人笑成一团，隔壁桌都在看你们。",
         "breakup": false
@@ -3689,10 +2957,7 @@ module.exports = [
         "label": "一直在看手机处理工作",
         "fx": {
           "money": -1000,
-          "affection": -18,
-          "health": -2,
-          "career": 4,
-          "looks": 1
+          "affection": -18
         },
         "result": "她给你夹了两次菜，你都没注意。锅底烧干了也没人管。",
         "breakup": false
@@ -3715,10 +2980,7 @@ module.exports = [
         "label": "问她「你在看什么？」",
         "fx": {
           "money": -400,
-          "affection": 22,
-          "health": 1,
-          "career": -1,
-          "looks": 4
+          "affection": 22
         },
         "result": "她说了一个关于等待的故事。你忽然觉得自己开始看懂她了。",
         "breakup": false
@@ -3727,10 +2989,7 @@ module.exports = [
         "label": "假装很有见解地评论一通",
         "fx": {
           "money": -400,
-          "affection": -6,
-          "health": 1,
-          "career": 3,
-          "looks": -3
+          "affection": -6
         },
         "result": "她礼貌地点头。后来你才知道，那幅作品是她朋友拍的。",
         "breakup": false
@@ -3739,10 +2998,8 @@ module.exports = [
         "label": "安静地陪她看完，什么都不说",
         "fx": {
           "money": -400,
-          "mood": 6,
           "affection": 16,
-          "health": 4,
-          "career": -1
+          "mood": 6
         },
         "result": "走出展厅时她说「今天挺好的」。有时候陪伴不需要语言。",
         "breakup": false
@@ -3765,10 +3022,8 @@ module.exports = [
         "label": "跟着一起跳，全然不管节奏对不对",
         "fx": {
           "money": -1200,
-          "health": -4,
-          "mood": 16,
           "affection": 26,
-          "career": 3
+          "mood": 16
         },
         "result": "散场后她嗓子都哑了，一直说「你太好笑了」。那天你们都像个小孩。",
         "breakup": false
@@ -3777,10 +3032,8 @@ module.exports = [
         "label": "站在旁边看着她，帮她拿包和外套",
         "fx": {
           "money": -1200,
-          "mood": 8,
           "affection": 16,
-          "health": -4,
-          "career": -1
+          "mood": 8
         },
         "result": "她转头看你的时候笑了。你记得那一刻的鼓点。",
         "breakup": false
@@ -3789,10 +3042,7 @@ module.exports = [
         "label": "「太吵了」，一直站在最后排玩手机",
         "fx": {
           "money": -1200,
-          "affection": -20,
-          "health": 1,
-          "career": 2,
-          "looks": -3
+          "affection": -20
         },
         "result": "她中途回头找了你两次。第二次之后，就没再回头了。",
         "breakup": false
@@ -3815,10 +3065,8 @@ module.exports = [
         "label": "让她靠在自己肩上，一动不动",
         "fx": {
           "money": -1600,
-          "mood": 12,
           "affection": 28,
-          "health": -4,
-          "career": 4
+          "mood": 12
         },
         "result": "你僵着肩膀坐了两个小时，一点都不觉得累。她醒来时说「对不起」，你说没事。",
         "breakup": false
@@ -3827,10 +3075,8 @@ module.exports = [
         "label": "拍了很多她的照片",
         "fx": {
           "money": -1600,
-          "mood": 8,
           "affection": 18,
-          "health": 3,
-          "career": -1
+          "mood": 8
         },
         "result": "回去后你挑了一张做壁纸。她看到后红着脸让你删掉，你没删。",
         "breakup": false
@@ -3839,10 +3085,8 @@ module.exports = [
         "label": "全程都在安排行程，把她累着了",
         "fx": {
           "money": -1600,
-          "health": -6,
           "affection": -10,
-          "career": 3,
-          "looks": 2
+          "health": -6
         },
         "result": "你说「难得来一趟，多逛几个地方」。她说好，但脚步已经跟不上你了。",
         "breakup": false
@@ -3866,9 +3110,7 @@ module.exports = [
         "fx": {
           "money": -16000,
           "looks": 20,
-          "mood": 10,
-          "health": 4,
-          "career": -4
+          "mood": 10
         },
         "result": "做完以后脸有点红，但确实精神了不少。你开始理解「投资自己」这四个字。",
         "breakup": false
@@ -3877,23 +3119,15 @@ module.exports = [
         "label": "狠一点，做了个医美项目",
         "fx": {
           "money": -50000,
-          "health": -6,
           "looks": 36,
-          "mood": 16,
-          "career": -4
+          "mood": 16
         },
         "result": "恢复期有点难熬，但效果摆在那里。镜子里的你，终于像你想象中的样子。",
         "breakup": false
       },
       {
         "label": "算了，自然就好",
-        "fx": {
-          "mood": -4,
-          "money": 1,
-          "health": 2,
-          "career": 3,
-          "looks": -3
-        },
+        "fx": {},
         "result": "你放下了这件事。但下次照镜子时，那点在意还在。",
         "breakup": false
       }
@@ -3916,9 +3150,7 @@ module.exports = [
         "fx": {
           "money": -6000,
           "health": 16,
-          "career": -2,
-          "looks": 14,
-          "family": 4
+          "looks": 14
         },
         "result": "三个月后你瘦了八斤，体态也正了。同事问你是不是谈恋爱了。",
         "breakup": false
@@ -3928,22 +3160,14 @@ module.exports = [
         "fx": {
           "money": -600,
           "health": 10,
-          "looks": 8,
-          "career": -1,
-          "family": 1
+          "looks": 8
         },
         "result": "坚持了一个月，效果有，只是慢一点。但省下的钱是实打实的。",
         "breakup": false
       },
       {
         "label": "再等等",
-        "fx": {
-          "health": -2,
-          "mood": -4,
-          "money": 1,
-          "career": 3,
-          "looks": -1
-        },
+        "fx": {},
         "result": "你关掉了消息。沙发很软，手机很好玩。",
         "breakup": false
       }
@@ -3966,9 +3190,7 @@ module.exports = [
         "fx": {
           "money": -12000,
           "looks": 18,
-          "mood": 12,
-          "health": -2,
-          "career": 2
+          "mood": 12
         },
         "result": "导购帮你搭了三套。你第一次发现，原来穿搭真的能改变一个人的气场。",
         "breakup": false
@@ -3978,22 +3200,14 @@ module.exports = [
         "fx": {
           "money": -3600,
           "looks": 10,
-          "mood": 6,
-          "health": -2,
-          "career": 3
+          "mood": 6
         },
         "result": "不多，但每件都能穿很久。你开始明白「少而精」的意思。",
         "breakup": false
       },
       {
         "label": "不换了，人好就行",
-        "fx": {
-          "mood": -2,
-          "money": 2,
-          "health": -1,
-          "career": 2,
-          "looks": 3
-        },
+        "fx": {},
         "result": "你穿着旧衣服去了。对方没说什么，但你自己知道。",
         "breakup": false
       }
@@ -4016,9 +3230,7 @@ module.exports = [
         "fx": {
           "money": -1200,
           "looks": 10,
-          "mood": 8,
-          "health": 4,
-          "career": -1
+          "mood": 8
         },
         "result": "剪完以后你对着镜子转了两个圈。原来换发型真的像换了个头。",
         "breakup": false
@@ -4028,9 +3240,7 @@ module.exports = [
         "fx": {
           "money": -5000,
           "looks": 14,
-          "mood": 10,
-          "health": 3,
-          "career": -3
+          "mood": 10
         },
         "result": "你成了这家店的常客。每个月的固定支出里，多了一项叫「体面」。",
         "breakup": false
@@ -4038,11 +3248,7 @@ module.exports = [
       {
         "label": "最便宜的快剪，二十块搞定",
         "fx": {
-          "money": -400,
-          "looks": 2,
-          "mood": -2,
-          "health": 3,
-          "career": 3
+          "money": -400
         },
         "result": "剪完像被推子推过的草坪。你决定下次还是多花点钱。",
         "breakup": false
@@ -4065,10 +3271,7 @@ module.exports = [
         "label": "约一次，认真聊聊",
         "fx": {
           "money": -6000,
-          "health": 4,
-          "mood": 32,
-          "career": -3,
-          "looks": -2
+          "mood": 32
         },
         "result": "五十分钟里你说了很多从没对别人说过的话。出来时天已经黑了，但心里亮了一点。",
         "breakup": false
@@ -4077,10 +3280,7 @@ module.exports = [
         "label": "买几本心理学的书自己看",
         "fx": {
           "money": -600,
-          "career": 2,
-          "mood": 14,
-          "health": 3,
-          "looks": -1
+          "mood": 14
         },
         "result": "书里的某些段落像在写你。你学会了给自己的情绪命名。",
         "breakup": false
@@ -4088,11 +3288,7 @@ module.exports = [
       {
         "label": "不去，我没事",
         "fx": {
-          "health": -4,
-          "mood": -12,
-          "money": 2,
-          "career": -2,
-          "looks": 2
+          "mood": -12
         },
         "result": "你说服了自己。但那种说不清的疲惫，并没有因此消失。",
         "breakup": false
@@ -4115,10 +3311,8 @@ module.exports = [
         "label": "一个人出发，去远方",
         "fx": {
           "money": -18000,
-          "health": 12,
-          "career": -6,
           "mood": 40,
-          "looks": 3
+          "health": 12
         },
         "result": "在陌生的城市里，你不用对任何人解释自己是谁。回来时，你像被重装了一次系统。",
         "breakup": false
@@ -4127,10 +3321,8 @@ module.exports = [
         "label": "周边走走，两天一夜",
         "fx": {
           "money": -5000,
-          "health": 6,
-          "career": -2,
           "mood": 24,
-          "looks": 4
+          "health": 6
         },
         "result": "不远的山水，也够你喘口气。周一的地铁好像也没那么难挤了。",
         "breakup": false
@@ -4139,10 +3331,7 @@ module.exports = [
         "label": "不去了，攒钱要紧",
         "fx": {
           "money": 2000,
-          "career": 4,
-          "mood": -10,
-          "health": 4,
-          "looks": -1
+          "mood": -10
         },
         "result": "你把年假折算成了全勤奖。账面上涨了，心里没有。",
         "breakup": false
@@ -4165,10 +3354,8 @@ module.exports = [
         "label": "养！从此家里有个等你的",
         "fx": {
           "money": -8000,
-          "health": 6,
           "mood": 28,
-          "career": -4,
-          "looks": 3
+          "health": 6
         },
         "result": "它第一天就把沙发抓花了。但你下班推开门，看见有个小东西在等你——值。",
         "breakup": false
@@ -4177,10 +3364,7 @@ module.exports = [
         "label": "先买点装备，云吸猫就好",
         "fx": {
           "money": -1000,
-          "mood": 8,
-          "health": -4,
-          "career": 3,
-          "looks": -4
+          "mood": 8
         },
         "result": "你关注了二十个萌宠账号。也算一种精神寄托。",
         "breakup": false
@@ -4188,11 +3372,7 @@ module.exports = [
       {
         "label": "我现在连自己都养不明白",
         "fx": {
-          "mood": -6,
-          "money": 1,
-          "health": 1,
-          "career": -3,
-          "looks": -1
+          "mood": -6
         },
         "result": "你婉拒了。挂了电话以后，房间里安静得有点过分。",
         "breakup": false
@@ -4214,11 +3394,7 @@ module.exports = [
       {
         "label": "重新捡起来，每周留出时间",
         "fx": {
-          "career": -4,
-          "looks": 4,
-          "mood": 24,
-          "money": 3,
-          "health": -1
+          "mood": 24
         },
         "result": "手生了，但那种专注的感觉还在。你重新有了一件「和工作无关的事」。",
         "breakup": false
@@ -4227,10 +3403,7 @@ module.exports = [
         "label": "报个班，认真学",
         "fx": {
           "money": -7000,
-          "career": 4,
-          "mood": 20,
-          "health": -3,
-          "looks": -1
+          "mood": 20
         },
         "result": "你在班里认识了一群有趣的人。生活忽然多了一个维度。",
         "breakup": false
@@ -4238,11 +3411,7 @@ module.exports = [
       {
         "label": "算了，没时间",
         "fx": {
-          "career": 4,
-          "mood": -8,
-          "money": -3,
-          "health": -3,
-          "looks": 1
+          "mood": -8
         },
         "result": "你把它放回了角落。灰尘继续落。",
         "breakup": false
@@ -4264,11 +3433,8 @@ module.exports = [
       {
         "label": "沉下心读完一本",
         "fx": {
-          "health": -2,
-          "career": 6,
           "mood": 16,
-          "money": -4,
-          "looks": -3
+          "career": 6
         },
         "result": "合上书的时候是凌晨一点，但脑子是清醒的。这种感觉很久没有了。",
         "breakup": false
@@ -4278,9 +3444,7 @@ module.exports = [
         "fx": {
           "money": -2400,
           "career": 12,
-          "mood": 8,
-          "health": -4,
-          "looks": -1
+          "mood": 8
         },
         "result": "证书拿到了，简历厚了一行。务实，但有效。",
         "breakup": false
@@ -4288,11 +3452,7 @@ module.exports = [
       {
         "label": "刷短视频到凌晨三点",
         "fx": {
-          "health": -8,
-          "career": -2,
-          "mood": 4,
-          "money": -4,
-          "looks": 1
+          "health": -8
         },
         "result": "你笑了很多次，但什么都没记住。第二天早上你会为此后悔。",
         "breakup": false
@@ -4315,10 +3475,8 @@ module.exports = [
         "label": "添置家具，好好布置一番",
         "fx": {
           "money": -24000,
-          "family": 14,
           "mood": 18,
-          "health": 2,
-          "career": -2
+          "family": 14
         },
         "result": "换了新的书桌和台灯，墙上挂了自己的照片。这个房子终于有了点「家」的样子。",
         "breakup": false
@@ -4327,10 +3485,8 @@ module.exports = [
         "label": "小改一下，买点软装",
         "fx": {
           "money": -6000,
-          "family": 6,
           "mood": 12,
-          "health": -3,
-          "career": -3
+          "family": 6
         },
         "result": "换了窗帘和床品，种了两盆绿植。花费不多，心情好了很多。",
         "breakup": false
@@ -4338,11 +3494,7 @@ module.exports = [
       {
         "label": "凑合住吧，反正也不是自己的",
         "fx": {
-          "mood": -8,
-          "money": 3,
-          "health": -3,
-          "career": -2,
-          "looks": 1
+          "mood": -8
         },
         "result": "你习惯了将就。但每次回到家，那种「临时感」都在提醒你什么。",
         "breakup": false
@@ -4365,10 +3517,8 @@ module.exports = [
         "label": "直接打钱，换台新的",
         "fx": {
           "money": -16000,
-          "family": 18,
           "mood": 20,
-          "health": -3,
-          "career": 4
+          "family": 18
         },
         "result": "她嘴上说「浪费这个钱」，第二天就发来了新热水器的照片。你看着那张照片笑了很久。",
         "breakup": false
@@ -4377,10 +3527,8 @@ module.exports = [
         "label": "买票回家，自己动手换",
         "fx": {
           "money": -6000,
-          "career": -4,
-          "family": 14,
           "mood": 16,
-          "health": 2
+          "family": 14
         },
         "result": "你装了整整一个下午，还顺手修好了漏水的龙头。晚饭时她一个劲给你夹菜。",
         "breakup": false
@@ -4388,11 +3536,7 @@ module.exports = [
       {
         "label": "装作没听懂，聊别的",
         "fx": {
-          "family": -4,
-          "mood": -12,
-          "money": -2,
-          "health": 3,
-          "career": 2
+          "mood": -12
         },
         "result": "你岔开了话题。挂了电话以后，那句「水温不稳」一直留在脑子里。",
         "breakup": false
@@ -4415,10 +3559,7 @@ module.exports = [
         "label": "去，喝点酒聊到深夜",
         "fx": {
           "money": -1200,
-          "health": -4,
-          "mood": 26,
-          "career": 2,
-          "looks": -3
+          "mood": 26
         },
         "result": "你们聊到凌晨，说了很多废话。但那种「有人懂你」的感觉，是真实的。",
         "breakup": false
@@ -4427,10 +3568,7 @@ module.exports = [
         "label": "去露个面，早点回",
         "fx": {
           "money": -800,
-          "mood": 14,
-          "health": 1,
-          "career": -3,
-          "looks": 4
+          "mood": 14
         },
         "result": "见了面，吃了饭，听他们聊了会儿近况。回家路上心情好了一些。",
         "breakup": false
@@ -4438,11 +3576,7 @@ module.exports = [
       {
         "label": "不去了，太累",
         "fx": {
-          "health": 4,
-          "mood": -10,
-          "money": 3,
-          "career": 1,
-          "looks": -1
+          "mood": -10
         },
         "result": "你在家躺了一整天。手机里那个群，一整晚都没有再响。",
         "breakup": false
@@ -4465,10 +3599,8 @@ module.exports = [
         "label": "陪她(O)一起笨手笨脚地摆",
         "fx": {
           "money": -600,
-          "health": 6,
-          "mood": 12,
           "affection": 24,
-          "career": -1
+          "mood": 12
         },
         "result": "阳光很好，你们拍了好多照片，其中一张后来成了你的手机壁纸。",
         "breakup": false
@@ -4476,11 +3608,8 @@ module.exports = [
       {
         "label": "躺在垫子上晒太阳，有一搭没一搭地聊",
         "fx": {
-          "health": 4,
-          "mood": 8,
           "affection": 14,
-          "money": -2,
-          "career": -4
+          "mood": 8
         },
         "result": "风把她的头发吹到你脸上，她笑着把头发别到耳后。那个下午很慢。",
         "breakup": false
@@ -4488,11 +3617,7 @@ module.exports = [
       {
         "label": "一直在看手机回消息",
         "fx": {
-          "affection": -16,
-          "money": -4,
-          "health": 3,
-          "career": 2,
-          "looks": -4
+          "affection": -16
         },
         "result": "她(O)把零食收起来的时候，你才发现自己已经半个下午没抬头了。",
         "breakup": false
@@ -4515,10 +3640,8 @@ module.exports = [
         "label": "一起在厨房手忙脚乱地做完",
         "fx": {
           "money": -800,
-          "mood": 10,
           "affection": 22,
-          "health": -4,
-          "career": 1
+          "mood": 10
         },
         "result": "盐放多了，但你们笑得比吃得多。她说「下次我教你」。",
         "breakup": false
@@ -4526,11 +3649,7 @@ module.exports = [
       {
         "label": "真诚夸她(O)做的那道菜",
         "fx": {
-          "affection": 16,
-          "money": 1,
-          "health": -1,
-          "career": -1,
-          "looks": 4
+          "affection": 16
         },
         "result": "她(O)耳朵红了，说「你别光说好，尝一口再说」。",
         "breakup": false
@@ -4538,11 +3657,7 @@ module.exports = [
       {
         "label": "嫌弃自己那份做得太难吃",
         "fx": {
-          "mood": -4,
-          "affection": -12,
-          "money": 2,
-          "health": -4,
-          "career": 1
+          "affection": -12
         },
         "result": "气氛一下有点丧。她(O)夹了一筷子你的菜：「哪有那么差，你对自己太狠了。」",
         "breakup": false
@@ -4565,10 +3680,8 @@ module.exports = [
         "label": "和她(O)合唱一首",
         "fx": {
           "money": -1000,
-          "mood": 12,
           "affection": 20,
-          "health": 3,
-          "career": -4
+          "mood": 12
         },
         "result": "跑调跑得离谱，但两个人都笑到缺氧。这是第一次觉得「丢人」也挺开心。",
         "breakup": false
@@ -4576,11 +3689,8 @@ module.exports = [
       {
         "label": "安安静静听她(O)唱",
         "fx": {
-          "mood": 6,
           "affection": 12,
-          "money": 4,
-          "health": -2,
-          "career": -3
+          "mood": 6
         },
         "result": "她(O)唱的是一首老情歌，唱到一半偷瞄了你一眼，又迅速移开。",
         "breakup": false
@@ -4588,11 +3698,8 @@ module.exports = [
       {
         "label": "一直跟别人划拳喝酒",
         "fx": {
-          "health": -6,
           "affection": -14,
-          "money": 3,
-          "career": 1,
-          "looks": -4
+          "health": -6
         },
         "result": "你喝得挺嗨，回头发现她(O)已经默默坐到了角落。",
         "breakup": false
@@ -4615,10 +3722,8 @@ module.exports = [
         "label": "给她(O)套个小娃娃",
         "fx": {
           "money": -240,
-          "mood": 8,
           "affection": 18,
-          "health": -4,
-          "career": 3
+          "mood": 8
         },
         "result": "十块钱套中了，她(O)抱着娃娃像捡到宝。你说「运气好」，其实是瞄了二十次。",
         "breakup": false
@@ -4627,10 +3732,8 @@ module.exports = [
         "label": "陪她(O)吃遍每个摊位",
         "fx": {
           "money": -400,
-          "health": -2,
-          "mood": 6,
           "affection": 14,
-          "career": 4
+          "mood": 6
         },
         "result": "撑得走不动路，两人扶着墙笑。这种快乐很便宜，也很难得。",
         "breakup": false
@@ -4638,11 +3741,7 @@ module.exports = [
       {
         "label": "嫌吵，想早点回去",
         "fx": {
-          "mood": 2,
-          "affection": -10,
-          "money": -3,
-          "health": 3,
-          "career": -3
+          "affection": -10
         },
         "result": "她(O)有点扫兴，但没说什么。回去的路上你们话少了一半。",
         "breakup": false
@@ -4665,10 +3764,8 @@ module.exports = [
         "label": "拉她(O)一起重新搭，不急",
         "fx": {
           "money": -1800,
-          "health": 4,
-          "mood": 14,
           "affection": 26,
-          "career": -3
+          "mood": 14
         },
         "result": "终于搭好时天已经黑了。你们坐在帐篷口看星星，谁都没舍得先睡。",
         "breakup": false
@@ -4676,11 +3773,8 @@ module.exports = [
       {
         "label": "硬着头皮自己扛，别让她(O)操心",
         "fx": {
-          "health": -8,
           "affection": 10,
-          "money": -3,
-          "career": 3,
-          "looks": 4
+          "health": -8
         },
         "result": "你满头大汗弄好了。她(O)递来一瓶水：「下次让我也来。」",
         "breakup": false
@@ -4688,11 +3782,7 @@ module.exports = [
       {
         "label": "抱怨 organizer 不专业",
         "fx": {
-          "mood": -4,
-          "affection": -12,
-          "money": 4,
-          "health": 1,
-          "career": -1
+          "affection": -12
         },
         "result": "负能量传染开，本来挺浪漫的夜，被你一句句吐槽毁了。",
         "breakup": false
@@ -4715,10 +3805,8 @@ module.exports = [
         "label": "护着她(O)，一起解谜",
         "fx": {
           "money": -1400,
-          "mood": 10,
           "affection": 24,
-          "health": -4,
-          "career": -1
+          "mood": 10
         },
         "result": "出来的时候她(O)还在喘，但眼睛亮亮的：「好刺激，下次还来。」",
         "breakup": false
@@ -4726,11 +3814,7 @@ module.exports = [
       {
         "label": "一个人冲在前面破局",
         "fx": {
-          "mood": 4,
-          "affection": 8,
-          "money": -3,
-          "health": 4,
-          "career": -3
+          "affection": 8
         },
         "result": "你很厉害地破了关，但她(O)说「其实我有点害怕，你都没发现」。",
         "breakup": false
@@ -4738,11 +3822,7 @@ module.exports = [
       {
         "label": "被吓到，比她(O)还慌",
         "fx": {
-          "mood": -6,
-          "affection": 4,
-          "money": 3,
-          "health": -4,
-          "career": -4
+          "mood": -6
         },
         "result": "你俩抱在一起瑟瑟发抖，出来的时候互相嘲笑对方怂。也算一种回忆。",
         "breakup": false
@@ -4764,11 +3844,8 @@ module.exports = [
       {
         "label": "「我也是，很久没这样了。」",
         "fx": {
-          "mood": 10,
           "affection": 18,
-          "money": -2,
-          "health": 4,
-          "career": -4
+          "mood": 10
         },
         "result": "你们没再多说，但那一刻很满。便利店的白炽灯把两个人的影子拉得很长。",
         "breakup": false
@@ -4776,11 +3853,8 @@ module.exports = [
       {
         "label": "顺手给她(O)买了杯热的",
         "fx": {
-          "money": -80,
-          "mood": 6,
           "affection": 12,
-          "health": 3,
-          "career": -4
+          "mood": 6
         },
         "result": "她(O)接过去，没说话，但小口小口喝得很慢。",
         "breakup": false
@@ -4788,11 +3862,7 @@ module.exports = [
       {
         "label": "低头回工作群消息",
         "fx": {
-          "mood": -2,
-          "affection": -14,
-          "money": 3,
-          "health": -2,
-          "career": 1
+          "affection": -14
         },
         "result": "她(O)把剩下的关东煮吃完，说「走吧，不早了」。",
         "breakup": false
@@ -4815,10 +3885,8 @@ module.exports = [
         "label": "陪她(O)一起被猫「选妃」",
         "fx": {
           "money": -600,
-          "mood": 12,
           "affection": 20,
-          "health": 2,
-          "career": -1
+          "mood": 12
         },
         "result": "有只布偶赖在你腿上不走。她说「它肯定觉得你靠谱」。你竟有点被夸到了。",
         "breakup": false
@@ -4826,11 +3894,8 @@ module.exports = [
       {
         "label": "趁机聊起以后要不要养只猫",
         "fx": {
-          "mood": 8,
           "affection": 16,
-          "money": -2,
-          "health": 3,
-          "career": -3
+          "mood": 8
         },
         "result": "你们认真规划了一间有猫的小房子，虽然它现在还是个泡泡。",
         "breakup": false
@@ -4838,11 +3903,8 @@ module.exports = [
       {
         "label": "对猫毛过敏，坐立不安",
         "fx": {
-          "health": -6,
           "affection": -8,
-          "money": 1,
-          "career": -3,
-          "looks": 3
+          "health": -6
         },
         "result": "你打了好几个喷嚏，她(O)一边笑一边给你递纸，气氛有点滑稽。",
         "breakup": false
@@ -4865,10 +3927,7 @@ module.exports = [
         "label": "咬牙报了，认真学",
         "fx": {
           "money": -10000,
-          "health": -4,
-          "career": 18,
-          "looks": 2,
-          "family": -2
+          "career": 18
         },
         "result": "三个月后你拿证那天，hr 多看了你一眼。有些投资，回报很慢但真实。",
         "breakup": false
@@ -4877,23 +3936,14 @@ module.exports = [
         "label": "只买教材，自学",
         "fx": {
           "money": -1600,
-          "health": -2,
-          "career": 8,
-          "looks": 3,
-          "family": 2
+          "career": 8
         },
         "result": "你断断续续看了三分之一。知识没全进脑子，但面试时能聊两句了。",
         "breakup": false
       },
       {
         "label": "算了吧，没精力",
-        "fx": {
-          "career": 2,
-          "mood": -4,
-          "money": -2,
-          "health": -2,
-          "looks": 4
-        },
+        "fx": {},
         "result": "你婉拒了。转头看到同事的朋友圈晒证书，心里有点酸。",
         "breakup": false
       }
@@ -4915,10 +3965,7 @@ module.exports = [
         "label": "去做了半天义工",
         "fx": {
           "money": -400,
-          "health": -2,
-          "mood": 24,
-          "career": -4,
-          "looks": 3
+          "mood": 24
         },
         "result": "帮老人修好了手机，对方握着你的手说了三遍谢谢。你发现自己被需要的感觉，挺好。",
         "breakup": false
@@ -4927,10 +3974,7 @@ module.exports = [
         "label": "捐了点钱，没去现场",
         "fx": {
           "money": -2000,
-          "mood": 10,
-          "health": 3,
-          "career": -3,
-          "looks": -4
+          "mood": 10
         },
         "result": "你转账的时候想，这样也算出了一份力。",
         "breakup": false
@@ -4938,11 +3982,7 @@ module.exports = [
       {
         "label": "划走了，跟我没关系",
         "fx": {
-          "mood": -6,
-          "money": 2,
-          "health": 1,
-          "career": -2,
-          "looks": 4
+          "mood": -6
         },
         "result": "你继续刷视频。过了一会儿却有点说不清的空。",
         "breakup": false
@@ -4965,10 +4005,7 @@ module.exports = [
         "label": "接了，下班后去分拣",
         "fx": {
           "money": 18000,
-          "health": -14,
-          "career": -2,
-          "mood": -4,
-          "looks": 2
+          "health": -14
         },
         "result": "你坚持了两个月，攒下一笔小钱，黑眼圈也稳住了。",
         "breakup": false
@@ -4977,23 +4014,14 @@ module.exports = [
         "label": "只做了两周就放弃",
         "fx": {
           "money": 6000,
-          "health": -8,
-          "career": 3,
-          "looks": -4,
-          "family": -4
+          "health": -8
         },
         "result": "你意识到自己身体扛不住两份工。辞掉那天反而松了口气。",
         "breakup": false
       },
       {
         "label": "不干，时间太贵",
-        "fx": {
-          "career": -2,
-          "mood": -2,
-          "money": 3,
-          "health": 4,
-          "looks": 3
-        },
+        "fx": {},
         "result": "你把晚上留给健身和睡觉。健康是攒出来的，你信这个。",
         "breakup": false
       }
@@ -5014,11 +4042,7 @@ module.exports = [
       {
         "label": "认真沟通，了解她的想法",
         "fx": {
-          "affection": 36,
-          "money": -1,
-          "health": 2,
-          "career": -2,
-          "looks": 1
+          "affection": 36
         },
         "result": "你们聊了很久，关于生育、关于自由、关于责任。她说：\"你愿意认真听我说，这比什么都重要。\"",
         "breakup": false
@@ -5026,11 +4050,7 @@ module.exports = [
       {
         "label": "\"顺其自然吧。\"",
         "fx": {
-          "affection": -24,
-          "money": 1,
-          "health": -2,
-          "career": 1,
-          "looks": -2
+          "affection": -24
         },
         "result": "你随口敷衍。她低下头，那顿饭剩下的部分，她很少再说话。",
         "breakup": false
@@ -5038,24 +4058,15 @@ module.exports = [
       {
         "label": "\"不生孩子我结婚干嘛？\"",
         "fx": {
-          "mood": -10,
           "affection": -40,
-          "money": 4,
-          "health": -4,
-          "career": 3
+          "mood": -10
         },
         "result": "你脱口而出。她怔住了，眼神一点点暗下去。",
         "breakup": false
       },
       {
         "label": "\"这个问题没得谈，我们可能不合适。\"",
-        "fx": {
-          "money": 4,
-          "health": -2,
-          "career": -3,
-          "looks": -4,
-          "family": 1
-        },
+        "fx": {},
         "result": "你放下筷子，话说得很硬。她看了你很久，起身走了。",
         "breakup": true
       }
@@ -5076,11 +4087,7 @@ module.exports = [
       {
         "label": "坦诚说出真实收支",
         "fx": {
-          "affection": 32,
-          "money": -3,
-          "health": 4,
-          "career": 4,
-          "looks": -3
+          "affection": 32
         },
         "result": "你如实说了收入和开销。她点点头：\"两个人过日子，心里有数才踏实。\"",
         "breakup": false
@@ -5089,10 +4096,7 @@ module.exports = [
         "label": "往多了报，撑个面子",
         "fx": {
           "money": -5000,
-          "affection": 12,
-          "health": 2,
-          "career": -3,
-          "looks": -2
+          "affection": 12
         },
         "result": "你往多报了一截。她\"哦\"了一声，但你看得出她其实并不全信。",
         "breakup": false
@@ -5100,24 +4104,14 @@ module.exports = [
       {
         "label": "\"你问这个干嘛？\"",
         "fx": {
-          "affection": -24,
-          "money": 1,
-          "health": -1,
-          "career": 3,
-          "looks": 2
+          "affection": -24
         },
         "result": "你有些防备地反问。气氛一下冷了，她笑了笑说\"随便问问\"。",
         "breakup": false
       },
       {
         "label": "\"我们才认识多久，你就查户口？\"",
-        "fx": {
-          "money": -2,
-          "health": -2,
-          "career": 2,
-          "looks": 4,
-          "family": 2
-        },
+        "fx": {},
         "result": "你冷冷地撂下这句话。她拎起包走了，头也没回。",
         "breakup": true
       }
@@ -5138,11 +4132,7 @@ module.exports = [
       {
         "label": "认真商量彼此的底线",
         "fx": {
-          "affection": 32,
-          "money": 1,
-          "health": -2,
-          "career": -1,
-          "looks": -2
+          "affection": 32
         },
         "result": "你们认真讨论了各自的期待。她说：\"能好好谈这件事，我心里踏实多了。\"",
         "breakup": false
@@ -5150,11 +4140,8 @@ module.exports = [
       {
         "label": "\"都行，听你的。\"",
         "fx": {
-          "mood": -6,
           "affection": 20,
-          "money": -2,
-          "health": -4,
-          "career": 1
+          "mood": -6
         },
         "result": "你回答得很快。她反而沉默了一下，觉得你并没有真的在思考这件事。",
         "breakup": false
@@ -5162,24 +4149,14 @@ module.exports = [
       {
         "label": "\"我不接受和老人同住。\"",
         "fx": {
-          "affection": -36,
-          "money": 2,
-          "health": -2,
-          "career": 4,
-          "looks": -3
+          "affection": -36
         },
         "result": "你态度坚决。她没再说什么，但你们之间的温度明显降了。",
         "breakup": false
       },
       {
         "label": "\"现在说这个太早，没意思。\"",
-        "fx": {
-          "money": 4,
-          "health": -3,
-          "career": 3,
-          "looks": -2,
-          "family": 1
-        },
+        "fx": {},
         "result": "你不耐烦地打断。她看了你一眼，说\"那算了\"，转身走了。",
         "breakup": true
       }
@@ -5200,11 +4177,7 @@ module.exports = [
       {
         "label": "大方打个招呼，不当回事",
         "fx": {
-          "affection": 30,
-          "money": -3,
-          "health": 3,
-          "career": -1,
-          "looks": 1
+          "affection": 30
         },
         "result": "你主动点头，还和对方寒暄了两句。过后她说：\"你比我想象的成熟。\"",
         "breakup": false
@@ -5212,11 +4185,8 @@ module.exports = [
       {
         "label": "\"你们现在还联系？\"",
         "fx": {
-          "mood": -8,
           "affection": -32,
-          "money": 3,
-          "health": 2,
-          "career": -4
+          "mood": -8
         },
         "result": "你语气酸得明显。她叹了口气，那天的好心情到此为止。",
         "breakup": false
@@ -5224,24 +4194,15 @@ module.exports = [
       {
         "label": "全程黑脸，一言不发",
         "fx": {
-          "mood": -12,
           "affection": -44,
-          "money": 4,
-          "health": 4,
-          "career": -4
+          "mood": -12
         },
         "result": "你冷了一路。散场时她说：\"你这样，我很累。\"",
         "breakup": false
       },
       {
         "label": "当场甩脸走人",
-        "fx": {
-          "money": -4,
-          "health": 4,
-          "career": -3,
-          "looks": 2,
-          "family": 4
-        },
+        "fx": {},
         "result": "你直接扭头走了。她追了几步，最后停在原地。这段关系，被你亲手按下了终止。",
         "breakup": true
       }
@@ -5262,11 +4223,7 @@ module.exports = [
       {
         "label": "实话实说，坦诚相告",
         "fx": {
-          "affection": 16,
-          "money": -2,
-          "health": -3,
-          "career": 1,
-          "looks": 2
+          "affection": 16
         },
         "result": "你如实回答。她点点头，没有继续追问，反而聊起了自己的工作。",
         "breakup": false
@@ -5274,11 +4231,7 @@ module.exports = [
       {
         "label": "\"还在看，快定了。\"",
         "fx": {
-          "affection": -12,
-          "money": 2,
-          "health": 1,
-          "career": 1,
-          "looks": -1
+          "affection": -12
         },
         "result": "你含糊其辞。她笑了笑，明显听出了水分。",
         "breakup": false
@@ -5286,11 +4239,7 @@ module.exports = [
       {
         "label": "\"第一次见面就问这个？\"",
         "fx": {
-          "affection": -32,
-          "money": 1,
-          "health": 1,
-          "career": -1,
-          "looks": -2
+          "affection": -32
         },
         "result": "你语气不善地反问。后半场你们几乎没怎么说话。",
         "breakup": false
@@ -5312,11 +4261,7 @@ module.exports = [
       {
         "label": "「没事，我也刚到。」（把等了二十分钟的事咽下去）",
         "fx": {
-          "mood": -4,
-          "affection": 16,
-          "money": -2,
-          "health": 1,
-          "career": -4
+          "affection": 16
         },
         "result": "她松了口气，坐下来第一句话就是「你人真好」。这顿饭的气氛从一开始就是松的。",
         "breakup": false
@@ -5324,11 +4269,7 @@ module.exports = [
       {
         "label": "「堵车？这个点不至于吧。」",
         "fx": {
-          "mood": 2,
-          "affection": -14,
-          "money": -3,
-          "health": -3,
-          "career": 4
+          "affection": -14
         },
         "result": "她脸上的歉意收了一半，剩下的一半变成了防备。后面的对话都客客气气。",
         "breakup": false
@@ -5336,11 +4277,7 @@ module.exports = [
       {
         "label": "递上一杯已经买好的热饮：「先喝口水。」",
         "fx": {
-          "money": -50,
-          "affection": 20,
-          "health": 2,
-          "career": -4,
-          "looks": -3
+          "affection": 20
         },
         "result": "她捧着杯子愣了一下，说「你怎么知道我爱喝这个」。你不知道，但这一下赌对了。",
         "breakup": false
@@ -5363,11 +4300,7 @@ module.exports = [
       {
         "label": "等她挂了，笑着说「阿姨挺关心你」",
         "fx": {
-          "affection": 16,
-          "money": -2,
-          "health": 1,
-          "career": -3,
-          "looks": -4
+          "affection": 16
         },
         "result": "她把手机扣在桌上，说「我妈比我还急」。话题就这么自然地转到了各自的家里。",
         "breakup": false
@@ -5375,11 +4308,7 @@ module.exports = [
       {
         "label": "「要不你先聊完，我去趟洗手间。」（留她空间）",
         "fx": {
-          "affection": 18,
-          "money": -1,
-          "health": 3,
-          "career": -1,
-          "looks": 1
+          "affection": 18
         },
         "result": "你回来时她已经挂了电话，看着你说「很少有人这么识趣」。",
         "breakup": false
@@ -5387,11 +4316,7 @@ module.exports = [
       {
         "label": "凑过去想听清电话里说什么",
         "fx": {
-          "mood": -4,
-          "affection": -20,
-          "money": 4,
-          "health": 3,
-          "career": -4
+          "affection": -20
         },
         "result": "她把手机往旁边挪了挪。那一眼里的东西，你读懂了。",
         "breakup": false
@@ -5414,11 +4339,7 @@ module.exports = [
       {
         "label": "如实回答，也把自己在意的事问回去",
         "fx": {
-          "mood": -2,
-          "affection": 12,
-          "money": 4,
-          "health": -3,
-          "career": 3
+          "affection": 12
         },
         "result": "她听完点了点头，也在纸上记了两笔。这场相亲像一场谈判，但至少双方都在认真。",
         "breakup": false
@@ -5426,11 +4347,7 @@ module.exports = [
       {
         "label": "「这些我现在给不了，但我在往前赚。」",
         "fx": {
-          "affection": 18,
-          "money": -1,
-          "health": -4,
-          "career": 4,
-          "looks": -3
+          "affection": 18
         },
         "result": "她盯着你看了两秒，把纸折起来放回包里：「行，这句我信。」",
         "breakup": false
@@ -5438,11 +4355,8 @@ module.exports = [
       {
         "label": "「你这是在挑货？」",
         "fx": {
-          "mood": -6,
           "affection": -24,
-          "money": 1,
-          "health": 1,
-          "career": 3
+          "mood": -6
         },
         "result": "她笑了笑把纸收起来：「那我们没什么好聊的了。」",
         "breakup": false
@@ -5465,11 +4379,7 @@ module.exports = [
       {
         "label": "说点真的，但不说细节和坏话",
         "fx": {
-          "affection": 18,
-          "money": 2,
-          "health": -3,
-          "career": -3,
-          "looks": -3
+          "affection": 18
         },
         "result": "她听完说「能这么说的人不多」。这句话之后，她开始讲自己的事。",
         "breakup": false
@@ -5477,11 +4387,7 @@ module.exports = [
       {
         "label": "「别提了，都是过去的事。」",
         "fx": {
-          "mood": 2,
-          "affection": -8,
-          "money": 3,
-          "health": -4,
-          "career": -3
+          "affection": -8
         },
         "result": "她「哦」了一声，低头喝了口饮料。话题就此断掉。",
         "breakup": false
@@ -5489,11 +4395,7 @@ module.exports = [
       {
         "label": "顺便把前任骂了一顿",
         "fx": {
-          "mood": -4,
-          "affection": -22,
-          "money": 1,
-          "health": -3,
-          "career": 2
+          "affection": -22
         },
         "result": "她安静地听你骂完，然后说「我去下洗手间」。",
         "breakup": false
@@ -5516,10 +4418,7 @@ module.exports = [
         "label": "「下次我请，今天这顿我来。」（先一步把钱付了）",
         "fx": {
           "money": -600,
-          "affection": 16,
-          "health": -4,
-          "career": -2,
-          "looks": 1
+          "affection": 16
         },
         "result": "她拗不过你，笑着说「那下次你挑地方」。这句话里有个「下次」。",
         "breakup": false
@@ -5528,10 +4427,7 @@ module.exports = [
         "label": "「那 AA 吧，谁也不欠谁。」",
         "fx": {
           "money": -300,
-          "affection": -10,
-          "health": 4,
-          "career": 4,
-          "looks": -2
+          "affection": -10
         },
         "result": "她痛快地转了钱，也痛快地把关系定在了「认识一下」。",
         "breakup": false
@@ -5539,11 +4435,7 @@ module.exports = [
       {
         "label": "「行，那你来。」（坐着没动）",
         "fx": {
-          "affection": -18,
-          "money": -3,
-          "health": -3,
-          "career": 1,
-          "looks": 2
+          "affection": -18
         },
         "result": "她付款的时候背对着你。回来坐下时说「时间不早了」。",
         "breakup": false
@@ -5566,11 +4458,7 @@ module.exports = [
       {
         "label": "正常聊天，也主动把话递给旁边那位",
         "fx": {
-          "mood": 2,
-          "affection": 18,
-          "money": -4,
-          "health": -1,
-          "career": -2
+          "affection": 18
         },
         "result": "陪同的那位后半程基本没说话，临走前对{p}耳语了一句。{p}笑了。",
         "breakup": false
@@ -5578,11 +4466,7 @@ module.exports = [
       {
         "label": "全程只跟{p}说话，当旁边没人",
         "fx": {
-          "affection": -6,
-          "money": 3,
-          "health": -4,
-          "career": -4,
-          "looks": 2
+          "affection": -6
         },
         "result": "陪同的那位中途就低头刷手机了。走的时候，两个人一路没怎么说话。",
         "breakup": false
@@ -5590,11 +4474,7 @@ module.exports = [
       {
         "label": "明显紧张，话变得特别多",
         "fx": {
-          "mood": -6,
-          "affection": 4,
-          "money": -3,
-          "health": 1,
-          "career": -3
+          "mood": -6
         },
         "result": "你说完第三个笑话才意识到，没有人笑。",
         "breakup": false
@@ -5617,11 +4497,7 @@ module.exports = [
       {
         "label": "把外套脱下来递过去",
         "fx": {
-          "health": -4,
-          "affection": 22,
-          "money": 1,
-          "career": -2,
-          "looks": -4
+          "affection": 22
         },
         "result": "她犹豫了一下还是披上了，袖子太长，盖住了手。「那你冷不冷？」",
         "breakup": false
@@ -5629,11 +4505,8 @@ module.exports = [
       {
         "label": "「好，走走。」（并肩，慢慢走）",
         "fx": {
-          "mood": 6,
           "affection": 14,
-          "money": -4,
-          "health": -2,
-          "career": 2
+          "mood": 6
         },
         "result": "两个人沿着街走了很久，没说几句话，但都不觉得尴尬。",
         "breakup": false
@@ -5641,11 +4514,7 @@ module.exports = [
       {
         "label": "「不早了，我明天还上班。」",
         "fx": {
-          "mood": 2,
-          "affection": -12,
-          "money": 4,
-          "health": -4,
-          "career": 1
+          "affection": -12
         },
         "result": "她「嗯」了一声，很干脆地打了车。",
         "breakup": false
@@ -5667,36 +4536,20 @@ module.exports = [
       {
         "label": "「行，您把人推给我。」",
         "fx": {
-          "mood": 6,
-          "money": -2,
-          "health": 3,
-          "career": -2,
-          "looks": 2
+          "mood": 6
         },
         "result": "微信通过的那一刻，你盯着对方的头像看了很久。",
         "breakup": false
       },
       {
         "label": "「姑，我自己会找。」",
-        "fx": {
-          "family": -4,
-          "mood": -4,
-          "money": 2,
-          "health": 2,
-          "career": -3
-        },
+        "fx": {},
         "result": "电话那头沉默了两秒，然后是那句熟悉的「你都快三十了」。",
         "breakup": false
       },
       {
         "label": "嘴上敷衍，挂了电话就把这事忘了",
-        "fx": {
-          "mood": 2,
-          "money": 1,
-          "health": -4,
-          "career": 1,
-          "looks": -1
-        },
+        "fx": {},
         "result": "一周后姑姑问起，你才想起来自己既没加也没回。",
         "breakup": false
       }
@@ -5717,36 +4570,20 @@ module.exports = [
       {
         "label": "认真填一遍，顺手买了会员",
         "fx": {
-          "money": -598,
-          "mood": 4,
-          "health": -1,
-          "career": -4,
-          "looks": 1
+          "money": -598
         },
         "result": "当天晚上收到十几条打招呼。你一条条看完，回了两条。",
         "breakup": false
       },
       {
         "label": "只把照片换成最近拍的",
-        "fx": {
-          "looks": 2,
-          "mood": 2,
-          "money": 4,
-          "health": -1,
-          "career": -3
-        },
+        "fx": {},
         "result": "换完照片第二天，浏览量确实涨了一些。",
         "breakup": false
       },
       {
         "label": "把 App 卸载了",
-        "fx": {
-          "mood": 4,
-          "money": -4,
-          "health": -4,
-          "career": 3,
-          "looks": 3
-        },
+        "fx": {},
         "result": "手机清爽了，晚上也清净了。就是周末有点长。",
         "breakup": false
       }
@@ -5767,24 +4604,14 @@ module.exports = [
       {
         "label": "停下来认真看了看",
         "fx": {
-          "mood": -6,
-          "money": -1,
-          "health": 2,
-          "career": -3,
-          "looks": 2
+          "mood": -6
         },
         "result": "「男，32，有房无贷，寻性格温和女。」你看完自己的同龄人，又看完了别人对你的定价。",
         "breakup": false
       },
       {
         "label": "替父母抄了两条回去",
-        "fx": {
-          "family": 4,
-          "mood": -2,
-          "money": 4,
-          "health": -1,
-          "career": 1
-        },
+        "fx": {},
         "result": "回家念给爸妈听，两位老人记了一整个本子。",
         "breakup": false
       },
@@ -5792,10 +4619,7 @@ module.exports = [
         "label": "快步走开，去跑了个十公里",
         "fx": {
           "health": 6,
-          "mood": 6,
-          "money": -4,
-          "career": 3,
-          "looks": -2
+          "mood": 6
         },
         "result": "跑完出汗的那一刻，你觉得这些纸上的数字都不重要了。",
         "breakup": false
@@ -5818,10 +4642,7 @@ module.exports = [
         "label": "「这周末，我请你吃饭。」",
         "fx": {
           "money": -400,
-          "affection": 24,
-          "health": 3,
-          "career": -2,
-          "looks": -3
+          "affection": 24
         },
         "result": "消息发出去三秒就回了：「好。」只有一个字，但是秒回。",
         "breakup": false
@@ -5829,11 +4650,7 @@ module.exports = [
       {
         "label": "「最近确实忙，再等两周？」",
         "fx": {
-          "mood": -4,
-          "affection": -16,
-          "money": 4,
-          "health": 3,
-          "career": 3
+          "affection": -16
         },
         "result": "她回了个「嗯」。之后的几天，回复都变得很短。",
         "breakup": false
@@ -5841,11 +4658,7 @@ module.exports = [
       {
         "label": "「见面干嘛，聊得不挺好吗。」",
         "fx": {
-          "mood": -2,
-          "affection": -22,
-          "money": 4,
-          "health": 4,
-          "career": 1
+          "affection": -22
         },
         "result": "她发了个笑脸表情，然后把话题岔开了。",
         "breakup": false
@@ -5867,11 +4680,7 @@ module.exports = [
       {
         "label": "先递张纸巾，说「不着急」",
         "fx": {
-          "money": -40,
-          "health": 2,
-          "career": -2,
-          "mood": 10,
-          "looks": -1
+          "mood": 10
         },
         "result": "他愣了一下，把找零硬塞回你手里。那天晚上的饭有点凉，但你吃得很慢。",
         "breakup": false
@@ -5879,11 +4688,7 @@ module.exports = [
       {
         "label": "当面给个差评",
         "fx": {
-          "money": 60,
-          "health": -2,
-          "looks": -2,
-          "mood": -8,
-          "career": 1
+          "mood": -8
         },
         "result": "平台退了三十块。你盯着那三十块，忽然觉得自己挺没劲的。",
         "breakup": false
@@ -5892,9 +4697,6 @@ module.exports = [
         "label": "把洒了的汤倒进碗里，请他一起坐会儿",
         "fx": {
           "money": -120,
-          "health": 4,
-          "career": -4,
-          "family": 2,
           "mood": 16
         },
         "result": "他摆手说还有单，走前说了句「哥你人真好」。你一个人把两碗汤喝完了。",
@@ -5917,24 +4719,14 @@ module.exports = [
       {
         "label": "主动问一句「您也刚下班？」",
         "fx": {
-          "health": -2,
-          "family": 4,
-          "mood": 8,
-          "money": -2,
-          "career": 4
+          "mood": 8
         },
         "result": "他一下打开了话匣子，从菜价讲到物业费。十二楼到了，你们都还没说完。",
         "breakup": false
       },
       {
         "label": "盯着楼层数字，一句话不说",
-        "fx": {
-          "career": 2,
-          "family": -4,
-          "mood": -2,
-          "money": 2,
-          "health": -2
-        },
+        "fx": {},
         "result": "电梯门开了，两人一前一后走出去，各自进各自的门。走廊很安静。",
         "breakup": false
       },
@@ -5942,10 +4734,8 @@ module.exports = [
         "label": "突然说「我下周搬家，要不下周来我家吃饭」",
         "fx": {
           "money": -400,
-          "health": 4,
-          "career": -2,
-          "family": 6,
-          "mood": 12
+          "mood": 12,
+          "family": 6
         },
         "result": "他被你吓了一跳，随即笑了：「行啊，我带瓶酒。」你其实还没找到房子。",
         "breakup": false
@@ -5968,10 +4758,7 @@ module.exports = [
         "label": "办一张，然后一次没去",
         "fx": {
           "money": -4800,
-          "health": 2,
-          "mood": -6,
-          "career": -3,
-          "looks": 2
+          "mood": -6
         },
         "result": "卡躺在抽屉里。每次看到它，你都想起来那是半个月的房租。",
         "breakup": false
@@ -5980,10 +4767,7 @@ module.exports = [
         "label": "说「不用了」，然后回家做二十个俯卧撑",
         "fx": {
           "health": 12,
-          "career": -2,
-          "looks": 4,
-          "mood": 6,
-          "money": -2
+          "mood": 6
         },
         "result": "做到第十五个你趴在地上不动了。但那天晚上你睡得特别沉。",
         "breakup": false
@@ -5991,11 +4775,7 @@ module.exports = [
       {
         "label": "反问他「你一个月挣多少」",
         "fx": {
-          "career": 6,
-          "family": -2,
-          "mood": 4,
-          "money": -2,
-          "health": -4
+          "career": 6
         },
         "result": "他愣住了，然后认真跟你算了一遍提成。你听完只说了一句「都不容易」。",
         "breakup": false
@@ -6018,10 +4798,7 @@ module.exports = [
         "label": "转两千过去，不问他干什么用",
         "fx": {
           "money": -4000,
-          "career": -2,
-          "family": 4,
-          "mood": 6,
-          "health": -3
+          "mood": 6
         },
         "result": "他回了个抱拳的表情。你没指望他还，但心里踏实了一些。",
         "breakup": false
@@ -6029,11 +4806,7 @@ module.exports = [
       {
         "label": "回「我也挺紧的」",
         "fx": {
-          "career": 2,
-          "family": -4,
-          "mood": -6,
-          "money": -3,
-          "health": 2
+          "mood": -6
         },
         "result": "对面沉默了很久，回了个「没事」。你们又回到了八年不联系的状态。",
         "breakup": false
@@ -6041,11 +4814,7 @@ module.exports = [
       {
         "label": "问清楚用途，只借五百",
         "fx": {
-          "money": -1000,
-          "career": 4,
-          "family": 2,
-          "mood": 2,
-          "health": -2
+          "money": -1000
         },
         "result": "他支支吾吾说了半天。你没戳破。这五百块你们都心知肚明，是买断一段关系。",
         "breakup": false
@@ -6068,10 +4837,8 @@ module.exports = [
         "label": "答应下来，转头把外卖戒了",
         "fx": {
           "money": -800,
-          "health": 6,
-          "career": 2,
           "mood": -8,
-          "looks": -2
+          "health": 6
         },
         "result": "你学会了煮挂面。第三周的时候，你发现自己居然瘦了四斤。",
         "breakup": false
@@ -6079,11 +4846,7 @@ module.exports = [
       {
         "label": "据理力争，把周边房价都查了一遍发给他",
         "fx": {
-          "health": -4,
-          "career": 8,
-          "mood": -4,
-          "money": 2,
-          "looks": 3
+          "career": 8
         },
         "result": "他被你那份表格镇住了，改口说「那就加两百吧」。你赢了，但赢得很累。",
         "breakup": false
@@ -6092,10 +4855,8 @@ module.exports = [
         "label": "说「我搬走」，然后真的开始看房",
         "fx": {
           "money": -1600,
-          "health": -6,
-          "career": 4,
-          "family": 2,
-          "mood": -12
+          "mood": -12,
+          "health": -6
         },
         "result": "搬家那天下雨。你抱着箱子站在路口，忽然觉得这座城市没有一盏灯是为你亮的。",
         "breakup": false
@@ -6117,11 +4878,7 @@ module.exports = [
       {
         "label": "立刻去修，花掉半天和一个下午的工资",
         "fx": {
-          "money": -1400,
-          "career": -4,
-          "mood": -4,
-          "health": 3,
-          "looks": 1
+          "money": -1400
         },
         "result": "修完天已经黑了。你拿着完好如初的手机，却不知道该给谁发消息。",
         "breakup": false
@@ -6129,11 +4886,7 @@ module.exports = [
       {
         "label": "不修了，就这么用",
         "fx": {
-          "health": 2,
-          "career": 2,
-          "looks": -4,
-          "mood": -6,
-          "money": -2
+          "mood": -6
         },
         "result": "裂纹挡住了半个字，你反而看得更慢了。有天下班你发现，你开始少看手机。",
         "breakup": false
@@ -6141,11 +4894,7 @@ module.exports = [
       {
         "label": "把裂纹拍下来发朋友圈，配文「花的」",
         "fx": {
-          "career": -2,
-          "looks": 2,
-          "mood": 12,
-          "money": 2,
-          "health": -1
+          "mood": 12
         },
         "result": "底下有人评论「求推荐手机壳」。你忽然笑了，第一次觉得这事没那么糟。",
         "breakup": false
@@ -6167,11 +4916,9 @@ module.exports = [
       {
         "label": "去，并且一路扶着领导上山",
         "fx": {
-          "health": -6,
           "career": 16,
-          "family": -2,
           "mood": -8,
-          "money": 2
+          "health": -6
         },
         "result": "周一例会上，领导点名表扬了你。你笑着点头，腿还在抖。",
         "breakup": false
@@ -6179,11 +4926,9 @@ module.exports = [
       {
         "label": "装病请假，在家躺一整天",
         "fx": {
-          "health": 8,
           "career": -10,
           "mood": 10,
-          "money": -2,
-          "looks": 1
+          "health": 8
         },
         "result": "你睡到中午，看了半部电影。傍晚有人发来山顶的合照，你划过去了。",
         "breakup": false
@@ -6191,11 +4936,7 @@ module.exports = [
       {
         "label": "去，但在半山腰坐下来跟实习生聊天",
         "fx": {
-          "health": -2,
-          "career": 4,
-          "family": 4,
-          "mood": 12,
-          "money": -1
+          "mood": 12
         },
         "result": "那小孩刚毕业，说了很多真心话。下山时你们走在一起，谁也没提工作。",
         "breakup": false
@@ -6217,11 +4958,7 @@ module.exports = [
       {
         "label": "立刻站起来让座",
         "fx": {
-          "health": -2,
-          "looks": -2,
-          "family": 4,
-          "mood": 10,
-          "money": 3
+          "mood": 10
         },
         "result": "她连说了三声谢谢。你抓着扶手站了七站，到家时肩膀是酸的。",
         "breakup": false
@@ -6229,11 +4966,7 @@ module.exports = [
       {
         "label": "假装没看见，把头扭向窗户",
         "fx": {
-          "health": 2,
-          "looks": 2,
-          "family": -4,
-          "mood": -8,
-          "money": -3
+          "mood": -8
         },
         "result": "你到站时逃也似地下了车。那天晚上你翻来覆去，一直想着那个小孩。",
         "breakup": false
@@ -6241,11 +4974,8 @@ module.exports = [
       {
         "label": "站起来，但顺手帮她把孩子接过来抱着",
         "fx": {
-          "health": -4,
-          "looks": 4,
-          "family": 6,
           "mood": 16,
-          "money": -2
+          "family": 6
         },
         "result": "孩子在你怀里睡着了。她下车时说「你以后一定是个好爸爸」。你愣在原地。",
         "breakup": false
@@ -6267,11 +4997,8 @@ module.exports = [
       {
         "label": "爬起来把明天的方案重做一遍",
         "fx": {
-          "health": -10,
           "career": 12,
-          "mood": -4,
-          "money": 4,
-          "looks": 1
+          "health": -10
         },
         "result": "天亮时你做完了。会上你说得很顺，只是眼前有点发黑。",
         "breakup": false
@@ -6280,10 +5007,7 @@ module.exports = [
         "label": "吃半片安眠药，强迫自己睡",
         "fx": {
           "money": -100,
-          "health": -4,
-          "mood": 6,
-          "career": 1,
-          "looks": -3
+          "mood": 6
         },
         "result": "你睡了四个小时，像被人打晕了一样。醒来时头疼，但至少睡了。",
         "breakup": false
@@ -6291,11 +5015,8 @@ module.exports = [
       {
         "label": "不睡了，出门走到天亮",
         "fx": {
-          "money": -60,
-          "health": -8,
-          "career": -4,
-          "looks": 2,
-          "mood": 12
+          "mood": 12,
+          "health": -8
         },
         "result": "你走到了江边，看了日出。那天你迟到了，但一点也不后悔。",
         "breakup": false
@@ -6316,24 +5037,15 @@ module.exports = [
     "options": [
       {
         "label": "认真砍价，砍下来三块",
-        "fx": {
-          "money": 6,
-          "career": 2,
-          "family": -2,
-          "mood": 4,
-          "health": -1
-        },
+        "fx": {},
         "result": "大姐一边骂你小气一边给你多抓了把葱。你拎着菜，觉得自己赢了。",
         "breakup": false
       },
       {
         "label": "不砍了，多给她五块",
         "fx": {
-          "money": -10,
-          "health": 2,
-          "family": 6,
           "mood": 10,
-          "career": -1
+          "family": 6
         },
         "result": "她愣了，非要塞给你两个西红柿。回家的路上你心情莫名地好。",
         "breakup": false
@@ -6341,11 +5053,7 @@ module.exports = [
       {
         "label": "跟她聊起各自的生意，聊了二十分钟",
         "fx": {
-          "money": -20,
-          "career": 4,
-          "family": 4,
-          "mood": 14,
-          "health": -4
+          "mood": 14
         },
         "result": "她给你讲了她儿子考研的事。你走的时候，她喊「下次再来啊」。",
         "breakup": false
@@ -6366,24 +5074,15 @@ module.exports = [
     "options": [
       {
         "label": "把照片夹回书里，继续收拾",
-        "fx": {
-          "career": 2,
-          "mood": -2,
-          "money": -4,
-          "health": 4,
-          "looks": 4
-        },
+        "fx": {},
         "result": "你手快了半秒，收住了那个念头。抽屉关上，声音很轻。",
         "breakup": false
       },
       {
         "label": "拍下来，发到那个沉寂多年的群里",
         "fx": {
-          "health": -2,
-          "career": -2,
-          "family": 6,
           "mood": 14,
-          "money": 3
+          "family": 6
         },
         "result": "群里炸了。有人认出了那两个人，有人开始约饭。那天晚上你笑了很多次。",
         "breakup": false
@@ -6391,11 +5090,8 @@ module.exports = [
       {
         "label": "盯着照片看了半小时，然后烧掉",
         "fx": {
-          "health": 2,
-          "family": -6,
           "mood": -12,
-          "money": 1,
-          "career": -3
+          "family": -6
         },
         "result": "灰烬落在垃圾桶里。你想不起来自己为什么要这么做。",
         "breakup": false
@@ -6418,10 +5114,7 @@ module.exports = [
         "label": "冲进雨里跑回家",
         "fx": {
           "health": -8,
-          "looks": -2,
-          "mood": 6,
-          "money": -4,
-          "career": 4
+          "mood": 6
         },
         "result": "你跑了两站路，浑身湿透。到家时你站在门口笑，像个傻子。",
         "breakup": false
@@ -6429,11 +5122,7 @@ module.exports = [
       {
         "label": "问同事能不能蹭一段",
         "fx": {
-          "health": -2,
-          "career": 4,
-          "family": 2,
-          "mood": 8,
-          "money": -4
+          "mood": 8
         },
         "result": "伞很小，你们挤得很近。那段路你们聊了工作之外的事。",
         "breakup": false
@@ -6441,11 +5130,7 @@ module.exports = [
       {
         "label": "回公司加班，等雨停",
         "fx": {
-          "health": -4,
-          "career": 10,
-          "mood": -4,
-          "money": -3,
-          "looks": 2
+          "career": 10
         },
         "result": "雨停时已经九点。你做完了明天的活，走出大楼，空气是干净的。",
         "breakup": false
@@ -6466,13 +5151,7 @@ module.exports = [
     "options": [
       {
         "label": "「就剪短点，好打理。」",
-        "fx": {
-          "money": -80,
-          "career": 2,
-          "looks": 4,
-          "mood": 4,
-          "health": -3
-        },
+        "fx": {},
         "result": "剪完你摸了摸后脑勺，很凉快。同事说你精神了。",
         "breakup": false
       },
@@ -6480,10 +5159,8 @@ module.exports = [
         "label": "「就按海报上那个来。」",
         "fx": {
           "money": -360,
-          "health": -2,
           "looks": 10,
-          "mood": 6,
-          "career": 3
+          "mood": 6
         },
         "result": "你每天早上多了十五分钟。但那天相亲，对方多看了你两眼。",
         "breakup": false
@@ -6492,10 +5169,7 @@ module.exports = [
         "label": "「你看着办吧。」然后闭上眼",
         "fx": {
           "money": -120,
-          "looks": -4,
-          "family": 2,
-          "mood": 8,
-          "health": -2
+          "mood": 8
         },
         "result": "剪完你睁开眼，还算能看。有时候把决定权交出去，反而轻松。",
         "breakup": false
@@ -6517,11 +5191,7 @@ module.exports = [
       {
         "label": "「吃了。妈，我挺好的。」",
         "fx": {
-          "family": -2,
-          "mood": 6,
-          "money": -4,
-          "health": 1,
-          "career": -1
+          "mood": 6
         },
         "result": "她「嗯」了一声，又叮嘱了几句就挂了。你握着手机，知道她没信。",
         "breakup": false
@@ -6529,11 +5199,7 @@ module.exports = [
       {
         "label": "把最近倒霉的事全说了",
         "fx": {
-          "health": 2,
-          "career": -2,
-          "family": 10,
-          "mood": -4,
-          "money": -1
+          "family": 10
         },
         "result": "她在那头沉默了很久，说「要不回来吧」。你说「不用」，眼眶有点热。",
         "breakup": false
@@ -6542,10 +5208,7 @@ module.exports = [
         "label": "反问「你和我爸最近怎么样」",
         "fx": {
           "family": 12,
-          "mood": 8,
-          "money": -2,
-          "health": -2,
-          "career": 4
+          "mood": 8
         },
         "result": "她愣了一下，然后絮絮叨叨讲了起来。你第一次发现，她也需要人听。",
         "breakup": false
@@ -6568,10 +5231,7 @@ module.exports = [
         "label": "照着 PPT 讲完，最后一页也念出来",
         "fx": {
           "money": 1600,
-          "health": -2,
-          "career": 12,
-          "mood": -4,
-          "looks": 1
+          "career": 12
         },
         "result": "领导抬起了头，说了句「我考虑一下」。那个月工资多了八百。",
         "breakup": false
@@ -6579,11 +5239,8 @@ module.exports = [
       {
         "label": "跳过最后一页，只讲业绩",
         "fx": {
-          "career": 6,
           "mood": -8,
-          "money": 4,
-          "health": 4,
-          "looks": -2
+          "career": 6
         },
         "result": "你讲完，领导说「辛苦了」。你走出会议室，把那页 PPT 永久删了。",
         "breakup": false
@@ -6592,10 +5249,8 @@ module.exports = [
         "label": "关掉 PPT，直接说「我想聊聊我的未来」",
         "fx": {
           "money": 2400,
-          "health": -4,
           "career": 14,
-          "mood": 6,
-          "looks": -2
+          "mood": 6
         },
         "result": "领导放下手机，看了你很久。那天你们聊了四十分钟，比任何一次述职都长。",
         "breakup": false
@@ -6617,11 +5272,8 @@ module.exports = [
       {
         "label": "趁她不注意，把纸上的「有房」划掉",
         "fx": {
-          "family": -6,
           "mood": 8,
-          "money": 3,
-          "health": -2,
-          "career": 4
+          "family": -6
         },
         "result": "她发现时气得说不出话。你说「本来就没有」，她沉默了很久。",
         "breakup": false
@@ -6629,11 +5281,7 @@ module.exports = [
       {
         "label": "帮她把纸挂正，还用手抚平了卷边",
         "fx": {
-          "family": 12,
-          "mood": -4,
-          "money": -4,
-          "health": 2,
-          "career": -3
+          "family": 12
         },
         "result": "她眼眶有点红，说「我儿子其实挺好的」。你在旁边假装看别处。",
         "breakup": false
@@ -6641,11 +5289,8 @@ module.exports = [
       {
         "label": "掏出笔，在纸背面写「本人不知情，请勿打扰」",
         "fx": {
-          "looks": -2,
-          "family": -12,
           "mood": 14,
-          "money": 4,
-          "health": 2
+          "family": -12
         },
         "result": "那天下午没人来问。回家的路上我妈一句话没说，你却睡了个好觉。",
         "breakup": false
@@ -6667,11 +5312,7 @@ module.exports = [
       {
         "label": "照实写：「普通上班族，话不多，会做饭。」",
         "fx": {
-          "looks": -2,
-          "family": 2,
-          "mood": 6,
-          "money": 3,
-          "health": -1
+          "mood": 6
         },
         "result": "匹配的人不多，但打招呼的第一句都很正常。你觉得这样挺好。",
         "breakup": false
@@ -6679,11 +5320,8 @@ module.exports = [
       {
         "label": "写一句莫名其妙的话：「我养了十三盆多肉。」",
         "fx": {
-          "career": -2,
-          "looks": 6,
           "mood": 12,
-          "money": -3,
-          "health": 4
+          "looks": 6
         },
         "result": "居然有三个人因为这个来搭话。其中一个说她也养多肉。",
         "breakup": false
@@ -6691,11 +5329,7 @@ module.exports = [
       {
         "label": "把年薪和房产都写上去，再补一句「非诚勿扰」",
         "fx": {
-          "career": 4,
-          "looks": -4,
-          "family": -2,
-          "mood": -6,
-          "money": 1
+          "mood": -6
         },
         "result": "来的人明显多了。你聊了三天，发现没有一个人问过你喜欢什么。",
         "breakup": false
@@ -6716,24 +5350,14 @@ module.exports = [
     "options": [
       {
         "label": "把熊转过去，让它面朝墙",
-        "fx": {
-          "health": 2,
-          "mood": -4,
-          "money": 1,
-          "career": -4,
-          "looks": -2
-        },
+        "fx": {},
         "result": "你安安静静吃完了。结账时服务员说「下次带朋友来啊」。",
         "breakup": false
       },
       {
         "label": "给熊也点了一份，还跟它碰杯",
         "fx": {
-          "money": -60,
-          "health": 4,
-          "looks": -2,
-          "mood": 14,
-          "career": -1
+          "mood": 14
         },
         "result": "邻桌的小孩指着你笑。你冲他举了举杯，他也举了起来。",
         "breakup": false
@@ -6742,10 +5366,7 @@ module.exports = [
         "label": "拍张照发给我妈，配文「有人陪」",
         "fx": {
           "family": 8,
-          "mood": 6,
-          "money": -4,
-          "health": -4,
-          "career": 1
+          "mood": 6
         },
         "result": "她回了个「那就好」，还点了个赞。你收起手机，继续涮毛肚。",
         "breakup": false
@@ -6768,10 +5389,7 @@ module.exports = [
         "label": "当场订票，周末就回",
         "fx": {
           "money": -1800,
-          "career": -4,
-          "family": 14,
-          "mood": -4,
-          "health": 3
+          "family": 14
         },
         "result": "到家发现她正在跳广场舞。她愣了一下，随即笑得特别开心。",
         "breakup": false
@@ -6780,10 +5398,7 @@ module.exports = [
         "label": "说「我给你约个号，你去做个检查」",
         "fx": {
           "money": -600,
-          "health": 2,
-          "family": 8,
-          "career": -2,
-          "looks": 4
+          "family": 8
         },
         "result": "她支吾了半天，说「不用不用」。你坚持，最后她去了，一切正常。",
         "breakup": false
@@ -6792,10 +5407,7 @@ module.exports = [
         "label": "直接说「你是不是又在装病催我」",
         "fx": {
           "family": -8,
-          "mood": 6,
-          "money": 4,
-          "health": -2,
-          "career": 4
+          "mood": 6
         },
         "result": "电话那头静了三秒，然后她说「我是想你了」。你一下子说不出话。",
         "breakup": false
@@ -6817,11 +5429,7 @@ module.exports = [
       {
         "label": "举杯认罚：「是我挑，行了吧。」",
         "fx": {
-          "health": -2,
-          "career": 2,
-          "family": 2,
-          "mood": -6,
-          "money": -1
+          "mood": -6
         },
         "result": "大家笑着放过了你。你干了那杯酒，辣得眼睛发酸。",
         "breakup": false
@@ -6829,11 +5437,7 @@ module.exports = [
       {
         "label": "反问「你们谁过得特别幸福，说说」",
         "fx": {
-          "career": 4,
-          "family": -4,
-          "mood": 10,
-          "money": -2,
-          "health": 1
+          "mood": 10
         },
         "result": "桌上安静了。有人开始倒苦水，最后话题转到房价上去了。",
         "breakup": false
@@ -6841,11 +5445,7 @@ module.exports = [
       {
         "label": "掏出手机给大家看你的存款余额",
         "fx": {
-          "career": -4,
-          "family": -6,
-          "mood": 4,
-          "money": 2,
-          "health": 4
+          "family": -6
         },
         "result": "气氛微妙地变了。没人再问你感情的事，但也没人再跟你说话。",
         "breakup": false
@@ -6867,11 +5467,7 @@ module.exports = [
       {
         "label": "点个赞，然后关掉手机",
         "fx": {
-          "health": 2,
-          "family": 2,
-          "mood": 8,
-          "money": -1,
-          "career": -3
+          "mood": 8
         },
         "result": "第二天她发来一句「谢谢」。你们都没再说话，但这件事算是过去了。",
         "breakup": false
@@ -6879,11 +5475,7 @@ module.exports = [
       {
         "label": "把手机扣过去，起来倒了杯水",
         "fx": {
-          "health": 4,
-          "career": 2,
-          "mood": 6,
-          "money": -1,
-          "looks": -4
+          "mood": 6
         },
         "result": "你站在阳台上喝完了那杯水。夜风很凉，你想了很多，也想通了一些。",
         "breakup": false
@@ -6891,11 +5483,7 @@ module.exports = [
       {
         "label": "翻到她三年前给你写的那段话，重读一遍",
         "fx": {
-          "health": -4,
-          "career": -4,
-          "mood": -12,
-          "money": 4,
-          "looks": 1
+          "mood": -12
         },
         "result": "那句话你倒背如流。看完你删掉了聊天记录，然后失眠到四点。",
         "breakup": false
@@ -6917,11 +5505,7 @@ module.exports = [
       {
         "label": "买根火腿肠，蹲下来喂它",
         "fx": {
-          "money": -40,
-          "health": 2,
-          "family": 4,
-          "mood": 14,
-          "career": -1
+          "mood": 14
         },
         "result": "它吃得很急，吃完蹭了蹭你的裤腿。你蹲在那儿，忽然不想起来。",
         "breakup": false
@@ -6930,10 +5514,8 @@ module.exports = [
         "label": "抱回家，第二天带去打疫苗",
         "fx": {
           "money": -1200,
-          "health": 4,
-          "career": -2,
-          "family": 6,
-          "mood": 16
+          "mood": 16,
+          "family": 6
         },
         "result": "它躲了两天沙发底下，第三天跳上了你的床。你开始回家有盼头了。",
         "breakup": false
@@ -6941,11 +5523,7 @@ module.exports = [
       {
         "label": "走过去，假装没看见",
         "fx": {
-          "career": 2,
-          "mood": -6,
-          "money": -4,
-          "health": 3,
-          "looks": -4
+          "mood": -6
         },
         "result": "你走了十几米，回头看了一眼。它还在那儿。那晚你做了个梦。",
         "breakup": false
@@ -6969,9 +5547,7 @@ module.exports = [
         "fx": {
           "money": -120,
           "health": 8,
-          "looks": -2,
-          "mood": 6,
-          "career": 4
+          "mood": 6
         },
         "result": "成品居然能吃。你拍了张照，没发出去，自己看了两遍。",
         "breakup": false
@@ -6979,11 +5555,7 @@ module.exports = [
       {
         "label": "随手做，盐放多了",
         "fx": {
-          "money": -60,
-          "health": -2,
-          "mood": 8,
-          "career": 3,
-          "looks": 2
+          "mood": 8
         },
         "result": "齁得你喝了三杯水。但你把一整盘都吃完了，因为是自己的。",
         "breakup": false
@@ -6992,10 +5564,8 @@ module.exports = [
         "label": "做了两份，给隔壁送一份",
         "fx": {
           "money": -100,
-          "health": 6,
-          "career": -2,
-          "family": 8,
-          "mood": 14
+          "mood": 14,
+          "family": 8
         },
         "result": "隔壁门开了一条缝，后来变成了常来常往。你的菜越做越好。",
         "breakup": false
@@ -7017,11 +5587,7 @@ module.exports = [
       {
         "label": "再发一条，问「在吗」",
         "fx": {
-          "looks": -4,
-          "mood": -8,
-          "money": 2,
-          "health": 2,
-          "career": -4
+          "mood": -8
         },
         "result": "消息发出去，石沉大海。你盯着对话框，像个等判卷的学生。",
         "breakup": false
@@ -7029,11 +5595,7 @@ module.exports = [
       {
         "label": "删掉，把聊天记录一起删了",
         "fx": {
-          "health": 2,
-          "career": 4,
-          "family": -2,
-          "mood": 6,
-          "money": -2
+          "mood": 6
         },
         "result": "删完通讯录空了一格。你洗了个澡，觉得轻松，又觉得有点空。",
         "breakup": false
@@ -7041,11 +5603,7 @@ module.exports = [
       {
         "label": "发一句「那祝你顺利」，然后拉黑",
         "fx": {
-          "career": -2,
-          "looks": 2,
-          "mood": 10,
-          "money": -1,
-          "health": 3
+          "mood": 10
         },
         "result": "你先下手为强，保住了最后一点体面。虽然没人看见，但你自己知道。",
         "breakup": false
@@ -7066,37 +5624,22 @@ module.exports = [
     "options": [
       {
         "label": "「我知道。」然后把酒干了",
-        "fx": {
-          "health": -2,
-          "family": 2,
-          "mood": -4,
-          "money": 1,
-          "career": 4
-        },
+        "fx": {},
         "result": "你没反驳，但心里清楚：你要的不是差不多，是不将就。",
         "breakup": false
       },
       {
         "label": "「那你当初也是差不多吗？」",
         "fx": {
-          "career": 4,
           "family": -6,
-          "mood": 6,
-          "money": -1,
-          "health": 1
+          "mood": 6
         },
         "result": "她愣住了，然后哭了。你递了纸巾，有点后悔，又不完全后悔。",
         "breakup": false
       },
       {
         "label": "真的把标准列出来，划掉了三条",
-        "fx": {
-          "career": -2,
-          "family": 4,
-          "mood": 4,
-          "money": -1,
-          "health": 4
-        },
+        "fx": {},
         "result": "划完你发现，剩下的那几条反而不敢划了。原来你一直知道自己在等什么。",
         "breakup": false
       }
@@ -7117,11 +5660,7 @@ module.exports = [
       {
         "label": "给所有人发风景照，假装很热闹",
         "fx": {
-          "money": -400,
-          "career": -2,
-          "looks": 2,
-          "family": 2,
-          "mood": 4
+          "money": -400
         },
         "result": "点赞不少。你收起手机，还是一个人吃晚饭。",
         "breakup": false
@@ -7129,11 +5668,9 @@ module.exports = [
       {
         "label": "关掉手机，在海边睡了一觉",
         "fx": {
-          "health": 10,
-          "career": -6,
-          "looks": 2,
           "mood": 16,
-          "money": -1
+          "health": 10,
+          "career": -6
         },
         "result": "醒来时天快黑了，手机有七个未接。你回了最后一个，其余的都算了。",
         "breakup": false
@@ -7142,10 +5679,8 @@ module.exports = [
         "label": "跟民宿老板聊了一晚上",
         "fx": {
           "money": -200,
-          "health": -2,
-          "career": 2,
-          "family": 6,
-          "mood": 12
+          "mood": 12,
+          "family": 6
         },
         "result": "他是个辞职来开店的程序员。临走他说「想清楚了再回去」。",
         "breakup": false
@@ -7167,11 +5702,8 @@ module.exports = [
       {
         "label": "照单全收，一个不落地去",
         "fx": {
-          "health": 4,
-          "career": -4,
           "family": 10,
-          "mood": -10,
-          "money": -4
+          "mood": -10
         },
         "result": "那个月你见了十二个人。年底你谁也没记住，只记住了自己很累。",
         "breakup": false
@@ -7179,11 +5711,7 @@ module.exports = [
       {
         "label": "只挑一个，其余的推掉",
         "fx": {
-          "health": 2,
-          "family": -4,
-          "mood": 6,
-          "money": -1,
-          "career": -1
+          "mood": 6
         },
         "result": "她骂了你三天，第四天自己消气了。你见的那个，后来聊了很久。",
         "breakup": false
@@ -7191,11 +5719,8 @@ module.exports = [
       {
         "label": "把表格打印出来，逐条问她「这个你自己见过了吗」",
         "fx": {
-          "career": 2,
           "family": -10,
-          "mood": 10,
-          "money": -1,
-          "health": -3
+          "mood": 10
         },
         "result": "她气得挂了电话。一周后她发来一句话：「你自己把握，妈不管了。」",
         "breakup": false
@@ -7217,11 +5742,7 @@ module.exports = [
       {
         "label": "重新发一句「晚安」",
         "fx": {
-          "looks": 2,
-          "mood": 6,
-          "money": -2,
-          "health": 1,
-          "career": -2
+          "mood": 6
         },
         "result": "第二天早上她回了个太阳的表情。你们就这么聊了起来。",
         "breakup": false
@@ -7229,24 +5750,14 @@ module.exports = [
       {
         "label": "什么都不发，睡觉",
         "fx": {
-          "health": 6,
-          "career": 2,
-          "mood": -2,
-          "money": -3,
-          "looks": -2
+          "health": 6
         },
         "result": "第二天你庆幸自己没发。有些话说出口，就再也收不回来了。",
         "breakup": false
       },
       {
         "label": "把那段话存进备忘录，标题写「以后再说」",
-        "fx": {
-          "career": 4,
-          "family": -2,
-          "mood": 4,
-          "money": -3,
-          "health": 3
-        },
+        "fx": {},
         "result": "备忘录里这样的东西越来越多。有一天你翻到，发现已经用不上了。",
         "breakup": false
       }
@@ -7268,10 +5779,8 @@ module.exports = [
         "label": "把时间全砸在工作上",
         "fx": {
           "money": 3000,
-          "health": -8,
           "career": 18,
-          "mood": -4,
-          "looks": -3
+          "health": -8
         },
         "result": "三个月后你升了职。庆功宴上有人问你女朋友呢，你说不急。",
         "breakup": false
@@ -7280,10 +5789,8 @@ module.exports = [
         "label": "报了个班，学了点没用的东西",
         "fx": {
           "money": -2400,
-          "health": 4,
-          "career": -2,
-          "looks": 6,
-          "mood": 14
+          "mood": 14,
+          "looks": 6
         },
         "result": "你学会了弹一首完整的曲子。弹给你妈听时，她没提相亲的事。",
         "breakup": false
@@ -7292,10 +5799,8 @@ module.exports = [
         "label": "什么也不做，就是歇着",
         "fx": {
           "health": 12,
-          "career": -6,
-          "family": -2,
           "mood": 10,
-          "money": 3
+          "career": -6
         },
         "result": "三个月后你重新装回软件，发现心态不一样了。你不再着急。",
         "breakup": false
@@ -7318,10 +5823,7 @@ module.exports = [
         "label": "直接点，把她那份也点了",
         "fx": {
           "money": -360,
-          "career": 2,
-          "mood": 4,
-          "affection": 18,
-          "health": -3
+          "affection": 18
         },
         "result": "菜上来时她说「你怎么知道我不吃香菜」。你没告诉她，是你问过介绍人。",
         "breakup": false
@@ -7329,11 +5831,7 @@ module.exports = [
       {
         "label": "「那我们各点各的。」",
         "fx": {
-          "money": -240,
-          "affection": -4,
-          "health": 3,
-          "career": 3,
-          "looks": 4
+          "money": -240
         },
         "result": "她愣了一下，自己拿起了菜单。这顿饭吃得很客气，也很平。",
         "breakup": false
@@ -7342,10 +5840,8 @@ module.exports = [
         "label": "问她三个问题，再决定点什么",
         "fx": {
           "money": -300,
-          "mood": 6,
           "affection": 24,
-          "health": 4,
-          "career": -3
+          "mood": 6
         },
         "result": "「辣吗？海鲜过敏吗？主食吃吗？」她笑了：「你比我爸问得还细。」",
         "breakup": false
@@ -7367,11 +5863,7 @@ module.exports = [
       {
         "label": "把手机翻过去，屏幕朝下",
         "fx": {
-          "career": -2,
-          "mood": 4,
-          "affection": 16,
-          "money": -1,
-          "health": 4
+          "affection": 16
         },
         "result": "她看见了，也把自己的手机翻了过去。那顿饭聊了很久。",
         "breakup": false
@@ -7379,11 +5871,8 @@ module.exports = [
       {
         "label": "先接工作电话，说「两分钟」",
         "fx": {
-          "career": 6,
-          "mood": -2,
           "affection": -6,
-          "money": 1,
-          "health": 2
+          "career": 6
         },
         "result": "两分钟变成了二十分钟。回来时她已经吃完了，在刷手机。",
         "breakup": false
@@ -7391,11 +5880,8 @@ module.exports = [
       {
         "label": "「要不我们都把手机放包里？」",
         "fx": {
-          "health": -2,
-          "career": -4,
-          "mood": 8,
           "affection": 22,
-          "money": 2
+          "mood": 8
         },
         "result": "她笑着照做了。后来她说，这是那次见面她记得最清楚的一句。",
         "breakup": false
@@ -7418,10 +5904,7 @@ module.exports = [
         "label": "坚持自己付",
         "fx": {
           "money": -640,
-          "mood": -2,
-          "affection": 10,
-          "health": 3,
-          "career": 2
+          "affection": 10
         },
         "result": "她让了半步，说了声谢谢。出门时她说「下次我请」。有下次，就是好消息。",
         "breakup": false
@@ -7429,11 +5912,7 @@ module.exports = [
       {
         "label": "让她付，说「那下次我来」",
         "fx": {
-          "career": -2,
-          "mood": 4,
-          "affection": 14,
-          "money": -3,
-          "health": -2
+          "affection": 14
         },
         "result": "她付完扬了扬手机：「记住啊，你欠我一顿。」你把这个「欠」字听得很重。",
         "breakup": false
@@ -7442,10 +5921,7 @@ module.exports = [
         "label": "「AA 吧，各付各的。」",
         "fx": {
           "money": -320,
-          "career": 2,
-          "mood": -2,
-          "affection": -12,
-          "health": 4
+          "affection": -12
         },
         "result": "她点点头，转了一半给你。气氛从这一刻起，变成了公事公办。",
         "breakup": false
@@ -7467,11 +5943,8 @@ module.exports = [
       {
         "label": "递纸巾，什么也不问",
         "fx": {
-          "health": -2,
-          "mood": 6,
           "affection": 26,
-          "money": -3,
-          "career": 3
+          "mood": 6
         },
         "result": "她擦完眼睛，说了句「谢谢」。然后她自己开口讲了，讲了很久。",
         "breakup": false
@@ -7479,11 +5952,7 @@ module.exports = [
       {
         "label": "追问「怎么了，是不是我说错什么了」",
         "fx": {
-          "mood": -4,
-          "affection": -8,
-          "money": 4,
-          "health": 3,
-          "career": -1
+          "affection": -8
         },
         "result": "她摇头说没有，但话已经说不下去。剩下的时间都在尴尬里。",
         "breakup": false
@@ -7491,11 +5960,7 @@ module.exports = [
       {
         "label": "换个话题，聊点轻松的",
         "fx": {
-          "family": 2,
-          "mood": 4,
-          "affection": 8,
-          "money": -4,
-          "health": -1
+          "affection": 8
         },
         "result": "她很快调整好了。你也不知道这样做对不对，但那顿饭至少吃完了。",
         "breakup": false
@@ -7518,10 +5983,8 @@ module.exports = [
         "label": "「我能去看看它吗？」",
         "fx": {
           "money": -120,
-          "career": -2,
-          "mood": 8,
           "affection": 24,
-          "health": -1
+          "mood": 8
         },
         "result": "她愣了一下，说「今天不行，改天吧」。你拿到了一个改天。",
         "breakup": false
@@ -7529,11 +5992,7 @@ module.exports = [
       {
         "label": "说我其实对猫毛过敏",
         "fx": {
-          "mood": -2,
-          "affection": -14,
-          "money": 2,
-          "health": 1,
-          "career": -1
+          "affection": -14
         },
         "result": "她「哦」了一声，把手机收起来了。话题到此为止。",
         "breakup": false
@@ -7541,11 +6000,8 @@ module.exports = [
       {
         "label": "「我以前也养过一只，叫米饭。」",
         "fx": {
-          "family": 4,
-          "mood": 10,
           "affection": 18,
-          "money": -2,
-          "health": -1
+          "mood": 10
         },
         "result": "她笑出了声。你们聊了半小时各自养过的动物。",
         "breakup": false
@@ -7567,11 +6023,9 @@ module.exports = [
       {
         "label": "把伞全撑在她那边，自己淋着",
         "fx": {
-          "health": -6,
-          "mood": 6,
           "affection": 20,
-          "money": -1,
-          "career": 1
+          "health": -6,
+          "mood": 6
         },
         "result": "到地铁口你半边身子湿透了。她掏出纸巾给你擦，没说话。",
         "breakup": false
@@ -7579,11 +6033,8 @@ module.exports = [
       {
         "label": "「要不等等？雨应该不大。」",
         "fx": {
-          "health": 2,
-          "career": -2,
-          "mood": 8,
           "affection": 10,
-          "money": -1
+          "mood": 8
         },
         "result": "你们在屋檐下站了二十分钟，聊了很多不着边际的话。",
         "breakup": false
@@ -7591,11 +6042,8 @@ module.exports = [
       {
         "label": "跑进雨里，拉她一起",
         "fx": {
-          "health": -4,
-          "looks": -2,
-          "mood": 12,
           "affection": 28,
-          "money": -4
+          "mood": 12
         },
         "result": "你们笑得像两个傻子。她后来说，那天是她这半年最开心的一次。",
         "breakup": false
@@ -7617,11 +6065,7 @@ module.exports = [
       {
         "label": "如实说，顺便把负债也说了",
         "fx": {
-          "career": 2,
-          "mood": -2,
-          "affection": 16,
-          "money": -1,
-          "health": 2
+          "affection": 16
         },
         "result": "她点点头说「我也差不多」。诚实换来了诚实，她讲了自己的花呗。",
         "breakup": false
@@ -7629,11 +6073,7 @@ module.exports = [
       {
         "label": "往多里说一点",
         "fx": {
-          "career": 4,
-          "mood": -4,
-          "affection": -6,
-          "money": 1,
-          "health": -1
+          "affection": -6
         },
         "result": "她「哇」了一声，你心里发虚。这个数字以后要圆很久。",
         "breakup": false
@@ -7641,11 +6081,8 @@ module.exports = [
       {
         "label": "反问「你问这个，是在考虑我们的将来吗」",
         "fx": {
-          "family": 2,
-          "mood": 8,
           "affection": 22,
-          "money": -3,
-          "health": -1
+          "mood": 8
         },
         "result": "她脸红了，说「你想多了」。但那天之后，她主动约了你第二次。",
         "breakup": false
@@ -7668,10 +6105,8 @@ module.exports = [
         "label": "「那今天就到这，我送你回去。」",
         "fx": {
           "money": -160,
-          "career": -2,
-          "mood": 6,
           "affection": 24,
-          "health": -4
+          "mood": 6
         },
         "result": "她在出租车上睡着了，头歪在你肩上。你一动没动，坐过了两站。",
         "breakup": false
@@ -7679,11 +6114,7 @@ module.exports = [
       {
         "label": "继续聊，声音放轻",
         "fx": {
-          "mood": 2,
-          "affection": 6,
-          "money": 4,
-          "health": -1,
-          "career": -1
+          "affection": 6
         },
         "result": "她努力撑着听，但你看出她已经听不进去了。",
         "breakup": false
@@ -7691,11 +6122,8 @@ module.exports = [
       {
         "label": "讲个特别无聊的笑话，把她逗醒",
         "fx": {
-          "mood": 10,
           "affection": 14,
-          "money": 3,
-          "health": -4,
-          "career": -2
+          "mood": 10
         },
         "result": "她笑骂你「冷」。人醒了，气氛也活了。",
         "breakup": false
@@ -7717,11 +6145,8 @@ module.exports = [
       {
         "label": "装作没看见，继续聊天",
         "fx": {
-          "mood": -6,
           "affection": 8,
-          "money": -2,
-          "health": -3,
-          "career": 1
+          "mood": -6
         },
         "result": "你聊得比刚才更用力。回家后你反复想那两个字，一夜没睡好。",
         "breakup": false
@@ -7729,11 +6154,7 @@ module.exports = [
       {
         "label": "「如果有事你先忙。」",
         "fx": {
-          "health": -2,
-          "mood": 4,
-          "affection": 18,
-          "money": -2,
-          "career": 2
+          "affection": 18
         },
         "result": "她看了你一眼，把手机彻底收进包里：「没事，不重要。」",
         "breakup": false
@@ -7741,11 +6162,8 @@ module.exports = [
       {
         "label": "直接问「那是谁」",
         "fx": {
-          "family": -2,
-          "mood": -8,
           "affection": -18,
-          "money": 2,
-          "health": 4
+          "mood": -8
         },
         "result": "她的表情一下子冷了：「我们才第一次见面。」",
         "breakup": false
@@ -7767,24 +6185,16 @@ module.exports = [
       {
         "label": "「知道！咸的，加辣子。」",
         "fx": {
-          "family": 6,
-          "mood": 12,
           "affection": 22,
-          "money": -2,
-          "health": -2
+          "mood": 12,
+          "family": 6
         },
         "result": "你们为甜咸之争吵了十分钟，最后笑成一团。这顿饭突然变成了老乡会。",
         "breakup": false
       },
       {
         "label": "「我离开得早，记不清了。」",
-        "fx": {
-          "mood": 2,
-          "affection": 4,
-          "money": 3,
-          "health": -3,
-          "career": -3
-        },
+        "fx": {},
         "result": "她有点失望，话题慢慢转回了工作。",
         "breakup": false
       },
@@ -7792,10 +6202,8 @@ module.exports = [
         "label": "「下次我带你去，那家现在还开着。」",
         "fx": {
           "money": -200,
-          "family": 8,
-          "mood": 14,
           "affection": 28,
-          "health": -3
+          "mood": 14
         },
         "result": "她愣了三秒，说「好啊」。你们真的去了，两个月后。",
         "breakup": false
@@ -7817,11 +6225,8 @@ module.exports = [
       {
         "label": "陪她喝，但把她的杯子换成水",
         "fx": {
-          "money": -80,
-          "health": -2,
-          "mood": 8,
           "affection": 20,
-          "career": 3
+          "mood": 8
         },
         "result": "她发现后笑骂你「心眼多」。但那晚她没醉，你们聊到店家打烊。",
         "breakup": false
@@ -7830,10 +6235,7 @@ module.exports = [
         "label": "由她喝，自己陪着",
         "fx": {
           "money": -120,
-          "health": -4,
-          "mood": 4,
-          "affection": 6,
-          "career": 3
+          "affection": 6
         },
         "result": "她喝到第三瓶开始说胡话。你送她回去，全程她都靠在你肩上。",
         "breakup": false
@@ -7841,11 +6243,8 @@ module.exports = [
       {
         "label": "「你是不是有什么事？」",
         "fx": {
-          "family": -4,
-          "mood": 6,
           "affection": 16,
-          "money": -1,
-          "health": 4
+          "mood": 6
         },
         "result": "她放下杯子，沉默了很久，讲了她刚辞掉的那份工作。",
         "breakup": false
@@ -7867,35 +6266,23 @@ module.exports = [
       {
         "label": "「要不……既来之则安之？」",
         "fx": {
-          "family": -2,
-          "mood": 10,
           "affection": 18,
-          "money": -2,
-          "health": 2
+          "mood": 10
         },
         "result": "你们笑了一场，然后真的聊开了。后来她说，这是最离谱的一次相亲。",
         "breakup": false
       },
       {
         "label": "起身道歉，去找正确的人",
-        "fx": {
-          "career": 2,
-          "mood": -2,
-          "affection": -4,
-          "money": 1,
-          "health": 2
-        },
+        "fx": {},
         "result": "你找到了原本的对象，但那顿饭从头到尾都在尴尬里。",
         "breakup": false
       },
       {
         "label": "拍照发给我妈，问「这是不是你安排的」",
         "fx": {
-          "family": -6,
           "mood": 12,
-          "money": 3,
-          "health": -2,
-          "career": 1
+          "family": -6
         },
         "result": "我妈回了六个感叹号。你和对面的姑娘一起笑了半天。",
         "breakup": false
@@ -7917,11 +6304,8 @@ module.exports = [
       {
         "label": "秒回「没呢」",
         "fx": {
-          "health": -2,
-          "mood": 10,
           "affection": 12,
-          "money": -4,
-          "career": 4
+          "mood": 10
         },
         "result": "你们聊到凌晨两点。第二天顶着黑眼圈上班，但嘴角是翘的。",
         "breakup": false
@@ -7929,11 +6313,7 @@ module.exports = [
       {
         "label": "忍到第二天早上再回",
         "fx": {
-          "health": 4,
-          "career": -2,
-          "mood": 4,
-          "affection": 6,
-          "money": -1
+          "affection": 6
         },
         "result": "她回了个「早起的人」。你们保持着一种舒服的距离。",
         "breakup": false
@@ -7941,11 +6321,8 @@ module.exports = [
       {
         "label": "回「睡了。（其实没有）」",
         "fx": {
-          "health": -4,
-          "mood": 12,
           "affection": 18,
-          "money": -2,
-          "career": 2
+          "mood": 12
         },
         "result": "她发来一个「哈哈」。你们都懂，但谁也没戳破。",
         "breakup": false
@@ -7967,35 +6344,23 @@ module.exports = [
       {
         "label": "也回一条语音",
         "fx": {
-          "career": -2,
-          "mood": 12,
           "affection": 20,
-          "money": -2,
-          "health": 3
+          "mood": 12
         },
         "result": "你的声音有点抖，她说「你声音跟我想的不一样」。这是个好信号。",
         "breakup": false
       },
       {
         "label": "打字回复，不回语音",
-        "fx": {
-          "career": -2,
-          "mood": -2,
-          "affection": 4,
-          "money": 3,
-          "health": 3
-        },
+        "fx": {},
         "result": "她也没再发语音。你们退回文字，安全，但也少了一点什么。",
         "breakup": false
       },
       {
         "label": "直接打过去",
         "fx": {
-          "career": -4,
-          "mood": 16,
           "affection": 26,
-          "money": -3,
-          "health": -4
+          "mood": 16
         },
         "result": "她接了，第一句是「你怎么打过来了」。然后你们聊了一个半小时。",
         "breakup": false
@@ -8018,10 +6383,8 @@ module.exports = [
         "label": "下单送药过去，备注「放门口就好」",
         "fx": {
           "money": -300,
-          "career": -2,
-          "mood": 8,
           "affection": 24,
-          "health": -2
+          "mood": 8
         },
         "result": "她半夜发来一条：「药收到了，谢谢你。」后面跟了个拥抱的表情。",
         "breakup": false
@@ -8029,11 +6392,7 @@ module.exports = [
       {
         "label": "回一句「多喝热水，早点睡」",
         "fx": {
-          "affection": -6,
-          "money": -3,
-          "health": -4,
-          "career": 1,
-          "looks": 2
+          "affection": -6
         },
         "result": "她回了个「嗯」。就一个字。你盯着那个字看了五分钟。",
         "breakup": false
@@ -8042,10 +6401,8 @@ module.exports = [
         "label": "请假过去，熬一锅粥",
         "fx": {
           "money": -160,
-          "health": -4,
-          "career": -6,
-          "mood": 10,
-          "affection": 32
+          "affection": 32,
+          "mood": 10
         },
         "result": "她开门时裹着被子，眼睛是红的。那锅粥熬糊了底，她还是喝完了。",
         "breakup": false
@@ -8067,11 +6424,7 @@ module.exports = [
       {
         "label": "删掉重来，只发四个字",
         "fx": {
-          "career": 2,
-          "mood": -2,
-          "affection": 10,
-          "money": -3,
-          "health": 1
+          "affection": 10
         },
         "result": "简洁是对的。她很快回了，你们聊得很顺。",
         "breakup": false
@@ -8079,11 +6432,8 @@ module.exports = [
       {
         "label": "不管了，把心里话全发出去",
         "fx": {
-          "health": 2,
-          "career": -2,
-          "mood": 14,
           "affection": 22,
-          "money": -2
+          "mood": 14
         },
         "result": "发出去那一刻你浑身轻松。她回得慢了些，但回得很长。",
         "breakup": false
@@ -8092,10 +6442,7 @@ module.exports = [
         "label": "关掉对话框，去洗澡",
         "fx": {
           "health": 6,
-          "career": 4,
-          "mood": 6,
-          "affection": -4,
-          "money": -2
+          "mood": 6
         },
         "result": "洗完出来她发了两个问号。你说「刚在洗澡」，心里有点得意。",
         "breakup": false
@@ -8117,11 +6464,8 @@ module.exports = [
       {
         "label": "认真帮她分析，出谋划策",
         "fx": {
-          "career": -2,
-          "mood": -10,
           "affection": 12,
-          "money": 2,
-          "health": 3
+          "mood": -10
         },
         "result": "她夸你「你真懂我」。你笑着收下，心里像被人攥了一下。",
         "breakup": false
@@ -8129,11 +6473,7 @@ module.exports = [
       {
         "label": "「别理他了，他不配。」",
         "fx": {
-          "mood": 4,
-          "affection": -8,
-          "money": 3,
-          "health": -1,
-          "career": 1
+          "affection": -8
         },
         "result": "她沉默了一会儿说「你别这么说」。你们第一次有了隔阂。",
         "breakup": false
@@ -8141,11 +6481,7 @@ module.exports = [
       {
         "label": "「那我呢？」",
         "fx": {
-          "mood": -4,
-          "affection": 28,
-          "money": -3,
-          "health": -4,
-          "career": 2
+          "affection": 28
         },
         "result": "对话框显示「正在输入」很久，最后只来了一句「你别闹」。",
         "breakup": false
@@ -8167,11 +6503,8 @@ module.exports = [
       {
         "label": "「本来有事，但可以改。」",
         "fx": {
-          "career": -4,
-          "mood": 10,
           "affection": 16,
-          "money": -2,
-          "health": -3
+          "mood": 10
         },
         "result": "她回了个「那周六下午？」。你秒答应，然后才想起来要改的是什么。",
         "breakup": false
@@ -8181,9 +6514,7 @@ module.exports = [
         "fx": {
           "money": 600,
           "career": 8,
-          "mood": -2,
-          "affection": -6,
-          "health": -3
+          "affection": -6
         },
         "result": "她回「辛苦了」。那个周末你真的在加班，赚了三百块加班费。",
         "breakup": false
@@ -8191,11 +6522,8 @@ module.exports = [
       {
         "label": "「你想干什么？」",
         "fx": {
-          "family": -2,
-          "mood": 12,
           "affection": 22,
-          "money": 4,
-          "health": -4
+          "mood": 12
         },
         "result": "她发了三个选项，你们挑了中间的。这是你们第一次共同决定一件事。",
         "breakup": false
@@ -8217,11 +6545,8 @@ module.exports = [
       {
         "label": "「现在也挺开心的。」",
         "fx": {
-          "health": -2,
-          "mood": 8,
           "affection": 14,
-          "money": -2,
-          "career": 4
+          "mood": 8
         },
         "result": "她回了个笑脸。你翻着那张旧照片，发现自己确实变了不少。",
         "breakup": false
@@ -8229,11 +6554,8 @@ module.exports = [
       {
         "label": "讲那次爬山的经历，讲了很久",
         "fx": {
-          "family": -4,
-          "mood": 12,
           "affection": 20,
-          "money": -2,
-          "health": 4
+          "mood": 12
         },
         "result": "她听完说「下次带我去」。你们有了一个共同的约定。",
         "breakup": false
@@ -8241,11 +6563,8 @@ module.exports = [
       {
         "label": "「那是我分手前最后一次旅行。」",
         "fx": {
-          "family": 2,
-          "mood": -6,
           "affection": 10,
-          "money": -1,
-          "health": 4
+          "mood": -6
         },
         "result": "她沉默了一会儿，说「对不起，我不知道」。你的坦诚换来她的认真。",
         "breakup": false
@@ -8266,13 +6585,7 @@ module.exports = [
     "options": [
       {
         "label": "「妈，才认识两周。」",
-        "fx": {
-          "family": 4,
-          "mood": 4,
-          "money": -4,
-          "health": -2,
-          "career": -2
-        },
+        "fx": {},
         "result": "她回「那就抓紧」。你没回，把手机扣在了桌上。",
         "breakup": false
       },
@@ -8281,9 +6594,7 @@ module.exports = [
         "fx": {
           "family": 12,
           "mood": 10,
-          "affection": 6,
-          "money": -1,
-          "health": -4
+          "affection": 6
         },
         "result": "我妈那天特别高兴，还给你转了两千块「约会经费」。",
         "breakup": false
@@ -8291,11 +6602,9 @@ module.exports = [
       {
         "label": "把手机给{p}看，问她「你说我怎么回」",
         "fx": {
-          "family": 8,
-          "mood": 12,
           "affection": 26,
-          "money": -1,
-          "health": -2
+          "mood": 12,
+          "family": 8
         },
         "result": "她看完脸红了，说「你就说……还没定」。你把这句发了回去。",
         "breakup": false
@@ -8317,11 +6626,7 @@ module.exports = [
       {
         "label": "不问，照常发日常给她",
         "fx": {
-          "mood": 4,
-          "affection": 16,
-          "money": -1,
-          "health": 1,
-          "career": -2
+          "affection": 16
         },
         "result": "第四天她回了一长段，说这周项目要上线。你松了口气。",
         "breakup": false
@@ -8329,11 +6634,8 @@ module.exports = [
       {
         "label": "直接问「我是不是惹你不高兴了」",
         "fx": {
-          "mood": -6,
           "affection": -6,
-          "money": 2,
-          "health": 1,
-          "career": -4
+          "mood": -6
         },
         "result": "她回「你想多了，就是忙」。这句解释反而让你更不安。",
         "breakup": false
@@ -8341,11 +6643,7 @@ module.exports = [
       {
         "label": "停止发消息，等她来找你",
         "fx": {
-          "health": -2,
-          "career": 4,
-          "mood": -4,
-          "affection": 8,
-          "money": 2
+          "affection": 8
         },
         "result": "第五天她主动发了：「你这几天怎么不理我？」你赢了这一局。",
         "breakup": false
@@ -8367,11 +6665,8 @@ module.exports = [
       {
         "label": "当晚看完，发一段很长的读后感",
         "fx": {
-          "health": -2,
-          "career": 2,
-          "mood": 12,
           "affection": 24,
-          "money": -1
+          "mood": 12
         },
         "result": "她惊讶你读得这么快。你们为书里一个情节争论到深夜。",
         "breakup": false
@@ -8379,11 +6674,7 @@ module.exports = [
       {
         "label": "拍张照片发她，说「收到了，谢谢」",
         "fx": {
-          "mood": 4,
-          "affection": 8,
-          "money": 4,
-          "health": -4,
-          "career": -3
+          "affection": 8
         },
         "result": "她回了「不客气」。这本书会一直放在你的书架上，很久。",
         "breakup": false
@@ -8392,10 +6683,8 @@ module.exports = [
         "label": "回寄一本你喜欢的，也写在扉页上",
         "fx": {
           "money": -240,
-          "family": 4,
-          "mood": 14,
           "affection": 30,
-          "health": -4
+          "mood": 14
         },
         "result": "她收到后发来语音，说「这是第一次有人这样」。你们的进度条跳了一大截。",
         "breakup": false
@@ -8418,10 +6707,7 @@ module.exports = [
         "label": "主动买单，全程陪笑",
         "fx": {
           "money": -400,
-          "mood": -2,
-          "affection": 14,
-          "health": -4,
-          "career": 1
+          "affection": 14
         },
         "result": "闺蜜走后发来消息：「还行，可以处。」你算是过关了。",
         "breakup": false
@@ -8429,11 +6715,8 @@ module.exports = [
       {
         "label": "全程做自己，不刻意讨好",
         "fx": {
-          "looks": -2,
-          "mood": 8,
           "affection": 18,
-          "money": -4,
-          "health": 2
+          "mood": 8
         },
         "result": "闺蜜后来跟她说「你这回这个挺实在的」。真实反而赢了。",
         "breakup": false
@@ -8441,11 +6724,8 @@ module.exports = [
       {
         "label": "反问闺蜜几个问题，把局面反过来",
         "fx": {
-          "career": -4,
-          "mood": 10,
           "affection": 22,
-          "money": -3,
-          "health": 4
+          "mood": 10
         },
         "result": "闺蜜被问得愣住，然后笑了：「你这人有点意思。」",
         "breakup": false
@@ -8467,11 +6747,8 @@ module.exports = [
       {
         "label": "发一句「最近还好吗」",
         "fx": {
-          "mood": 6,
           "affection": 12,
-          "money": 4,
-          "health": -3,
-          "career": -4
+          "mood": 6
         },
         "result": "她秒回「挺好的，你呢」。原来她也在等。",
         "breakup": false
@@ -8479,11 +6756,8 @@ module.exports = [
       {
         "label": "就这么算了",
         "fx": {
-          "career": 2,
-          "mood": -12,
           "affection": -24,
-          "money": 4,
-          "health": 2
+          "mood": -12
         },
         "result": "这段关系像没系紧的扣子，自己松开了。你们再没说过话。",
         "breakup": false
@@ -8491,11 +6765,8 @@ module.exports = [
       {
         "label": "发一段很长的话，把话说清楚",
         "fx": {
-          "health": 2,
-          "career": -2,
-          "mood": 14,
           "affection": 26,
-          "money": -1
+          "mood": 14
         },
         "result": "她看完打了电话过来，说「我以为你不想理我了」。误会解开了。",
         "breakup": false
@@ -8517,11 +6788,7 @@ module.exports = [
       {
         "label": "敲门进去，先说「是我的问题」",
         "fx": {
-          "family": 4,
-          "mood": -4,
-          "affection": 24,
-          "money": -2,
-          "health": 3
+          "affection": 24
         },
         "result": "她背对着你，肩膀动了一下。过了一会儿，她转身抱住了你。",
         "breakup": false
@@ -8529,11 +6796,8 @@ module.exports = [
       {
         "label": "在客厅坐一晚上，等她出来",
         "fx": {
-          "health": -4,
           "mood": -10,
-          "affection": 8,
-          "money": 2,
-          "career": 3
+          "affection": 8
         },
         "result": "凌晨三点她出来喝水，看见你还在。你们谁也没说话，但气消了。",
         "breakup": false
@@ -8541,11 +6805,8 @@ module.exports = [
       {
         "label": "出去走走，给她留张纸条",
         "fx": {
-          "health": -2,
-          "family": 2,
-          "mood": 6,
           "affection": 18,
-          "money": -1
+          "mood": 6
         },
         "result": "纸条上写「我去买你爱吃的那个」。回来时她站在门口等。",
         "breakup": false
@@ -8567,11 +6828,8 @@ module.exports = [
       {
         "label": "有问必答，有多说多",
         "fx": {
-          "career": -2,
-          "family": 12,
-          "mood": -4,
           "affection": 16,
-          "money": 4
+          "family": 12
         },
         "result": "她爸点了点头。出门时她悄悄握住你的手，手心全是汗。",
         "breakup": false
@@ -8579,11 +6837,9 @@ module.exports = [
       {
         "label": "主动洗碗，陪她妈聊家常",
         "fx": {
-          "career": -2,
-          "family": 18,
-          "mood": 6,
           "affection": 22,
-          "money": -4
+          "family": 18,
+          "mood": 6
         },
         "result": "后来她妈跟她说「这个孩子踏实」。这句话比什么都管用。",
         "breakup": false
@@ -8591,11 +6847,9 @@ module.exports = [
       {
         "label": "被问急了，说了句「叔叔，我会努力的」",
         "fx": {
-          "family": 8,
-          "mood": -6,
           "affection": 10,
-          "money": 3,
-          "health": -1
+          "family": 8,
+          "mood": -6
         },
         "result": "场面安静了两秒。她爸笑了：「光努力不行，得有数。」",
         "breakup": false
@@ -8618,10 +6872,8 @@ module.exports = [
         "label": "连夜出门买花，跑遍三条街",
         "fx": {
           "money": -600,
-          "health": -4,
-          "mood": 8,
           "affection": 28,
-          "career": 2
+          "mood": 8
         },
         "result": "花店快关门了，只剩一把康乃馨。她接过花，眼圈红了。",
         "breakup": false
@@ -8629,11 +6881,7 @@ module.exports = [
       {
         "label": "坦白说忘了，然后认错",
         "fx": {
-          "family": 2,
-          "mood": 4,
-          "affection": 12,
-          "money": -1,
-          "health": -4
+          "affection": 12
         },
         "result": "她说「你倒是诚实」。这句诚实比任何补救都有效。",
         "breakup": false
@@ -8641,11 +6889,8 @@ module.exports = [
       {
         "label": "「当然知道，礼物明天到。」",
         "fx": {
-          "mood": -8,
           "affection": -16,
-          "money": 1,
-          "health": 1,
-          "career": 3
+          "mood": -8
         },
         "result": "你连夜下了单，加急。她第二天收到，但什么都明白了。",
         "breakup": false
@@ -8668,10 +6913,8 @@ module.exports = [
         "label": "接过箱子，腾出半个衣柜",
         "fx": {
           "money": -800,
-          "family": 10,
-          "mood": 12,
           "affection": 30,
-          "health": -1
+          "mood": 12
         },
         "result": "那天晚上你们一起收拾到半夜。家忽然变小了，也变满了。",
         "breakup": false
@@ -8679,11 +6922,7 @@ module.exports = [
       {
         "label": "说「要不我们先试试一个月」",
         "fx": {
-          "family": 4,
-          "mood": -2,
-          "affection": 8,
-          "money": -1,
-          "health": 4
+          "affection": 8
         },
         "result": "她点点头。理性是对的，但你会记住她当时眼里的那点失落。",
         "breakup": false
@@ -8692,10 +6931,8 @@ module.exports = [
         "label": "「我帮你找房子吧。」",
         "fx": {
           "money": -400,
-          "family": 4,
-          "mood": -6,
           "affection": -20,
-          "health": 2
+          "mood": -6
         },
         "result": "她愣了很久，说「不用了」，然后把箱子拖走了。",
         "breakup": false
@@ -8717,11 +6954,9 @@ module.exports = [
       {
         "label": "拒绝 offer，留下来",
         "fx": {
-          "career": -12,
-          "family": 6,
           "affection": 28,
-          "money": -3,
-          "health": 2
+          "career": -12,
+          "family": 6
         },
         "result": "她说「你傻不傻」。但你从没后悔过这个决定。",
         "breakup": false
@@ -8731,9 +6966,7 @@ module.exports = [
         "fx": {
           "money": 6000,
           "career": 18,
-          "family": -4,
-          "affection": 12,
-          "health": -3
+          "affection": 12
         },
         "result": "她考虑了三天，说「我去」。你们一起搬到了一个陌生的城市。",
         "breakup": false
@@ -8741,11 +6974,8 @@ module.exports = [
       {
         "label": "先不决定，把选择权交给她",
         "fx": {
-          "career": 4,
-          "mood": -6,
           "affection": -8,
-          "money": -4,
-          "health": 1
+          "mood": -6
         },
         "result": "她说「这是你的事」。你把责任推给了她，她记住了。",
         "breakup": false
@@ -8767,11 +6997,7 @@ module.exports = [
       {
         "label": "主动解释，把合照发群里",
         "fx": {
-          "career": 2,
-          "mood": 4,
-          "affection": 18,
-          "money": -1,
-          "health": -1
+          "affection": 18
         },
         "result": "她看完说「我想多了」。你没戳破，心里暖了一下。",
         "breakup": false
@@ -8779,11 +7005,7 @@ module.exports = [
       {
         "label": "删掉那条朋友圈",
         "fx": {
-          "career": -2,
-          "family": -2,
-          "affection": 12,
-          "money": 3,
-          "health": 4
+          "affection": 12
         },
         "result": "她第二天发现了，什么也没说。但这个动作，她记了很久。",
         "breakup": false
@@ -8791,11 +7013,7 @@ module.exports = [
       {
         "label": "装作没事，继续聊别的",
         "fx": {
-          "family": 2,
-          "mood": -4,
-          "affection": -12,
-          "money": 3,
-          "health": -3
+          "affection": -12
         },
         "result": "三天后她爆发了，把这五天所有的不满都倒了出来。",
         "breakup": false
@@ -8818,10 +7036,8 @@ module.exports = [
         "label": "同意，并且第一个月多存了五百",
         "fx": {
           "money": -3000,
-          "family": 10,
           "affection": 24,
-          "health": -2,
-          "career": 4
+          "family": 10
         },
         "result": "她看到余额时愣了一下。那五百块，比什么都实在。",
         "breakup": false
@@ -8830,10 +7046,8 @@ module.exports = [
         "label": "同意，但只存她说的数",
         "fx": {
           "money": -2000,
-          "career": -2,
-          "family": 6,
           "affection": 14,
-          "health": 2
+          "family": 6
         },
         "result": "规矩立下来了。每月一号转账，成了你们之间的一个小仪式。",
         "breakup": false
@@ -8841,11 +7055,8 @@ module.exports = [
       {
         "label": "「这个是不是太快了？」",
         "fx": {
-          "family": -6,
-          "mood": -4,
           "affection": -18,
-          "money": 1,
-          "health": 1
+          "family": -6
         },
         "result": "她把手机收起来说「那算了」。那晚你们第一次分房睡。",
         "breakup": false
@@ -8867,11 +7078,8 @@ module.exports = [
       {
         "label": "点头打个招呼，然后走开",
         "fx": {
-          "family": -2,
-          "mood": 6,
           "affection": 16,
-          "money": -3,
-          "health": 4
+          "mood": 6
         },
         "result": "{p}全程没说话，走出商场才问「那是谁」。你如实说了。",
         "breakup": false
@@ -8879,11 +7087,8 @@ module.exports = [
       {
         "label": "主动介绍{p}：「这是我女朋友。」",
         "fx": {
-          "looks": 4,
-          "mood": 12,
           "affection": 26,
-          "money": -4,
-          "health": -3
+          "mood": 12
         },
         "result": "{p}愣了一下，然后笑着伸手。那一瞬间你知道，你彻底过去了。",
         "breakup": false
@@ -8892,10 +7097,7 @@ module.exports = [
         "label": "拉着{p}转身就走",
         "fx": {
           "mood": -8,
-          "affection": -6,
-          "money": 4,
-          "health": 2,
-          "career": -4
+          "affection": -6
         },
         "result": "{p}被你拽得踉跄了一下。她问「你跑什么」，你答不上来。",
         "breakup": false
@@ -8917,11 +7119,7 @@ module.exports = [
       {
         "label": "答应，但每天发一句晚安",
         "fx": {
-          "mood": 4,
-          "affection": 18,
-          "money": -2,
-          "health": -2,
-          "career": 3
+          "affection": 18
         },
         "result": "她每条都回，只是很短。一周后她回来了，说「谢谢你没烦我」。",
         "breakup": false
@@ -8929,11 +7127,8 @@ module.exports = [
       {
         "label": "追问「是不是我做错了什么」",
         "fx": {
-          "mood": -8,
           "affection": -10,
-          "money": 2,
-          "health": 4,
-          "career": -4
+          "mood": -8
         },
         "result": "她说「你别多想」，但语气里有一丝疲惫。",
         "breakup": false
@@ -8942,10 +7137,8 @@ module.exports = [
         "label": "也给自己放个假，去出差",
         "fx": {
           "money": 1600,
-          "career": 10,
-          "mood": -6,
           "affection": 12,
-          "health": -1
+          "career": 10
         },
         "result": "一周后你们各自回来，都带了一肚子话要说。距离有时候是好事。",
         "breakup": false
@@ -8968,10 +7161,8 @@ module.exports = [
         "label": "全程陪着，跑前跑后",
         "fx": {
           "money": -1600,
-          "health": -8,
-          "career": -4,
-          "mood": 4,
-          "affection": 30
+          "affection": 30,
+          "health": -8
         },
         "result": "天亮时确诊是阑尾炎，要手术。你签了字，手是抖的。",
         "breakup": false
@@ -8980,10 +7171,8 @@ module.exports = [
         "label": "通知她父母，让他们来",
         "fx": {
           "money": -400,
-          "career": -2,
           "family": 12,
-          "affection": 10,
-          "health": 4
+          "affection": 10
         },
         "result": "她爸妈赶来时一直说谢谢。你站在走廊里，忽然觉得自己还不够格。",
         "breakup": false
@@ -8991,11 +7180,8 @@ module.exports = [
       {
         "label": "在走廊坐了一夜，什么也没做",
         "fx": {
-          "health": -6,
-          "mood": -4,
           "affection": 16,
-          "money": 2,
-          "career": 1
+          "health": -6
         },
         "result": "她出来时看见你坐在那儿，说了句「你怎么还不走」。",
         "breakup": false
@@ -9017,11 +7203,9 @@ module.exports = [
       {
         "label": "今晚就求，不挑日子了",
         "fx": {
-          "family": 8,
-          "mood": 16,
           "affection": 32,
-          "money": -3,
-          "health": -2
+          "mood": 16,
+          "family": 8
         },
         "result": "你做完饭，把戒指放在她碗边。她愣了十秒，然后哭了。",
         "breakup": false
@@ -9030,10 +7214,8 @@ module.exports = [
         "label": "再等等，等攒够钱办个体面的",
         "fx": {
           "money": 4000,
-          "career": 6,
-          "mood": -4,
           "affection": 10,
-          "health": -2
+          "career": 6
         },
         "result": "钱是攒了，但她眼里的期待一点点淡了下去。",
         "breakup": false
@@ -9041,11 +7223,8 @@ module.exports = [
       {
         "label": "先问她「你想过以后吗」",
         "fx": {
-          "family": 4,
-          "mood": 10,
           "affection": 22,
-          "money": -2,
-          "health": -3
+          "mood": 10
         },
         "result": "她说「想过」。这两个字，让你终于敢把抽屉打开。",
         "breakup": false
@@ -9067,11 +7246,8 @@ module.exports = [
       {
         "label": "把手机放下，靠过去",
         "fx": {
-          "health": 4,
-          "career": -2,
-          "mood": 14,
           "affection": 20,
-          "money": -1
+          "mood": 14
         },
         "result": "她把书合上，把头靠在你肩上。这样的晚上，比任何约会都好。",
         "breakup": false
@@ -9079,11 +7255,9 @@ module.exports = [
       {
         "label": "问她「你将来想住什么样的房子」",
         "fx": {
-          "career": -2,
-          "family": 8,
-          "mood": 8,
           "affection": 16,
-          "money": -1
+          "family": 8,
+          "mood": 8
         },
         "result": "她讲了很多，讲到一半自己笑了：「怎么像在过家家。」",
         "breakup": false
@@ -9091,11 +7265,9 @@ module.exports = [
       {
         "label": "就这么待着，谁也不说话",
         "fx": {
-          "health": 6,
-          "mood": 10,
           "affection": 12,
-          "money": -1,
-          "career": -2
+          "mood": 10,
+          "health": 6
         },
         "result": "雨声很大，但屋里很静。有些亲密，是不需要说话的。",
         "breakup": false
@@ -9117,11 +7289,8 @@ module.exports = [
       {
         "label": "闭嘴，去把碗洗了",
         "fx": {
-          "health": -2,
-          "family": 6,
-          "mood": 4,
           "affection": 20,
-          "money": -1
+          "family": 6
         },
         "result": "洗到一半她也进来了，拿起抹布。你们没说话，但气消了。",
         "breakup": false
@@ -9129,11 +7298,8 @@ module.exports = [
       {
         "label": "「我们排个值日表吧」",
         "fx": {
-          "career": 4,
-          "family": 10,
-          "mood": -2,
           "affection": 14,
-          "money": -2
+          "family": 10
         },
         "result": "表贴在冰箱上。规矩这东西不浪漫，但真的管用。",
         "breakup": false
@@ -9141,11 +7307,9 @@ module.exports = [
       {
         "label": "「我上班不累吗？」",
         "fx": {
-          "family": -8,
-          "mood": -10,
           "affection": -18,
-          "money": 2,
-          "health": 3
+          "mood": -10,
+          "family": -8
         },
         "result": "她看了你一眼，转身回了卧室。那晚你睡在沙发上。",
         "breakup": false
@@ -9167,11 +7331,9 @@ module.exports = [
       {
         "label": "提前跟妈约法三章",
         "fx": {
-          "career": -2,
-          "family": 8,
-          "mood": 6,
           "affection": 22,
-          "money": -4
+          "family": 8,
+          "mood": 6
         },
         "result": "我妈嘴上答应，来了还是老样子。但她至少知道边界在哪。",
         "breakup": false
@@ -9180,10 +7342,8 @@ module.exports = [
         "label": "让{p}回娘家躲一阵",
         "fx": {
           "money": -600,
-          "family": -6,
-          "mood": 4,
           "affection": 12,
-          "health": 1
+          "family": -6
         },
         "result": "家里清净了，但我妈问了七次「她怎么还不回来」。",
         "breakup": false
@@ -9191,11 +7351,8 @@ module.exports = [
       {
         "label": "什么都不做，走一步看一步",
         "fx": {
-          "family": -4,
-          "mood": -8,
           "affection": -14,
-          "money": 1,
-          "health": 4
+          "mood": -8
         },
         "result": "第二周就爆发了。你夹在中间，两头不是人。",
         "breakup": false
@@ -9218,10 +7375,8 @@ module.exports = [
         "label": "回家抱住她，说「那就生」",
         "fx": {
           "money": -4000,
-          "career": -6,
-          "family": 16,
-          "mood": 14,
-          "affection": 30
+          "affection": 30,
+          "family": 16
         },
         "result": "她哭了，说「我以为你会生气」。那一刻你长大了。",
         "breakup": false
@@ -9229,11 +7384,8 @@ module.exports = [
       {
         "label": "认真算一笔账，把担心说出来",
         "fx": {
-          "career": 6,
-          "family": 4,
-          "mood": -4,
           "affection": 8,
-          "money": -2
+          "career": 6
         },
         "result": "你们聊到凌晨。最后决定留下，但那笔账算得很值。",
         "breakup": false
@@ -9241,11 +7393,8 @@ module.exports = [
       {
         "label": "沉默很久，问她「你想怎么办」",
         "fx": {
-          "career": 2,
-          "family": -4,
           "mood": -8,
-          "affection": -6,
-          "money": 1
+          "affection": -6
         },
         "result": "她说「我问你呢」。你把决定权推出去的那一刻，她心凉了。",
         "breakup": false
@@ -9267,11 +7416,8 @@ module.exports = [
       {
         "label": "直接问清楚",
         "fx": {
-          "career": -2,
-          "family": 6,
-          "mood": -2,
           "affection": 12,
-          "money": 3
+          "family": 6
         },
         "result": "她承认是私房钱，说是怕万一。你们第一次认真谈了安全感。",
         "breakup": false
@@ -9279,11 +7425,8 @@ module.exports = [
       {
         "label": "装作没看见",
         "fx": {
-          "mood": -6,
           "affection": 6,
-          "money": -3,
-          "health": -4,
-          "career": 1
+          "mood": -6
         },
         "result": "你什么都没说，但那笔钱从此横在你们中间。",
         "breakup": false
@@ -9292,10 +7435,8 @@ module.exports = [
         "label": "把自己的卡也藏起来",
         "fx": {
           "money": -1000,
-          "family": -10,
-          "mood": 6,
           "affection": -16,
-          "health": 4
+          "family": -10
         },
         "result": "你们开始各自留后手。婚姻里一旦有了这个，就很难回头。",
         "breakup": false
@@ -9318,10 +7459,8 @@ module.exports = [
         "label": "下楼买两个蛋糕，一人一个",
         "fx": {
           "money": -240,
-          "family": 4,
-          "mood": 14,
           "affection": 22,
-          "health": -3
+          "mood": 14
         },
         "result": "你们坐在地板上吃蛋糕，笑得像两个偷懒的小孩。",
         "breakup": false
@@ -9329,11 +7468,9 @@ module.exports = [
       {
         "label": "「明年我们去趟海边吧。」",
         "fx": {
-          "family": 8,
-          "mood": 12,
           "affection": 18,
-          "money": -3,
-          "health": -1
+          "mood": 12,
+          "family": 8
         },
         "result": "她把这句话记在了手机备忘录里。第二年你们真的去了。",
         "breakup": false
@@ -9341,11 +7478,8 @@ module.exports = [
       {
         "label": "「都老夫老妻了。」",
         "fx": {
-          "family": 4,
-          "mood": -6,
           "affection": -12,
-          "money": -4,
-          "health": 3
+          "mood": -6
         },
         "result": "她笑了笑，没说话。有些话听着像玩笑，其实很伤人。",
         "breakup": false
@@ -9367,11 +7501,9 @@ module.exports = [
       {
         "label": "拒绝外派",
         "fx": {
-          "career": -16,
-          "family": 14,
-          "mood": 6,
           "affection": 28,
-          "money": -3
+          "career": -16,
+          "family": 14
         },
         "result": "领导说「你会后悔的」。但你回家看见孕吐的她，一点都不后悔。",
         "breakup": false
@@ -9380,9 +7512,7 @@ module.exports = [
         "label": "去，但每周末飞回来",
         "fx": {
           "money": -12000,
-          "health": -10,
           "career": 14,
-          "family": 4,
           "affection": 10
         },
         "result": "半年里你飞了二十四趟。人瘦了八斤，职位和家都在。",
@@ -9392,10 +7522,8 @@ module.exports = [
         "label": "让她跟你一起去",
         "fx": {
           "money": -6000,
-          "health": -4,
-          "career": 12,
-          "family": 6,
-          "affection": 16
+          "affection": 16,
+          "career": 12
         },
         "result": "她答应了。陌生的城市里，你们反而比在家里更亲密。",
         "breakup": false
@@ -9419,9 +7547,7 @@ module.exports = [
         "fx": {
           "money": -30000,
           "family": 16,
-          "mood": -6,
-          "affection": 12,
-          "health": -4
+          "affection": 12
         },
         "result": "她说「一家人说什么借」。你记住这句话，记了一辈子。",
         "breakup": false
@@ -9430,10 +7556,8 @@ module.exports = [
         "label": "坚持不动这笔钱，去借",
         "fx": {
           "money": -30000,
-          "career": -4,
           "family": 10,
-          "mood": -10,
-          "affection": 6
+          "mood": -10
         },
         "result": "你借遍了朋友。她说你傻，但还是帮你记着每一笔账。",
         "breakup": false
@@ -9442,10 +7566,8 @@ module.exports = [
         "label": "跟她商量，一起做决定",
         "fx": {
           "money": -30000,
-          "family": 14,
-          "mood": 4,
           "affection": 22,
-          "health": -3
+          "family": 14
         },
         "result": "你们坐在灯下算了一夜。那一刻你觉得，结婚真好。",
         "breakup": false
@@ -9467,11 +7589,9 @@ module.exports = [
       {
         "label": "把手机关掉，聊到困",
         "fx": {
-          "health": -4,
-          "family": 6,
-          "mood": 16,
           "affection": 24,
-          "money": -1
+          "mood": 16,
+          "family": 6
         },
         "result": "你们聊到孩子、聊到工作、聊到二十岁那年的自己。",
         "breakup": false
@@ -9479,11 +7599,7 @@ module.exports = [
       {
         "label": "「明天还得早起呢。」",
         "fx": {
-          "career": 2,
-          "family": 2,
-          "mood": -4,
-          "affection": -10,
-          "money": -4
+          "affection": -10
         },
         "result": "她「嗯」了一声，翻身睡了。你听见她背对着你叹了口气。",
         "breakup": false
@@ -9491,11 +7607,9 @@ module.exports = [
       {
         "label": "说「那现在开始聊」",
         "fx": {
-          "health": -2,
-          "family": 8,
-          "mood": 12,
           "affection": 20,
-          "money": -4
+          "mood": 12,
+          "family": 8
         },
         "result": "她笑了，说「算你识相」。那个夜晚比很多纪念日都值钱。",
         "breakup": false
@@ -9517,35 +7631,23 @@ module.exports = [
       {
         "label": "一动不动，让她靠",
         "fx": {
-          "health": -2,
-          "mood": 10,
           "affection": 24,
-          "money": -2,
-          "career": 3
+          "mood": 10
         },
         "result": "散场时她醒来，发现肩膀酸的是你。她红着脸说「你怎么不叫我」。",
         "breakup": false
       },
       {
         "label": "轻轻推醒她",
-        "fx": {
-          "career": 2,
-          "affection": -4,
-          "money": 2,
-          "health": -2,
-          "looks": -1
-        },
+        "fx": {},
         "result": "她「啊」了一声，坐直了。后半场你们都没看进去。",
         "breakup": false
       },
       {
         "label": "也闭上眼，跟着睡",
         "fx": {
-          "health": 4,
-          "mood": 14,
           "affection": 18,
-          "money": -1,
-          "career": -3
+          "mood": 14
         },
         "result": "你们一起睡到了字幕结束。清洁阿姨把你们叫醒时，两人都笑了。",
         "breakup": false
@@ -9568,10 +7670,8 @@ module.exports = [
         "label": "回去买下来，说是「提前的生日礼物」",
         "fx": {
           "money": -3000,
-          "family": 4,
-          "mood": 12,
           "affection": 28,
-          "health": -2
+          "mood": 12
         },
         "result": "她抱着袋子不肯松手，说「你疯了」。但眼睛是亮的。",
         "breakup": false
@@ -9580,10 +7680,8 @@ module.exports = [
         "label": "记下款式，发工资那天偷偷买",
         "fx": {
           "money": -3000,
-          "career": 4,
-          "mood": 10,
           "affection": 30,
-          "health": -3
+          "mood": 10
         },
         "result": "一个月后她收到快递，愣在那里。有些惊喜，值得等。",
         "breakup": false
@@ -9591,11 +7689,7 @@ module.exports = [
       {
         "label": "当作没看见，继续走",
         "fx": {
-          "mood": -4,
-          "affection": -8,
-          "money": 3,
-          "health": -4,
-          "career": 1
+          "affection": -8
         },
         "result": "她回头看了那扇窗两次。你假装在看手机。",
         "breakup": false
@@ -9617,11 +7711,9 @@ module.exports = [
       {
         "label": "抓过她的手，去冲水找创可贴",
         "fx": {
-          "health": -4,
-          "family": 6,
-          "mood": 8,
           "affection": 26,
-          "money": -4
+          "mood": 8,
+          "family": 6
         },
         "result": "翻遍了抽屉才找到创可贴。她举着手指说「这顿饭代价好大」。",
         "breakup": false
@@ -9629,11 +7721,8 @@ module.exports = [
       {
         "label": "把她推出厨房，自己做完",
         "fx": {
-          "health": -2,
-          "career": 2,
-          "mood": 6,
           "affection": 16,
-          "money": -1
+          "mood": 6
         },
         "result": "菜端上桌时卖相一般。她吃了两碗，说「还行吧」。",
         "breakup": false
@@ -9641,11 +7730,8 @@ module.exports = [
       {
         "label": "笑着把创可贴贴成十字，说「勋章」",
         "fx": {
-          "health": -2,
-          "family": 4,
-          "mood": 16,
           "affection": 22,
-          "money": -1
+          "mood": 16
         },
         "result": "她打你一下，笑骂你幼稚。那顿饭的菜全糊了，你们还是吃完了。",
         "breakup": false
@@ -9667,35 +7753,23 @@ module.exports = [
       {
         "label": "陪她看，还给她买了个棉花糖",
         "fx": {
-          "money": -80,
-          "mood": 14,
           "affection": 22,
-          "health": 3,
-          "career": -1
+          "mood": 14
         },
         "result": "她一手棉花糖一手指着猴子，说了句「像不像你」。",
         "breakup": false
       },
       {
         "label": "催她「前面还有熊猫呢」",
-        "fx": {
-          "health": -2,
-          "career": 2,
-          "mood": 2,
-          "affection": -4,
-          "money": 3
-        },
+        "fx": {},
         "result": "她被你拉走了，但一步三回头。",
         "breakup": false
       },
       {
         "label": "偷偷拍下她看猴子的侧脸",
         "fx": {
-          "looks": -4,
-          "mood": 16,
           "affection": 26,
-          "money": -2,
-          "health": 4
+          "mood": 16
         },
         "result": "后来这张照片成了你的手机壁纸。她到现在都不知道。",
         "breakup": false
@@ -9717,11 +7791,7 @@ module.exports = [
       {
         "label": "「那就改天。」",
         "fx": {
-          "health": 4,
-          "mood": -2,
-          "affection": 8,
-          "money": -2,
-          "career": 3
+          "affection": 8
         },
         "result": "你们都松了口气。有时候取消计划，也是一种体贴。",
         "breakup": false
@@ -9730,10 +7800,8 @@ module.exports = [
         "label": "「在家露营吧」，把帐篷支在客厅",
         "fx": {
           "money": -400,
-          "family": 6,
-          "mood": 18,
           "affection": 30,
-          "health": -3
+          "mood": 18
         },
         "result": "你们在客厅睡了一晚，听着雨声。她说这是最棒的一次露营。",
         "breakup": false
@@ -9742,10 +7810,8 @@ module.exports = [
         "label": "照原计划出发",
         "fx": {
           "money": -1200,
-          "health": -8,
           "mood": -10,
-          "affection": 6,
-          "career": 3
+          "health": -8
         },
         "result": "帐篷漏雨，装备全湿。你们在车里坐到天亮，谁也没说话。",
         "breakup": false
@@ -9768,10 +7834,8 @@ module.exports = [
         "label": "「我点了你爱喝的，快坐下。」",
         "fx": {
           "money": -120,
-          "family": -2,
-          "mood": 6,
           "affection": 20,
-          "health": 2
+          "mood": 6
         },
         "result": "她眼睛一下就红了。后来她说，那天她以为你会生气。",
         "breakup": false
@@ -9779,11 +7843,7 @@ module.exports = [
       {
         "label": "「下次早点出门。」",
         "fx": {
-          "career": 2,
-          "mood": -2,
-          "affection": -6,
-          "money": 2,
-          "health": -4
+          "affection": -6
         },
         "result": "她点点头，整顿饭都很拘谨。道理没错，但气氛坏了。",
         "breakup": false
@@ -9791,11 +7851,8 @@ module.exports = [
       {
         "label": "「你是不是跑来的？别感冒了。」",
         "fx": {
-          "health": -2,
-          "family": 4,
-          "mood": 10,
           "affection": 26,
-          "money": -2
+          "mood": 10
         },
         "result": "她愣了一下，然后笑了。你递过去的纸巾，她一直攥着。",
         "breakup": false
@@ -9817,35 +7874,24 @@ module.exports = [
       {
         "label": "靠过去，笑一个",
         "fx": {
-          "looks": -2,
-          "family": 4,
-          "mood": 12,
           "affection": 20,
-          "money": -3
+          "mood": 12
         },
         "result": "照片里你们挨得很近。她设成了聊天背景，你第二天才发现。",
         "breakup": false
       },
       {
         "label": "「我不会拍照。」",
-        "fx": {
-          "looks": 2,
-          "mood": -2,
-          "affection": -4,
-          "money": -2,
-          "health": 2
-        },
+        "fx": {},
         "result": "她自己拍了两张，都有点糊。",
         "breakup": false
       },
       {
         "label": "接过手机，说「我拍你吧」",
         "fx": {
-          "looks": 6,
-          "mood": 14,
           "affection": 24,
-          "money": -1,
-          "health": -3
+          "mood": 14,
+          "looks": 6
         },
         "result": "你拍了十七张，她挑了第三张。她说「你挺会拍的」。",
         "breakup": false
@@ -9867,11 +7913,8 @@ module.exports = [
       {
         "label": "「是。」",
         "fx": {
-          "family": 4,
-          "mood": 16,
           "affection": 28,
-          "money": -3,
-          "health": -4
+          "mood": 16
         },
         "result": "她抬起头，眼睛很亮：「那你说三遍。」你说了三遍。",
         "breakup": false
@@ -9880,10 +7923,7 @@ module.exports = [
         "label": "转移话题，叫车送她回家",
         "fx": {
           "money": -160,
-          "health": -2,
-          "mood": 4,
-          "affection": 10,
-          "career": 3
+          "affection": 10
         },
         "result": "第二天她什么也不记得。你没提，但这个答案你欠着。",
         "breakup": false
@@ -9891,11 +7931,8 @@ module.exports = [
       {
         "label": "「你醉了，明天再说。」",
         "fx": {
-          "career": 2,
-          "mood": -6,
           "affection": -10,
-          "money": 2,
-          "health": -4
+          "mood": -6
         },
         "result": "她「哦」了一声，趴回去不说话了。有些问题过期不候。",
         "breakup": false
@@ -9918,10 +7955,8 @@ module.exports = [
         "label": "继续投，投到八十个",
         "fx": {
           "money": -320,
-          "career": -2,
-          "mood": 12,
           "affection": 22,
-          "health": 4
+          "mood": 12
         },
         "result": "最后一个终于上来了。她抱着那个丑娃娃，笑得比你还开心。",
         "breakup": false
@@ -9930,10 +7965,8 @@ module.exports = [
         "label": "趁她不注意，去服务台买一个",
         "fx": {
           "money": -240,
-          "career": 2,
-          "mood": 8,
           "affection": 16,
-          "health": -4
+          "mood": 8
         },
         "result": "你假装抓到了。她信了，但后来在包里发现了小票。",
         "breakup": false
@@ -9941,11 +7974,7 @@ module.exports = [
       {
         "label": "「走吧，我给你买一个。」",
         "fx": {
-          "money": -200,
-          "career": 2,
-          "affection": -2,
-          "health": -2,
-          "looks": 4
+          "money": -200
         },
         "result": "她说「那多没意思」。你要的不是娃娃，她要的是过程。",
         "breakup": false
@@ -9967,11 +7996,8 @@ module.exports = [
       {
         "label": "「会的。」",
         "fx": {
-          "health": -2,
-          "family": 4,
-          "mood": 12,
           "affection": 20,
-          "money": -2
+          "mood": 12
         },
         "result": "她靠过来，头搭在你肩上。太阳沉下去，谁也没动。",
         "breakup": false
@@ -9979,11 +8005,9 @@ module.exports = [
       {
         "label": "「以后每年都来一次。」",
         "fx": {
-          "family": 8,
-          "mood": 14,
           "affection": 26,
-          "money": -2,
-          "health": -1
+          "mood": 14,
+          "family": 8
         },
         "result": "她把这个约定记下了。第二年你们真的来了，还带了相机。",
         "breakup": false
@@ -9991,11 +8015,8 @@ module.exports = [
       {
         "label": "什么也没说，把外套披在她身上",
         "fx": {
-          "health": 4,
-          "looks": -2,
-          "mood": 16,
           "affection": 24,
-          "money": -1
+          "mood": 16
         },
         "result": "风有点凉。她裹紧了外套，往你这边靠了靠。",
         "breakup": false
@@ -10017,11 +8038,8 @@ module.exports = [
       {
         "label": "当场澄清：「是，我女朋友。」",
         "fx": {
-          "career": -2,
-          "looks": 4,
-          "mood": 10,
           "affection": 24,
-          "money": -1
+          "mood": 10
         },
         "result": "同事走了以后，她小声说「你倒是大方」。语气是甜的。",
         "breakup": false
@@ -10029,11 +8047,8 @@ module.exports = [
       {
         "label": "含糊过去，说「朋友」",
         "fx": {
-          "career": 4,
-          "mood": -8,
           "affection": -16,
-          "money": 1,
-          "health": 4
+          "mood": -8
         },
         "result": "她没说话，整顿饭没再抬头。这个词她记了很久。",
         "breakup": false
@@ -10041,11 +8056,7 @@ module.exports = [
       {
         "label": "事后解释「公司人多嘴杂」",
         "fx": {
-          "career": -2,
-          "mood": 2,
-          "affection": 6,
-          "money": 3,
-          "health": -4
+          "affection": 6
         },
         "result": "她说「我懂」。但懂和介意，是两回事。",
         "breakup": false
@@ -10068,10 +8079,8 @@ module.exports = [
         "label": "不再追问，带她去打游戏机",
         "fx": {
           "money": -300,
-          "health": 2,
-          "mood": 12,
           "affection": 24,
-          "career": -1
+          "mood": 12
         },
         "result": "她打了两局，脸色缓过来了。临走时说了句「今天谢谢」。",
         "breakup": false
@@ -10079,11 +8088,9 @@ module.exports = [
       {
         "label": "直接问「谁欺负你了」",
         "fx": {
-          "family": 6,
-          "mood": 6,
           "affection": 20,
-          "money": -2,
-          "health": -4
+          "family": 6,
+          "mood": 6
         },
         "result": "她沉默了很久，讲了被领导当众骂的事。讲完就哭了。",
         "breakup": false
@@ -10091,11 +8098,8 @@ module.exports = [
       {
         "label": "陪她安静地吃完，送她回家",
         "fx": {
-          "health": -2,
-          "career": -2,
-          "mood": 6,
           "affection": 16,
-          "money": 2
+          "mood": 6
         },
         "result": "楼下她说「我今天不太好玩」。你说「我知道」。",
         "breakup": false
@@ -10117,11 +8121,8 @@ module.exports = [
       {
         "label": "聊这本书，聊到忘了时间",
         "fx": {
-          "career": -2,
-          "family": 4,
-          "mood": 14,
           "affection": 24,
-          "money": -1
+          "mood": 14
         },
         "result": "你们坐在地上聊了两个小时。店员来关灯时才走。",
         "breakup": false
@@ -10130,10 +8131,8 @@ module.exports = [
         "label": "买下两本，一人一本",
         "fx": {
           "money": -240,
-          "family": 2,
-          "mood": 10,
           "affection": 20,
-          "health": -1
+          "mood": 10
         },
         "result": "她说「那我们什么时候讨论」。你们有了一个共同的事。",
         "breakup": false
@@ -10141,11 +8140,7 @@ module.exports = [
       {
         "label": "「随便翻过，忘了。」",
         "fx": {
-          "mood": -2,
-          "affection": -6,
-          "money": 2,
-          "health": 2,
-          "career": 1
+          "affection": -6
         },
         "result": "她把书插回去了。话题断在了那里。",
         "breakup": false
@@ -10167,11 +8162,8 @@ module.exports = [
       {
         "label": "「反正都来了，走走看。」",
         "fx": {
-          "health": -2,
-          "career": -2,
-          "mood": 16,
           "affection": 26,
-          "money": 3
+          "mood": 16
         },
         "result": "你们在一条没见过的小巷里找到一家面馆，难吃但难忘。",
         "breakup": false
@@ -10180,10 +8172,7 @@ module.exports = [
         "label": "赶紧查地图，打车回去",
         "fx": {
           "money": -240,
-          "career": -2,
-          "mood": 2,
-          "affection": 6,
-          "health": 2
+          "affection": 6
         },
         "result": "安全到家了，但那晚平淡得像没发生过。",
         "breakup": false
@@ -10191,11 +8180,8 @@ module.exports = [
       {
         "label": "把手机关机，说「迷路也挺好」",
         "fx": {
-          "health": -2,
-          "family": -4,
-          "mood": 18,
           "affection": 30,
-          "money": 4
+          "mood": 18
         },
         "result": "你们走了两个小时才找到地铁。她说这是她最疯的一次。",
         "breakup": false
@@ -10217,24 +8203,14 @@ module.exports = [
       {
         "label": "问「是不是不喜欢」",
         "fx": {
-          "family": 4,
-          "mood": 4,
-          "affection": 18,
-          "money": -4,
-          "health": -1
+          "affection": 18
         },
         "result": "她说「我很少戴首饰」。你们聊开了，才知道她喜欢的是书。",
         "breakup": false
       },
       {
         "label": "当作没察觉，继续约会",
-        "fx": {
-          "mood": -4,
-          "affection": 4,
-          "money": -3,
-          "health": -2,
-          "career": 3
-        },
+        "fx": {},
         "result": "那条项链后来一直躺在抽屉里。你每次看见都难受。",
         "breakup": false
       },
@@ -10242,10 +8218,8 @@ module.exports = [
         "label": "「那我们回去换。」",
         "fx": {
           "money": -400,
-          "career": -2,
-          "mood": 8,
           "affection": 22,
-          "health": -2
+          "mood": 8
         },
         "result": "你们在商场逛到打烊，她挑了一本诗集。她说这才像你送的。",
         "breakup": false
@@ -10267,11 +8241,8 @@ module.exports = [
       {
         "label": "坦然接受，说「那下次我请贵的」",
         "fx": {
-          "family": 4,
-          "mood": 12,
           "affection": 22,
-          "money": -1,
-          "health": -3
+          "mood": 12
         },
         "result": "她笑说「一言为定」。这种你来我往，比谁请客重要得多。",
         "breakup": false
@@ -10280,10 +8251,7 @@ module.exports = [
         "label": "坚持把钱转给她",
         "fx": {
           "money": -360,
-          "mood": 2,
-          "affection": -8,
-          "health": 1,
-          "career": -2
+          "affection": -8
         },
         "result": "她收了，但说了句「你这样我很别扭」。",
         "breakup": false
@@ -10292,10 +8260,8 @@ module.exports = [
         "label": "「那我请你看电影。」",
         "fx": {
           "money": -320,
-          "mood": 10,
           "affection": 18,
-          "health": 4,
-          "career": -4
+          "mood": 10
         },
         "result": "一顿饭变成了一场约会。你们的时间被拉长了。",
         "breakup": false
@@ -10317,11 +8283,8 @@ module.exports = [
       {
         "label": "跟着一起唱，唱得更难听",
         "fx": {
-          "health": -2,
-          "mood": 18,
           "affection": 26,
-          "money": 2,
-          "career": -1
+          "mood": 18
         },
         "result": "两个人在包厢里笑成一团。丢脸这件事，一起做就不丢脸了。",
         "breakup": false
@@ -10329,11 +8292,8 @@ module.exports = [
       {
         "label": "鼓掌，说「唱得挺好的」",
         "fx": {
-          "career": 2,
-          "mood": 8,
           "affection": 12,
-          "money": -1,
-          "health": -2
+          "mood": 8
         },
         "result": "她白你一眼：「你根本没听。」",
         "breakup": false
@@ -10341,11 +8301,8 @@ module.exports = [
       {
         "label": "点一首简单的，跟她合唱",
         "fx": {
-          "family": 4,
-          "mood": 14,
           "affection": 22,
-          "money": -2,
-          "health": -3
+          "mood": 14
         },
         "result": "合唱的时候，你们的节奏奇迹般地对上了。",
         "breakup": false
@@ -10367,11 +8324,8 @@ module.exports = [
       {
         "label": "找店员借纸笔，玩你画我猜",
         "fx": {
-          "career": -2,
-          "family": -4,
-          "mood": 18,
           "affection": 28,
-          "money": 4
+          "mood": 18
         },
         "result": "你画得一塌糊涂，她笑到流泪。没有手机的两小时，是最久也最快的两小时。",
         "breakup": false
@@ -10379,11 +8333,8 @@ module.exports = [
       {
         "label": "就这么聊天",
         "fx": {
-          "health": -2,
-          "mood": 12,
           "affection": 20,
-          "money": 4,
-          "career": -3
+          "mood": 12
         },
         "result": "你们聊了很多平时不会聊的事。原来眼神交流是这样的。",
         "breakup": false
@@ -10391,11 +8342,7 @@ module.exports = [
       {
         "label": "借充电宝，各玩各的",
         "fx": {
-          "career": 2,
-          "mood": 2,
-          "affection": -6,
-          "money": -4,
-          "health": -3
+          "affection": -6
         },
         "result": "手机充上电，你们各自低头。那半小时像隔了一堵墙。",
         "breakup": false
@@ -10417,35 +8364,23 @@ module.exports = [
       {
         "label": "老实说「我看不懂」",
         "fx": {
-          "family": -2,
-          "mood": 8,
           "affection": 18,
-          "money": 2,
-          "health": -1
+          "mood": 8
         },
         "result": "她笑着给你讲了二十分钟。你听不懂画，但听懂了她。",
         "breakup": false
       },
       {
         "label": "硬编一个解读",
-        "fx": {
-          "career": 4,
-          "mood": 2,
-          "affection": -4,
-          "money": -2,
-          "health": -3
-        },
+        "fx": {},
         "result": "她点点头，没再说什么。你看出她知道你在瞎编。",
         "breakup": false
       },
       {
         "label": "反问「你觉得呢」",
         "fx": {
-          "career": -2,
-          "family": 4,
-          "mood": 14,
           "affection": 24,
-          "money": -1
+          "mood": 14
         },
         "result": "她讲了很多，眼睛里全是光。你发现她说话的样子，比那幅画好看。",
         "breakup": false
@@ -10468,23 +8403,15 @@ module.exports = [
         "label": "「走吧，去买个猫包。」",
         "fx": {
           "money": -1600,
-          "health": -2,
-          "family": 8,
-          "mood": 16,
-          "affection": 30
+          "affection": 30,
+          "mood": 16
         },
         "result": "从那天起你们有了一个共同的孩子。它叫「豆子」。",
         "breakup": false
       },
       {
         "label": "「我们租房，房东不让养。」",
-        "fx": {
-          "family": -2,
-          "mood": -4,
-          "affection": -4,
-          "money": 1,
-          "health": 1
-        },
+        "fx": {},
         "result": "她站了很久才起来。走的时候回头看了三次。",
         "breakup": false
       },
@@ -10492,10 +8419,8 @@ module.exports = [
         "label": "每天来喂，喂了一个月",
         "fx": {
           "money": -600,
-          "health": 4,
-          "mood": 12,
           "affection": 22,
-          "career": -1
+          "mood": 12
         },
         "result": "一个月后猫不见了。她说「至少它过得好」。你们都长大了。",
         "breakup": false
@@ -10517,35 +8442,22 @@ module.exports = [
       {
         "label": "照买，还多买了一杯给同事",
         "fx": {
-          "money": -60,
-          "career": 4,
-          "mood": 8,
-          "health": -3,
-          "looks": -3
+          "mood": 8
         },
         "result": "同事愣了半天，第二天回请你一杯。办公室的温度，就是这么来的。",
         "breakup": false
       },
       {
         "label": "从此改喝速溶",
-        "fx": {
-          "money": 30,
-          "health": -2,
-          "mood": -4,
-          "career": -4,
-          "looks": 2
-        },
+        "fx": {},
         "result": "速溶很难喝。你每天皱着眉喝完，省下的三块也不知道省给谁。",
         "breakup": false
       },
       {
         "label": "问店员「你们豆子从哪来的」",
         "fx": {
-          "money": -30,
-          "career": 6,
-          "family": -2,
           "mood": 10,
-          "health": 4
+          "career": 6
         },
         "result": "他没想到你会问，认真答了一通。你们聊成了点头之交。",
         "breakup": false
@@ -10568,10 +8480,8 @@ module.exports = [
         "label": "换，一步到位买好的",
         "fx": {
           "money": -13000,
-          "career": 8,
           "mood": 10,
-          "health": 3,
-          "looks": -1
+          "career": 8
         },
         "result": "新电脑开机只要八秒。你盯着桌面，忽然觉得这六年过得真快。",
         "breakup": false
@@ -10579,11 +8489,7 @@ module.exports = [
       {
         "label": "先清灰凑合用",
         "fx": {
-          "money": -160,
-          "career": -2,
-          "mood": -2,
-          "health": 4,
-          "looks": 3
+          "money": -160
         },
         "result": "清完安静了三天，第四天又开始响。你学会了跟噪音相处。",
         "breakup": false
@@ -10591,11 +8497,7 @@ module.exports = [
       {
         "label": "把旧电脑卖了，添点钱换二手",
         "fx": {
-          "money": -4400,
-          "career": 4,
-          "mood": 4,
-          "health": -3,
-          "looks": -1
+          "money": -4400
         },
         "result": "旧机器卖了两百。你把它擦干净的时候，有点舍不得。",
         "breakup": false
@@ -10618,10 +8520,7 @@ module.exports = [
         "label": "当天开始十一点睡觉",
         "fx": {
           "health": 14,
-          "career": -4,
-          "mood": 6,
-          "money": -1,
-          "looks": -2
+          "mood": 6
         },
         "result": "坚持了两周就破了功。但那两周你精神好得出奇。",
         "breakup": false
@@ -10630,10 +8529,7 @@ module.exports = [
         "label": "办健身卡，请私教",
         "fx": {
           "money": -7200,
-          "health": 10,
-          "career": -2,
-          "mood": 4,
-          "looks": -2
+          "health": 10
         },
         "result": "私教很贵，效果也确实有。三个月后指标全正常了。",
         "breakup": false
@@ -10641,11 +8537,7 @@ module.exports = [
       {
         "label": "把报告拍照发给我妈",
         "fx": {
-          "family": 10,
-          "mood": 4,
-          "money": -2,
-          "health": -1,
-          "career": 3
+          "family": 10
         },
         "result": "她当天打了四个电话。你嫌烦，但还是把她寄来的保健品吃了。",
         "breakup": false
@@ -10667,35 +8559,22 @@ module.exports = [
       {
         "label": "上去劝，被骂了一句",
         "fx": {
-          "family": 2,
-          "mood": -6,
-          "money": -2,
-          "health": 1,
-          "career": -2
+          "mood": -6
         },
         "result": "你退回车厢角落。但下一站，两个人都下车了，没再打起来。",
         "breakup": false
       },
       {
         "label": "默默往旁边挪，装作看手机",
-        "fx": {
-          "career": 2,
-          "family": -2,
-          "mood": -2,
-          "money": -2,
-          "health": 2
-        },
+        "fx": {},
         "result": "吵到第五站结束了。你到站下车，心里堵了一路。",
         "breakup": false
       },
       {
         "label": "把自己的位置让给其中一个",
         "fx": {
-          "family": 6,
           "mood": 12,
-          "money": -3,
-          "health": -3,
-          "career": 3
+          "family": 6
         },
         "result": "荒谬的是，这样一来他们反而不吵了。有时候退一步真的有用。",
         "breakup": false
@@ -10719,9 +8598,7 @@ module.exports = [
         "fx": {
           "money": 800,
           "health": 8,
-          "looks": 2,
-          "mood": -6,
-          "career": -3
+          "mood": -6
         },
         "result": "第一周很难熬。第二周开始，你发现自己皮肤变好了。",
         "breakup": false
@@ -10730,10 +8607,7 @@ module.exports = [
         "label": "不戒，但改成自己泡",
         "fx": {
           "money": 600,
-          "health": 4,
-          "career": -2,
-          "mood": 8,
-          "looks": -4
+          "mood": 8
         },
         "result": "你买了茶叶和奶，每天早起十分钟。省下的钱不多，但很有成就感。",
         "breakup": false
@@ -10742,10 +8616,7 @@ module.exports = [
         "label": "继续喝，但把账本删了",
         "fx": {
           "money": -800,
-          "health": -2,
-          "mood": 10,
-          "career": -4,
-          "looks": 1
+          "mood": 10
         },
         "result": "眼不见心不烦。你又过回了糊涂但痛快的日子。",
         "breakup": false
@@ -10767,35 +8638,22 @@ module.exports = [
       {
         "label": "也跟着点个赞",
         "fx": {
-          "career": 8,
           "mood": -10,
-          "money": -2,
-          "health": -4,
-          "looks": 3
+          "career": 8
         },
         "result": "你点完就后悔了。那天晚上你把手机扣着睡的。",
         "breakup": false
       },
       {
         "label": "装作没看见",
-        "fx": {
-          "health": 2,
-          "mood": -2,
-          "money": 1,
-          "career": -1,
-          "looks": 2
-        },
+        "fx": {},
         "result": "第二天上班一切照旧。有些事，不表态也是一种表态。",
         "breakup": false
       },
       {
         "label": "私聊领导：「说的是我吗？」",
         "fx": {
-          "health": -2,
-          "career": 12,
-          "mood": -4,
-          "money": -1,
-          "looks": 2
+          "career": 12
         },
         "result": "领导回了个「你想多了」。但从此他对你客气了不少。",
         "breakup": false
@@ -10817,35 +8675,22 @@ module.exports = [
       {
         "label": "让给他",
         "fx": {
-          "family": 4,
-          "mood": 8,
-          "money": -1,
-          "health": -3,
-          "career": 4
+          "mood": 8
         },
         "result": "他连声道谢。你买了包泡面，回家吃得也挺香。",
         "breakup": false
       },
       {
         "label": "抢先拿走",
-        "fx": {
-          "money": -50,
-          "health": 2,
-          "career": 2,
-          "mood": -4,
-          "looks": 1
-        },
+        "fx": {},
         "result": "你走出门时有点心虚。便当的味道一般。",
         "breakup": false
       },
       {
         "label": "「要不一人一半？」",
         "fx": {
-          "money": -24,
-          "family": 6,
           "mood": 14,
-          "health": -4,
-          "career": -2
+          "family": 6
         },
         "result": "他笑了，说「行啊」。你们在便利店门口各吃了一半。",
         "breakup": false
@@ -10866,36 +8711,20 @@ module.exports = [
     "options": [
       {
         "label": "立刻去取",
-        "fx": {
-          "health": -2,
-          "mood": 2,
-          "money": -3,
-          "career": 3,
-          "looks": 3
-        },
+        "fx": {},
         "result": "取回来拆开，是双十一买的袜子。你忘了自己还买过这个。",
         "breakup": false
       },
       {
         "label": "付两块钱超时费",
-        "fx": {
-          "money": -4,
-          "career": 2,
-          "mood": -2,
-          "health": 3,
-          "looks": -4
-        },
+        "fx": {},
         "result": "两块钱不算什么，但你为这事生了一下午的闷气。",
         "breakup": false
       },
       {
         "label": "干脆不取了",
         "fx": {
-          "money": -60,
-          "mood": -6,
-          "health": 3,
-          "career": -3,
-          "looks": 1
+          "mood": -6
         },
         "result": "三天后快递被退回。你连里面是什么都不知道。",
         "breakup": false
@@ -10917,35 +8746,22 @@ module.exports = [
       {
         "label": "冲他举了举杯",
         "fx": {
-          "family": 4,
-          "mood": 12,
-          "money": -3,
-          "health": 3,
-          "career": -1
+          "mood": 12
         },
         "result": "他愣了一下，也举了举杯。你们没说话，但那晚没那么孤单。",
         "breakup": false
       },
       {
         "label": "低头吃，快吃完就走",
-        "fx": {
-          "health": -2,
-          "career": -2,
-          "mood": 2,
-          "money": 4,
-          "looks": 4
-        },
+        "fx": {},
         "result": "你吃完起身，他还在喝。玻璃上映出你们两个人的影子。",
         "breakup": false
       },
       {
         "label": "搭话：「这么晚还不睡？」",
         "fx": {
-          "health": -2,
-          "career": -2,
-          "family": 8,
           "mood": 16,
-          "money": 4
+          "family": 8
         },
         "result": "他讲了半小时自己创业失败的事。你听完了，也讲了自己的。",
         "breakup": false
@@ -10968,10 +8784,8 @@ module.exports = [
         "label": "分给全办公室",
         "fx": {
           "career": 10,
-          "family": 6,
           "mood": 10,
-          "money": -2,
-          "health": -4
+          "family": 6
         },
         "result": "那天办公室特别热闹。有人说「你妈真疼你」，你心里一暖。",
         "breakup": false
@@ -10979,24 +8793,14 @@ module.exports = [
       {
         "label": "分给几个要好的",
         "fx": {
-          "health": -2,
-          "career": 4,
-          "family": 4,
-          "mood": 6,
-          "money": -3
+          "mood": 6
         },
         "result": "橘子很甜。你留了一箱底给自己，吃了两周。",
         "breakup": false
       },
       {
         "label": "懒得带，自己慢慢吃",
-        "fx": {
-          "health": -4,
-          "career": 2,
-          "family": -4,
-          "mood": 2,
-          "money": -3
-        },
+        "fx": {},
         "result": "吃到第十天开始烂。你扔掉最后几个时，有点愧疚。",
         "breakup": false
       }
@@ -11018,10 +8822,8 @@ module.exports = [
         "label": "主动接下最难的项目",
         "fx": {
           "money": 1000,
-          "health": -10,
           "career": 18,
-          "mood": -6,
-          "looks": -1
+          "health": -10
         },
         "result": "项目做成了。名单出来时，你的名字不在上面。",
         "breakup": false
@@ -11029,11 +8831,8 @@ module.exports = [
       {
         "label": "开始偷偷投简历",
         "fx": {
-          "health": -2,
-          "career": 6,
           "mood": -8,
-          "money": 1,
-          "looks": 1
+          "career": 6
         },
         "result": "投了二十份，回了三个。你心里有底了，反而没那么慌。",
         "breakup": false
@@ -11041,11 +8840,7 @@ module.exports = [
       {
         "label": "什么都不做，照常上下班",
         "fx": {
-          "health": 4,
-          "career": -4,
-          "family": 2,
-          "mood": 6,
-          "money": -1
+          "mood": 6
         },
         "result": "名单出来，你留下了。同事说你运气好，你说是因为不慌。",
         "breakup": false
@@ -11066,24 +8861,14 @@ module.exports = [
     "options": [
       {
         "label": "进去问了价格，然后走了",
-        "fx": {
-          "career": 2,
-          "mood": -2,
-          "money": -4,
-          "health": 2,
-          "looks": 1
-        },
+        "fx": {},
         "result": "价格比你想象的高三倍。你在门口站了一会儿，还是走了。",
         "breakup": false
       },
       {
         "label": "进去弹了一首，弹得磕磕绊绊",
         "fx": {
-          "health": 2,
-          "career": -2,
-          "looks": 2,
-          "mood": 16,
-          "money": -4
+          "mood": 16
         },
         "result": "老板没赶你。弹完你红了眼眶，说不出为什么。",
         "breakup": false
@@ -11092,9 +8877,6 @@ module.exports = [
         "label": "报了成人钢琴班",
         "fx": {
           "money": -4800,
-          "health": 4,
-          "career": -4,
-          "looks": 4,
           "mood": 14
         },
         "result": "每周三晚上去上课。你成了班里年纪最小的学员。",
@@ -11118,10 +8900,8 @@ module.exports = [
         "label": "捐五百，转发",
         "fx": {
           "money": -1000,
-          "family": 6,
           "mood": 8,
-          "health": -3,
-          "career": 3
+          "family": 6
         },
         "result": "群里陆陆续续有人跟。你做的不多，但心里踏实。",
         "breakup": false
@@ -11129,11 +8909,7 @@ module.exports = [
       {
         "label": "捐五十，不转发",
         "fx": {
-          "money": -100,
-          "career": 2,
-          "mood": -2,
-          "health": 2,
-          "looks": -4
+          "money": -100
         },
         "result": "你看着那三万变到五万。你算过，自己能承受的只有这个数。",
         "breakup": false
@@ -11142,10 +8918,8 @@ module.exports = [
         "label": "私下转给他家人一千",
         "fx": {
           "money": -2000,
-          "career": -2,
-          "family": 10,
           "mood": 12,
-          "health": 2
+          "family": 10
         },
         "result": "他老婆发来一句「谢谢你，没留名字」。你没回。",
         "breakup": false
@@ -11167,11 +8941,7 @@ module.exports = [
       {
         "label": "发一条真实的近况",
         "fx": {
-          "looks": 2,
-          "family": 4,
-          "mood": 12,
-          "money": -3,
-          "health": -2
+          "mood": 12
         },
         "result": "底下有人评论「好久不见」。你一个个回了，聊到很晚。",
         "breakup": false
@@ -11179,24 +8949,14 @@ module.exports = [
       {
         "label": "把朋友圈关了",
         "fx": {
-          "health": 2,
-          "career": 4,
-          "family": -2,
-          "mood": 6,
-          "money": -2
+          "mood": 6
         },
         "result": "清净了不少。你开始用这些时间看书，一个月读完了三本。",
         "breakup": false
       },
       {
         "label": "什么都不做",
-        "fx": {
-          "mood": -4,
-          "money": -2,
-          "health": 3,
-          "career": 3,
-          "looks": 3
-        },
+        "fx": {},
         "result": "你划了半小时别人的动态，然后锁屏。什么也没留下。",
         "breakup": false
       }
@@ -11217,11 +8977,8 @@ module.exports = [
       {
         "label": "「是的，谢谢阿姨。」",
         "fx": {
-          "money": -16,
-          "health": -2,
-          "family": 6,
           "mood": 12,
-          "career": 3
+          "family": 6
         },
         "result": "她多给你加了一勺咸菜。你端着豆浆走了很远才喝。",
         "breakup": false
@@ -11229,24 +8986,14 @@ module.exports = [
       {
         "label": "「今天换个花样。」",
         "fx": {
-          "money": -24,
-          "health": 4,
-          "mood": 8,
-          "career": 3,
-          "looks": -2
+          "mood": 8
         },
         "result": "她愣了一下，然后笑了。原来被记住，也可以被打破。",
         "breakup": false
       },
       {
         "label": "点点头，扫码付钱",
-        "fx": {
-          "career": 2,
-          "mood": 2,
-          "money": -3,
-          "health": -1,
-          "looks": -1
-        },
+        "fx": {},
         "result": "你照常吃完上班。但这件事，你在心里放了一整天。",
         "breakup": false
       }
@@ -11267,11 +9014,7 @@ module.exports = [
       {
         "label": "一条条对照，划掉做到的三条",
         "fx": {
-          "career": 4,
-          "mood": 8,
-          "money": -3,
-          "health": 2,
-          "looks": -3
+          "mood": 8
         },
         "result": "划完你发现，剩下的七条你已经不想做了。人变了。",
         "breakup": false
@@ -11279,11 +9022,8 @@ module.exports = [
       {
         "label": "重新写一份新的",
         "fx": {
-          "health": -2,
-          "career": 10,
-          "family": 2,
           "mood": 14,
-          "money": -2
+          "career": 10
         },
         "result": "你写到凌晨。新的一份只有五条，但每一条都很实在。",
         "breakup": false
@@ -11291,11 +9031,7 @@ module.exports = [
       {
         "label": "合上，放回原处",
         "fx": {
-          "mood": -6,
-          "money": -2,
-          "health": 1,
-          "career": -1,
-          "looks": 1
+          "mood": -6
         },
         "result": "有些东西不看，就可以当不存在。你选择了这条路。",
         "breakup": false
@@ -11317,36 +9053,21 @@ module.exports = [
       {
         "label": "敲门提醒，顺手帮着搬",
         "fx": {
-          "health": -2,
-          "family": 6,
           "mood": 10,
-          "money": -1,
-          "career": 2
+          "family": 6
         },
         "result": "他一个劲道谢，第二天楼道就空了，还送了你一袋水果。",
         "breakup": false
       },
       {
         "label": "贴张纸条在箱子上",
-        "fx": {
-          "career": 2,
-          "family": -2,
-          "mood": -2,
-          "money": -1,
-          "health": 3
-        },
+        "fx": {},
         "result": "第二天箱子没了，但纸条被撕碎扔在地上。",
         "breakup": false
       },
       {
         "label": "绕着走，什么都不说",
-        "fx": {
-          "mood": -4,
-          "money": -3,
-          "health": -3,
-          "career": 3,
-          "looks": 4
-        },
+        "fx": {},
         "result": "你每天侧身通过。三个月后搬家的是你。",
         "breakup": false
       }
@@ -11368,10 +9089,8 @@ module.exports = [
         "label": "给自己买件像样的东西",
         "fx": {
           "money": -1600,
-          "career": 2,
-          "looks": 6,
           "mood": 14,
-          "health": -1
+          "looks": 6
         },
         "result": "你买了件外套。穿上它那天，你觉得生活还有点盼头。",
         "breakup": false
@@ -11380,10 +9099,7 @@ module.exports = [
         "label": "全存起来",
         "fx": {
           "money": 1600,
-          "health": -2,
-          "career": 6,
-          "mood": 4,
-          "looks": -1
+          "career": 6
         },
         "result": "余额多了八百。你看着那个数字，安全感涨了一点点。",
         "breakup": false
@@ -11393,9 +9109,7 @@ module.exports = [
         "fx": {
           "money": -2000,
           "family": 14,
-          "mood": 10,
-          "health": -2,
-          "career": -3
+          "mood": 10
         },
         "result": "她退回来五百，说「你自己留着」。你们推让了三个回合。",
         "breakup": false
@@ -11417,11 +9131,7 @@ module.exports = [
       {
         "label": "扫码给了二十",
         "fx": {
-          "money": -40,
-          "family": 2,
-          "mood": 10,
-          "health": -3,
-          "career": 1
+          "mood": 10
         },
         "result": "他停下来说了声谢谢。你摆摆手走了，心里有点暖。",
         "breakup": false
@@ -11429,24 +9139,14 @@ module.exports = [
       {
         "label": "站着听完一整首",
         "fx": {
-          "career": -2,
-          "mood": 8,
-          "money": -3,
-          "health": 3,
-          "looks": -2
+          "mood": 8
         },
         "result": "听完你鼓了掌。他朝你点了点头。你没给钱，但给了尊重。",
         "breakup": false
       },
       {
         "label": "低头走过去",
-        "fx": {
-          "career": 2,
-          "mood": 2,
-          "money": -4,
-          "health": -3,
-          "looks": -4
-        },
+        "fx": {},
         "result": "你走出了二十米，还能听见他的吉他声。",
         "breakup": false
       }
@@ -11468,10 +9168,8 @@ module.exports = [
         "label": "订张机票，随便去哪儿",
         "fx": {
           "money": -3600,
-          "health": 6,
-          "career": -4,
           "mood": 16,
-          "looks": 4
+          "health": 6
         },
         "result": "你去了个从没听说过的小城。在那儿你第一次睡到自然醒。",
         "breakup": false
@@ -11479,11 +9177,8 @@ module.exports = [
       {
         "label": "在家大扫除，扔掉三大袋",
         "fx": {
-          "health": 6,
-          "family": -2,
           "mood": 12,
-          "money": 4,
-          "career": -1
+          "health": 6
         },
         "result": "扔完屋子空了一半，你坐在地板上，觉得呼吸都顺畅了。",
         "breakup": false
@@ -11492,10 +9187,8 @@ module.exports = [
         "label": "回老家待一周",
         "fx": {
           "money": -1000,
-          "career": -2,
           "family": 14,
-          "mood": 12,
-          "health": 1
+          "mood": 12
         },
         "result": "我妈做了一桌子菜。你胖了三斤，也睡了七个好觉。",
         "breakup": false
@@ -11517,11 +9210,7 @@ module.exports = [
       {
         "label": "装没听见，照常打招呼",
         "fx": {
-          "career": 4,
-          "mood": -6,
-          "money": -4,
-          "health": 3,
-          "looks": 2
+          "mood": -6
         },
         "result": "你冲他们笑了笑。那天下午你主动约大家喝了下午茶。",
         "breakup": false
@@ -11529,11 +9218,7 @@ module.exports = [
       {
         "label": "当场说「我在呢」",
         "fx": {
-          "career": -4,
-          "family": 2,
-          "mood": 6,
-          "money": -4,
-          "health": -3
+          "mood": 6
         },
         "result": "两个人都僵住了。从此他们见你都绕着走。",
         "breakup": false
@@ -11541,11 +9226,8 @@ module.exports = [
       {
         "label": "反思自己是不是真的不合群",
         "fx": {
-          "health": -2,
-          "career": 6,
           "mood": -10,
-          "money": -1,
-          "looks": 3
+          "career": 6
         },
         "result": "你想了一周，最后决定：不合群就不合群吧。",
         "breakup": false
@@ -11568,10 +9250,7 @@ module.exports = [
         "label": "打过去，说「爸，生日快乐」",
         "fx": {
           "family": 18,
-          "mood": 14,
-          "money": -1,
-          "health": 4,
-          "career": -2
+          "mood": 14
         },
         "result": "他「嗯」了一声，然后说「你妈也想你了」。通话四分十七秒。",
         "breakup": false
@@ -11581,9 +9260,7 @@ module.exports = [
         "fx": {
           "money": -400,
           "family": 10,
-          "mood": 6,
-          "health": -1,
-          "career": 2
+          "mood": 6
         },
         "result": "他没收，第二天退回来了。你问他为什么，他说「你有心就行」。",
         "breakup": false
@@ -11591,11 +9268,8 @@ module.exports = [
       {
         "label": "关掉提醒，什么也没做",
         "fx": {
-          "career": 2,
           "family": -12,
-          "mood": -8,
-          "money": 4,
-          "health": -2
+          "mood": -8
         },
         "result": "第二天你想起这件事，一整天都不舒服。",
         "breakup": false
@@ -11618,10 +9292,7 @@ module.exports = [
         "label": "最后来吃十次",
         "fx": {
           "money": -300,
-          "health": -2,
-          "family": 4,
-          "mood": 12,
-          "career": 1
+          "mood": 12
         },
         "result": "老板记住了你，最后一次免了单。你们合了张影。",
         "breakup": false
@@ -11629,11 +9300,7 @@ module.exports = [
       {
         "label": "问清新地址，以后去那吃",
         "fx": {
-          "family": 4,
-          "mood": 8,
-          "money": -1,
-          "health": -3,
-          "career": 2
+          "mood": 8
         },
         "result": "新店远了四十分钟。你去了两次，后来就少了。",
         "breakup": false
@@ -11641,11 +9308,7 @@ module.exports = [
       {
         "label": "照常吃完，说声再见",
         "fx": {
-          "health": -2,
-          "career": -2,
-          "mood": 6,
-          "money": 4,
-          "looks": 4
+          "mood": 6
         },
         "result": "你走出门时回头看了一眼。有些消失，是安静的。",
         "breakup": false
@@ -11668,10 +9331,7 @@ module.exports = [
         "label": "买生发液，认真抹",
         "fx": {
           "money": -800,
-          "health": 2,
-          "looks": 6,
-          "mood": -2,
-          "career": -2
+          "looks": 6
         },
         "result": "抹了三个月，效果微乎其微。但你坚持到了现在。",
         "breakup": false
@@ -11679,24 +9339,15 @@ module.exports = [
       {
         "label": "剃光，一了百了",
         "fx": {
-          "health": 4,
-          "career": -2,
-          "looks": -6,
           "mood": 12,
-          "money": 2
+          "looks": -6
         },
         "result": "剃完你照镜子，愣了三秒，然后笑了。清爽得不像话。",
         "breakup": false
       },
       {
         "label": "不管它，顺其自然",
-        "fx": {
-          "looks": -2,
-          "mood": 4,
-          "money": -3,
-          "health": 2,
-          "career": 2
-        },
+        "fx": {},
         "result": "你学会了戴帽子。有些事，拖着拖着就习惯了。",
         "breakup": false
       }
@@ -11717,35 +9368,23 @@ module.exports = [
       {
         "label": "停下来跟他聊两句",
         "fx": {
-          "health": 2,
-          "career": -2,
-          "family": 6,
           "mood": 12,
-          "money": -1
+          "family": 6
         },
         "result": "他老家在河南，儿子今年高考。你听他讲了二十分钟。",
         "breakup": false
       },
       {
         "label": "点点头，快步上楼",
-        "fx": {
-          "health": -2,
-          "career": 4,
-          "mood": 2,
-          "money": -2,
-          "looks": 4
-        },
+        "fx": {},
         "result": "你倒在床上，连衣服都没脱就睡着了。",
         "breakup": false
       },
       {
         "label": "第二天给他带了份早餐",
         "fx": {
-          "money": -30,
-          "family": 8,
           "mood": 16,
-          "health": -2,
-          "career": -1
+          "family": 8
         },
         "result": "他愣了很久才接过去。从那以后，他每晚都会等你回来。",
         "breakup": false
@@ -11768,10 +9407,8 @@ module.exports = [
         "label": "报班，系统学一遍",
         "fx": {
           "money": -5600,
-          "health": -6,
           "career": 14,
-          "mood": -4,
-          "looks": 4
+          "health": -6
         },
         "result": "第三次你过了。证书寄到那天，你把照片发给了爸妈。",
         "breakup": false
@@ -11781,9 +9418,7 @@ module.exports = [
         "fx": {
           "health": -10,
           "career": 10,
-          "mood": -6,
-          "money": -3,
-          "looks": 4
+          "mood": -6
         },
         "result": "第三次差两分。你盯着成绩看了十分钟，然后关掉了页面。",
         "breakup": false
@@ -11791,11 +9426,9 @@ module.exports = [
       {
         "label": "放弃了，不考了",
         "fx": {
-          "health": 6,
           "career": -8,
           "mood": 8,
-          "money": -3,
-          "looks": 4
+          "health": 6
         },
         "result": "你睡了个好觉。有些执念，放下比拿起来更需要勇气。",
         "breakup": false
@@ -11817,35 +9450,23 @@ module.exports = [
       {
         "label": "「现在说还来得及。」",
         "fx": {
-          "family": 6,
-          "mood": 4,
-          "money": -4,
-          "health": -2,
-          "career": -1
+          "family": 6
         },
         "result": "他哭了半小时，第二天还是照常举行了。他过得很幸福。",
         "breakup": false
       },
       {
         "label": "「都这时候了，别想了。」",
-        "fx": {
-          "career": 4,
-          "family": 2,
-          "mood": -2,
-          "money": -4,
-          "health": 1
-        },
+        "fx": {},
         "result": "婚礼很顺利。你站在他身边，替他捏了一把汗。",
         "breakup": false
       },
       {
         "label": "陪他坐到天亮，什么也不说",
         "fx": {
-          "health": -6,
-          "career": -2,
           "family": 14,
           "mood": 10,
-          "money": -1
+          "health": -6
         },
         "result": "天亮时他说「走吧」。有些决定，需要有人陪着做。",
         "breakup": false
@@ -11867,35 +9488,22 @@ module.exports = [
       {
         "label": "「不行吗？」",
         "fx": {
-          "looks": 4,
-          "family": 2,
-          "mood": 12,
-          "money": -1,
-          "health": -3
+          "mood": 12
         },
         "result": "同事笑了。你发现承认自己喜欢什么，其实挺轻松的。",
         "breakup": false
       },
       {
         "label": "换回纯色的",
-        "fx": {
-          "career": 4,
-          "looks": -2,
-          "mood": -4,
-          "money": 4,
-          "health": -2
-        },
+        "fx": {},
         "result": "你把柴犬壳收进抽屉。成熟有时候是种压抑。",
         "breakup": false
       },
       {
         "label": "又买了个更幼稚的",
         "fx": {
-          "money": -80,
-          "career": -2,
-          "looks": 6,
           "mood": 16,
-          "health": -4
+          "looks": 6
         },
         "result": "第二个是会发光的。你拿在手里，笑了整整一天。",
         "breakup": false
@@ -11917,11 +9525,8 @@ module.exports = [
       {
         "label": "笑一笑，说「应该的」",
         "fx": {
-          "family": 6,
           "mood": 12,
-          "money": 1,
-          "health": -3,
-          "career": -2
+          "family": 6
         },
         "result": "他一路都在跟旁边的人夸你。你有点不好意思，也很暖。",
         "breakup": false
@@ -11929,24 +9534,14 @@ module.exports = [
       {
         "label": "「这话您说得好像很意外。」",
         "fx": {
-          "career": -2,
-          "family": -2,
-          "mood": 6,
-          "money": 4,
-          "health": 2
+          "mood": 6
         },
         "result": "老人愣了一下，然后笑了。你们聊了一路。",
         "breakup": false
       },
       {
         "label": "戴上耳机，不再说话",
-        "fx": {
-          "health": -2,
-          "career": 2,
-          "mood": 4,
-          "money": 4,
-          "looks": -1
-        },
+        "fx": {},
         "result": "你听着歌到站。那句话却一直在耳边转。",
         "breakup": false
       }
@@ -11967,35 +9562,22 @@ module.exports = [
       {
         "label": "咬牙拎回去",
         "fx": {
-          "health": -4,
-          "career": 2,
-          "mood": 6,
-          "money": -3,
-          "looks": 3
+          "mood": 6
         },
         "result": "到家你瘫在沙发上。但看着那箱年货，你觉得这一年没白过。",
         "breakup": false
       },
       {
         "label": "叫个车",
-        "fx": {
-          "money": -60,
-          "health": -2,
-          "mood": 4,
-          "career": 3,
-          "looks": 3
-        },
+        "fx": {},
         "result": "车来了，司机帮你搬上车。二十块买来了轻松，值。",
         "breakup": false
       },
       {
         "label": "分一半给楼下保安",
         "fx": {
-          "family": 10,
           "mood": 14,
-          "money": 4,
-          "health": -2,
-          "career": -3
+          "family": 10
         },
         "result": "他推辞了半天还是收下了。那年春节，他给你留了门。",
         "breakup": false
@@ -12017,11 +9599,9 @@ module.exports = [
       {
         "label": "「她怎么说？」",
         "fx": {
-          "family": 8,
-          "mood": 8,
           "affection": 22,
-          "money": -1,
-          "health": -1
+          "family": 8,
+          "mood": 8
         },
         "result": "「她说看着老实。」你们都笑了。这句评价，意外地靠谱。",
         "breakup": false
@@ -12029,11 +9609,7 @@ module.exports = [
       {
         "label": "「你妈倒是很上心。」",
         "fx": {
-          "career": 2,
-          "mood": 2,
-          "affection": 8,
-          "money": -1,
-          "health": -4
+          "affection": 8
         },
         "result": "她点点头，话题转到了别处。但你听出她家里催得紧。",
         "breakup": false
@@ -12041,11 +9617,7 @@ module.exports = [
       {
         "label": "把手机递过去：「那我也看看你妈。」",
         "fx": {
-          "family": -4,
-          "mood": 4,
-          "affection": -10,
-          "money": 2,
-          "health": -4
+          "affection": -10
         },
         "result": "她愣住了，笑得有点勉强。玩笑开过了头。",
         "breakup": false
@@ -12067,11 +9639,8 @@ module.exports = [
       {
         "label": "如实说，包括那些失败的",
         "fx": {
-          "family": 2,
-          "mood": 6,
           "affection": 18,
-          "money": -3,
-          "health": -3
+          "mood": 6
         },
         "result": "她说「你倒是坦白」。坦诚在这里，是最稀缺的东西。",
         "breakup": false
@@ -12079,11 +9648,7 @@ module.exports = [
       {
         "label": "「你是第一个。」",
         "fx": {
-          "career": 2,
-          "mood": -4,
-          "affection": -12,
-          "money": -2,
-          "health": 3
+          "affection": -12
         },
         "result": "她笑了笑，说「我不信」。一句谎，把整场的可信度都拉低了。",
         "breakup": false
@@ -12091,11 +9656,8 @@ module.exports = [
       {
         "label": "「不重要，重要的是这次。」",
         "fx": {
-          "career": -4,
-          "mood": 12,
           "affection": 26,
-          "money": -2,
-          "health": 4
+          "mood": 12
         },
         "result": "她低头笑了一下。后来她说，就是这句让她决定再见面。",
         "breakup": false
@@ -12117,35 +9679,23 @@ module.exports = [
       {
         "label": "「那就吃这个吧，别浪费。」",
         "fx": {
-          "health": -2,
-          "mood": 8,
           "affection": 16,
-          "money": 4,
-          "career": -3
+          "mood": 8
         },
         "result": "你们把这盘「意外」吃完了。她说这顿饭记得最清楚。",
         "breakup": false
       },
       {
         "label": "叫服务员换掉",
-        "fx": {
-          "career": 2,
-          "affection": -2,
-          "money": 4,
-          "health": -1,
-          "looks": -1
-        },
+        "fx": {},
         "result": "菜换走了，气氛也跟着规矩了起来。",
         "breakup": false
       },
       {
         "label": "「看来今天有惊喜。」",
         "fx": {
-          "family": 2,
-          "mood": 14,
           "affection": 20,
-          "money": -2,
-          "health": -2
+          "mood": 14
         },
         "result": "她笑出了声。一顿饭的走向，有时候就靠这一句。",
         "breakup": false
@@ -12167,11 +9717,9 @@ module.exports = [
       {
         "label": "「我想试试。」",
         "fx": {
-          "family": 6,
-          "mood": 16,
           "affection": 30,
-          "money": -3,
-          "health": -4
+          "mood": 16,
+          "family": 6
         },
         "result": "她低下头，耳根红了。那顿饭之后的每一句都轻松了起来。",
         "breakup": false
@@ -12179,11 +9727,7 @@ module.exports = [
       {
         "label": "「这才第一次见面。」",
         "fx": {
-          "career": 2,
-          "mood": -2,
-          "affection": -8,
-          "money": 3,
-          "health": 2
+          "affection": -8
         },
         "result": "她说「也是」。你们之间的空气，凉了半度。",
         "breakup": false
@@ -12191,11 +9735,8 @@ module.exports = [
       {
         "label": "反问她：「你觉得呢？」",
         "fx": {
-          "career": -2,
-          "mood": 10,
           "affection": 22,
-          "money": -4,
-          "health": 4
+          "mood": 10
         },
         "result": "她说「如果你再主动一点，可能就有」。你听懂了。",
         "breakup": false
@@ -12217,35 +9758,23 @@ module.exports = [
       {
         "label": "直接说「你不用这么客气」",
         "fx": {
-          "mood": 8,
           "affection": 18,
-          "money": -4,
-          "health": -4,
-          "career": 4
+          "mood": 8
         },
         "result": "她愣了一下，然后真的放松了。后半场才像两个人在说话。",
         "breakup": false
       },
       {
         "label": "配合她的客气",
-        "fx": {
-          "career": 4,
-          "mood": -4,
-          "affection": 2,
-          "money": 4,
-          "health": -4
-        },
+        "fx": {},
         "result": "你们像两个外交官，完成了一场没有破绽的会面。",
         "breakup": false
       },
       {
         "label": "讲个自己出糗的事",
         "fx": {
-          "looks": -2,
-          "mood": 14,
           "affection": 24,
-          "money": -3,
-          "health": 4
+          "mood": 14
         },
         "result": "她笑了，第一次笑出了声。防线是从笑声里塌的。",
         "breakup": false
@@ -12267,11 +9796,8 @@ module.exports = [
       {
         "label": "坦白，押下手表说马上回来",
         "fx": {
-          "mood": -6,
           "affection": 12,
-          "money": 1,
-          "health": -4,
-          "career": -3
+          "mood": -6
         },
         "result": "她笑了，说「我先付吧」。窘迫有时候也是种真诚。",
         "breakup": false
@@ -12279,11 +9805,8 @@ module.exports = [
       {
         "label": "装作在找，拖时间",
         "fx": {
-          "career": -4,
-          "mood": -10,
           "affection": -16,
-          "money": 1,
-          "health": 1
+          "mood": -10
         },
         "result": "她默默拿出了手机。那顿饭剩下的时间，你一句话都说不出口。",
         "breakup": false
@@ -12291,11 +9814,8 @@ module.exports = [
       {
         "label": "问店里能不能扫码加好友转账",
         "fx": {
-          "career": 2,
-          "mood": 6,
           "affection": 18,
-          "money": -1,
-          "health": -1
+          "mood": 6
         },
         "result": "老板很好说话。你们加了微信，她说「这顿你欠我的」。",
         "breakup": false
@@ -12317,11 +9837,8 @@ module.exports = [
       {
         "label": "「那今天就不当相亲，就当认识个人。」",
         "fx": {
-          "family": 4,
-          "mood": 12,
           "affection": 26,
-          "money": -3,
-          "health": -2
+          "mood": 12
         },
         "result": "她转过头看了你很久，然后说「好」。那天你们聊了三个小时。",
         "breakup": false
@@ -12329,11 +9846,7 @@ module.exports = [
       {
         "label": "「你还没放下吧。」",
         "fx": {
-          "career": 2,
-          "mood": -4,
-          "affection": 6,
-          "money": -2,
-          "health": 2
+          "affection": 6
         },
         "result": "她沉默了一会儿。你戳破了，但没接住。",
         "breakup": false
@@ -12341,11 +9854,9 @@ module.exports = [
       {
         "label": "讲自己也没完全放下的一段",
         "fx": {
-          "family": 6,
-          "mood": 10,
           "affection": 22,
-          "money": -2,
-          "health": -4
+          "mood": 10,
+          "family": 6
         },
         "result": "两个没放下的人，反而聊得很投机。你们都懂那种感觉。",
         "breakup": false
@@ -12367,35 +9878,23 @@ module.exports = [
       {
         "label": "把闺蜜也当成聊天对象",
         "fx": {
-          "career": 4,
-          "family": -2,
-          "mood": 8,
           "affection": 20,
-          "money": -1
+          "mood": 8
         },
         "result": "闺蜜被逗笑了，气氛一下松了。她临走说「这人行」。",
         "breakup": false
       },
       {
         "label": "只跟{p}说话，无视闺蜜",
-        "fx": {
-          "mood": -2,
-          "affection": 4,
-          "money": 4,
-          "health": 4,
-          "career": -2
-        },
+        "fx": {},
         "result": "闺蜜全程黑脸。回去的路上，她给{p}发了很长一段话。",
         "breakup": false
       },
       {
         "label": "直接问闺蜜「你觉得我怎么样」",
         "fx": {
-          "career": 2,
-          "family": -2,
-          "mood": 10,
           "affection": 16,
-          "money": -4
+          "mood": 10
         },
         "result": "闺蜜被问懵了，半天憋出一句「还行吧」。大家都笑了。",
         "breakup": false
@@ -12417,11 +9916,7 @@ module.exports = [
       {
         "label": "什么也不说，正常聊天",
         "fx": {
-          "career": 2,
-          "mood": 4,
-          "affection": 12,
-          "money": -3,
-          "health": -3
+          "affection": 12
         },
         "result": "你记住了这个细节，但没提。尊重比洞察力更难得。",
         "breakup": false
@@ -12429,11 +9924,8 @@ module.exports = [
       {
         "label": "夸她的包好看",
         "fx": {
-          "looks": 2,
-          "mood": 8,
           "affection": 16,
-          "money": -3,
-          "health": -1
+          "mood": 8
         },
         "result": "她笑得很开心，说「攒了三个月买的」。你听懂了她的优先级。",
         "breakup": false
@@ -12441,11 +9933,7 @@ module.exports = [
       {
         "label": "问她「你这鞋穿多久了」",
         "fx": {
-          "family": 2,
-          "mood": -4,
-          "affection": -12,
-          "money": 2,
-          "health": -3
+          "affection": -12
         },
         "result": "她低头看了一眼，笑容淡了。有些观察，说出来就成了冒犯。",
         "breakup": false
@@ -12467,11 +9955,7 @@ module.exports = [
       {
         "label": "「那我等你消息。」",
         "fx": {
-          "mood": 4,
-          "affection": 14,
-          "money": 2,
-          "health": -1,
-          "career": -2
+          "affection": 14
         },
         "result": "你等了三天。第四天她主动发来消息。",
         "breakup": false
@@ -12479,24 +9963,15 @@ module.exports = [
       {
         "label": "「明天有空吗？」",
         "fx": {
-          "career": -2,
-          "mood": 12,
           "affection": 24,
-          "money": -1,
-          "health": 3
+          "mood": 12
         },
         "result": "她愣了一下，说「明天……可以」。主动的人，运气不会差。",
         "breakup": false
       },
       {
         "label": "「好，路上小心。」",
-        "fx": {
-          "career": 2,
-          "mood": 2,
-          "affection": -4,
-          "money": -4,
-          "health": -2
-        },
+        "fx": {},
         "result": "你们礼貌告别。这条线，就这么断了。",
         "breakup": false
       }
@@ -12517,11 +9992,8 @@ module.exports = [
       {
         "label": "「我也没想好，这个可以慢慢聊。」",
         "fx": {
-          "family": 4,
-          "mood": 6,
           "affection": 20,
-          "money": -2,
-          "health": -4
+          "mood": 6
         },
         "result": "她点了点头。坦诚的分歧，比虚假的附和更有生命力。",
         "breakup": false
@@ -12529,11 +10001,8 @@ module.exports = [
       {
         "label": "「我家里可能接受不了。」",
         "fx": {
-          "family": -6,
-          "mood": -4,
           "affection": -14,
-          "money": 1,
-          "health": 3
+          "family": -6
         },
         "result": "她说「我理解」。你们都很体面，也到此为止。",
         "breakup": false
@@ -12541,11 +10010,8 @@ module.exports = [
       {
         "label": "「我也是这么想的。」（其实不是）",
         "fx": {
-          "family": -4,
-          "mood": -8,
           "affection": 8,
-          "money": -1,
-          "health": 2
+          "mood": -8
         },
         "result": "你撒了谎。这个谎，会在很久以后变成一颗雷。",
         "breakup": false
@@ -12567,11 +10033,8 @@ module.exports = [
       {
         "label": "「那是因为我笨，不会装。」",
         "fx": {
-          "looks": 2,
-          "mood": 12,
           "affection": 22,
-          "money": -2,
-          "health": -1
+          "mood": 12
         },
         "result": "她笑了很久。实在这个品质，在相亲市场里是稀缺品。",
         "breakup": false
@@ -12579,11 +10042,8 @@ module.exports = [
       {
         "label": "「你这话听着像夸我自己。」",
         "fx": {
-          "career": -2,
-          "mood": 6,
           "affection": 10,
-          "money": -3,
-          "health": 3
+          "mood": 6
         },
         "result": "她也笑了，但笑声里有一点点疲惫。",
         "breakup": false
@@ -12591,11 +10051,7 @@ module.exports = [
       {
         "label": "「你相过很多吗？」",
         "fx": {
-          "mood": 2,
-          "affection": -6,
-          "money": -3,
-          "health": 1,
-          "career": -3
+          "affection": -6
         },
         "result": "她沉默了一下，说「二十几个吧」。话题就此打住。",
         "breakup": false
@@ -12617,11 +10073,9 @@ module.exports = [
       {
         "label": "认真听完，说「那你一定很懂事」",
         "fx": {
-          "family": 8,
-          "mood": 8,
           "affection": 26,
-          "money": -1,
-          "health": -1
+          "family": 8,
+          "mood": 8
         },
         "result": "她眼眶红了，说「你是第一个这么说的」。",
         "breakup": false
@@ -12629,11 +10083,9 @@ module.exports = [
       {
         "label": "讲一段自己小时候的事",
         "fx": {
-          "family": 10,
-          "mood": 10,
           "affection": 18,
-          "money": -4,
-          "health": -3
+          "family": 10,
+          "mood": 10
         },
         "result": "你们交换了各自的童年。那种交换，比任何资料都管用。",
         "breakup": false
@@ -12641,11 +10093,7 @@ module.exports = [
       {
         "label": "「那你现在一定很独立。」",
         "fx": {
-          "career": -2,
-          "mood": 4,
-          "affection": 12,
-          "money": 3,
-          "health": -3
+          "affection": 12
         },
         "result": "她笑了笑。懂事和独立，是同一种伤的两种说法。",
         "breakup": false
@@ -12667,11 +10115,9 @@ module.exports = [
       {
         "label": "等她，并且给她倒了杯热水",
         "fx": {
-          "family": 6,
-          "mood": 8,
           "affection": 24,
-          "money": -4,
-          "health": -2
+          "mood": 8,
+          "family": 6
         },
         "result": "她回来时眼睛有点红，说「我爸住院了」。你送她去了医院。",
         "breakup": false
@@ -12680,10 +10126,7 @@ module.exports = [
         "label": "趁她出去，把单买了",
         "fx": {
           "money": -560,
-          "mood": 4,
-          "affection": 16,
-          "health": 4,
-          "career": -2
+          "affection": 16
         },
         "result": "她回来发现已经结过账，愣了很久。",
         "breakup": false
@@ -12691,11 +10134,7 @@ module.exports = [
       {
         "label": "跟出去看看情况",
         "fx": {
-          "mood": -4,
-          "affection": -8,
-          "money": -3,
-          "health": 4,
-          "career": 1
+          "affection": -8
         },
         "result": "她回头看见你，说了句「你跟着干嘛」。你退回了座位。",
         "breakup": false
@@ -12717,11 +10156,8 @@ module.exports = [
       {
         "label": "陪她坐下，不爬了",
         "fx": {
-          "health": 4,
-          "mood": 12,
           "affection": 20,
-          "money": -1,
-          "career": -3
+          "mood": 12
         },
         "result": "你们在半山腰看了日落。她说这是她爬过最好的一次山。",
         "breakup": false
@@ -12729,11 +10165,9 @@ module.exports = [
       {
         "label": "把她背包拿过来，说「我背你上去」",
         "fx": {
-          "health": -8,
-          "looks": 2,
-          "mood": 14,
           "affection": 26,
-          "money": -1
+          "mood": 14,
+          "health": -8
         },
         "result": "你背了她五十米就喘了，但她笑了一路，最后自己走完了。",
         "breakup": false
@@ -12741,11 +10175,8 @@ module.exports = [
       {
         "label": "「来都来了，坚持一下。」",
         "fx": {
-          "health": -4,
-          "career": 4,
-          "mood": -6,
           "affection": -12,
-          "money": 2
+          "mood": -6
         },
         "result": "她咬牙爬到了山顶，然后一句话也没跟你说。",
         "breakup": false
@@ -12767,35 +10198,25 @@ module.exports = [
       {
         "label": "「你很羡慕吗？」",
         "fx": {
-          "family": 6,
-          "mood": 8,
           "affection": 18,
-          "money": -2,
-          "health": -2
+          "mood": 8,
+          "family": 6
         },
         "result": "她红着脸说「哪有」。但那顿饭她一直在笑。",
         "breakup": false
       },
       {
         "label": "当作没看见，继续吃",
-        "fx": {
-          "career": 2,
-          "mood": 2,
-          "affection": 4,
-          "money": -1,
-          "health": -3
-        },
+        "fx": {},
         "result": "你们安静地吃完了。有些话题，错过了就是错过了。",
         "breakup": false
       },
       {
         "label": "「以后我也给你办一个。」",
         "fx": {
-          "family": 10,
-          "mood": 16,
           "affection": 28,
-          "money": -4,
-          "health": -2
+          "mood": 16,
+          "family": 10
         },
         "result": "她筷子都掉了。你没说时间，但她把这个承诺存起来了。",
         "breakup": false
@@ -12818,10 +10239,8 @@ module.exports = [
         "label": "「那我今天有口福了。」",
         "fx": {
           "money": -180,
-          "family": 4,
-          "mood": 12,
           "affection": 22,
-          "health": -3
+          "mood": 12
         },
         "result": "菜确实好吃。你也带她去了自己藏的那家，礼尚往来。",
         "breakup": false
@@ -12829,11 +10248,7 @@ module.exports = [
       {
         "label": "拍照发朋友圈",
         "fx": {
-          "looks": 2,
-          "mood": 2,
-          "affection": -6,
-          "money": -4,
-          "health": 3
+          "affection": -6
         },
         "result": "她看了你一眼，说「别发定位」。你才意识到自己越界了。",
         "breakup": false
@@ -12841,11 +10256,9 @@ module.exports = [
       {
         "label": "问她「为什么愿意带我来」",
         "fx": {
-          "family": 6,
-          "mood": 14,
           "affection": 26,
-          "money": -1,
-          "health": -4
+          "mood": 14,
+          "family": 6
         },
         "result": "她低头扒饭，说「你自己想」。",
         "breakup": false
@@ -12867,11 +10280,8 @@ module.exports = [
       {
         "label": "「嗯，我也觉得。」",
         "fx": {
-          "family": 4,
-          "mood": 10,
           "affection": 20,
-          "money": -3,
-          "health": -3
+          "mood": 10
         },
         "result": "她转头看你，眼睛很亮。能接住她感受的人不多。",
         "breakup": false
@@ -12879,11 +10289,7 @@ module.exports = [
       {
         "label": "「不就是一片海吗。」",
         "fx": {
-          "career": 2,
-          "mood": -4,
-          "affection": -14,
-          "money": -3,
-          "health": 3
+          "affection": -14
         },
         "result": "她没说话，往前走了。你们之间的距离拉开了两米。",
         "breakup": false
@@ -12891,11 +10297,9 @@ module.exports = [
       {
         "label": "「你今天是有什么心事吗？」",
         "fx": {
-          "family": 8,
-          "mood": 12,
           "affection": 24,
-          "money": -4,
-          "health": -3
+          "mood": 12,
+          "family": 8
         },
         "result": "她愣了一下，然后讲了工作上被冤枉的事。",
         "breakup": false
@@ -12917,35 +10321,23 @@ module.exports = [
       {
         "label": "补一句「很好看」",
         "fx": {
-          "looks": 4,
-          "mood": 10,
           "affection": 20,
-          "money": -1,
-          "health": -3
+          "mood": 10
         },
         "result": "她白你一眼，但嘴角是翘的。补救得还算及时。",
         "breakup": false
       },
       {
         "label": "「我以为我们要去什么正式场合。」",
-        "fx": {
-          "career": 2,
-          "affection": -4,
-          "money": -2,
-          "health": -4,
-          "looks": 4
-        },
+        "fx": {},
         "result": "她说「没有，就是想打扮一下」。你依然没听懂。",
         "breakup": false
       },
       {
         "label": "什么也不说，牵她的手",
         "fx": {
-          "family": 4,
-          "mood": 14,
           "affection": 26,
-          "money": -2,
-          "health": -1
+          "mood": 14
         },
         "result": "有时候一个动作，比十句话都管用。",
         "breakup": false
@@ -12967,35 +10359,23 @@ module.exports = [
       {
         "label": "就这么牵着走下去",
         "fx": {
-          "looks": -2,
-          "family": 6,
-          "mood": 16,
           "affection": 30,
-          "money": -2
+          "mood": 16,
+          "family": 6
         },
         "result": "你们牵了三条街。谁也没提这件事，谁也不想先松手。",
         "breakup": false
       },
       {
         "label": "扶稳后立刻松开",
-        "fx": {
-          "career": -2,
-          "mood": 2,
-          "affection": 4,
-          "money": -1,
-          "health": 4
-        },
+        "fx": {},
         "result": "她收回手，插进了口袋。后面的一段路走得很安静。",
         "breakup": false
       },
       {
         "label": "「小心点，看路。」",
         "fx": {
-          "health": -2,
-          "mood": 4,
-          "affection": 10,
-          "money": -1,
-          "career": 2
+          "affection": 10
         },
         "result": "她点点头。关心是对的，但时机错过了。",
         "breakup": false
@@ -13017,11 +10397,8 @@ module.exports = [
       {
         "label": "「早知道就不带你来了。」",
         "fx": {
-          "family": 4,
-          "mood": 10,
           "affection": 24,
-          "money": -3,
-          "health": -2
+          "mood": 10
         },
         "result": "她说「没事，挺刺激的」。但你记住了，下次要选温和的。",
         "breakup": false
@@ -13029,11 +10406,7 @@ module.exports = [
       {
         "label": "笑她胆小",
         "fx": {
-          "career": 2,
-          "mood": 4,
-          "affection": -10,
-          "money": -2,
-          "health": 2
+          "affection": -10
         },
         "result": "她嘴上不服，但后面半小时都没怎么说话。",
         "breakup": false
@@ -13042,10 +10415,8 @@ module.exports = [
         "label": "去买两杯热饮，压压惊",
         "fx": {
           "money": -100,
-          "health": -2,
-          "mood": 14,
           "affection": 28,
-          "career": 2
+          "mood": 14
         },
         "result": "她捧着杯子，说「你刚才也吓到了吧」。你们笑成一团。",
         "breakup": false
@@ -13067,11 +10438,9 @@ module.exports = [
       {
         "label": "认真问她「想好了吗」",
         "fx": {
-          "family": 6,
-          "mood": 6,
           "affection": 24,
-          "money": -4,
-          "health": -1
+          "family": 6,
+          "mood": 6
         },
         "result": "她说「还在想」。这场对话，把你们的关系往前推了一大步。",
         "breakup": false
@@ -13079,11 +10448,7 @@ module.exports = [
       {
         "label": "「那我怎么办？」",
         "fx": {
-          "career": 2,
-          "mood": -2,
-          "affection": 8,
-          "money": -4,
-          "health": -4
+          "affection": 8
         },
         "result": "她愣住了，说「我还没决定呢」。你把压力给早了。",
         "breakup": false
@@ -13091,11 +10456,9 @@ module.exports = [
       {
         "label": "「我支持你。」",
         "fx": {
-          "career": -4,
-          "family": 8,
-          "mood": 12,
           "affection": 30,
-          "money": -3
+          "mood": 12,
+          "family": 8
         },
         "result": "她眼眶红了。她后来说，这句话她记了很久很久。",
         "breakup": false
@@ -13117,11 +10480,8 @@ module.exports = [
       {
         "label": "「有，你要看吗？」",
         "fx": {
-          "looks": -4,
-          "family": 4,
-          "mood": 14,
           "affection": 28,
-          "money": -2
+          "mood": 14
         },
         "result": "她翻到那张侧脸，愣了很久，然后什么也没说。",
         "breakup": false
@@ -13129,11 +10489,7 @@ module.exports = [
       {
         "label": "「没有。」",
         "fx": {
-          "career": 2,
-          "mood": -4,
-          "affection": -8,
-          "money": 1,
-          "health": -1
+          "affection": -8
         },
         "result": "她「哦」了一声。你撒的谎，你自己都觉得没底气。",
         "breakup": false
@@ -13141,11 +10497,8 @@ module.exports = [
       {
         "label": "把手机递给她，让她自己翻",
         "fx": {
-          "career": -2,
-          "family": 2,
-          "mood": 12,
           "affection": 22,
-          "money": -1
+          "mood": 12
         },
         "result": "她翻了两下就还给你了，脸是红的。",
         "breakup": false
@@ -13168,10 +10521,8 @@ module.exports = [
         "label": "「丑得可爱，我要了。」",
         "fx": {
           "money": -240,
-          "family": 6,
-          "mood": 14,
           "affection": 26,
-          "health": -2
+          "mood": 14
         },
         "result": "那个杯子现在还在你桌上，用来装回形针。",
         "breakup": false
@@ -13180,10 +10531,8 @@ module.exports = [
         "label": "也做一个更丑的",
         "fx": {
           "money": -240,
-          "looks": 2,
-          "mood": 16,
           "affection": 22,
-          "health": -1
+          "mood": 16
         },
         "result": "两个丑杯子摆在一起，你们笑得直不起腰。",
         "breakup": false
@@ -13191,11 +10540,7 @@ module.exports = [
       {
         "label": "「要不重新做一个？」",
         "fx": {
-          "career": 2,
-          "mood": -2,
-          "affection": -6,
-          "money": 1,
-          "health": 2
+          "affection": -6
         },
         "result": "她放下杯子，说「算了，也没什么用」。",
         "breakup": false
@@ -13217,11 +10562,9 @@ module.exports = [
       {
         "label": "「谢谢你告诉我。」",
         "fx": {
-          "health": -2,
-          "family": 10,
-          "mood": 10,
           "affection": 30,
-          "money": -4
+          "family": 10,
+          "mood": 10
         },
         "result": "她明显松了一口气。被接纳，比被安慰重要得多。",
         "breakup": false
@@ -13229,11 +10572,7 @@ module.exports = [
       {
         "label": "「是不是我哪里做得不好？」",
         "fx": {
-          "mood": -6,
-          "affection": 4,
-          "money": -4,
-          "health": -3,
-          "career": 4
+          "mood": -6
         },
         "result": "她赶紧说「不是你的问题」。但话题的重心，被你抢走了。",
         "breakup": false
@@ -13241,11 +10580,9 @@ module.exports = [
       {
         "label": "沉默很久，然后握住她的手",
         "fx": {
-          "health": -4,
-          "family": 8,
-          "mood": 12,
           "affection": 26,
-          "money": -1
+          "mood": 12,
+          "family": 8
         },
         "result": "她回握了一下。有些话不用说，力气到了就行。",
         "breakup": false
@@ -13267,11 +10604,9 @@ module.exports = [
       {
         "label": "「以前是，以后想两个人来。」",
         "fx": {
-          "looks": -2,
-          "family": 6,
-          "mood": 16,
           "affection": 28,
-          "money": -2
+          "mood": 16,
+          "family": 6
         },
         "result": "她靠在你肩上，没说话。风很大，但你们都没觉得冷。",
         "breakup": false
@@ -13279,11 +10614,8 @@ module.exports = [
       {
         "label": "「偶尔吧。」",
         "fx": {
-          "career": 2,
-          "mood": 6,
           "affection": 12,
-          "money": -3,
-          "health": -1
+          "mood": 6
         },
         "result": "你们看了会儿灯，然后下楼了。这个地方还是你的秘密。",
         "breakup": false
@@ -13291,11 +10623,9 @@ module.exports = [
       {
         "label": "讲你在这里想过的那些事",
         "fx": {
-          "career": -2,
-          "family": 8,
-          "mood": 12,
           "affection": 22,
-          "money": -3
+          "mood": 12,
+          "family": 8
         },
         "result": "你讲了很多从没说过的话。她听完说「以后别一个人来了」。",
         "breakup": false
@@ -13317,11 +10647,9 @@ module.exports = [
       {
         "label": "「记下了。」",
         "fx": {
-          "family": 8,
-          "mood": 12,
           "affection": 24,
-          "money": -1,
-          "health": -2
+          "mood": 12,
+          "family": 8
         },
         "result": "她笑着推你。半天的宜家之行，比任何承诺都实在。",
         "breakup": false
@@ -13329,11 +10657,7 @@ module.exports = [
       {
         "label": "「这个要三万八。」",
         "fx": {
-          "career": 4,
-          "mood": -2,
-          "affection": -6,
-          "money": 1,
-          "health": -1
+          "affection": -6
         },
         "result": "她看了眼价签，说「那算了」。气氛一下现实了。",
         "breakup": false
@@ -13341,11 +10665,9 @@ module.exports = [
       {
         "label": "「那你教我做菜吧。」",
         "fx": {
-          "health": -2,
-          "family": 10,
-          "mood": 14,
           "affection": 26,
-          "money": -3
+          "mood": 14,
+          "family": 10
         },
         "result": "她愣了一下，然后笑了：「行啊，先从番茄炒蛋开始。」",
         "breakup": false
@@ -13367,11 +10689,8 @@ module.exports = [
       {
         "label": "「好。」",
         "fx": {
-          "health": -4,
-          "career": -2,
-          "mood": 18,
           "affection": 32,
-          "money": -2
+          "mood": 18
         },
         "result": "那杯水喝了三个小时。第二天你们都没去上班。",
         "breakup": false
@@ -13379,11 +10698,9 @@ module.exports = [
       {
         "label": "「不了，太晚了，你早点休息。」",
         "fx": {
-          "health": -4,
-          "family": 6,
-          "mood": 8,
           "affection": 18,
-          "money": -1
+          "mood": 8,
+          "family": 6
         },
         "result": "她有点意外，也有点感动。分寸感，有时候更动人。",
         "breakup": false
@@ -13391,11 +10708,8 @@ module.exports = [
       {
         "label": "「改天吧，我今天没洗澡。」",
         "fx": {
-          "looks": -2,
-          "mood": 12,
           "affection": 12,
-          "money": -1,
-          "health": 1
+          "mood": 12
         },
         "result": "她笑骂你「滚」。你们在楼下笑了一分钟。",
         "breakup": false
@@ -13417,11 +10731,7 @@ module.exports = [
       {
         "label": "「别说这个。」",
         "fx": {
-          "family": 4,
-          "mood": -4,
-          "affection": 16,
-          "money": -4,
-          "health": 3
+          "affection": 16
         },
         "result": "她「嗯」了一声。有些念头，说出来就成了预言。",
         "breakup": false
@@ -13429,11 +10739,8 @@ module.exports = [
       {
         "label": "「会。所以我今天要表现好一点。」",
         "fx": {
-          "career": -2,
-          "family": -4,
-          "mood": 14,
           "affection": 28,
-          "money": 4
+          "mood": 14
         },
         "result": "她笑了，说「你这个人真的很怪」。但她很高兴。",
         "breakup": false
@@ -13441,11 +10748,9 @@ module.exports = [
       {
         "label": "认真回答「会，会记得很久」",
         "fx": {
-          "family": 6,
-          "mood": 10,
           "affection": 24,
-          "money": -1,
-          "health": -1
+          "mood": 10,
+          "family": 6
         },
         "result": "她沉默了一会儿，然后说「我也是」。",
         "breakup": false
@@ -13467,11 +10772,8 @@ module.exports = [
       {
         "label": "一动不动，让她睡",
         "fx": {
-          "health": -4,
-          "mood": 12,
           "affection": 26,
-          "money": -1,
-          "career": 3
+          "mood": 12
         },
         "result": "散场时她醒来，说「我居然睡着了，对不起」。你说「没事」。",
         "breakup": false
@@ -13479,11 +10781,7 @@ module.exports = [
       {
         "label": "轻轻叫醒她",
         "fx": {
-          "career": -2,
-          "mood": -2,
-          "affection": 6,
-          "money": 2,
-          "health": 3
+          "affection": 6
         },
         "result": "她勉强撑到最后。出来后说「其实我没听进去」。",
         "breakup": false
@@ -13491,11 +10789,8 @@ module.exports = [
       {
         "label": "也跟着闭上眼",
         "fx": {
-          "health": 4,
-          "career": -2,
-          "mood": 14,
           "affection": 20,
-          "money": -3
+          "mood": 14
         },
         "result": "你们在音乐里睡了二十分钟。她说这是她听过最好的一场。",
         "breakup": false
@@ -13517,36 +10812,21 @@ module.exports = [
       {
         "label": "回「我不介意」",
         "fx": {
-          "family": 6,
           "mood": 8,
-          "money": -3,
-          "health": -3,
-          "career": 4
+          "family": 6
         },
         "result": "介绍人很高兴，第二天就安排了见面。你后来一点也不后悔。",
         "breakup": false
       },
       {
         "label": "回「我再想想」",
-        "fx": {
-          "career": 2,
-          "family": -2,
-          "mood": -4,
-          "money": -4,
-          "health": 1
-        },
+        "fx": {},
         "result": "你想了三天，最后还是回绝了。有些偏见，要很久才能放下。",
         "breakup": false
       },
       {
         "label": "直接问「为什么离的」",
-        "fx": {
-          "career": -2,
-          "family": 4,
-          "mood": 4,
-          "money": 4,
-          "health": -1
-        },
+        "fx": {},
         "result": "介绍人回了个「性格不合」。你知道这四个字背后，藏着很多东西。",
         "breakup": false
       }
@@ -13566,13 +10846,7 @@ module.exports = [
     "options": [
       {
         "label": "放宽到全城",
-        "fx": {
-          "career": 2,
-          "mood": -4,
-          "money": -4,
-          "health": -2,
-          "looks": 1
-        },
+        "fx": {},
         "result": "匹配数是上去了，但见面要两小时。你放弃了其中大部分。",
         "breakup": false
       },
@@ -13580,10 +10854,7 @@ module.exports = [
         "label": "卸载软件，出门参加线下活动",
         "fx": {
           "money": -400,
-          "career": -2,
-          "looks": 4,
-          "mood": 12,
-          "health": 4
+          "mood": 12
         },
         "result": "你报了个徒步团。现实里的人，比照片真实得多。",
         "breakup": false
@@ -13591,11 +10862,7 @@ module.exports = [
       {
         "label": "把自我介绍全改了",
         "fx": {
-          "looks": 2,
-          "mood": 8,
-          "money": -1,
-          "health": 3,
-          "career": -2
+          "mood": 8
         },
         "result": "改完当天，匹配数涨了三倍。原来问题一直出在你自己身上。",
         "breakup": false
@@ -13618,10 +10885,7 @@ module.exports = [
         "label": "收下，真的用在相亲上",
         "fx": {
           "money": 6000,
-          "family": 8,
-          "mood": 4,
-          "health": -1,
-          "career": -2
+          "family": 8
         },
         "result": "你用这笔钱买了套像样的衣服，见了四个人。其中一个后来成了。",
         "breakup": false
@@ -13629,11 +10893,8 @@ module.exports = [
       {
         "label": "退回去",
         "fx": {
-          "career": 2,
           "family": -6,
-          "mood": 6,
-          "money": -1,
-          "health": -4
+          "mood": 6
         },
         "result": "我妈又转了一次，还多加了五百。你们来回推了四次。",
         "breakup": false
@@ -13641,11 +10902,7 @@ module.exports = [
       {
         "label": "收下，但存起来没花",
         "fx": {
-          "money": 6000,
-          "career": 4,
-          "family": -2,
-          "mood": -2,
-          "health": 4
+          "money": 6000
         },
         "result": "这笔钱至今还在卡里。每次看到，都想起她的心意。",
         "breakup": false
@@ -13667,11 +10924,7 @@ module.exports = [
       {
         "label": "如实说「我暂时买不起」",
         "fx": {
-          "career": 4,
-          "family": -2,
-          "mood": -6,
-          "money": -2,
-          "health": 3
+          "mood": -6
         },
         "result": "同事说「那我再问问」。这件事就这么过去了。",
         "breakup": false
@@ -13679,24 +10932,14 @@ module.exports = [
       {
         "label": "先见一面再说",
         "fx": {
-          "looks": 2,
-          "mood": 6,
-          "money": 2,
-          "health": -1,
-          "career": -4
+          "mood": 6
         },
         "result": "见面聊得不错。她说「房子可以一起想办法」。你松了口气。",
         "breakup": false
       },
       {
         "label": "婉拒，说「条件不合适」",
-        "fx": {
-          "career": 2,
-          "mood": 4,
-          "money": -3,
-          "health": 4,
-          "looks": -1
-        },
+        "fx": {},
         "result": "你保全了面子，也错过了一个可能。",
         "breakup": false
       }
@@ -13717,11 +10960,8 @@ module.exports = [
       {
         "label": "「因为想跟你说话。」",
         "fx": {
-          "health": -2,
-          "mood": 16,
           "affection": 16,
-          "money": -3,
-          "career": 4
+          "mood": 16
         },
         "result": "你们聊到凌晨四点。第二天顶着黑眼圈，但心情好得像飞。",
         "breakup": false
@@ -13729,11 +10969,7 @@ module.exports = [
       {
         "label": "「加班，习惯晚睡。」",
         "fx": {
-          "health": -4,
-          "career": 6,
-          "mood": 2,
-          "affection": 4,
-          "money": -2
+          "career": 6
         },
         "result": "她说「别太累」。话题止步于此。",
         "breakup": false
@@ -13741,11 +10977,8 @@ module.exports = [
       {
         "label": "「睡不着，你陪我聊聊？」",
         "fx": {
-          "health": -2,
-          "family": 4,
-          "mood": 12,
           "affection": 20,
-          "money": -3
+          "mood": 12
         },
         "result": "她打了个语音过来。那一夜，你们第一次听到对方的声音。",
         "breakup": false
@@ -13767,11 +11000,7 @@ module.exports = [
       {
         "label": "冲他笑笑，先走",
         "fx": {
-          "health": 2,
-          "mood": 6,
-          "money": -1,
-          "career": -1,
-          "looks": 2
+          "mood": 6
         },
         "result": "你走出影院，外面阳光很好。一个人也可以很好。",
         "breakup": false
@@ -13779,11 +11008,8 @@ module.exports = [
       {
         "label": "跟大爷聊了两句剧情",
         "fx": {
-          "family": 6,
           "mood": 12,
-          "money": -1,
-          "health": 2,
-          "career": -1
+          "family": 6
         },
         "result": "大爷说他每周都来，老伴走了三年。你陪他走了两站路。",
         "breakup": false
@@ -13791,11 +11017,7 @@ module.exports = [
       {
         "label": "发朋友圈吐槽「包场了」",
         "fx": {
-          "looks": 2,
-          "family": -2,
-          "mood": 8,
-          "money": -4,
-          "health": 3
+          "mood": 8
         },
         "result": "底下有人评论「下次叫我」。你没回，但记下了这条评论。",
         "breakup": false
@@ -13817,11 +11039,8 @@ module.exports = [
       {
         "label": "停一停，先不想这件事",
         "fx": {
-          "health": 6,
-          "career": -4,
-          "family": -4,
           "mood": 10,
-          "money": 3
+          "health": 6
         },
         "result": "你停了两个月。再开始时，你终于能看清对面那个人了。",
         "breakup": false
@@ -13829,11 +11048,7 @@ module.exports = [
       {
         "label": "继续走流程",
         "fx": {
-          "health": -4,
-          "career": 4,
-          "mood": -8,
-          "money": 3,
-          "looks": -3
+          "mood": -8
         },
         "result": "你又见了八个。年底复盘时，你发现自己一个都没记住。",
         "breakup": false
@@ -13841,11 +11056,8 @@ module.exports = [
       {
         "label": "跟介绍人说「别给我安排了」",
         "fx": {
-          "health": 2,
-          "career": 2,
-          "family": -8,
           "mood": 12,
-          "money": -2
+          "family": -8
         },
         "result": "介绍人愣了。但那个月，你过得前所未有的清净。",
         "breakup": false
@@ -13867,11 +11079,7 @@ module.exports = [
       {
         "label": "愣住，然后实话实说",
         "fx": {
-          "looks": 2,
-          "family": 2,
-          "mood": 10,
-          "money": -3,
-          "health": -1
+          "mood": 10
         },
         "result": "她笑了，说「那我们聊点别的吧」。那天你们聊得最久。",
         "breakup": false
@@ -13879,11 +11087,7 @@ module.exports = [
       {
         "label": "继续背完",
         "fx": {
-          "career": 2,
-          "mood": -6,
-          "money": 2,
-          "health": -2,
-          "looks": 2
+          "mood": -6
         },
         "result": "她礼貌听完，然后时间到了。",
         "breakup": false
@@ -13891,11 +11095,7 @@ module.exports = [
       {
         "label": "反过来问她「你呢，第几遍了」",
         "fx": {
-          "career": 4,
-          "family": 4,
-          "mood": 14,
-          "money": -2,
-          "health": -1
+          "mood": 14
         },
         "result": "她说「第七遍」。你们相视苦笑，气氛一下就真实了。",
         "breakup": false
@@ -13917,11 +11117,8 @@ module.exports = [
       {
         "label": "回拨过去，跟他多聊两句",
         "fx": {
-          "health": -2,
           "family": 18,
-          "mood": 14,
-          "money": -2,
-          "career": 2
+          "mood": 14
         },
         "result": "他明显有点意外，但还是聊了十分钟。这是你们最长的一次通话。",
         "breakup": false
@@ -13929,11 +11126,8 @@ module.exports = [
       {
         "label": "发条短信说「知道了」",
         "fx": {
-          "career": 2,
           "family": 8,
-          "mood": 6,
-          "money": -3,
-          "health": -1
+          "mood": 6
         },
         "result": "他回了个「嗯」。父子的交流，总是这么短。",
         "breakup": false
@@ -13941,11 +11135,7 @@ module.exports = [
       {
         "label": "盯着手机看了很久，什么都没回",
         "fx": {
-          "family": -6,
-          "mood": -4,
-          "money": 3,
-          "health": -4,
-          "career": 3
+          "family": -6
         },
         "result": "三天后你想起这件事，心里堵得慌。",
         "breakup": false
@@ -13967,35 +11157,21 @@ module.exports = [
       {
         "label": "扫码加上了",
         "fx": {
-          "looks": 2,
-          "family": 4,
-          "mood": 12,
-          "money": -1,
-          "health": -1
+          "mood": 12
         },
         "result": "她通过得很快。第一句是「你是第几个扫的」。你们聊了一晚上。",
         "breakup": false
       },
       {
         "label": "拍下来，但没扫",
-        "fx": {
-          "career": 2,
-          "mood": 2,
-          "money": -1,
-          "health": -4,
-          "looks": 1
-        },
+        "fx": {},
         "result": "照片至今还在你相册里。有些错过，是自己选的。",
         "breakup": false
       },
       {
         "label": "在旁边也贴一张自己的",
         "fx": {
-          "money": -40,
-          "career": -2,
-          "looks": 4,
-          "mood": 14,
-          "health": -2
+          "mood": 14
         },
         "result": "一周后有人扫了你。她说「我看到你那张卡片，觉得这人挺有意思」。",
         "breakup": false
@@ -14016,24 +11192,14 @@ module.exports = [
     "options": [
       {
         "label": "硬着头皮待到最后",
-        "fx": {
-          "health": -2,
-          "career": 2,
-          "looks": 2,
-          "mood": -4,
-          "money": 1
-        },
+        "fx": {},
         "result": "你加了七个微信，最后只聊成了一个。但至少没白来。",
         "breakup": false
       },
       {
         "label": "待半小时就走",
         "fx": {
-          "health": 2,
-          "family": -2,
-          "mood": 6,
-          "money": 1,
-          "career": -4
+          "mood": 6
         },
         "result": "朋友追出来问你怎么了。你说「不太适应」，他有点失望。",
         "breakup": false
@@ -14041,11 +11207,8 @@ module.exports = [
       {
         "label": "找个角落，跟同样落单的人聊天",
         "fx": {
-          "family": 6,
           "mood": 16,
-          "money": -2,
-          "health": -2,
-          "career": 4
+          "family": 6
         },
         "result": "那个人也是被朋友骗来的。你们聊了一晚上，成了朋友。",
         "breakup": false
@@ -14068,10 +11231,7 @@ module.exports = [
         "label": "认真回，聊起来",
         "fx": {
           "family": 10,
-          "mood": 8,
-          "money": 2,
-          "health": -3,
-          "career": -4
+          "mood": 8
         },
         "result": "聊了三天，发现挺投缘。我妈的功劳，难得一次。",
         "breakup": false
@@ -14079,24 +11239,14 @@ module.exports = [
       {
         "label": "回得敷衍",
         "fx": {
-          "career": 2,
-          "family": -6,
-          "mood": -2,
-          "money": 3,
-          "health": 4
+          "family": -6
         },
         "result": "对方慢慢也不回了。我妈为此念叨了半个月。",
         "breakup": false
       },
       {
         "label": "先问我妈「你怎么认识人家的」",
-        "fx": {
-          "career": -2,
-          "family": 4,
-          "mood": 4,
-          "money": 3,
-          "health": -3
-        },
+        "fx": {},
         "result": "原来是我妈跳广场舞认识的。你哭笑不得，但还是聊了。",
         "breakup": false
       }
@@ -14117,11 +11267,7 @@ module.exports = [
       {
         "label": "删掉表格",
         "fx": {
-          "health": -2,
-          "career": -2,
-          "family": 4,
-          "mood": 10,
-          "money": 2
+          "mood": 10
         },
         "result": "你意识到自己在挑商品，不是在找人。这个觉醒很重要。",
         "breakup": false
@@ -14129,11 +11275,7 @@ module.exports = [
       {
         "label": "继续排完，选分数最高的",
         "fx": {
-          "career": 8,
-          "family": 2,
-          "mood": -4,
-          "money": -3,
-          "health": -2
+          "career": 8
         },
         "result": "你见了分数最高的那个，聊了十分钟就发现不对。",
         "breakup": false
@@ -14141,11 +11283,8 @@ module.exports = [
       {
         "label": "把「聊得来」这一项加到最高权重",
         "fx": {
-          "career": 4,
-          "family": 6,
           "mood": 14,
-          "money": -3,
-          "health": -1
+          "family": 6
         },
         "result": "重排之后，第一名换了人。后来的事实证明，这个权重是对的。",
         "breakup": false
@@ -14168,34 +11307,22 @@ module.exports = [
         "label": "关掉，去睡觉",
         "fx": {
           "health": 10,
-          "career": -2,
-          "looks": 2,
-          "mood": 6,
-          "money": -2
+          "mood": 6
         },
         "result": "第二天醒来，世界没变，但你清醒了很多。",
         "breakup": false
       },
       {
         "label": "给三个聊过的人各发一句「晚安」",
-        "fx": {
-          "looks": -4,
-          "mood": -4,
-          "money": 3,
-          "health": -4,
-          "career": 1
-        },
+        "fx": {},
         "result": "只有一个人回。你看着那条回复，更加空虚了。",
         "breakup": false
       },
       {
         "label": "打开备忘录，写下「我到底想找什么样的人」",
         "fx": {
-          "health": -2,
-          "career": 6,
-          "family": 4,
           "mood": 12,
-          "money": -3
+          "career": 6
         },
         "result": "你写到天亮。那份清单后来成了你的标准，也救了你。",
         "breakup": false
@@ -14217,11 +11344,8 @@ module.exports = [
       {
         "label": "回一张你这边拍的",
         "fx": {
-          "career": -2,
-          "family": 4,
-          "mood": 12,
           "affection": 22,
-          "money": -2
+          "mood": 12
         },
         "result": "你们交换了各自的天空。从此这成了一个默契。",
         "breakup": false
@@ -14229,11 +11353,7 @@ module.exports = [
       {
         "label": "「嗯，好看。」",
         "fx": {
-          "career": 2,
-          "mood": 4,
-          "affection": 6,
-          "money": -1,
-          "health": -3
+          "affection": 6
         },
         "result": "她回了个笑脸。对话就这样结束了。",
         "breakup": false
@@ -14242,10 +11362,8 @@ module.exports = [
         "label": "「你在哪儿？我过去找你。」",
         "fx": {
           "money": -120,
-          "career": -4,
-          "mood": 16,
           "affection": 30,
-          "health": -1
+          "mood": 16
         },
         "result": "半小时后你们站在同一片天空下。她愣了很久才笑出来。",
         "breakup": false
@@ -14267,11 +11385,8 @@ module.exports = [
       {
         "label": "装作不知道",
         "fx": {
-          "career": 2,
           "mood": -10,
-          "affection": -6,
-          "money": 3,
-          "health": -4
+          "affection": -6
         },
         "result": "你什么都没说，但那几天聊天都心不在焉。",
         "breakup": false
@@ -14279,11 +11394,8 @@ module.exports = [
       {
         "label": "直接问她",
         "fx": {
-          "career": -2,
-          "family": 4,
-          "mood": 6,
           "affection": 12,
-          "money": -3
+          "mood": 6
         },
         "result": "她说「怕你看到我发的废话」。这个解释，居然是真的。",
         "breakup": false
@@ -14291,11 +11403,8 @@ module.exports = [
       {
         "label": "减少主动联系，看她会不会找你",
         "fx": {
-          "health": 2,
-          "career": 4,
-          "mood": -6,
           "affection": -12,
-          "money": -3
+          "mood": -6
         },
         "result": "三天后她问「你最近怎么了」。你却不知道该怎么接。",
         "breakup": false
@@ -14317,11 +11426,8 @@ module.exports = [
       {
         "label": "「你觉得呢？」",
         "fx": {
-          "career": 2,
-          "mood": 8,
           "affection": 14,
-          "money": -1,
-          "health": -1
+          "mood": 8
         },
         "result": "她说「你先说」。你们绕了半小时，还是没绕出来。",
         "breakup": false
@@ -14329,11 +11435,9 @@ module.exports = [
       {
         "label": "「我想正式一点。」",
         "fx": {
-          "career": -2,
-          "family": 8,
-          "mood": 18,
           "affection": 30,
-          "money": -1
+          "mood": 18,
+          "family": 8
         },
         "result": "她打了很长一段话过来，中心思想是「我也是」。",
         "breakup": false
@@ -14341,11 +11445,8 @@ module.exports = [
       {
         "label": "「现在这样不好吗？」",
         "fx": {
-          "career": 2,
-          "family": -2,
-          "mood": -8,
           "affection": -16,
-          "money": 1
+          "mood": -8
         },
         "result": "她沉默了很久，说「挺好的」。但语气已经不一样了。",
         "breakup": false
@@ -14367,11 +11468,9 @@ module.exports = [
       {
         "label": "「需要我陪你去吗？」",
         "fx": {
-          "career": -2,
-          "family": 6,
-          "mood": 10,
           "affection": 26,
-          "money": -4
+          "mood": 10,
+          "family": 6
         },
         "result": "她愣了一下，说「不用啦」。但那天你还是去了，站在她旁边。",
         "breakup": false
@@ -14379,11 +11478,8 @@ module.exports = [
       {
         "label": "「那你穿好看点。」",
         "fx": {
-          "looks": 2,
-          "mood": 12,
           "affection": 16,
-          "money": -1,
-          "health": -4
+          "mood": 12
         },
         "result": "她笑骂你「乌鸦嘴」。这句玩笑，反而化解了尴尬。",
         "breakup": false
@@ -14391,11 +11487,8 @@ module.exports = [
       {
         "label": "「你还想去？」",
         "fx": {
-          "family": -4,
-          "mood": -6,
           "affection": -18,
-          "money": 1,
-          "health": 4
+          "mood": -6
         },
         "result": "她说「人家请我了」。你们第一次有了明显的隔阂。",
         "breakup": false
@@ -14417,11 +11510,9 @@ module.exports = [
       {
         "label": "「那改天，没事。」",
         "fx": {
-          "family": 6,
-          "mood": 6,
           "affection": 16,
-          "money": -4,
-          "health": -4
+          "family": 6,
+          "mood": 6
         },
         "result": "她主动补了一句「下周我请你」。大度是有回报的。",
         "breakup": false
@@ -14429,11 +11520,8 @@ module.exports = [
       {
         "label": "追问「是不是不想见我」",
         "fx": {
-          "mood": -8,
           "affection": -14,
-          "money": -4,
-          "health": 1,
-          "career": 4
+          "mood": -8
         },
         "result": "她说「你想多了」。但那次之后，她真的开始躲你了。",
         "breakup": false
@@ -14442,10 +11530,8 @@ module.exports = [
         "label": "「那我送你回去吧。」",
         "fx": {
           "money": -240,
-          "career": -2,
-          "mood": 10,
           "affection": 24,
-          "health": 3
+          "mood": 10
         },
         "result": "她犹豫了一下，答应了。车上她说了实话：是有点紧张。",
         "breakup": false
@@ -14467,11 +11553,8 @@ module.exports = [
       {
         "label": "也发一段六十秒的语音回去",
         "fx": {
-          "career": -2,
-          "family": 4,
-          "mood": 12,
           "affection": 24,
-          "money": -1
+          "mood": 12
         },
         "result": "她说「听你说话我就好多了」。声音比文字有温度。",
         "breakup": false
@@ -14479,11 +11562,8 @@ module.exports = [
       {
         "label": "打字分析，帮她想办法",
         "fx": {
-          "career": 6,
-          "mood": 4,
           "affection": 12,
-          "money": -1,
-          "health": -1
+          "career": 6
         },
         "result": "她按你说的做了，事情解决了。但她好像没那么开心。",
         "breakup": false
@@ -14491,11 +11571,9 @@ module.exports = [
       {
         "label": "只回一句「辛苦了，抱抱」",
         "fx": {
-          "family": 6,
-          "mood": 10,
           "affection": 20,
-          "money": -4,
-          "health": -4
+          "mood": 10,
+          "family": 6
         },
         "result": "她回了个拥抱的表情。有时候，被理解比被指导重要。",
         "breakup": false
@@ -14518,10 +11596,7 @@ module.exports = [
         "label": "忍不住问她那人是谁",
         "fx": {
           "mood": -12,
-          "affection": -10,
-          "money": 3,
-          "health": 4,
-          "career": -4
+          "affection": -10
         },
         "result": "她说「大学同学」。你信了，但那晚没睡好。",
         "breakup": false
@@ -14529,11 +11604,7 @@ module.exports = [
       {
         "label": "什么也不说，翻过去",
         "fx": {
-          "career": 4,
-          "mood": -4,
-          "affection": 8,
-          "money": -2,
-          "health": 2
+          "affection": 8
         },
         "result": "你忍住了。第二天醒来，觉得也没什么大不了。",
         "breakup": false
@@ -14541,11 +11612,8 @@ module.exports = [
       {
         "label": "给她发条消息，聊聊别的",
         "fx": {
-          "family": 4,
-          "mood": 10,
           "affection": 18,
-          "money": -2,
-          "health": -3
+          "mood": 10
         },
         "result": "她很快回了。你的不安，被她的回应化解了。",
         "breakup": false
@@ -14567,11 +11635,9 @@ module.exports = [
       {
         "label": "「那你怎么说的？」",
         "fx": {
-          "family": 6,
-          "mood": 12,
           "affection": 22,
-          "money": -2,
-          "health": -3
+          "mood": 12,
+          "family": 6
         },
         "result": "她说「我说快了」。你盯着这三个字，笑了很久。",
         "breakup": false
@@ -14579,24 +11645,16 @@ module.exports = [
       {
         "label": "「那你要不要考虑一下我？」",
         "fx": {
-          "career": -2,
-          "family": 8,
-          "mood": 16,
           "affection": 28,
-          "money": -1
+          "mood": 16,
+          "family": 8
         },
         "result": "她回了三个字：「考虑中。」你们的关系，就这么定了。",
         "breakup": false
       },
       {
         "label": "「同事真爱管闲事。」",
-        "fx": {
-          "career": -2,
-          "mood": 2,
-          "affection": 4,
-          "money": -1,
-          "health": 3
-        },
+        "fx": {},
         "result": "她「嗯」了一声。你把话题岔开了，也岔开了机会。",
         "breakup": false
       }
@@ -14617,11 +11675,8 @@ module.exports = [
       {
         "label": "立刻打过去",
         "fx": {
-          "health": -4,
-          "career": -2,
-          "mood": 12,
           "affection": 28,
-          "money": -3
+          "mood": 12
         },
         "result": "她接了，没说梦的内容，就听你说话。二十分钟后她睡着了。",
         "breakup": false
@@ -14629,11 +11684,8 @@ module.exports = [
       {
         "label": "发语音讲个无聊的故事",
         "fx": {
-          "health": -2,
-          "family": 4,
-          "mood": 12,
           "affection": 22,
-          "money": -3
+          "mood": 12
         },
         "result": "你讲了十分钟，她说「好了，我不怕了」。",
         "breakup": false
@@ -14641,11 +11693,7 @@ module.exports = [
       {
         "label": "早上才看到，回「怎么了」",
         "fx": {
-          "health": 2,
-          "career": 2,
-          "mood": -4,
-          "affection": -8,
-          "money": -2
+          "affection": -8
         },
         "result": "她说「没事了」。你错过了一次很重要的机会。",
         "breakup": false
@@ -14667,11 +11715,8 @@ module.exports = [
       {
         "label": "「只有你。」",
         "fx": {
-          "family": 4,
-          "mood": 8,
           "affection": 18,
-          "money": -3,
-          "health": -1
+          "mood": 8
         },
         "result": "她说「我不信，但爱听」。坦诚与情话之间，你找到了平衡。",
         "breakup": false
@@ -14679,11 +11724,7 @@ module.exports = [
       {
         "label": "如实说「还有两个，但都快断了」",
         "fx": {
-          "career": 2,
-          "mood": 4,
-          "affection": 12,
-          "money": -3,
-          "health": -2
+          "affection": 12
         },
         "result": "她沉默了很久，说「你倒是诚实」。这个诚实有代价。",
         "breakup": false
@@ -14691,11 +11732,8 @@ module.exports = [
       {
         "label": "反问「你呢」",
         "fx": {
-          "career": 4,
-          "mood": 6,
           "affection": 8,
-          "money": -4,
-          "health": -3
+          "mood": 6
         },
         "result": "她说「比你多」。你们相视无言，各自有了心事。",
         "breakup": false
@@ -14717,11 +11755,8 @@ module.exports = [
       {
         "label": "听完，认真说感受",
         "fx": {
-          "career": -2,
-          "family": -4,
-          "mood": 14,
           "affection": 24,
-          "money": 4
+          "mood": 14
         },
         "result": "她回了一大段，说「你是第一个听完的」。",
         "breakup": false
@@ -14729,24 +11764,15 @@ module.exports = [
       {
         "label": "回一首你喜欢的",
         "fx": {
-          "family": -2,
-          "mood": 12,
           "affection": 20,
-          "money": 4,
-          "health": -2
+          "mood": 12
         },
         "result": "你们交换歌单，聊到了深夜。音乐是最短的捷径。",
         "breakup": false
       },
       {
         "label": "说「好听」，但没听完",
-        "fx": {
-          "career": 2,
-          "affection": -4,
-          "money": 3,
-          "health": -3,
-          "looks": 2
-        },
+        "fx": {},
         "result": "她问「哪里好听」，你答不上来。",
         "breakup": false
       }
@@ -14767,11 +11793,9 @@ module.exports = [
       {
         "label": "「我也是。」",
         "fx": {
-          "family": 6,
-          "mood": 10,
           "affection": 22,
-          "money": -4,
-          "health": -2
+          "mood": 10,
+          "family": 6
         },
         "result": "你们一起吐槽了半小时婚姻制度。恐婚的人，反而更认真。",
         "breakup": false
@@ -14779,11 +11803,8 @@ module.exports = [
       {
         "label": "「那就不结，先过着。」",
         "fx": {
-          "family": -4,
-          "mood": 12,
           "affection": 18,
-          "money": 1,
-          "health": -1
+          "mood": 12
         },
         "result": "她笑了，说「你这人真会偷换概念」。气氛轻松了。",
         "breakup": false
@@ -14791,11 +11812,7 @@ module.exports = [
       {
         "label": "「别想那么远。」",
         "fx": {
-          "career": 4,
-          "mood": 2,
-          "affection": 6,
-          "money": -1,
-          "health": -4
+          "affection": 6
         },
         "result": "她「嗯」了一声。这个话题就这样被你按了下去。",
         "breakup": false
@@ -14818,10 +11835,8 @@ module.exports = [
         "label": "「等我，一小时。」",
         "fx": {
           "money": -200,
-          "health": -4,
-          "mood": 18,
           "affection": 32,
-          "career": -2
+          "mood": 18
         },
         "result": "你在她楼下见到她时，她什么也没说，只是抱了你一下。",
         "breakup": false
@@ -14829,11 +11844,7 @@ module.exports = [
       {
         "label": "「明天吧，今天太晚了。」",
         "fx": {
-          "health": 4,
-          "career": -2,
-          "mood": 4,
-          "affection": 8,
-          "money": -2
+          "affection": 8
         },
         "result": "她回「好」。第二天你们见了面，但那种冲动已经淡了。",
         "breakup": false
@@ -14841,11 +11852,9 @@ module.exports = [
       {
         "label": "「怎么了，出什么事了？」",
         "fx": {
-          "family": 6,
-          "mood": 8,
           "affection": 16,
-          "money": -3,
-          "health": -1
+          "mood": 8,
+          "family": 6
         },
         "result": "她说「没事，就是想见你」。你才明白，这也是一种事。",
         "breakup": false
@@ -14867,11 +11876,8 @@ module.exports = [
       {
         "label": "把这件事告诉她",
         "fx": {
-          "career": -2,
-          "family": 4,
-          "mood": 14,
           "affection": 26,
-          "money": -3
+          "mood": 14
         },
         "result": "她回「我也是，从昨天开始的」。你们同时笑了。",
         "breakup": false
@@ -14879,11 +11885,7 @@ module.exports = [
       {
         "label": "藏起来，装作无所谓",
         "fx": {
-          "career": 4,
-          "mood": -4,
-          "affection": 6,
-          "money": -3,
-          "health": 3
+          "affection": 6
         },
         "result": "你继续装作淡定。但这种在乎，藏是藏不住的。",
         "breakup": false
@@ -14891,11 +11893,7 @@ module.exports = [
       {
         "label": "把手机放到客厅，强迫自己不去看",
         "fx": {
-          "health": 6,
-          "career": 4,
-          "mood": 2,
-          "affection": -4,
-          "money": -4
+          "health": 6
         },
         "result": "你坚持了一周。但那条消息，你还是第一时间看了。",
         "breakup": false
@@ -14917,11 +11915,8 @@ module.exports = [
       {
         "label": "当场解释，把上下文给她看",
         "fx": {
-          "career": -2,
-          "mood": 6,
           "affection": 20,
-          "money": 2,
-          "health": -1
+          "mood": 6
         },
         "result": "她看完说「我想多了」。主动透明，是安全感最好的来源。",
         "breakup": false
@@ -14929,11 +11924,8 @@ module.exports = [
       {
         "label": "说「你翻我手机？」",
         "fx": {
-          "family": -4,
-          "mood": -8,
           "affection": -16,
-          "money": 2,
-          "health": 4
+          "mood": -8
         },
         "result": "她说「我不是故意的」。但这件事，从此横在你们中间。",
         "breakup": false
@@ -14941,11 +11933,9 @@ module.exports = [
       {
         "label": "把手机递过去：「你可以随时看。」",
         "fx": {
-          "career": -2,
-          "family": 6,
-          "mood": 10,
           "affection": 26,
-          "money": -1
+          "mood": 10,
+          "family": 6
         },
         "result": "她愣了一下，把手机推回来：「我信你。」",
         "breakup": false
@@ -14967,11 +11957,9 @@ module.exports = [
       {
         "label": "真心为她高兴，点了最贵的菜",
         "fx": {
-          "family": 8,
-          "mood": 14,
           "affection": 28,
-          "money": -3,
-          "health": -2
+          "mood": 14,
+          "family": 8
         },
         "result": "她说「你一点都不介意吗」。你说「我介意什么，我女朋友能干」。",
         "breakup": false
@@ -14979,11 +11967,8 @@ module.exports = [
       {
         "label": "笑着祝贺，但话少了很多",
         "fx": {
-          "career": 2,
           "mood": -10,
-          "affection": -8,
-          "money": -2,
-          "health": 1
+          "affection": -8
         },
         "result": "她察觉到了，问「你是不是不高兴」。你说没有，语气却出卖了你。",
         "breakup": false
@@ -14991,11 +11976,7 @@ module.exports = [
       {
         "label": "当晚开始改简历",
         "fx": {
-          "health": -4,
-          "career": 12,
-          "mood": -4,
-          "money": 1,
-          "looks": -2
+          "career": 12
         },
         "result": "你把压力转成了动力。三个月后，你也升了。",
         "breakup": false
@@ -15018,10 +11999,8 @@ module.exports = [
         "label": "默默放回去，结账时说是自己想吃的",
         "fx": {
           "money": -120,
-          "family": 6,
-          "mood": 12,
           "affection": 26,
-          "health": -4
+          "mood": 12
         },
         "result": "她发现后什么也没说，但那天晚上草莓洗得很仔细。",
         "breakup": false
@@ -15030,23 +12009,15 @@ module.exports = [
         "label": "问她「想吃就买啊」",
         "fx": {
           "money": -120,
-          "mood": 8,
           "affection": 14,
-          "health": -4,
-          "career": 1
+          "mood": 8
         },
         "result": "她说「有点贵」。你才知道她一直在替你省钱。",
         "breakup": false
       },
       {
         "label": "什么也没做",
-        "fx": {
-          "career": 2,
-          "family": -2,
-          "affection": -4,
-          "money": -1,
-          "health": 1
-        },
+        "fx": {},
         "result": "草莓最终没买。这件小事，她会记很久。",
         "breakup": false
       }
@@ -15068,10 +12039,8 @@ module.exports = [
         "label": "「那就养，我负责遛。」",
         "fx": {
           "money": -2400,
-          "health": -2,
-          "family": 8,
-          "mood": 12,
-          "affection": 26
+          "affection": 26,
+          "mood": 12
         },
         "result": "她高兴得跳起来。后来狗每天逼着你早起，你反而更健康了。",
         "breakup": false
@@ -15079,11 +12048,7 @@ module.exports = [
       {
         "label": "「等搬了大房子再说。」",
         "fx": {
-          "career": 4,
-          "family": -2,
-          "mood": 2,
-          "affection": 8,
-          "money": -3
+          "affection": 8
         },
         "result": "她说「那得等到什么时候」。但至少没有吵起来。",
         "breakup": false
@@ -15091,11 +12056,9 @@ module.exports = [
       {
         "label": "「我说不行就是不行。」",
         "fx": {
-          "family": -10,
-          "mood": -12,
           "affection": -24,
-          "money": 1,
-          "health": 2
+          "mood": -12,
+          "family": -10
         },
         "result": "她摔门出去了。那晚你们第一次分房睡。",
         "breakup": false
@@ -15117,11 +12080,9 @@ module.exports = [
       {
         "label": "守到她退烧",
         "fx": {
+          "affection": 30,
           "health": -8,
-          "career": -6,
-          "family": 6,
-          "mood": 8,
-          "affection": 30
+          "mood": 8
         },
         "result": "凌晨四点她退烧了。你趴在床边睡着了，醒来时她正看着你。",
         "breakup": false
@@ -15129,11 +12090,8 @@ module.exports = [
       {
         "label": "叫她闺蜜来，自己去上班",
         "fx": {
-          "career": 6,
-          "mood": -4,
           "affection": -6,
-          "money": -3,
-          "health": 3
+          "career": 6
         },
         "result": "她没说什么。但闺蜜看你的眼神，你读懂了。",
         "breakup": false
@@ -15141,11 +12099,8 @@ module.exports = [
       {
         "label": "请假照顾，但抱怨了两句",
         "fx": {
-          "health": -2,
-          "career": -2,
-          "mood": -6,
           "affection": 12,
-          "money": 4
+          "mood": -6
         },
         "result": "她听着你的抱怨，说「你回去上班吧」。",
         "breakup": false
@@ -15168,10 +12123,8 @@ module.exports = [
         "label": "提前打听她爸妈的喜好",
         "fx": {
           "money": -1000,
-          "career": -2,
-          "family": 14,
-          "mood": 6,
-          "affection": 20
+          "affection": 20,
+          "family": 14
         },
         "result": "你带的礼很对路。她妈私下跟她说「这孩子上心」。",
         "breakup": false
@@ -15179,11 +12132,8 @@ module.exports = [
       {
         "label": "照常去，不做特别准备",
         "fx": {
-          "family": 6,
-          "mood": 4,
           "affection": 10,
-          "money": -3,
-          "health": -3
+          "family": 6
         },
         "result": "家宴没什么纰漏，也没什么亮点。中规中矩。",
         "breakup": false
@@ -15191,11 +12141,8 @@ module.exports = [
       {
         "label": "推说加班，改天再去",
         "fx": {
-          "career": 4,
-          "family": -10,
-          "mood": 4,
           "affection": -12,
-          "money": -4
+          "family": -10
         },
         "result": "她没说什么，但她妈的态度从此冷了下来。",
         "breakup": false
@@ -15217,11 +12164,8 @@ module.exports = [
       {
         "label": "问她「我妈没说什么吧」",
         "fx": {
-          "family": 6,
-          "mood": 4,
           "affection": 12,
-          "money": -3,
-          "health": -2
+          "family": 6
         },
         "result": "她说「挺好的，就是问了我三次什么时候结婚」。",
         "breakup": false
@@ -15229,24 +12173,16 @@ module.exports = [
       {
         "label": "分别问两个人感受",
         "fx": {
-          "career": -2,
-          "family": 10,
-          "mood": 6,
           "affection": 16,
-          "money": -4
+          "family": 10,
+          "mood": 6
         },
         "result": "两边的说法居然一致。你判断出这次是真的顺利。",
         "breakup": false
       },
       {
         "label": "装作不在意",
-        "fx": {
-          "career": 2,
-          "mood": -4,
-          "affection": 4,
-          "money": -2,
-          "health": 3
-        },
+        "fx": {},
         "result": "你没问，她也没说。这件事就这么含糊过去了。",
         "breakup": false
       }
@@ -15268,10 +12204,8 @@ module.exports = [
         "label": "一起做预算，每月固定存",
         "fx": {
           "money": -4000,
-          "career": -4,
-          "family": 12,
-          "mood": 6,
-          "affection": 26
+          "affection": 26,
+          "family": 12
         },
         "result": "你们开了个共同账户。每月一号，成了你们的节日。",
         "breakup": false
@@ -15279,11 +12213,8 @@ module.exports = [
       {
         "label": "说「这事太远了，先不想」",
         "fx": {
-          "career": 2,
-          "family": -6,
-          "mood": -4,
           "affection": -10,
-          "money": 1
+          "family": -6
         },
         "result": "她把存折收了回去。那天晚上她睡得很早。",
         "breakup": false
@@ -15292,10 +12223,8 @@ module.exports = [
         "label": "接下存折，说「我尽快」",
         "fx": {
           "money": -2000,
-          "health": -4,
-          "career": 8,
-          "family": 8,
-          "affection": 18
+          "affection": 18,
+          "career": 8
         },
         "result": "你开始接私活。累是真累，但看着数字一点点涨，值。",
         "breakup": false
@@ -15317,11 +12246,8 @@ module.exports = [
       {
         "label": "大方打招呼，搂住她",
         "fx": {
-          "career": -2,
-          "looks": 4,
-          "mood": 10,
           "affection": 24,
-          "money": -1
+          "mood": 10
         },
         "result": "回去路上她说「你刚才那一下，帅死了」。",
         "breakup": false
@@ -15329,11 +12255,8 @@ module.exports = [
       {
         "label": "一言不发，事后冷暴力",
         "fx": {
-          "family": -4,
-          "mood": -12,
           "affection": -18,
-          "money": 1,
-          "health": 1
+          "mood": -12
         },
         "result": "她解释了一晚上，你一句也没听进去。",
         "breakup": false
@@ -15341,11 +12264,9 @@ module.exports = [
       {
         "label": "回去后坦诚说「我吃醋了」",
         "fx": {
-          "family": 6,
-          "mood": 12,
           "affection": 22,
-          "money": -2,
-          "health": -4
+          "mood": 12,
+          "family": 6
         },
         "result": "她笑了，说「你这人真可爱」。坦白比装没事强得多。",
         "breakup": false
@@ -15368,10 +12289,8 @@ module.exports = [
         "label": "全力支持，把存款拿出来",
         "fx": {
           "money": -30000,
-          "career": -4,
-          "family": 10,
-          "mood": 12,
-          "affection": 32
+          "affection": 32,
+          "mood": 12
         },
         "result": "她哭了，说「等我毕业」。那两年你过得很紧，但很值。",
         "breakup": false
@@ -15379,11 +12298,9 @@ module.exports = [
       {
         "label": "支持，但建议她读在职的",
         "fx": {
-          "career": 6,
-          "family": -4,
-          "mood": 6,
           "affection": 16,
-          "money": -2
+          "career": 6,
+          "mood": 6
         },
         "result": "她考虑了很久，选了折中方案。理性，但少了点闯劲。",
         "breakup": false
@@ -15391,11 +12308,9 @@ module.exports = [
       {
         "label": "「你现在这样不好吗？」",
         "fx": {
-          "career": 4,
-          "family": -8,
-          "mood": -10,
           "affection": -22,
-          "money": 2
+          "mood": -10,
+          "family": -8
         },
         "result": "她眼里的光灭了。很多年后你还在后悔这句话。",
         "breakup": false
@@ -15417,11 +12332,9 @@ module.exports = [
       {
         "label": "「你决定就好。」",
         "fx": {
-          "family": 6,
-          "mood": 8,
           "affection": 22,
-          "money": -1,
-          "health": -3
+          "mood": 8,
+          "family": 6
         },
         "result": "她想了很久，最后只留了一本书。她说「这样就好」。",
         "breakup": false
@@ -15429,11 +12342,8 @@ module.exports = [
       {
         "label": "主动说「我帮你扔」",
         "fx": {
-          "health": -2,
-          "family": 2,
-          "mood": 6,
           "affection": 14,
-          "money": -1
+          "mood": 6
         },
         "result": "你们一起把箱子抬下楼。回来的路上，她牵着你的手。",
         "breakup": false
@@ -15441,11 +12351,8 @@ module.exports = [
       {
         "label": "「先别扔，万一有用呢。」",
         "fx": {
-          "career": 2,
-          "family": -2,
-          "mood": -6,
           "affection": -12,
-          "money": 1
+          "mood": -6
         },
         "result": "她把箱子塞回了床底。有些东西留着，就是留着。",
         "breakup": false
@@ -15467,11 +12374,9 @@ module.exports = [
       {
         "label": "吃完，在纸条背面写句话",
         "fx": {
-          "health": -2,
-          "family": 8,
-          "mood": 14,
           "affection": 24,
-          "money": -3
+          "mood": 14,
+          "family": 8
         },
         "result": "第二天她看到背面的「谢谢」，拍照发了朋友圈。",
         "breakup": false
@@ -15479,11 +12384,8 @@ module.exports = [
       {
         "label": "轻手轻脚吃完，不打扰她",
         "fx": {
-          "health": 4,
-          "career": -2,
-          "mood": 8,
           "affection": 16,
-          "money": -3
+          "mood": 8
         },
         "result": "你坐在她旁边看了一会儿，然后去睡了。",
         "breakup": false
@@ -15491,11 +12393,7 @@ module.exports = [
       {
         "label": "把饭倒掉，直接睡",
         "fx": {
-          "health": 4,
-          "career": 2,
-          "mood": -4,
-          "affection": -10,
-          "money": -4
+          "affection": -10
         },
         "result": "第二天她问「饭吃了吗」，你说「吃了」。",
         "breakup": false
@@ -15517,11 +12415,9 @@ module.exports = [
       {
         "label": "进去先安慰{p}，再哄我妈",
         "fx": {
-          "health": -2,
-          "family": 8,
-          "mood": 6,
           "affection": 24,
-          "money": -2
+          "family": 8,
+          "mood": 6
         },
         "result": "顺序很重要。你先站了她，再哄老人，居然都哄好了。",
         "breakup": false
@@ -15529,11 +12425,8 @@ module.exports = [
       {
         "label": "把两人都叫出来，当面说清楚",
         "fx": {
-          "career": -2,
-          "family": 12,
-          "mood": -4,
           "affection": 12,
-          "money": 2
+          "family": 12
         },
         "result": "吵了一小时，最后达成共识。疼，但一次到位。",
         "breakup": false
@@ -15541,11 +12434,9 @@ module.exports = [
       {
         "label": "躲出去，等她们自己解决",
         "fx": {
-          "family": -10,
-          "mood": -8,
           "affection": -16,
-          "money": 1,
-          "health": 2
+          "family": -10,
+          "mood": -8
         },
         "result": "等你回来，战场是静了，但两个人都记着你的缺席。",
         "breakup": false
@@ -15568,10 +12459,8 @@ module.exports = [
         "label": "「别辞，我妈可以来帮忙。」",
         "fx": {
           "money": -4000,
-          "career": -2,
-          "family": 12,
-          "mood": 10,
-          "affection": 28
+          "affection": 28,
+          "family": 12
         },
         "result": "她停下手的动作，抬头看你，眼睛红了。",
         "breakup": false
@@ -15579,11 +12468,9 @@ module.exports = [
       {
         "label": "「你自己决定，我都支持。」",
         "fx": {
-          "family": 6,
-          "mood": 6,
           "affection": 14,
-          "money": -1,
-          "health": -2
+          "family": 6,
+          "mood": 6
         },
         "result": "她想了一周，最后还是辞了。你至今不知道那是不是她的本意。",
         "breakup": false
@@ -15591,11 +12478,8 @@ module.exports = [
       {
         "label": "算一笔经济账给她看",
         "fx": {
-          "career": 8,
-          "mood": -4,
           "affection": -8,
-          "money": -2,
-          "health": 2
+          "career": 8
         },
         "result": "她听完说「我知道」。那晚你们背对背睡的。",
         "breakup": false
@@ -15618,10 +12502,8 @@ module.exports = [
         "label": "主动约她出去吃顿饭",
         "fx": {
           "money": -600,
-          "family": 6,
-          "mood": 14,
           "affection": 24,
-          "health": -2
+          "mood": 14
         },
         "result": "饭桌上你们聊了两小时。原来话都在，只是没人先开口。",
         "breakup": false
@@ -15629,11 +12511,9 @@ module.exports = [
       {
         "label": "写张纸条放在她包里",
         "fx": {
-          "family": 8,
-          "mood": 12,
           "affection": 20,
-          "money": -2,
-          "health": -2
+          "mood": 12,
+          "family": 8
         },
         "result": "她中午发现，下午发来一条：「晚上早点回来。」",
         "breakup": false
@@ -15641,11 +12521,8 @@ module.exports = [
       {
         "label": "就这样吧，老夫老妻都这样",
         "fx": {
-          "career": 2,
-          "family": 4,
-          "mood": -8,
           "affection": -14,
-          "money": -4
+          "mood": -8
         },
         "result": "沉默继续。有些婚姻，是在安静里慢慢凉掉的。",
         "breakup": false
@@ -15668,10 +12545,8 @@ module.exports = [
         "label": "陪到底，天亮才回家",
         "fx": {
           "money": -1200,
-          "health": -10,
-          "career": -6,
-          "family": 10,
-          "affection": 26
+          "affection": 26,
+          "health": -10
         },
         "result": "孩子退烧时，{p}靠在你肩上睡着了。你们仨挤在塑料椅上。",
         "breakup": false
@@ -15680,10 +12555,8 @@ module.exports = [
         "label": "让她先带孩子，你去排队挂号",
         "fx": {
           "money": -1200,
-          "health": -6,
-          "career": 2,
-          "family": 6,
-          "affection": 16
+          "affection": 16,
+          "health": -6
         },
         "result": "分工明确，效率高。但那晚她一个人抱了很久。",
         "breakup": false
@@ -15692,10 +12565,7 @@ module.exports = [
         "label": "打电话叫你妈过来",
         "fx": {
           "money": -1200,
-          "family": 8,
-          "mood": -4,
-          "affection": 4,
-          "health": -4
+          "family": 8
         },
         "result": "我妈来了，但{p}整晚没怎么说话。",
         "breakup": false
@@ -15717,11 +12587,9 @@ module.exports = [
       {
         "label": "跟着一起看，聊到很晚",
         "fx": {
-          "health": -2,
-          "family": 8,
-          "mood": 16,
           "affection": 22,
-          "money": -1
+          "mood": 16,
+          "family": 8
         },
         "result": "你们翻完了三个相册。那天晚上比任何纪念日都暖。",
         "breakup": false
@@ -15729,11 +12597,7 @@ module.exports = [
       {
         "label": "「别看了，都过去了。」",
         "fx": {
-          "career": 2,
-          "family": -2,
-          "mood": -4,
-          "affection": -8,
-          "money": 1
+          "affection": -8
         },
         "result": "她默默把相册收了起来。",
         "breakup": false
@@ -15742,10 +12606,8 @@ module.exports = [
         "label": "提议再拍一组一样的",
         "fx": {
           "money": -1600,
-          "looks": -4,
-          "family": 10,
-          "mood": 18,
-          "affection": 28
+          "affection": 28,
+          "mood": 18
         },
         "result": "你们真的去了同一家照相馆。照片里多了个人，少了点腰围。",
         "breakup": false
@@ -15767,11 +12629,9 @@ module.exports = [
       {
         "label": "跟{p}坦白这件事",
         "fx": {
-          "health": -2,
-          "family": 6,
-          "mood": 10,
           "affection": 20,
-          "money": -4
+          "mood": 10,
+          "family": 6
         },
         "result": "她沉默了很久，说「我也是」。原来你们都在怕。",
         "breakup": false
@@ -15779,11 +12639,8 @@ module.exports = [
       {
         "label": "给自己找点事做，晚点回",
         "fx": {
-          "health": -4,
           "career": 8,
-          "family": -6,
-          "mood": -4,
-          "money": 4
+          "family": -6
         },
         "result": "你加了两个月的班。家越来越像旅馆。",
         "breakup": false
@@ -15791,11 +12648,7 @@ module.exports = [
       {
         "label": "什么都不做，继续坐十分钟",
         "fx": {
-          "family": -4,
-          "mood": -10,
-          "money": -3,
-          "health": 1,
-          "career": 2
+          "mood": -10
         },
         "result": "这十分钟变成了二十分钟，然后是半小时。",
         "breakup": false
@@ -15818,10 +12671,7 @@ module.exports = [
         "label": "当成意外之财，吃顿好的",
         "fx": {
           "money": 400,
-          "health": -2,
-          "mood": 14,
-          "career": 4,
-          "looks": -1
+          "mood": 14
         },
         "result": "你用这钱吃了顿火锅。这大概是今年最开心的一顿。",
         "breakup": false
@@ -15829,11 +12679,7 @@ module.exports = [
       {
         "label": "存起来",
         "fx": {
-          "money": 400,
-          "career": -4,
-          "mood": 4,
-          "health": 4,
-          "looks": -3
+          "money": 400
         },
         "result": "你把它夹进书里。三个月后你又忘了它在哪。",
         "breakup": false
@@ -15842,10 +12688,8 @@ module.exports = [
         "label": "给楼下卖唱的",
         "fx": {
           "money": -400,
-          "family": 8,
           "mood": 18,
-          "health": 3,
-          "career": -3
+          "family": 8
         },
         "result": "他愣了很久，连鞠了两个躬。你走得很快，但心里很暖。",
         "breakup": false
@@ -15867,35 +12711,23 @@ module.exports = [
       {
         "label": "认真带他，花不少时间",
         "fx": {
-          "health": -4,
           "career": 12,
-          "mood": 10,
-          "money": 3,
-          "looks": -3
+          "mood": 10
         },
         "result": "三个月后他能独当一面了。他请客那天，说了句「谢谢你」。",
         "breakup": false
       },
       {
         "label": "应付了事",
-        "fx": {
-          "health": 2,
-          "career": 2,
-          "mood": -2,
-          "money": 2,
-          "looks": -4
-        },
+        "fx": {},
         "result": "他后来跟了别人。你偶尔会想起那双眼睛。",
         "breakup": false
       },
       {
         "label": "告诉他一些职场的实话",
         "fx": {
-          "career": 8,
-          "family": 4,
           "mood": 12,
-          "money": -2,
-          "health": -2
+          "career": 8
         },
         "result": "他听完沉默了很久。一年后他说「您当年那句话，我记到现在」。",
         "breakup": false
@@ -15918,10 +12750,8 @@ module.exports = [
         "label": "去，并且提前一天到",
         "fx": {
           "money": -2400,
-          "career": -4,
-          "family": 10,
           "mood": 14,
-          "health": 3
+          "family": 10
         },
         "result": "你们八个人聚齐了六个。喝到凌晨，像回到十九岁。",
         "breakup": false
@@ -15929,11 +12759,7 @@ module.exports = [
       {
         "label": "去，随礼就走",
         "fx": {
-          "money": -1200,
-          "career": 2,
-          "mood": 2,
-          "health": -2,
-          "looks": -1
+          "money": -1200
         },
         "result": "你待了四十分钟。红包到了，人也到了，心没到。",
         "breakup": false
@@ -15942,10 +12768,8 @@ module.exports = [
         "label": "找借口不去，只转红包",
         "fx": {
           "money": -1200,
-          "career": 4,
           "family": -6,
-          "mood": -6,
-          "health": 2
+          "mood": -6
         },
         "result": "他回了个「谢谢兄弟」。你们的关系，又淡了一层。",
         "breakup": false
@@ -15967,11 +12791,7 @@ module.exports = [
       {
         "label": "开口问他在哪买的",
         "fx": {
-          "career": -4,
-          "family": 4,
-          "mood": 12,
-          "money": -2,
-          "health": 4
+          "mood": 12
         },
         "result": "他笑了，说「图书馆借的」。你们聊了一路，还加了微信。",
         "breakup": false
@@ -15980,23 +12800,15 @@ module.exports = [
         "label": "默默记下书名，回去下单",
         "fx": {
           "money": -100,
-          "career": 6,
           "mood": 8,
-          "health": 2,
-          "looks": -2
+          "career": 6
         },
         "result": "书到了，你读了三十页就放下了。但至少开始了。",
         "breakup": false
       },
       {
         "label": "什么也没做",
-        "fx": {
-          "mood": -2,
-          "money": 1,
-          "health": 4,
-          "career": -4,
-          "looks": 3
-        },
+        "fx": {},
         "result": "你下车，走进人群。那本书你到现在也没读。",
         "breakup": false
       }
@@ -16017,11 +12829,8 @@ module.exports = [
       {
         "label": "在街上漫无目的地走",
         "fx": {
-          "health": 6,
-          "career": -2,
-          "looks": -2,
           "mood": 14,
-          "money": 4
+          "health": 6
         },
         "result": "你走了两个小时，路过很多平时没注意过的店。",
         "breakup": false
@@ -16030,10 +12839,7 @@ module.exports = [
         "label": "回家倒头就睡",
         "fx": {
           "health": 12,
-          "career": -2,
-          "mood": 6,
-          "money": 4,
-          "looks": -3
+          "mood": 6
         },
         "result": "你睡了十个小时。醒来时天又黑了，但你精神很好。",
         "breakup": false
@@ -16041,11 +12847,8 @@ module.exports = [
       {
         "label": "给很久没联系的朋友打电话",
         "fx": {
-          "career": -2,
-          "family": 12,
           "mood": 16,
-          "money": -4,
-          "health": -1
+          "family": 12
         },
         "result": "他也很意外。你们聊了一个小时，约了下周吃饭。",
         "breakup": false
@@ -16067,11 +12870,8 @@ module.exports = [
       {
         "label": "每天都接，哪怕只有两分钟",
         "fx": {
-          "career": -2,
           "family": 18,
-          "mood": 10,
-          "money": -3,
-          "health": 3
+          "mood": 10
         },
         "result": "这两分钟成了她的期待。你后来才知道，她每天掐着点等。",
         "breakup": false
@@ -16079,11 +12879,7 @@ module.exports = [
       {
         "label": "隔三差五接一次",
         "fx": {
-          "career": -2,
-          "family": 6,
-          "mood": 4,
-          "money": -2,
-          "health": 2
+          "family": 6
         },
         "result": "她从不抱怨，只是每次接通都特别高兴。",
         "breakup": false
@@ -16091,11 +12887,8 @@ module.exports = [
       {
         "label": "教她用朋友圈，让她有事看那边",
         "fx": {
-          "career": 6,
           "family": 8,
-          "mood": 2,
-          "money": -2,
-          "health": -2
+          "career": 6
         },
         "result": "她学会了点赞。从此你的每条动态，第一个赞都是她的。",
         "breakup": false
@@ -16118,10 +12911,7 @@ module.exports = [
         "label": "继续，不管别人怎么说",
         "fx": {
           "health": 14,
-          "career": -2,
-          "looks": 2,
-          "mood": 8,
-          "money": -1
+          "mood": 8
         },
         "result": "半年后体检，各项指标都好了。他们不笑了，开始问你怎么做到的。",
         "breakup": false
@@ -16129,11 +12919,7 @@ module.exports = [
       {
         "label": "偷偷养生，嘴上不承认",
         "fx": {
-          "health": 10,
-          "career": 4,
-          "mood": 4,
-          "money": -1,
-          "looks": -1
+          "health": 10
         },
         "result": "你把枸杞装进咖啡杯里。养生这件事，也可以很酷。",
         "breakup": false
@@ -16142,10 +12928,7 @@ module.exports = [
         "label": "算了，爱咋咋地",
         "fx": {
           "health": -6,
-          "career": 2,
-          "looks": -2,
-          "mood": 6,
-          "money": -1
+          "mood": 6
         },
         "result": "你继续熬夜。年轻是资本，但资本会花完。",
         "breakup": false
@@ -16168,35 +12951,20 @@ module.exports = [
         "label": "每天都去，成了常客",
         "fx": {
           "money": -120,
-          "health": 4,
-          "family": 4,
-          "mood": 12,
-          "career": -3
+          "mood": 12
         },
         "result": "一个月后，她记得你不吃香菜。这座城市因此小了一点。",
         "breakup": false
       },
       {
         "label": "偶尔去，偶尔不去",
-        "fx": {
-          "money": -40,
-          "health": -2,
-          "mood": 4,
-          "career": 2,
-          "looks": 4
-        },
+        "fx": {},
         "result": "你去了几次。那家的包子确实不错。",
         "breakup": false
       },
       {
         "label": "从来没去过",
-        "fx": {
-          "career": 2,
-          "mood": -2,
-          "money": 2,
-          "health": -1,
-          "looks": 1
-        },
+        "fx": {},
         "result": "半年后店关了。你不知道，也没错过什么。",
         "breakup": false
       }
@@ -16217,11 +12985,7 @@ module.exports = [
       {
         "label": "把旧的留着当抹布",
         "fx": {
-          "health": 2,
-          "career": 2,
-          "mood": 6,
-          "money": -2,
-          "looks": -4
+          "mood": 6
         },
         "result": "勤俭是种习惯。你妈要是知道，一定会夸你。",
         "breakup": false
@@ -16229,24 +12993,14 @@ module.exports = [
       {
         "label": "干脆扔了",
         "fx": {
-          "health": 4,
-          "looks": 2,
-          "mood": 10,
-          "money": -3,
-          "career": -3
+          "mood": 10
         },
         "result": "你扔得很果断。有时候告别旧东西，也是一种仪式。",
         "breakup": false
       },
       {
         "label": "有点舍不得，收进柜子",
-        "fx": {
-          "family": 4,
-          "mood": -2,
-          "money": 3,
-          "health": -3,
-          "career": -2
-        },
+        "fx": {},
         "result": "柜子里的东西越来越多。你怕自己会变成一个念旧的人。",
         "breakup": false
       }
@@ -16267,11 +13021,7 @@ module.exports = [
       {
         "label": "笑着重重点头",
         "fx": {
-          "career": -2,
-          "looks": -2,
-          "family": 4,
-          "mood": 12,
-          "money": 3
+          "mood": 12
         },
         "result": "你把豆浆机抱回了家。它至今还在，用了很多年。",
         "breakup": false
@@ -16279,11 +13029,7 @@ module.exports = [
       {
         "label": "转手挂到二手平台",
         "fx": {
-          "money": 240,
-          "career": 4,
-          "family": -2,
-          "mood": 2,
-          "health": -3
+          "money": 240
         },
         "result": "卖了以前的一半价。你算得很清楚，但少了点乐趣。",
         "breakup": false
@@ -16292,10 +13038,7 @@ module.exports = [
         "label": "送给我妈",
         "fx": {
           "family": 14,
-          "mood": 10,
-          "money": -2,
-          "health": 2,
-          "career": -1
+          "mood": 10
         },
         "result": "她高兴得天天打豆浆，还拍视频发给你。",
         "breakup": false
@@ -16317,11 +13060,7 @@ module.exports = [
       {
         "label": "在操场走两圈",
         "fx": {
-          "health": 4,
-          "career": -2,
-          "family": 2,
-          "mood": 14,
-          "money": -2
+          "mood": 14
         },
         "result": "跑道还是红色的。你走完两圈，像是跟十九岁的自己打了个招呼。",
         "breakup": false
@@ -16329,24 +13068,14 @@ module.exports = [
       {
         "label": "去食堂吃一顿",
         "fx": {
-          "money": -40,
-          "health": -2,
-          "mood": 12,
-          "career": 1,
-          "looks": -2
+          "mood": 12
         },
         "result": "味道没变，价格涨了一倍。你吃得比当年慢。",
         "breakup": false
       },
       {
         "label": "只在门口看了看，没进去",
-        "fx": {
-          "career": 2,
-          "mood": 4,
-          "money": -1,
-          "health": -4,
-          "looks": 2
-        },
+        "fx": {},
         "result": "有些地方，远远看一眼就够了。",
         "breakup": false
       }
@@ -16368,10 +13097,7 @@ module.exports = [
         "label": "照给，入乡随俗",
         "fx": {
           "money": -1000,
-          "career": 6,
-          "mood": -4,
-          "health": -4,
-          "looks": 1
+          "career": 6
         },
         "result": "你给了。婚礼上他特意过来敬了你一杯。",
         "breakup": false
@@ -16379,11 +13105,7 @@ module.exports = [
       {
         "label": "私下少给，说自己手头紧",
         "fx": {
-          "money": -400,
-          "career": -4,
-          "family": 2,
-          "mood": 2,
-          "health": -3
+          "money": -400
         },
         "result": "组织者愣了一下，还是收了。但这件事有人记下了。",
         "breakup": false
@@ -16393,9 +13115,7 @@ module.exports = [
         "fx": {
           "money": -600,
           "career": -6,
-          "mood": 6,
-          "health": -3,
-          "looks": 1
+          "mood": 6
         },
         "result": "最后降到三百。有人谢你，也有人怪你。",
         "breakup": false
@@ -16418,10 +13138,8 @@ module.exports = [
         "label": "「来吧，地址发你。」",
         "fx": {
           "money": -600,
-          "career": -2,
           "family": 12,
-          "mood": 8,
-          "health": -2
+          "mood": 8
         },
         "result": "他住了五天，走的时候把屋子收拾得干干净净。",
         "breakup": false
@@ -16429,11 +13147,7 @@ module.exports = [
       {
         "label": "「我这儿不方便，我给你订个酒店。」",
         "fx": {
-          "money": -1200,
-          "career": 2,
-          "family": 4,
-          "mood": 2,
-          "health": -3
+          "money": -1200
         },
         "result": "他连声道谢。你们都体面，但疏远了一点。",
         "breakup": false
@@ -16442,10 +13156,8 @@ module.exports = [
         "label": "问清楚什么事，再看帮不帮",
         "fx": {
           "money": -400,
-          "career": 2,
           "family": 8,
-          "mood": 6,
-          "health": -1
+          "mood": 6
         },
         "result": "他是来找工作的。你托人帮他牵了线，比留宿管用得多。",
         "breakup": false
@@ -16467,11 +13179,8 @@ module.exports = [
       {
         "label": "给家里打个电话",
         "fx": {
-          "health": -2,
           "family": 14,
-          "mood": 12,
-          "money": -3,
-          "career": 3
+          "mood": 12
         },
         "result": "我妈说了四十分钟。你只说了「嗯」，但声音是活的。",
         "breakup": false
@@ -16479,11 +13188,7 @@ module.exports = [
       {
         "label": "去楼下便利店跟店员多聊两句",
         "fx": {
-          "health": 2,
-          "family": 4,
-          "mood": 10,
-          "money": -3,
-          "career": -1
+          "mood": 10
         },
         "result": "你们聊了天气和关东煮。三分钟，够了。",
         "breakup": false
@@ -16491,11 +13196,7 @@ module.exports = [
       {
         "label": "什么都不做",
         "fx": {
-          "health": -2,
-          "career": 2,
-          "family": -4,
-          "mood": -8,
-          "money": 2
+          "mood": -8
         },
         "result": "第四天你说了两个字：「好的。」",
         "breakup": false
@@ -16518,10 +13219,7 @@ module.exports = [
         "label": "换掉所有冷光灯",
         "fx": {
           "money": -600,
-          "health": 4,
-          "looks": 2,
-          "mood": 14,
-          "career": -4
+          "mood": 14
         },
         "result": "屋子暖了，你的睡眠也好了。光真的能改变心情。",
         "breakup": false
@@ -16530,10 +13228,7 @@ module.exports = [
         "label": "只留这一盏",
         "fx": {
           "money": -160,
-          "health": 2,
-          "mood": 10,
-          "career": -3,
-          "looks": -4
+          "mood": 10
         },
         "result": "你把它放在床头。每晚睡前，只看这一片暖。",
         "breakup": false
@@ -16543,9 +13238,7 @@ module.exports = [
         "fx": {
           "money": -160,
           "family": 10,
-          "mood": 10,
-          "health": 2,
-          "career": -4
+          "mood": 10
         },
         "result": "她说「这才像个家」。你盯着这四个字看了很久。",
         "breakup": false
@@ -16567,11 +13260,8 @@ module.exports = [
       {
         "label": "等人群散了再上去聊",
         "fx": {
-          "health": -2,
           "career": 16,
-          "mood": 10,
-          "money": -2,
-          "looks": -1
+          "mood": 10
         },
         "result": "你们聊了二十分钟。他后来推荐了你一个机会。",
         "breakup": false
@@ -16579,24 +13269,14 @@ module.exports = [
       {
         "label": "也挤上去加微信",
         "fx": {
-          "health": -2,
-          "career": 8,
-          "mood": 4,
-          "money": -1,
-          "looks": 3
+          "career": 8
         },
         "result": "加上了，但从来没说过话。通讯录里又多了一个名字。",
         "breakup": false
       },
       {
         "label": "听完就走",
-        "fx": {
-          "health": 2,
-          "career": 2,
-          "mood": -4,
-          "money": -1,
-          "looks": -3
-        },
+        "fx": {},
         "result": "你带着笔记回家了。那些笔记，你后来也没翻过。",
         "breakup": false
       }
@@ -16617,11 +13297,8 @@ module.exports = [
       {
         "label": "拍照发给我妈",
         "fx": {
-          "health": 2,
-          "family": 12,
           "mood": 14,
-          "money": -3,
-          "career": -3
+          "family": 12
         },
         "result": "她回「比我种的强」。你笑了一整天。",
         "breakup": false
@@ -16629,11 +13306,8 @@ module.exports = [
       {
         "label": "做菜时掐两根用",
         "fx": {
-          "health": 6,
           "mood": 10,
-          "money": -3,
-          "career": -2,
-          "looks": 3
+          "health": 6
         },
         "result": "自己种的葱，味道竟然真的不一样。",
         "breakup": false
@@ -16642,10 +13316,7 @@ module.exports = [
         "label": "又买了三个花盆",
         "fx": {
           "money": -180,
-          "health": 4,
-          "family": 2,
-          "mood": 12,
-          "career": -2
+          "mood": 12
         },
         "result": "阳台变成了小菜园。你开始期待每天回家。",
         "breakup": false
@@ -16667,11 +13338,8 @@ module.exports = [
       {
         "label": "立刻上前，让人打 120",
         "fx": {
-          "health": -4,
-          "career": -2,
-          "family": 8,
           "mood": 12,
-          "money": -3
+          "family": 8
         },
         "result": "人没事。家属后来找到你，跪下要谢，你扶起来了。",
         "breakup": false
@@ -16679,11 +13347,7 @@ module.exports = [
       {
         "label": "站在人群里，等别人先动",
         "fx": {
-          "career": 2,
-          "family": -2,
-          "mood": -6,
-          "money": -3,
-          "health": 2
+          "mood": -6
         },
         "result": "有人上前了。你退到一边，心里堵了一整天。",
         "breakup": false
@@ -16691,11 +13355,7 @@ module.exports = [
       {
         "label": "帮忙维持秩序，让人群散开",
         "fx": {
-          "health": -2,
-          "career": 4,
-          "family": 4,
-          "mood": 10,
-          "money": -4
+          "mood": 10
         },
         "result": "你做的事不大，但空气流通了。有时候这就是最关键的。",
         "breakup": false
@@ -16718,10 +13378,8 @@ module.exports = [
         "label": "把剩下的做成相册",
         "fx": {
           "money": -300,
-          "career": -2,
-          "family": 8,
           "mood": 14,
-          "health": -3
+          "family": 8
         },
         "result": "相册寄到那天，你翻了一遍。原来这几年你过得并不差。",
         "breakup": false
@@ -16729,24 +13387,14 @@ module.exports = [
       {
         "label": "继续删，删到一百张",
         "fx": {
-          "health": 2,
-          "career": 4,
-          "mood": 8,
-          "money": -4,
-          "looks": -2
+          "mood": 8
         },
         "result": "断舍离是会传染的。你第二天扔了三大袋衣服。",
         "breakup": false
       },
       {
         "label": "算了，太麻烦",
-        "fx": {
-          "mood": -2,
-          "money": -4,
-          "health": 3,
-          "career": 1,
-          "looks": 2
-        },
+        "fx": {},
         "result": "三千张照片继续躺着。你再也没打开过那个相册。",
         "breakup": false
       }
@@ -16767,24 +13415,15 @@ module.exports = [
       {
         "label": "打伞照走",
         "fx": {
-          "health": 8,
-          "career": -2,
           "mood": 10,
-          "money": 4,
-          "looks": -3
+          "health": 8
         },
         "result": "你到公司时鞋湿了，但精神很好。走路这件事会上瘾。",
         "breakup": false
       },
       {
         "label": "今天坐地铁，明天再说",
-        "fx": {
-          "money": -12,
-          "health": -2,
-          "career": 2,
-          "mood": 2,
-          "looks": 1
-        },
+        "fx": {},
         "result": "「明天再说」说了三天，习惯就断了。",
         "breakup": false
       },
@@ -16792,10 +13431,7 @@ module.exports = [
         "label": "跑起来，当作锻炼",
         "fx": {
           "health": 12,
-          "career": -2,
-          "looks": 2,
-          "mood": 12,
-          "money": -4
+          "mood": 12
         },
         "result": "你跑到公司，喘得像条狗，但一整天都很亢奋。",
         "breakup": false
@@ -16817,11 +13453,8 @@ module.exports = [
       {
         "label": "当场穿上，拍照片发回去",
         "fx": {
-          "looks": -2,
           "family": 18,
-          "mood": 16,
-          "money": 2,
-          "health": -3
+          "mood": 16
         },
         "result": "她回了五个感叹号。那件毛衣你穿了整个冬天。",
         "breakup": false
@@ -16829,11 +13462,8 @@ module.exports = [
       {
         "label": "收起来，说「挺好的」",
         "fx": {
-          "career": 2,
           "family": 8,
-          "mood": 6,
-          "money": -2,
-          "health": -3
+          "mood": 6
         },
         "result": "毛衣在柜底躺了两年。你偶尔看见，心里有点愧疚。",
         "breakup": false
@@ -16841,11 +13471,7 @@ module.exports = [
       {
         "label": "说「妈，现在没人穿这个了」",
         "fx": {
-          "career": 4,
-          "looks": 2,
-          "family": -12,
-          "mood": -4,
-          "money": 1
+          "family": -12
         },
         "result": "电话那头静了很久，她说「哦，那我下次不织了」。",
         "breakup": false
@@ -16867,35 +13493,22 @@ module.exports = [
       {
         "label": "帮他付了",
         "fx": {
-          "money": -36,
-          "family": 6,
           "mood": 14,
-          "health": -2,
-          "career": 3
+          "family": 6
         },
         "result": "他非要加你微信还钱。你们后来成了点头之交。",
         "breakup": false
       },
       {
         "label": "什么也没做",
-        "fx": {
-          "career": 2,
-          "mood": -4,
-          "money": 2,
-          "health": 3,
-          "looks": -1
-        },
+        "fx": {},
         "result": "他最后只买了一瓶水。你看着他走出去。",
         "breakup": false
       },
       {
         "label": "让他先买，自己垫上",
         "fx": {
-          "money": -36,
-          "career": 2,
-          "family": 4,
-          "mood": 12,
-          "health": -1
+          "mood": 12
         },
         "result": "他第二天真来还钱了。你还记得他那句「谢谢」很认真。",
         "breakup": false
@@ -16917,11 +13530,7 @@ module.exports = [
       {
         "label": "找个地方，看完再回家",
         "fx": {
-          "health": 4,
-          "career": -2,
-          "looks": -2,
-          "mood": 16,
-          "money": 3
+          "mood": 16
         },
         "result": "你在江边看了二十分钟。天黑透了才起身，心情出奇地平静。",
         "breakup": false
@@ -16929,11 +13538,7 @@ module.exports = [
       {
         "label": "边走边看，拍张照",
         "fx": {
-          "health": -2,
-          "career": -2,
-          "mood": 8,
-          "money": 4,
-          "looks": 3
+          "mood": 8
         },
         "result": "照片存在手机里，你至今没发过。",
         "breakup": false
@@ -16941,11 +13546,7 @@ module.exports = [
       {
         "label": "回家加班",
         "fx": {
-          "health": -4,
-          "career": 8,
-          "mood": -4,
-          "money": -1,
-          "looks": 1
+          "career": 8
         },
         "result": "你错过了这场日落。还有下一场，但你不确定会去看。",
         "breakup": false
@@ -16969,9 +13570,7 @@ module.exports = [
         "fx": {
           "money": -4000,
           "career": 6,
-          "mood": 6,
-          "health": -4,
-          "looks": 4
+          "mood": 6
         },
         "result": "你又存了两千。复利这件事，时间越长越明显。",
         "breakup": false
@@ -16980,10 +13579,7 @@ module.exports = [
         "label": "取出来花掉",
         "fx": {
           "money": 274,
-          "health": 2,
-          "career": -2,
-          "mood": 10,
-          "looks": -4
+          "mood": 10
         },
         "result": "你用这笔钱吃了顿好的。一百三十七块，买来一顿满足。",
         "breakup": false
@@ -16993,9 +13589,7 @@ module.exports = [
         "fx": {
           "money": -274,
           "family": 12,
-          "mood": 10,
-          "health": -3,
-          "career": 1
+          "mood": 10
         },
         "result": "她说「你自己留着」。你说是利息，她才高兴地收下。",
         "breakup": false
@@ -17017,35 +13611,21 @@ module.exports = [
       {
         "label": "上去敲门提醒",
         "fx": {
-          "health": -2,
-          "family": 6,
-          "mood": -4,
-          "money": 1,
-          "career": 2
+          "family": 6
         },
         "result": "门开了一条缝，里面的人说了句「知道了」。哭声停了。",
         "breakup": false
       },
       {
         "label": "报警",
-        "fx": {
-          "health": -2,
-          "career": 2,
-          "family": 4,
-          "mood": 2,
-          "money": -4
-        },
+        "fx": {},
         "result": "警察来过之后安静了。你不知道自己做的是不是多余。",
         "breakup": false
       },
       {
         "label": "关上窗，装作没听见",
         "fx": {
-          "family": -4,
-          "mood": -8,
-          "money": 4,
-          "health": -4,
-          "career": 1
+          "mood": -8
         },
         "result": "你戴上了耳机。那晚你睡得很不安稳。",
         "breakup": false
@@ -17067,11 +13647,7 @@ module.exports = [
       {
         "label": "认真写一段自我介绍",
         "fx": {
-          "health": -2,
-          "career": 4,
-          "looks": 4,
-          "mood": 8,
-          "money": -3
+          "mood": 8
         },
         "result": "你写了三百字，删到只剩两句。发出去后，一整天都在等红点。",
         "breakup": false
@@ -17079,11 +13655,7 @@ module.exports = [
       {
         "label": "什么都不写，只传照片",
         "fx": {
-          "looks": 10,
-          "family": -4,
-          "mood": -4,
-          "money": 3,
-          "health": -3
+          "looks": 10
         },
         "result": "来打招呼的人多了三倍，但没一个聊过三句。",
         "breakup": false
@@ -17091,11 +13663,9 @@ module.exports = [
       {
         "label": "把软件彻底删掉",
         "fx": {
-          "health": -4,
-          "career": 6,
-          "family": 6,
           "mood": -10,
-          "money": 4
+          "career": 6,
+          "family": 6
         },
         "result": "你清净了三天，第四天又手贱装了回来。",
         "breakup": false
@@ -17117,11 +13687,8 @@ module.exports = [
       {
         "label": "默默把群消息免打扰",
         "fx": {
-          "career": -2,
           "family": -6,
-          "mood": 6,
-          "money": 2,
-          "health": 4
+          "mood": 6
         },
         "result": "你清净了。但每次打开微信，都看得见那个红点。",
         "breakup": false
@@ -17129,11 +13696,7 @@ module.exports = [
       {
         "label": "也发一条自己的资料",
         "fx": {
-          "career": -2,
-          "looks": 2,
-          "family": 10,
-          "mood": -4,
-          "money": -1
+          "family": 10
         },
         "result": "你妈在群里连发十个点赞表情。当天有三个人加了你。",
         "breakup": false
@@ -17141,11 +13704,8 @@ module.exports = [
       {
         "label": "退群",
         "fx": {
-          "career": 4,
           "family": -12,
-          "mood": 8,
-          "money": -4,
-          "health": -4
+          "mood": 8
         },
         "result": "你妈打了三个电话。第三个你接了，她说「就当没这回事」。",
         "breakup": false
@@ -17167,11 +13727,8 @@ module.exports = [
       {
         "label": "「那就先别开始了吧」",
         "fx": {
-          "health": 2,
-          "career": 4,
-          "mood": -6,
           "affection": -16,
-          "money": 3
+          "mood": -6
         },
         "result": "她愣了一下，然后点头说「我理解」。那顿饭吃得很客气。",
         "breakup": false
@@ -17179,11 +13736,7 @@ module.exports = [
       {
         "label": "「一年而已，我可以等」",
         "fx": {
-          "career": -4,
-          "family": -4,
-          "mood": -4,
-          "affection": 20,
-          "money": 2
+          "affection": 20
         },
         "result": "她眼睛红了。后来的一年里，你们谁都没再提这句话。",
         "breakup": false
@@ -17191,11 +13744,8 @@ module.exports = [
       {
         "label": "「那你什么时候走？」",
         "fx": {
-          "career": 6,
-          "looks": -2,
-          "mood": -2,
           "affection": 6,
-          "money": 2
+          "career": 6
         },
         "result": "你问得太实际了。她笑了一下，说「下个月」。",
         "breakup": false
@@ -17217,11 +13767,8 @@ module.exports = [
       {
         "label": "「那我是周几？」",
         "fx": {
-          "career": -2,
-          "mood": 10,
           "affection": 18,
-          "money": -3,
-          "health": 3
+          "mood": 10
         },
         "result": "她回了个「你烦人」，然后发了一串笑哭的表情。",
         "breakup": false
@@ -17229,11 +13776,7 @@ module.exports = [
       {
         "label": "「别喂了，喂了就赖着不走了」",
         "fx": {
-          "career": 4,
-          "mood": 4,
-          "affection": -6,
-          "money": 4,
-          "health": -3
+          "affection": -6
         },
         "result": "她说「我知道」。第二天照片里还是有两只猫。",
         "breakup": false
@@ -17242,10 +13785,8 @@ module.exports = [
         "label": "第二天带了一袋猫粮过去",
         "fx": {
           "money": -120,
-          "health": -2,
-          "mood": 8,
           "affection": 24,
-          "career": 2
+          "mood": 8
         },
         "result": "她开门时愣住了。那个瞬间你觉得自己做对了。",
         "breakup": false
@@ -17267,11 +13808,9 @@ module.exports = [
       {
         "label": "打语音过去",
         "fx": {
-          "health": -6,
-          "career": -4,
-          "mood": 12,
           "affection": 22,
-          "money": 4
+          "mood": 12,
+          "health": -6
         },
         "result": "你们聊到三点。她最后一句是「明天要迟到了，都怪你」。",
         "breakup": false
@@ -17279,11 +13818,8 @@ module.exports = [
       {
         "label": "「我在，说吧」",
         "fx": {
-          "health": -2,
-          "mood": 6,
           "affection": 12,
-          "money": -1,
-          "career": 3
+          "mood": 6
         },
         "result": "她说了半小时工作的事。挂的时候说了句晚安，很轻。",
         "breakup": false
@@ -17291,11 +13827,8 @@ module.exports = [
       {
         "label": "「我睡了，明天说」",
         "fx": {
-          "health": 6,
-          "career": 4,
-          "mood": -4,
           "affection": -14,
-          "money": -4
+          "health": 6
         },
         "result": "那边沉默了很久，回了一个「好」。之后再没在深夜找过你。",
         "breakup": false
@@ -17317,11 +13850,9 @@ module.exports = [
       {
         "label": "收下，什么也没说",
         "fx": {
-          "career": -2,
-          "family": 8,
-          "mood": 12,
           "affection": 24,
-          "money": -4
+          "mood": 12,
+          "family": 8
         },
         "result": "你把钥匙串进自己那串里。沉甸甸的，比想象中沉。",
         "breakup": false
@@ -17329,11 +13860,7 @@ module.exports = [
       {
         "label": "「这也太快了吧」",
         "fx": {
-          "career": 2,
-          "mood": -4,
-          "affection": -12,
-          "money": 4,
-          "health": -1
+          "affection": -12
         },
         "result": "她收回手，笑着说「那算了」。钥匙在她掌心攥了很久。",
         "breakup": false
@@ -17341,11 +13868,9 @@ module.exports = [
       {
         "label": "当场配一把自己的给她",
         "fx": {
-          "money": -60,
-          "family": 10,
-          "mood": 10,
           "affection": 30,
-          "health": -3
+          "family": 10,
+          "mood": 10
         },
         "result": "你下楼找了开锁店。回来时她还在原地站着等你。",
         "breakup": false
@@ -17368,10 +13893,8 @@ module.exports = [
         "label": "直接买药过去",
         "fx": {
           "money": -160,
-          "health": -4,
-          "mood": 8,
           "affection": 26,
-          "career": 3
+          "mood": 8
         },
         "result": "她开门时穿着睡衣，头发乱着。你说「进来躺好」，她这次没反驳。",
         "breakup": false
@@ -17380,10 +13903,7 @@ module.exports = [
         "label": "点个外卖送药",
         "fx": {
           "money": -100,
-          "career": 2,
-          "mood": 4,
-          "affection": 12,
-          "health": -3
+          "affection": 12
         },
         "result": "药送到了。她发来「谢谢」，语气客气得让你有点堵。",
         "breakup": false
@@ -17391,11 +13911,9 @@ module.exports = [
       {
         "label": "「那你好好休息」",
         "fx": {
-          "health": 2,
-          "career": 6,
-          "mood": -6,
           "affection": -18,
-          "money": -3
+          "career": 6,
+          "mood": -6
         },
         "result": "她说「嗯」。你们两天没说话。",
         "breakup": false
@@ -17417,11 +13935,9 @@ module.exports = [
       {
         "label": "把外套撑在两个人头上",
         "fx": {
-          "health": -8,
-          "mood": 10,
           "affection": 22,
-          "money": -4,
-          "career": 4
+          "mood": 10,
+          "health": -8
         },
         "result": "你们挤在一件外套下跑完了剩下的路。到山顶时，两个人都湿透了。",
         "breakup": false
@@ -17429,11 +13945,7 @@ module.exports = [
       {
         "label": "在亭子里等雨停",
         "fx": {
-          "health": 4,
-          "career": -2,
-          "mood": 4,
-          "affection": 10,
-          "money": -4
+          "affection": 10
         },
         "result": "雨下了四十分钟。你们把能聊的都聊完了，剩下的时间看着雨发呆。",
         "breakup": false
@@ -17441,13 +13953,278 @@ module.exports = [
       {
         "label": "冒雨往上冲",
         "fx": {
-          "health": -12,
-          "looks": -4,
-          "mood": 14,
           "affection": 16,
-          "money": -1
+          "mood": 14,
+          "health": -12
         },
         "result": "你在山顶喊了一嗓子。她笑得站不直，说你像个傻子。",
+        "breakup": false
+      }
+    ]
+  },
+  {
+    "id": "x_single_hunmei",
+    "phase": "single",
+    "stage": null,
+    "dateType": null,
+    "weight": 3,
+    "days": null,
+    "text": [
+      "婚介所推来的「优质会员」，照片修得挑不出毛病，条件也好得不像真的。",
+      "第二次见面，她说表哥的店在众筹，问你要不要一起投一点。"
+    ],
+    "options": [
+      {
+        "label": "把存款都交给她打理",
+        "fx": {
+          "mood": -24,
+          "zero": [
+            "money"
+          ]
+        },
+        "result": "转账那天她笑得很甜，还说下次带你去见她妈。第三天，她的头像换成了一只猫，手机号成了空号。",
+        "breakup": false
+      },
+      {
+        "label": "只拿两万试水",
+        "fx": {
+          "money": -20000,
+          "mood": -12
+        },
+        "result": "钱没回来，人也没再出现。你回婚介所问，前台翻了半天系统说：「这位会员的资料上周就注销了。」",
+        "breakup": false
+      },
+      {
+        "label": "先要一份那家店的工商信息",
+        "fx": {
+          "money": -300,
+          "mood": 12,
+          "career": 6
+        },
+        "result": "她把话题岔开了两次。第三次你追问，她说「算了，我们不合适」。你回到车里，坐了很久。",
+        "breakup": false
+      }
+    ]
+  },
+  {
+    "id": "x_talking_privacy",
+    "phase": "talking",
+    "stage": null,
+    "dateType": null,
+    "weight": 3,
+    "days": null,
+    "text": [
+      "她拿你手机点外卖，回来的时候手指停在屏幕上没动。",
+      "你走过去看到，那是你和前任的最后一段对话——还有一份你从来没跟任何人提过的检查单。"
+    ],
+    "options": [
+      {
+        "label": "把这两件事从头说一遍",
+        "fx": {
+          "affection": 12,
+          "family": -8,
+          "zero": [
+            "mood"
+          ]
+        },
+        "result": "你说了很久，她一直没打断。说完她说：「你早点告诉我就好了。」那天你们没再聊别的。",
+        "breakup": false
+      },
+      {
+        "label": "把手机抽回来：「你翻我东西？」",
+        "fx": {
+          "affection": -36,
+          "mood": -16,
+          "family": -6
+        },
+        "result": "她愣了一下，说「对不起」，然后回了房间。门关得很轻，你反而更难受。",
+        "breakup": false
+      },
+      {
+        "label": "说那是同事的手机",
+        "fx": {
+          "affection": -20,
+          "mood": -10
+        },
+        "result": "她笑了一下，说「好」。之后每次你手机响，她都会有意无意地看你一眼。",
+        "breakup": false
+      }
+    ]
+  },
+  {
+    "id": "x_any_guarantee",
+    "phase": "any",
+    "stage": null,
+    "dateType": null,
+    "weight": 3,
+    "days": null,
+    "text": [
+      "短信弹出来：你名下的一笔借款已逾期九十天，本息合计四十七万。",
+      "你翻遍手机才想起来——三年前，你替一个朋友在担保人那一栏签过字。"
+    ],
+    "options": [
+      {
+        "label": "把存款填进去，先把它清掉",
+        "fx": {
+          "mood": -28,
+          "zero": [
+            "money"
+          ]
+        },
+        "result": "你在银行柜台坐了一个多小时。朋友的电话打不通，微信头像旁边写着「该用户不存在」。",
+        "breakup": false
+      },
+      {
+        "label": "不管，让他自己上征信",
+        "fx": {
+          "career": -16,
+          "family": -12,
+          "mood": -12
+        },
+        "result": "催收电话开始打到你公司。同事都听见了，没人问，也没人替你说话。",
+        "breakup": false
+      },
+      {
+        "label": "找律师，走诉讼",
+        "fx": {
+          "money": -16000,
+          "mood": -10,
+          "career": 8
+        },
+        "result": "律师说担保责任跑不掉，但程序上有得打。你签了委托书，第一次觉得「懂一点法」能这么值钱。",
+        "breakup": false
+      }
+    ]
+  },
+  {
+    "id": "x_dating_control",
+    "phase": "dating",
+    "stage": "dating",
+    "dateType": null,
+    "weight": 3,
+    "days": null,
+    "text": [
+      "她把手机递过来：一个共享位置的 App，界面里两颗头像挨在一起。",
+      "「这样比较有安全感。」她说。你翻到自己那一条，发现定位记录从三个月前就开始了。"
+    ],
+    "options": [
+      {
+        "label": "装上，让她安心",
+        "fx": {
+          "mood": -20,
+          "affection": 16,
+          "family": -10
+        },
+        "result": "一开始只是位置，后来是相册，再后来是通话记录。你删掉过一次，她哭了整晚。",
+        "breakup": false
+      },
+      {
+        "label": "「这东西我不装」",
+        "fx": {
+          "affection": -28,
+          "mood": -8
+        },
+        "result": "她把手机收回去，说「那你随便」。接下来三天，她回消息都很慢。",
+        "breakup": false
+      },
+      {
+        "label": "「三个月前的记录，你哪来的？」",
+        "fx": {
+          "affection": -32,
+          "zero": [
+            "mood"
+          ]
+        },
+        "result": "她一句一句往下说，连你那天几点几分进的电梯都记得。你坐在那儿，越听越冷。",
+        "breakup": false
+      }
+    ]
+  },
+  {
+    "id": "x_dating_married_secret",
+    "phase": "dating",
+    "stage": "dating",
+    "dateType": null,
+    "weight": 2,
+    "days": null,
+    "text": [
+      "一个陌生号码加你微信，发来一张全家福。",
+      "她就站在照片中间，怀里抱着一个三四岁的孩子，旁边是结婚证的红本。"
+    ],
+    "options": [
+      {
+        "label": "把照片转给她，只问一句「解释一下」",
+        "fx": {
+          "affection": -80,
+          "zero": [
+            "mood"
+          ]
+        },
+        "result": "她回了很长一段，说「分居两年了，手续一直没办」。你从头到尾只回了两个字：知道了。",
+        "breakup": false
+      },
+      {
+        "label": "打给那个号码，问到底是谁",
+        "fx": {
+          "mood": -24,
+          "family": -12,
+          "health": -8
+        },
+        "result": "接电话的是个男人的声音。他没骂你，只说了一句：「兄弟，你是第三个了。」",
+        "breakup": false
+      },
+      {
+        "label": "装作没收到，继续过",
+        "fx": {
+          "mood": -28,
+          "affection": 16,
+          "family": -16
+        },
+        "result": "你把那条消息删了。之后每次她说「以后」，你都会想起那张照片。",
+        "breakup": false
+      }
+    ]
+  },
+  {
+    "id": "x_any_checkup",
+    "phase": "any",
+    "stage": null,
+    "dateType": null,
+    "weight": 3,
+    "days": null,
+    "text": [
+      "体检报告出来了，医生用笔在一行数字下面划了两道。",
+      "「这个要复查，尽快。」他把「尽快」两个字说得很慢。"
+    ],
+    "options": [
+      {
+        "label": "当场请假，当天就复查、住院",
+        "fx": {
+          "money": -60000,
+          "mood": -16,
+          "health": 14
+        },
+        "result": "结果是早期，医生说「你来得算及时」。病床上你盯着天花板，第一次觉得钱花在这儿不心疼。",
+        "breakup": false
+      },
+      {
+        "label": "「等项目忙完这阵子」",
+        "fx": {
+          "mood": -24,
+          "zero": [
+            "health"
+          ]
+        },
+        "result": "你把它塞进抽屉最底下。三个月后，你在地铁上蹲下去起不来，被好心人送进了急诊。",
+        "breakup": false
+      },
+      {
+        "label": "先买一份重疾险再说",
+        "fx": {
+          "money": -20000,
+          "mood": -10
+        },
+        "result": "保险顾问一条条念免责条款。你听得认真，却一句都没听进去。",
         "breakup": false
       }
     ]

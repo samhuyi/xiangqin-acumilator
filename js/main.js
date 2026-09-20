@@ -11,6 +11,7 @@
 
 var DB = require('./db/repository.js');
 var render = require('./ui/render.js');
+var audio = require('./audio.js');
 
 /**
  * 启动游戏。
@@ -21,6 +22,7 @@ var render = require('./ui/render.js');
 function start(canvas, config) {
   config = config || {};
   render.start(canvas);
+  audio.bindLifecycle();   // 切后台暂停 BGM / 回前台恢复
   DB.load(config).then(function (r) {
     // 数据源一目了然：network=云数据库 / cache=本地缓存 / error=加载失败
     var src = (r && r.source) || '未知';

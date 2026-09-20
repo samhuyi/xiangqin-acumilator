@@ -108,25 +108,84 @@ function goalProgress(s, goal) {
   return clamp(evalExpr(goal.progress, s, goal), 0, 1);
 }
 
-/* ---------------- 性格分手风险 ---------------- */
+/* ---------------- 性格分手风险 ----------------
+ * 返回 { risk, reason, suddenRisk, suddenReason }，null 表示没有规则命中。
+ *
+ * 「两段式分手」把风险分成两类，规则里用 warn 区分：
+ *   · risk / reason（默认）   可挽回的危机：条件踩线 → 先给预警 → 不处理才分手。
+ *     因为有「把这一项补回去，预警就解除」这条路，它必须是可操作的数值条件。
+ *   · suddenRisk / suddenReason（规则写 warn:false）
+ *     没有预兆的离开（「随便玩玩」的说撤就撤）：不给预警、不吃积怨加成，
+ *     就是某一天突然走了。这类规则必须写得非常低，否则玩家没有任何反制手段。
+ * 两者在一帧里各掷各的，最终取「至少命中一个」。 */
+/* 「踩得多深」的加权上限（SEVERITY_AMP）。
+ *
+ * 为什么需要它：规则原本只有「命中 / 不命中」两种状态，于是阈值两侧是两个世界 ——
+ * 精力 34 分永远安全、30 分就等着分手。玩家看到的是一个断崖，中间没有过渡，
+ * 也没有「再差一点就危险了」的体感。
+ *
+ * 这里给每条命中的规则按「离阈值多远」乘一个 1 ~ 1+SEVERITY_AMP 的系数：
+ *   刚好踩线   → ×1.00（还是原来的数值，不改变既有平衡）
+ *   踩到阈值的一半 → ×1.4
+ *   见底（0 分）→ ×1.8
+ * 系数只放大「可挽回的危机」，不放大「无预兆的离开」——
+ * 后者本来就低到不该因为状态差而变成必死。 */
+var SEVERITY_AMP = 0.8;
+
+/* 一条 cond 的「深度」：0 = 刚好踩线，1 = 见底。取子树里最深的那一支。 */
+function condSeverity(cond, s) {
+  if (!cond) return 0;
+  var kids = cond.any || cond.all;
+  if (kids) {
+    var m = 0;
+    for (var i = 0; i < kids.length; i++) m = Math.max(m, condSeverity(kids[i], s));
+    return m;
+  }
+  if (cond.field === undefined || typeof cond.value !== 'number' || cond.value === 0) return 0;
+  var v = s[cond.field];
+  if (typeof v !== 'number') return 0;
+  var t = Math.abs(cond.value);
+  var depth;
+  if (cond.op === 'lt') depth = (cond.value - v) / t;
+  else if (cond.op === 'gt') depth = (v - cond.value) / t;
+  else return 0;
+  return clamp(depth, 0, 1);
+}
+
 function personalityRisk(s, personality) {
   var rules = personality.rules || [];
+  var sum = (personality.combine === 'sum');
   var risk = 0, reason = '', matched = false;
+  var suddenRisk = 0, suddenReason = '';
+
   for (var i = 0; i < rules.length; i++) {
-    if (evalCond(rules[i].cond, s)) {
-      matched = true;
-      risk = (personality.combine === 'sum') ? risk + (rules[i].risk || 0) : (rules[i].risk || 0);
+    if (!evalCond(rules[i].cond, s)) continue;
+    matched = true;
+    var r = rules[i].risk || 0;
+    if (rules[i].warn === false) {
+      suddenRisk = sum ? (suddenRisk + r) : r;
+      suddenReason = rules[i].reason;
+    } else {
+      /* 越深越危险：同一条规则在「刚好踩线」和「见底」之间是连续变化的 */
+      var factor = 1 + condSeverity(rules[i].cond, s) * SEVERITY_AMP;
+      var weighted = r * factor;
+      risk = sum ? (risk + weighted) : weighted;
       reason = rules[i].reason;
     }
   }
   if (!matched) return null;
-  return { risk: risk, reason: reason };
+  return {
+    risk: risk, reason: reason,
+    suddenRisk: suddenRisk, suddenReason: suddenReason
+  };
 }
 
 module.exports = {
   clamp: clamp,
   evalCond: evalCond,
   evalExpr: evalExpr,
+  SEVERITY_AMP: SEVERITY_AMP,
+  condSeverity: condSeverity,
   goalCheck: goalCheck,
   goalProgress: goalProgress,
   personalityRisk: personalityRisk

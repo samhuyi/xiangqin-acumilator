@@ -395,56 +395,99 @@ function buildGoals(s) {
 const PERSONALITY_RULES = {
   money: [
     {
-      cond: { field: 'money', op: 'lt', value: 20000 },
-      risk: 0.06,
-      reason: '你账户里的数字，让她越来越不安。'
+      cond: { field: 'money', op: 'lt', value: 40000 },
+      risk: 0.025,
+      reason: '你账户里的数字，让她(O)越来越不安。'
+    },
+    {
+      cond: { field: 'money', op: 'lt', value: 15000 },
+      risk: 0.03,
+      reason: '她(O)开始算你们两个人的未来，越算越沉默。'
     }
   ],
   emo: [
     {
-      cond: { field: 'mood', op: 'lt', value: 25 },
-      risk: 0.05,
+      cond: { field: 'mood', op: 'lt', value: 35 },
+      risk: 0.02,
       reason: '你最近总是闷闷的，她(O)觉得自己怎么暖都暖不热你。'
     },
     {
-      cond: { field: 'affection', op: 'lt', value: 30 },
-      risk: 0.04,
+      cond: { field: 'mood', op: 'lt', value: 20 },
+      risk: 0.025,
+      reason: '你连话都懒得说了，她(O)一个人把话讲完，然后不讲了。'
+    },
+    {
+      cond: { field: 'affection', op: 'lt', value: 35 },
+      risk: 0.02,
       reason: '你们的对话越来越少，她(O)觉得自己在唱独角戏。'
     }
   ],
   char: [
     {
-      cond: {
-        any: [
-          { field: 'health', op: 'lt', value: 25 },
-          { field: 'career', op: 'lt', value: 20 }
-        ]
-      },
-      risk: 0.05,
+      cond: { field: 'health', op: 'lt', value: 35 },
+      risk: 0.025,
       reason: '你状态肉眼可见地往下掉，她(O)开始怀疑这段关系靠不靠谱。'
+    },
+    {
+      cond: { field: 'career', op: 'lt', value: 30 },
+      risk: 0.02,
+      reason: '你最近好像没什么奔头，她(O)嘴上不说，心里在记账。'
     }
   ],
   casual: [
     {
-      cond: null,
-      risk: 0.05,
-      reason: '她说：「我好像没想好要认真，算了吧。」语气轻松得像在说晚饭吃什么。'
+      cond: { field: 'affection', op: 'lt', value: 60 },
+      risk: 0.02,
+      reason: '她(O)的笑容还是那么好看，只是好像随时准备抽身。'
+    },
+    {
+      cond: { field: 'affection', op: 'lt', value: 30 },
+      risk: 0.025,
+      reason: '她(O)已经很久没有主动找过你了。'
+    },
+    {
+      /* 「没想好要认真」这件事只发生在领证之前 —— 都跟你结婚了，再说这句
+       * 就自相矛盾。婚后仍可能因为别的条件（好感、情绪）被扣分，但这条
+       * 无条件扣分不再生效，否则已婚玩家会无缘无故吃一份「没有预兆的离开」。 */
+      cond: { field: 'relationship', op: 'neq', value: 'married' },
+      risk: 0.005,
+      /* warn:false = 没有预兆的突然离开（不给预警、不吃积怨）。
+       * 漏掉这个字段这条规则会被当成可预警风险，直接预警 + 积怨顶到上限。 */
+      warn: false,
+      reason: '她说：「我好像没想好要认真。」语气轻松得像在说晚饭吃什么。'
     }
   ],
   family: [
     {
-      cond: { field: 'health', op: 'lt', value: 20 },
-      risk: 0.05,
+      cond: { field: 'health', op: 'lt', value: 30 },
+      risk: 0.03,
       reason: '你身体亮了红灯，她(O)怕的是「以后」。'
+    },
+    {
+      cond: { field: 'money', op: 'lt', value: 20000 },
+      risk: 0.015,
+      reason: '她(O)在算下个月的房租和你的工资，算完叹了口气。'
     }
   ],
   career: [
     {
-      cond: { field: 'career', op: 'lt', value: 25 },
-      risk: 0.05,
+      cond: { field: 'career', op: 'lt', value: 35 },
+      risk: 0.03,
       reason: '你越来越躺平，而她(O)最欣赏的那种劲头不见了。'
+    },
+    {
+      cond: { field: 'mood', op: 'lt', value: 25 },
+      risk: 0.02,
+      reason: '她(O)说「你最近好像不怎么高兴」，你说「没有啊」。'
     }
   ]
+};
+
+/* desc 覆盖：参考项目的措辞与重调后的规则对不上了（「随便玩玩」不再是
+ * 无条件的 5%，「顾家型」也会怕穷），只改文案、不动结构。 */
+const PERSONALITY_DESC = {
+  casual: '没想认真，你让她觉得没意思，她说撤就撤',
+  family: '想安稳过日子，最怕你身体出状况，也怕日子过不下去'
 };
 
 function buildPersonalities(s) {
@@ -452,7 +495,7 @@ function buildPersonalities(s) {
     return {
       id: p.id,
       name: p.name,
-      desc: p.desc,
+      desc: PERSONALITY_DESC[p.id] || p.desc,
       order: i + 1,
       combine: 'sum',
       rules: PERSONALITY_RULES[p.id] || []
@@ -1182,14 +1225,36 @@ function buildBackgrounds(s) {
 const ENDING_ART = {
   marry: 'happymarry',        // 尘埃落定：修成正果
   true_love: 'happymarry',    // 满分答案：好感满格的两个人
-  forced: 'badmarry'          // 在父母催促下匆忙相亲结婚
+  forced: 'badmarry',         // 在父母催促下匆忙相亲结婚
+  married_stall: 'badmarry'   // 婚姻里的将就：结了婚，日子没过成想要的样子
   /* 其余（独自富有 / 山顶的风 / 落地生根 / 自由人生 / 破产 / 身体亮红灯 /
    * 事业崩塌 / 撑不住了 / 停在原地 / 时间到了）都是「一个人」的画面 */
 };
 
+/* 本项目补写的结局（唯一真源）
+ * ---------------------------------------------------------
+ * 参考项目只有「单身走到时间尽头」这一条兜底结局（timeout），文案写死了
+ * 「你既没有走进婚姻」；但玩家完全可能已经结婚、只是没达成目标 —— 求婚成功
+ * 后立刻弹这条会自相矛盾。这里补一条已婚版兜底（见 engine.timeoutEndingId）。
+ * 重新走 gen-seed 时用 Object.assign 合并进 ENDINGS，不会被覆盖掉。 */
+const EXTRA_ENDINGS = {
+  married_stall: {
+    type: 'lose',
+    title: '结局 · 婚姻里的将就',
+    lines: [
+      '婚礼办完的第三天，你就回去上班了。',
+      '房子还是租的，工资还是那么多，你们开始为一笔一笔的开销算计。',
+      '{p}有天下班回来问你：「我们以后会好起来吗？」',
+      '你说「会」。说的时候，你自己心里也没底。'
+    ]
+  }
+};
+
 function buildEndings(s) {
-  return Object.keys(s.ENDINGS).map(function (id) {
-    const e = s.ENDINGS[id];
+  /* 参考项目的结局 + 本项目补写的结局（EXTRA_ENDINGS 优先，便于覆写文案） */
+  var all = Object.assign({}, s.ENDINGS, EXTRA_ENDINGS);
+  return Object.keys(all).map(function (id) {
+    const e = all[id];
     return {
       id: id,
       type: e.type,
@@ -1391,80 +1456,48 @@ const EXTRA_EVENTS = [
 ];
 
 /* ================= 结算数值规则（FX） =================
- * 需求：
- *   1. 每个选项都会「扣取」——不再只动情绪和金钱，尽量覆盖到每个属性；
- *   2. 每个选项都有增有减——任何选择都是一次取舍，没有白嫖的选项；
- *   3. 奖励与惩罚的幅度都加大（FX_AMP），让选择真的有分量。
- * 做法：作者写的 fx 是「意图」，这里统一放大并补齐到规则要求。
- *       补齐的数值用「id + 选项序号」做种子确定性生成 ——
- *       同一个 id 每次生成的结果完全一致，不是运行时随机（结算仍然确定性）。 */
+ * 需求（2026-09-20 重订）：
+ *   1. 作者写的 fx 是「意图」，整体放大 FX_AMP 倍，让选择有分量；
+ *   2. 但只保留「玩家看得见」的影响 ——
+ *        存款：|v| < FX_MONEY_MIN（100 元）视为没动过（起步存款 5k~80w、求婚 6w，
+ *              一次最便宜的约会 400 元，低于 100 元在游戏经济里等于 0）；
+ *        属性：|v| < FX_STAT_MIN（5 点）视为没动过（0~100 刻度上健康每天自然掉
+ *              0.22、情绪每天回 0.4，±4 以内等于一天的自然波动）。
+ *        旧版「随机补 1~4 点附带影响 + 强制 2 正 2 负」的规则已废弃：
+ *        它会把每个选项都铺满 5 个属性，于是出现「妈打电话颜值 +3」
+ *        「点个赞存款 -4」这类噪声，结算面板全是无关数值。
+ *   3. 每个选项最多保留 FX_MAX_KEYS（3）项影响，按幅度取前几项；
+ *      不再强制「有增有减」——取舍只在作者真的写了取舍时才体现。
+ * 复核脚本：tools/rebalance-fx.js（对已生成的种子做同一套规则的体检与复算）。 */
 const FX_KEYS = ['money', 'health', 'career', 'looks', 'family', 'mood', 'affection'];
-const FX_AMP = 2.0;        // 奖惩加倍：作者写的数值整体放大
-const FX_MIN_COVER = 5;    // 每个选项至少影响几种属性
-const FX_SIDE_MAX = 4;     // 「附带影响」的最大幅度（刻意比作者写的主影响小）
+const FX_AMP = 2.0;         // 奖惩加倍：作者写的数值整体放大
+const FX_MONEY_MIN = 100;   // 存款影响的最小可见额（元）
+const FX_STAT_MIN = 5;      // 非存款属性的最小可见幅度（0~100 刻度）
+const FX_MAX_KEYS = 3;      // 每个选项最多保留几项影响
 
-function fxHash(str) {
-  var h = 2166136261;
-  for (var i = 0; i < str.length; i++) {
-    h ^= str.charCodeAt(i);
-    h = (h * 16777619) >>> 0;
-  }
-  return h >>> 0;
-}
-function fxRnd(seedStr) {
-  var x = fxHash(String(seedStr)) || 1;
-  return function () {
-    x ^= (x << 13); x >>>= 0;
-    x ^= (x >>> 17);
-    x ^= (x << 5); x >>>= 0;
-    return x / 4294967296;
-  };
-}
-
-/* 把作者写的 fx 加工成符合规则 1/2/3 的最终数值 */
+/* 把作者写的 fx 加工成符合规则的最终数值：
+ * 放大 → 过滤掉看不见的幅度 → 最多留 3 项（幅度大的优先）。
+ * seedKey 保留在签名里（老调用点不用改），确定性仍然成立。 */
 function enrichFx(fx, seedKey) {
-  var rnd = fxRnd(seedKey);
-  var out = {};
+  var kept = [];
 
-  /* 1) 作者写的主影响：整体放大 */
   FX_KEYS.forEach(function (k) {
     var v = (fx && typeof fx[k] === 'number') ? fx[k] : 0;
-    if (v !== 0) out[k] = Math.round(v * FX_AMP);
+    if (!v) return;
+    v = Math.round(v * FX_AMP);
+    if (!v) return;
+    var min = (k === 'money') ? FX_MONEY_MIN : FX_STAT_MIN;
+    if (Math.abs(v) >= min) kept.push({ k: k, v: v });
   });
 
-  /* 2) 补覆盖：没写到的属性补一个小的附带影响 */
-  var need = FX_MIN_COVER - Object.keys(out).length;
-  var missing = FX_KEYS.filter(function (k) { return !out[k]; });
-  for (var i = 0; i < missing.length && need > 0; i++, need--) {
-    var mag = 1 + Math.floor(rnd() * FX_SIDE_MAX);   // 1..4
-    out[missing[i]] = (rnd() < 0.5 ? mag : -mag);
-  }
+  /* 幅度大的优先；同幅度时存款优先（花钱/进账是玩家最关心的） */
+  kept.sort(function (a, b) {
+    if (Math.abs(b.v) !== Math.abs(a.v)) return Math.abs(b.v) - Math.abs(a.v);
+    return (a.k === 'money' ? -1 : 1);
+  });
 
-  /* 3) 保证「有增有减」：至少 2 项为正、2 项为负（取舍感） */
-  var guard = 0;
-  while (guard++ < 12) {
-    var pos = [], neg = [];
-    Object.keys(out).forEach(function (k) { (out[k] > 0 ? pos : neg).push(k); });
-    if (pos.length >= 2 && neg.length >= 2) break;
-    var free = FX_KEYS.filter(function (k) { return !out[k]; });
-    if (neg.length < 2) {
-      if (pos.length > 1) {
-        /* 把幅度最小的正项翻负，尽量不破坏作者的主意图 */
-        var p = pos.slice().sort(function (a, b) { return out[a] - out[b]; })[0];
-        out[p] = -out[p];
-      } else if (free.length) {
-        out[free[0]] = -(1 + Math.floor(rnd() * FX_SIDE_MAX));
-      } else break;
-    } else if (pos.length < 2) {
-      if (neg.length > 1) {
-        /* 翻正最接近 0 的那个负值 */
-        var n = neg.slice().sort(function (a, b) { return out[b] - out[a]; })[0];
-        out[n] = -out[n];
-      } else if (free.length) {
-        out[free[0]] = 1 + Math.floor(rnd() * FX_SIDE_MAX);
-      } else break;
-    }
-  }
+  var out = {};
+  kept.slice(0, FX_MAX_KEYS).forEach(function (e) { out[e.k] = e.v; });
   return out;
 }
 
@@ -1734,7 +1767,7 @@ function buildTexts(s) {
     {
       id: 'app',
       value: {
-        title: '相亲模拟器',
+        title: '我妈又催婚',
         sub: '一场关于婚姻、存款与自我的文字肉鸽',
         tag: '每个选择，都是一天',
         start: '开始游戏',
@@ -2385,7 +2418,10 @@ function main() {
     console.log('  ' + n.padEnd(14) + (Array.isArray(v) ? v.length + ' 条' : '1 条'));
   });
   console.log('  事件合计 ' + out.events.length + ' 条');
-  console.log('  输出目录: db/seed/ (数据模板)  db/export/ (导入云数据库)');
+  console.log('  输出目录: db/seed/ (数据模板)  db/export/ (数组格式中间产物)');
+  console.log('  ⚠️ db/export/*.json 是 JSON 数组，**不是**云导入文件（直接导入会报');
+  console.log('     「导入数据格式不正确，请检查是否为 JSON Lines 格式」）。');
+  console.log('     云导入文件请跑 node db/import.js 生成到 db/export/import/*.json。');
 }
 
 main();

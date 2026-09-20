@@ -84,6 +84,13 @@ function main() {
       }
     });
 
+  // 主包：标题页动效精灵图（assets/images/intro/，key 加 intro_ 前缀）
+  // 标题页打开就要用，必须进启动队列（与 intro_bg 同级）。
+  listImages('intro').forEach(function (f) {
+    var base = f.replace(IMG_EXT, '');
+    out.main['intro_' + base] = rel('intro', f);
+  });
+
   // 按需加载（不进启动队列）
   LAZY_DIRS.forEach(function (d) {
     listImages(d.dir).forEach(function (f) {

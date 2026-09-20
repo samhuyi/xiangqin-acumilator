@@ -17,7 +17,9 @@
 
 module.exports = {
   "main": {
-    "intro_bg": "assets/images/intro_bg.jpg"
+    "intro_bg": "assets/images/intro_bg.jpg",
+    "intro_lead_f": "assets/images/intro/lead_f.png",
+    "intro_lead_m": "assets/images/intro/lead_m.png"
   },
   "lazy": {
     "bg_seek_fail": "assets/images/bg_seek_fail.png",

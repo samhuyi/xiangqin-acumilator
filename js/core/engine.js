@@ -162,6 +162,17 @@ function createGame(gender, bgId, goalId, seed, difficultyId) {
      * 由 applyStat 的负向 money 变动累加）。分手时用来判断「你为这段感情
      * 投入了多少」，与相处天数一起决定情绪扣减的档位。 */
     relSpent: 0,
+    /* 「对象主动提分手」的判定状态（纯状态，阈值全在 constants）：
+     *   partnerSinceDay  有对象的起始天（firstMeet 时置位）—— 冷静期从这里起算
+     *   leaveRollDay     本局最近一次真正做过判定的天（保证「一天只判定一次」）
+     *   leaveWarnDay     预警挂起的天；非空表示「TA 已经给过你一次脸色」
+     *   leaveStrikes     已经用掉过几次「先预警后分手」的宽容（用完就直接判定） */
+    partnerSinceDay: null,
+    leaveRollDay: null,
+    leaveWarnDay: null,
+    leaveWarnReason: null,
+    leaveStrikes: 0,
+    leaveWarnFlash: null,
     recent: [],
     /* 本局「遇见过的相亲对象」id 列表（纯状态）。
      * 用来避免同一局里反复抽到同一个人；图鉴的跨局解锁记录在 UI 层另存。 */
@@ -480,6 +491,30 @@ function applyFx(s, fx, amp) {
     var rawAff = Math.round(roll(fx.affection) * (mod.affection || 1) * styleMod * s.diff.affMod * ampF * stageAmp);
     delta.affection = applyStat(s, 'affection', rawAff);
   }
+
+  /* 断崖式惩罚：fx.zero 列出「直接清零」的属性 ——
+   * 婚托卷款（存款）、极端性格对象把情绪折腾垮、隐私被翻出来（情绪）……
+   * 这些事件的后果不是「扣多少」，而是「全部没了」，写成大负数既难看又不可读。
+   *
+   * 为什么压到 FX_ZERO_FLOOR（默认 1）而不是真的 0：
+   *   存款 / 健康 / 事业 / 情绪任意一项归 0，checkEnd 都会立刻判负
+   *   （破产 / 身体亮红灯 / 事业崩塌 / 撑不住了）。一条随机事件直接把玩家
+   *   打死，没有反打余地，等于玩法被随机数吃掉。
+   *   压到 1 点保留了「见底了」的体感，又留了一口气 ——
+   *   想改成真的归 0，把 constants.FX_ZERO_FLOOR 设成 0 即可。 */
+  if (fx.zero && fx.zero.length) {
+    var floor = C('FX_ZERO_FLOOR', 1);
+    fx.zero.forEach(function (k) {
+      if (delta[k] === undefined) return;      // 只认七项基础属性
+      /* 目标就是把这一项落到「谷底」（默认 1 点）：
+       *   · 高于谷底 → 直接压下去（婚托卷走全部存款）；
+       *   · 被同一条选项里的加减法扣穿到 0 → 抬回谷底，兑现「见底但不判负」；
+       *   · 正好等于谷底 → 不动。
+       * 谷底设成 0 就等价于「真的清零」（见 constants.FX_ZERO_FLOOR）。 */
+      var diff = floor - s[k];
+      if (diff) delta[k] += applyStat(s, k, diff);
+    });
+  }
   return { delta: delta };
 }
 
@@ -608,6 +643,12 @@ function firstMeet(s) {
   s.partner = s.lead;
   s.lead = null;
   s.relationship = 'meeting';
+  /* 冷静期从这里起算；上一段关系残留的预警 / 宽容额度一律作废 */
+  s.partnerSinceDay = s.day;
+  s.leaveRollDay = null;
+  s.leaveWarnDay = null;
+  s.leaveWarnReason = null;
+  s.leaveStrikes = 0;
   /* 真的见面了 → 当初「聊够就该见一面」的义务已兑现，微信计数清零重来 */
   resetChatTally(s);
   /* 第一印象：由玩家属性 + 对方在数据库里登记的「眼缘」first 决定（不再随机）。
@@ -649,6 +690,11 @@ function endMeet(s) {
   }
   s.relationship = 'single';
   s.partner = null;
+  /* 没谈成 → 判定状态一并清空（否则下一段关系会带着这段的冷静期与预警） */
+  s.partnerSinceDay = null;
+  s.leaveRollDay = null;
+  s.leaveWarnDay = null;
+  s.leaveWarnReason = null;
   resetChatTally(s);          // 初遇没成 → 这段告吹，微信计数归零
   var dAff = applyStat(s, 'affection', -s.affection);
   var dMood = applyStat(s, 'mood', C('MEET_END_MOOD', -20));
@@ -910,6 +956,13 @@ function doBreakup(s, reason) {
   var name = p ? p.name : (flow('default_partner') || '对方');
   s.relationship = 'single';
   s.partner = null;
+  /* 关系结束 → 「对象主动提分手」的判定状态一起清空：冷静期、预警、
+   * 宽容额度都按「一段关系」计数，下一段从零开始，不然前任的积怨会算到新对象头上。 */
+  s.partnerSinceDay = null;
+  s.leaveRollDay = null;
+  s.leaveWarnDay = null;
+  s.leaveWarnReason = null;
+  s.leaveStrikes = 0;
   var dAff = applyStat(s, 'affection', -s.affection);
   s.flags.breakupCount++;
   var dHealth = applyStat(s, 'health', C('BREAKUP_HEALTH', -5));
@@ -999,15 +1052,145 @@ function doOvertime(s) {
   };
 }
 
-/* ================= 对象主动提分手 ================= */
+/* ================= 对象主动提分手 =================
+ *
+ * 这条规则的设计目标：让「TA 走了」是一件能看懂、能挽回、但有代价的事。
+ *
+ * ① 一天只判定一次
+ *    渲染层有三处会调它（一次行动的结算、事件选项确认、推进一天之后），
+ *    不设闸的话同一天被 roll 2~3 次 —— 单次 5% 实际会变成每天 ~10%，
+ *    所有阈值全部失真，且玩家看到的「5%」和真实体感对不上。
+ *
+ * ② 冷静期
+ *    刚在一起的头几天不判定。刚确认关系就被甩，只会让人觉得这游戏随机。
+ *
+ * ③ 两段式：先预警，后分手
+ *    条件第一次被踩中时不分手，只给一条「危机预警」（浮窗 + 日志），
+ *    并把踩线的原因原样告诉玩家。玩家把那一项补回去，预警立刻解除 ——
+ *    这是可对抗性的来源。宽容次数有限（PARTNER_LEAVE_MAX_WARNINGS），
+ *    反复踩线不再给预警，直接进入判定。
+ *
+ * ④ 积怨 + 上限 + 抖动
+ *    预警挂着不处理，风险每天按 PARTNER_LEAVE_RAGE_STEP 往上加（有上限）；
+ *    每次判定还会乘一个 ±PARTNER_LEAVE_JITTER 的随机系数 ——
+ *    同样的状态也会有不同的下场，这是「随机性」的来源。
+ *
+ * ⑤ 难度参与
+ *    单次风险乘 difficulties.riskMod（简单 0.8 / 普通 1.0 / 困难 1.6），
+ *    与「交往风格踩雷」共用同一个系数：困难难度下关系本来就更容易崩。
+ *
+ * 返回值：
+ *   null                        → 这一帧什么都没发生
+ *   { warn: true, text, reason } → 危机预警（不分手）
+ *   { title, lines, delta, cooldown } → 真的被分手了
+ */
+
+/* 每日风险（不含抖动）：把「人格基础风险（已含踩线深度加权）+ 积怨」封顶，再乘难度。
+ *
+ * 为什么抽成独立函数：这是整个机制里最需要「看得见」的一组数字 ——
+ * tools/analyze-leave-risk.js 直接打印它做体检，edge-smoke 用它断言
+ * 「三档难度在分手概率上真的有区别」。夹在 checkPartnerLeave 里就两样都做不到。 */
+function leaveRiskOf(s, risk) {
+  var riskMod = (s.diff && s.diff.riskMod) ? s.diff.riskMod : 1;
+  var maxRisk = C('PARTNER_LEAVE_MAX_RISK', 0.1);
+  /* 婚后容忍度：已经领了证，沉没成本与「再找一个」的难度都上来了，
+   * 同样的处境下提分手的概率打个折。不然刚办完婚礼、状态刚好掉进危险区，
+   * 几天内就被离婚，玩家会觉得前面的努力白做。 */
+  var marriedMod = (s.relationship === 'married') ? C('PARTNER_LEAVE_MARRIED_MOD', 0.6) : 1;
+  var warn = Math.max(0, (risk && risk.risk) || 0);
+  var sudden = Math.max(0, (risk && risk.suddenRisk) || 0);
+
+  /* 积怨：预警挂着不处理，每过一天再往上加一档 */
+  if (warn > 0 && s.leaveWarnDay != null) {
+    warn += C('PARTNER_LEAVE_RAGE_STEP', 0.006) * Math.max(0, s.day - s.leaveWarnDay);
+  }
+  /* 上限先作用在「人格自己的风险」上、再乘难度 ——
+   * 顺序反过来的话，困难难度会被上限一起压平，三档难度就没区别了。 */
+  var ceil = maxRisk * riskMod * marriedMod;
+  return {
+    warn: Math.min(Math.min(warn, maxRisk) * riskMod * marriedMod, ceil),
+    sudden: Math.min(Math.min(sudden, maxRisk) * riskMod * marriedMod, ceil),
+    ceil: ceil,
+    riskMod: riskMod,
+    marriedMod: marriedMod
+  };
+}
+
 function checkPartnerLeave(s) {
   if (s.relationship === 'single' || !s.partner) return null;
+  /* 一天只判定一次 */
+  if (s.leaveRollDay === s.day) return null;
+
   var per = byId(DB.list('personalities'), s.partner.personalityId);
   if (!per) return null;
+
+  /* 冷静期：从这里之后才开始算「关系已经建立」 */
+  var since = (s.partnerSinceDay != null) ? s.partnerSinceDay
+    : (s.relStartDay != null ? s.relStartDay : s.day);
+  if (s.day - since < C('PARTNER_LEAVE_GRACE_DAYS', 3)) return null;
+
   var res = R.personalityRisk(s, per);
-  if (res && res.risk > 0 && Math.random() < res.risk) {
-    var r = doBreakup(s, res.reason);
-    return { title: flow('partner_leave_title') || '对方提出了分手', lines: r.lines, delta: r.delta, cooldown: r.cooldown || 0 };
+  s.leaveRollDay = s.day;
+
+  var jit = C('PARTNER_LEAVE_JITTER', 0.4);
+  /* 两类风险分开算（见 rules.personalityRisk）：
+   *   warnRisk   可挽回的危机 —— 先预警，预警挂着不处理才按积怨加码
+   *   suddenRisk 没有预兆的离开 —— 不给预警、不吃积怨，就是低概率的突然离场 */
+  var warnRisk = res ? Math.max(0, res.risk || 0) : 0;
+  var suddenRisk = res ? Math.max(0, res.suddenRisk || 0) : 0;
+
+  /* 预警的解除只看「可挽回的那部分」：把踩线的那一项补回去，预警立刻消失，
+   * 并记一次宽容额度（用完之后再踩线就不再给预警，直接判定）。 */
+  if (warnRisk <= 0 && s.leaveWarnDay != null) {
+    s.leaveWarnDay = null;
+    s.leaveWarnReason = null;
+    s.leaveStrikes = (s.leaveStrikes || 0) + 1;
+  }
+  if (warnRisk <= 0 && suddenRisk <= 0) return null;
+
+  var rk = leaveRiskOf(s, res);
+  var pWarn = rk.warn, pSudden = rk.sudden, ceil = rk.ceil;
+
+  /* 抖动的函数，不是常量：同样的状态也要有不同的下场（这是随机性的来源）。
+   * 上限同样跟着难度走：困难的每日概率天花板要高一些。 */
+  function jitter(p) {
+    if (!p) return 0;
+    return Math.max(0, Math.min(ceil, p * (1 + (Math.random() * 2 - 1) * jit)));
+  }
+
+  /* 两段式：第一次（前 N 次）踩线只预警，不分手 */
+  var warnFirst = C('PARTNER_LEAVE_WARN_FIRST', 1);
+  var maxWarn = C('PARTNER_LEAVE_MAX_WARNINGS', 2);
+  if (pWarn > 0 && warnFirst && s.leaveWarnDay == null && (s.leaveStrikes || 0) < maxWarn) {
+    s.leaveWarnDay = s.day;
+    /* 原因要留在状态里：主界面关系卡上会一直挂着这条预警，
+     * 玩家不用靠「3 秒的浮窗」来决定要不要补救。
+     *
+     * 一定要走 fillText 再存：性格规则里的文案带 `她(O)` 这类性别占位符
+     * （见 fillText 的替换逻辑），浮窗 / 日志那条路会替换掉，但关系卡上
+     * 这条常驻预警条是渲染层用 fmt() 直接拼的，拿到原文就会把 `(O)` 画在屏幕上。 */
+    var warnReasonRaw = res.reason || '';
+    s.leaveWarnReason = fillText(warnReasonRaw, s, {});
+    var tpl = N().partner_leave_warn || '{reason}';
+    var logTpl = N().partner_leave_warn_log || '{reason}';
+    return {
+      warn: true,
+      reason: res.reason,
+      text: fillText(tpl, s, { reason: res.reason }),
+      logText: fillText(logTpl, s, { reason: res.reason }),
+      strikes: s.leaveStrikes || 0
+    };
+  }
+
+  /* 一帧里两类风险各掷各的，取「至少命中一个」 */
+  var p = 1 - (1 - jitter(pWarn)) * (1 - jitter(pSudden));
+  if (Math.random() < p) {
+    var reason = pWarn > 0 ? (res.reason || res.suddenReason) : res.suddenReason;
+    var r = doBreakup(s, reason);
+    return {
+      title: flow('partner_leave_title') || '对方提出了分手',
+      lines: r.lines, delta: r.delta, cooldown: r.cooldown || 0
+    };
   }
   return null;
 }
@@ -1042,6 +1225,22 @@ function endingById(id) {
   return byId(DB.list('endings'), id);
 }
 
+/* 时间上限到点时用哪条兜底结局 —— 必须跟「到点时的关系状态」对得上：
+ *   married                   → married_stall「婚姻里的将就」
+ *                               （已经领了证，日子却没照想象过下去）
+ *   meeting / talking / dating → stalled「停在原地」
+ *                               （有对象，只是最终没走到婚姻）
+ *   single                    → timeout「时间到了」
+ *                               （文案里「相亲软件还在手机上」只在单身时成立）
+ * 之前一律用 timeout，已婚玩家会被判成「你既没有走进婚姻」——
+ * 与刚求完婚的事实自相矛盾。数据里缺哪条就逐级回退，保证一定有结局可显示。 */
+function timeoutEndingId(s) {
+  var rel = s.relationship;
+  if (rel === 'married') return endingById('married_stall') ? 'married_stall' : 'timeout';
+  if (rel && rel !== 'single') return endingById('stalled') ? 'stalled' : 'timeout';
+  return 'timeout';
+}
+
 function checkEnd(s) {
   if (s.goal && R.goalCheck(s, s.goal)) {
     var e = endingById(s.goal.id) || endingById('marry');
@@ -1059,31 +1258,44 @@ function checkEnd(s) {
     end.lines = e.lines.map(function (l) { return fillText(l, s); });
     return end;
   }
-  if (s.money <= 0) return withReason(cloneEnding(endingById('broke')), 'broke', { money: Math.round(s.money), day: s.day });
-  if (s.health <= 0) return withReason(cloneEnding(endingById('sick')), 'sick', { health: Math.round(s.health), day: s.day });
-  if (s.career <= 0) return withReason(cloneEnding(endingById('jobless')), 'jobless', { career: Math.round(s.career), day: s.day });
-  if (s.mood <= 0) return withReason(cloneEnding(endingById('depressed')), 'depressed', { mood: Math.round(s.mood), day: s.day });
+  if (s.money <= 0) return loseEnd(s, 'broke', 'broke', { money: Math.round(s.money), day: s.day });
+  if (s.health <= 0) return loseEnd(s, 'sick', 'sick', { health: Math.round(s.health), day: s.day });
+  if (s.career <= 0) return loseEnd(s, 'jobless', 'jobless', { career: Math.round(s.career), day: s.day });
+  if (s.mood <= 0) return loseEnd(s, 'depressed', 'depressed', { mood: Math.round(s.mood), day: s.day });
   /* 相亲期限（needRelation 目标的唯一时间型结局）——
    * 只有「到点时仍是单身」才算失败；接触中（meeting / talking）倒计时已暂停，
    * 即使剩余天数为 0 也不会在这里判负，可以继续把这段关系走完。 */
   if (s.goal && s.goal.needRelation && s.singleLimit > 0 &&
       s.relationship === 'single' && s.singleStreak >= s.singleLimit) {
-    return withReason(cloneEnding(endingById('forced')), 'deadline', {
+    return loseEnd(s, 'forced', 'deadline', {
       day: s.day, streak: s.singleStreak, limit: s.singleLimit,
       goal: goalName(s),
       progress: s.goal ? Math.round(R.goalProgress(s, s.goal) * 100) : 0,
       relation: s.relationship
     });
   }
-  /* 非相亲类目标：仍以 maxDays 为兜底，避免无限循环 */
+  /* 非相亲类目标：仍以 maxDays 为兜底，避免无限循环。
+   * 兜底结局按关系状态分流（见 timeoutEndingId）——单身文案套在已婚玩家身上
+   * 会自相矛盾，比如「求婚成功」后紧接着弹出「你既没有走进婚姻」。 */
   if (s.day > s.diff.maxDays) {
-    return withReason(cloneEnding(endingById('timeout')), 'timeout', {
+    return loseEnd(s, timeoutEndingId(s), 'timeout', {
       day: s.day, maxDays: s.diff.maxDays, goal: goalName(s),
       progress: s.goal ? Math.round(R.goalProgress(s, s.goal) * 100) : 0,
       relation: s.relationship
     });
   }
   return null;
+}
+
+/* 失败 / 兜底结局的统一出口：取记录 → 挂原因 → 填占位符。
+ * 填占位符这一步以前只有「达成目标」那条走（win 分支手写了 fillText），
+ * 其余结局直接把原文交出去 —— 于是失败结局里写 {p} 会把「{p}」两个字
+ * 原样画在屏幕上，写「她」也不会随对象性别变成「他」。 */
+function loseEnd(s, id, key, vars) {
+  var end = withReason(cloneEnding(endingById(id)), key, vars);
+  if (!end) return null;
+  end.lines = (end.lines || []).map(function (l) { return fillText(l, s); });
+  return end;
 }
 
 /* 给结局挂上「为什么」的结构化原因（文案模板在 texts.end.reasons，逻辑层不放文案） */
@@ -1377,6 +1589,8 @@ module.exports = {
   doChild: doChild,
   doOvertime: doOvertime,
   checkPartnerLeave: checkPartnerLeave,
+  /* 每日风险（不含抖动）：体检工具与测试都靠它读机制里的真实概率 */
+  leaveRiskOf: leaveRiskOf,
   checkBreakup: checkBreakup,
   checkEnd: checkEnd,
   deadlineState: deadlineState,
