@@ -4,12 +4,12 @@
 
 
 ## 核心特性
-<img width="660" height="1434" alt="487ad75ef574944e101262b82d0de1da" src="https://github.com/user-attachments/assets/dd712982-afc6-4721-abc8-0d3c4c30e605" />
-<img width="660" height="1434" alt="66dd30449127041e9229a39a26c038bf" src="https://github.com/user-attachments/assets/f41d0784-1e93-4cd4-9dce-8530472c076d" />
-<img width="660" height="1434" alt="a6b5c1f0c91602a55209023a481b2129" src="https://github.com/user-attachments/assets/55944a49-8fab-4c12-8903-41ebfff4db80" />
-<img width="660" height="1434" alt="2a44d02638b03bf343237c245ad65025" src="https://github.com/user-attachments/assets/2b5299ea-27bf-4125-ba3c-15d24e6d0ff2" />
-<img width="660" height="1434" alt="0d19e835d4954b5432fd7fc543c398c3" src="https://github.com/user-attachments/assets/c9590678-6bcd-4ebd-86e0-79e4c55090e9" />
-<img width="660" height="1434" alt="ea300eb20fc3dddc5bae2c8f0e7bdcb2" src="https://github.com/user-attachments/assets/82e51fdf-0643-4d29-ba04-d32105f5a657" />
+<img width="330" height="720" alt="487ad75ef574944e101262b82d0de1da" src="https://github.com/user-attachments/assets/dd712982-afc6-4721-abc8-0d3c4c30e605" />
+<img width="330" height="720" alt="66dd30449127041e9229a39a26c038bf" src="https://github.com/user-attachments/assets/f41d0784-1e93-4cd4-9dce-8530472c076d" />
+<img width="330" height="720" alt="a6b5c1f0c91602a55209023a481b2129" src="https://github.com/user-attachments/assets/55944a49-8fab-4c12-8903-41ebfff4db80" />
+<img width="330" height="720" alt="2a44d02638b03bf343237c245ad65025" src="https://github.com/user-attachments/assets/2b5299ea-27bf-4125-ba3c-15d24e6d0ff2" />
+<img width="330" height="720" alt="0d19e835d4954b5432fd7fc543c398c3" src="https://github.com/user-attachments/assets/c9590678-6bcd-4ebd-86e0-79e4c55090e9" />
+<img width="330" height="720" alt="ea300eb20fc3dddc5bae2c8f0e7bdcb2" src="https://github.com/user-attachments/assets/82e51fdf-0643-4d29-ba04-d32105f5a657" />
 
 
 
